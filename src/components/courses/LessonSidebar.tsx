@@ -5,15 +5,13 @@ import Link from 'next/link';
 import { useParams, usePathname } from 'next/navigation';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { cn } from '@/lib/utils';
-import { Video, FileText, BrainCircuit } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { Video, FileText } from 'lucide-react';
 
 interface LessonSidebarProps {
   course: Course;
-  onOpenAssistant: () => void;
 }
 
-export function LessonSidebar({ course, onOpenAssistant }: LessonSidebarProps) {
+export function LessonSidebar({ course }: LessonSidebarProps) {
   const params = useParams();
   const pathname = usePathname();
   const { courseId } = params;
@@ -26,10 +24,6 @@ export function LessonSidebar({ course, onOpenAssistant }: LessonSidebarProps) {
     <div className="sticky top-20">
         <h2 className="font-headline text-lg font-semibold mb-2 hidden md:block">{course.title}</h2>
         <h3 className="font-semibold text-muted-foreground mb-4 hidden md:block">Course Content</h3>
-        <Button onClick={onOpenAssistant} className="w-full mb-4 hidden md:flex">
-          <BrainCircuit className="mr-2 h-4 w-4" />
-          Fale com o Professor
-        </Button>
         <Accordion type="multiple" defaultValue={defaultActiveModules} className="w-full">
         {course.modules.map((module) => (
           <AccordionItem value={module.id} key={module.id}>
