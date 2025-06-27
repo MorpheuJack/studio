@@ -9,6 +9,7 @@ export type Post = {
   image: string;
   'data-ai-hint'?: string;
   content: string;
+  audioUrl?: string;
 };
 
 export const posts: Post[] = [
@@ -37,6 +38,7 @@ Os assistentes de IA evoluirão para se tornarem agentes proativos. Em vez de ap
 A próxima fronteira é a personalização. Os modelos serão ajustados dinamicamente para cada indivíduo, aprendendo seu estilo de comunicação, suas preferências e seu contexto. Isso levará a assistentes verdadeiramente pessoais e ferramentas de trabalho que se adaptam ao seu fluxo, tornando a tecnologia uma extensão natural do seu pensamento.
 
 O futuro é brilhante e cheio de possibilidades. A IA generativa não é apenas uma ferramenta, mas um novo meio para a criatividade e a produtividade humana, prometendo uma sinergia sem precedentes entre mente e máquina.`,
+    audioUrl: '/audio/o-futuro-da-ia-generativa.mp3',
   },
   {
     slug: '5-dicas-para-escrever-prompts-melhores',
