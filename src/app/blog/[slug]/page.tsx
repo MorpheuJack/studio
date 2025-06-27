@@ -81,6 +81,7 @@ export default function BlogPostPage() {
                   );
                 }
 
+                // Handle H2
                 if (paragraph.startsWith('**') && paragraph.endsWith('**')) {
                   return (
                     <h2 key={index} className="text-center md:text-left">
@@ -88,7 +89,14 @@ export default function BlogPostPage() {
                     </h2>
                   );
                 }
-                return <p key={index}>{paragraph}</p>;
+                
+                // Handle paragraphs with inline bolding
+                const parts = paragraph.split('**');
+                const content = parts.map((part, i) => 
+                  i % 2 === 1 ? <strong key={i}>{part}</strong> : part
+                );
+
+                return <p key={index}>{content}</p>;
               })}
             </div>
           </article>
