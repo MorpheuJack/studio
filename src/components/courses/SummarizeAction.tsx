@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useEffect } from 'react';
-import { useFormState, useFormStatus } from 'react-dom';
+import { useState, useEffect, useActionState } from 'react';
+import { useFormStatus } from 'react-dom';
 import { summarizeLessonAction } from '@/app/actions';
 import { Button } from '@/components/ui/button';
 import {
@@ -45,7 +45,7 @@ function SubmitButton() {
 }
 
 export function SummarizeAction({ lessonContent }: SummarizeActionProps) {
-  const [state, formAction] = useFormState(summarizeLessonAction, initialState);
+  const [state, formAction] = useActionState(summarizeLessonAction, initialState);
   const [isDialogOpen, setDialogOpen] = useState(false);
 
   useEffect(() => {
