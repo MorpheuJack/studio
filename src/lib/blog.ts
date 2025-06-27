@@ -20,7 +20,7 @@ export const posts: Post[] = [
     slug: 'alerta-de-musk-sobre-o-big-bang-da-inteligencia',
     title: 'Superinteligência em 2025: O Alerta de Musk Sobre o "Big Bang da Inteligência" e o Risco de Aniquilação',
     description: 'Explorando a previsão de Elon Musk sobre a chegada da superinteligência já em 2025.',
-    author: 'Aetheria AI',
+    author: 'Revolução Cognitiva',
     authorAvatar: 'https://placehold.co/100x100.png',
     date: '27 de Julho, 2025',
     isoDate: '2024-07-15',
@@ -232,8 +232,3 @@ export const getAllPosts = () => {
 export const getPostBySlug = (slug: string) => {
   return posts.find(post => post.slug === slug);
 };
-
-    
-    
-
-    

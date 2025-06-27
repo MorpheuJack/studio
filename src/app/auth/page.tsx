@@ -111,7 +111,7 @@ export default function AuthPage() {
             <CardHeader>
               <CardTitle>Crie sua conta</CardTitle>
               <CardDescription>
-                Comece a explorar o futuro do aprendizado com Aetheria AI.
+                Comece a explorar o futuro do aprendizado com Revolução Cognitiva.
               </CardDescription>
             </CardHeader>
             <CardContent>

@@ -62,7 +62,7 @@ export function Header() {
             className="font-bold font-headline"
             style={{ textShadow: "0 0 8px hsl(var(--primary))" }}
           >
-            Aetheria AI
+            Revolução Cognitiva
           </span>
         </Link>
         <nav className="hidden items-center space-x-6 text-sm font-medium md:flex">
@@ -166,7 +166,7 @@ export function Header() {
                 </SheetHeader>
                 <Link href="/" className="mb-6 flex items-center space-x-2" onClick={() => setIsMobileMenuOpen(false)}>
                    <BrainCircuit className="h-6 w-6 text-primary" />
-                   <span className="font-bold font-headline text-lg">Aetheria AI</span>
+                   <span className="font-bold font-headline text-lg">Revolução Cognitiva</span>
                 </Link>
 
                 <nav className="flex flex-col gap-4 text-lg font-medium">

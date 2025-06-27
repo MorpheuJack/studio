@@ -7,7 +7,7 @@ import { EnrollmentProvider } from '@/context/EnrollmentContext';
 import { AuthProvider } from '@/context/AuthContext';
 
 export const metadata: Metadata = {
-  title: 'Aetheria AI - Educação Inteligente',
+  title: 'Revolução Cognitiva - Educação Inteligente',
   description: 'Sua plataforma de aprendizado para dominar a Inteligência Artificial e tecnologias do futuro.',
 };
 

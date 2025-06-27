@@ -15,7 +15,7 @@ export default function Home() {
       </div>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <section className="py-16 sm:py-20 md:py-28">
-          <div className="flex flex-col-reverse items-center gap-16 lg:flex-row">
+          <div className="flex flex-col items-center gap-16 lg:flex-row lg:flex-row-reverse">
             
             <div className="flex flex-col items-center text-center lg:items-start lg:text-left lg:w-1/2">
               <h1 className="font-headline text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl">
@@ -24,7 +24,7 @@ export default function Home() {
                   className="text-primary"
                   style={{ textShadow: "0 0 15px hsl(var(--primary))" }}
                 >
-                  Aetheria AI
+                  Revolução Cognitiva
                 </span>
               </h1>
               <p className="mt-6 max-w-2xl text-lg leading-8 text-muted-foreground lg:max-w-none">
