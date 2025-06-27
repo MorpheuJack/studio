@@ -30,7 +30,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
         </div>
       </header>
 
-      <div className="relative mb-8 h-64 md:h-96 w-full overflow-hidden rounded-xl">
+      <div className="relative mb-8 h-64 md:h-96 w-full overflow-hidden rounded-xl shadow-lg">
         <Image
           src={post.image}
           alt={post.title}
@@ -43,10 +43,18 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
       
       <Separator className="my-8" />
 
-      <div className="prose prose-lg dark:prose-invert max-w-none mx-auto text-foreground/90">
+      <div className="prose prose-lg dark:prose-invert max-w-none mx-auto
+        prose-headings:font-headline prose-headings:tracking-tight prose-headings:text-foreground 
+        prose-p:text-muted-foreground prose-p:leading-relaxed
+        prose-strong:text-foreground prose-a:text-primary hover:prose-a:text-primary/80
+        prose-blockquote:border-l-primary prose-blockquote:text-muted-foreground prose-blockquote:font-normal">
         {post.content.split('\n\n').map((paragraph, index) => {
           if (paragraph.startsWith('**') && paragraph.endsWith('**')) {
-            return <h2 key={index} className="font-headline text-2xl font-bold mt-8 mb-4">{paragraph.replaceAll('**', '')}</h2>;
+            return (
+              <h2 key={index}>
+                {paragraph.replaceAll('**', '')}
+              </h2>
+            );
           }
           return <p key={index}>{paragraph}</p>;
         })}
