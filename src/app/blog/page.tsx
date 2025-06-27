@@ -1,9 +1,23 @@
 import React from 'react';
 import { getAllPosts } from '@/lib/blog';
 import { PostCard } from '@/components/blog/PostCard';
+import { BlogSearch } from '@/components/blog/BlogSearch';
 
-export default function BlogPage() {
-  const posts = getAllPosts();
+export default function BlogPage({
+  searchParams,
+}: {
+  searchParams?: {
+    q?: string;
+  };
+}) {
+  const allPosts = getAllPosts();
+  const searchTerm = searchParams?.q || '';
+
+  const filteredPosts = allPosts.filter(post => {
+    return post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+           post.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+           post.content.toLowerCase().includes(searchTerm.toLowerCase());
+  });
 
   return (
     <div className="container mx-auto px-4 py-8 sm:px-6 lg:px-8">
@@ -16,11 +30,19 @@ export default function BlogPage() {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-3">
-        {posts.map(post => (
-          <PostCard key={post.slug} post={post} />
-        ))}
-      </div>
+      <BlogSearch initialSearch={searchTerm} />
+
+      {filteredPosts.length > 0 ? (
+        <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-3">
+          {filteredPosts.map(post => (
+            <PostCard key={post.slug} post={post} />
+          ))}
+        </div>
+      ) : (
+        <div className="text-center py-16">
+          <p className="text-muted-foreground">Nenhum artigo encontrado com seus critérios de busca.</p>
+        </div>
+      )}
     </div>
   );
 }
