@@ -68,40 +68,42 @@ export default function BlogPostPage() {
               prose-strong:text-foreground prose-a:text-foreground hover:prose-a:text-foreground/80
               prose-blockquote:border-l-foreground prose-blockquote:text-muted-foreground prose-blockquote:font-normal">
               {post.content.split('\n\n').map((paragraph, index) => {
-                // If this is the paragraph to be replaced, and the post has a videoUrl, render the player instead.
-                if (post.videoUrl && paragraph.startsWith(introParagraphIdentifier)) {
-                  return (
-                    <div key="video-player" className="my-6 aspect-video">
-                      <iframe
-                        className="w-full h-full rounded-lg"
-                        src={post.videoUrl}
-                        title="YouTube video player"
-                        frameBorder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        referrerPolicy="strict-origin-when-cross-origin"
-                        allowFullScreen
-                      ></iframe>
-                    </div>
-                  );
-                }
-
-                // If this is the paragraph to be replaced, and the post has an audioUrl, render the player instead.
-                if (post.audioUrl && paragraph.startsWith(introParagraphIdentifier)) {
-                  return (
-                      <div key="audio-player" className="my-6">
-                        <p className="text-sm font-medium mb-2 text-center">Ouça o panorama da entrevista de Elon Musk</p>
-                        <audio controls className="w-full" crossOrigin="anonymous">
-                          <source src={post.audioUrl} type={getAudioType(post.audioUrl)} />
-                          Seu navegador não suporta o elemento de áudio.
-                        </audio>
-                      </div>
-                  );
+                // If this is the paragraph to be replaced, render media players and don't render the paragraph.
+                if (paragraph.startsWith(introParagraphIdentifier)) {
+                  if (post.videoUrl || post.audioUrl) {
+                    return (
+                      <React.Fragment key="media-players">
+                        {post.videoUrl && (
+                          <div key="video-player" className="my-6 aspect-video">
+                            <iframe
+                              className="w-full h-full rounded-lg"
+                              src={post.videoUrl}
+                              title="YouTube video player"
+                              frameBorder="0"
+                              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                              referrerPolicy="strict-origin-when-cross-origin"
+                              allowFullScreen
+                            ></iframe>
+                          </div>
+                        )}
+                        {post.audioUrl && (
+                          <div key="audio-player" className="my-6">
+                            <p className="text-sm font-medium mb-2 text-center">Ouça o panorama da entrevista de Elon Musk</p>
+                            <audio controls className="w-full" crossOrigin="anonymous">
+                              <source src={post.audioUrl} type={getAudioType(post.audioUrl)} />
+                              Seu navegador não suporta o elemento de áudio.
+                            </audio>
+                          </div>
+                        )}
+                      </React.Fragment>
+                    );
+                  }
                 }
 
                 // Handle H2
                 if (paragraph.startsWith('**') && paragraph.endsWith('**')) {
                   return (
-                    <h2 key={index} className="text-center md:text-left">
+                    <h2 key={index}>
                       {paragraph.replaceAll('**', '')}
                     </h2>
                   );
