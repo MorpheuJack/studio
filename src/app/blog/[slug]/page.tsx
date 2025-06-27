@@ -21,7 +21,7 @@ export default function BlogPostPage() {
           src={post.image}
           alt={post.title}
           fill
-          className="object-cover"
+          className="object-cover animate-slow-zoom"
           data-ai-hint={post['data-ai-hint']}
           priority
         />
