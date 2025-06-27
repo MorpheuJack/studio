@@ -62,8 +62,9 @@ export default function BlogPostPage() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
          <article className="my-16 rounded-xl border border-primary/20 bg-gradient-to-br from-slate-950 via-background to-slate-950 bg-[size:200%] p-8 shadow-2xl shadow-primary/10 animate-animated-gradient md:p-12">
             <div className="prose prose-lg dark:prose-invert mx-auto max-w-4xl
-              prose-headings:font-headline prose-headings:tracking-tight prose-headings:text-foreground
-              prose-p:text-muted-foreground prose-p:leading-relaxed
+              prose-headings:font-headline prose-headings:tracking-tight prose-headings:text-primary
+              prose-h2:text-3xl prose-h2:mb-4 prose-h2:mt-12
+              prose-p:text-foreground/80 prose-p:leading-relaxed
               prose-strong:text-foreground prose-a:text-primary hover:prose-a:text-primary/80
               prose-blockquote:border-l-primary prose-blockquote:text-muted-foreground prose-blockquote:font-normal">
               {post.content.split('\n\n').map((paragraph, index) => {
@@ -71,7 +72,7 @@ export default function BlogPostPage() {
                 if (post.audioUrl && paragraph.startsWith(introParagraphIdentifier)) {
                   return (
                       <div key="audio-player" className="my-6">
-                        <p className="text-sm font-medium mb-2 text-muted-foreground text-center">Ouça o panorama da entrevista de Elon Musk</p>
+                        <p className="text-sm font-medium mb-2 text-center">Ouça o panorama da entrevista de Elon Musk</p>
                         <audio controls className="w-full">
                           <source src={post.audioUrl} type={getAudioType(post.audioUrl)} />
                           Seu navegador não suporta o elemento de áudio.

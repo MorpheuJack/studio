@@ -26,8 +26,7 @@ export const posts: Post[] = [
     image: 'https://revolucaocognitiva.tech/wp-content/uploads/2025/06/20250627_1730_Mente-Tecnologica_remix_01jysh7g3bex183shwag1fsneh.png',
     'data-ai-hint': 'abstract future',
     category: 'IA',
-    content: `A inteligência artificial generativa capturou a imaginação do mundo, prometendo revolucionar tudo, desde a criação de conteúdo até a descoberta científica. Mas além do hype inicial, o que realmente está no horizonte? Vamos explorar as tendências, os desafios e o potencial transformador da IA generativa nos próximos anos.
-
+    content: `
 **O Início do Big Bang da Inteligência**
 
 **ENTREVISTADO:** Estamos no estágio muito, muito inicial do Big Bang da inteligência. Ser uma espécie multiplanetária aumenta muito a provável vida útil da civilização, tanto biológica quanto digital. Acho que estamos bem perto da superinteligência digital. Se não acontecer este ano, no próximo ano com certeza.
