@@ -1,3 +1,4 @@
+
 "use client";
 
 import Link from "next/link";
@@ -21,6 +22,8 @@ import {
   SheetContent,
   SheetTrigger,
   SheetClose,
+  SheetHeader,
+  SheetTitle,
 } from "@/components/ui/sheet";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Switch } from "@/components/ui/switch";
@@ -158,6 +161,9 @@ export function Header() {
                 </Button>
               </SheetTrigger>
               <SheetContent side="left" className="flex flex-col p-6 pt-8">
+                <SheetHeader>
+                  <SheetTitle className="sr-only">Menu Principal</SheetTitle>
+                </SheetHeader>
                 <Link href="/" className="mb-6 flex items-center space-x-2" onClick={() => setIsMobileMenuOpen(false)}>
                    <BrainCircuit className="h-6 w-6 text-primary" />
                    <span className="font-bold font-headline text-lg">Aetheria AI</span>
