@@ -44,7 +44,7 @@ export function FloatingAssistant({ course }: { course: Course }) {
   const [isOpen, setIsOpen] = useState(false);
 
   const [messages, setMessages] = useState<Message[]>([
-    { role: 'assistant', content: `Olá! Eu sou o Professor AI. Estou aqui para ajudar você com qualquer dúvida sobre o curso "${course.title}". Como posso ajudar?` }
+    { role: 'assistant', content: `Saudações, futuro(a) mestre do conhecimento! Sou o Professor AI, seu guia pessoal nesta jornada pelo curso "${course.title}". Não hesite em perguntar qualquer coisa. Estou aqui para iluminar seu caminho! ✨ Como posso ajudar a expandir seus horizontes hoje?` }
   ]);
   const [state, formAction] = useActionState(askAssistantAction, initialState);
   const formRef = useRef<HTMLFormElement>(null);
@@ -95,7 +95,7 @@ export function FloatingAssistant({ course }: { course: Course }) {
     <Popover open={isOpen} onOpenChange={setIsOpen}>
       <PopoverTrigger asChild>
         <Button
-          className="fixed bottom-6 right-6 h-16 w-16 rounded-full shadow-lg animate-pulse"
+          className="fixed bottom-6 right-6 h-16 w-16 rounded-full shadow-lg shadow-primary/30 animate-pulse"
           style={{ animationDuration: '3s' }}
           size="icon"
           aria-label="Abrir Assistente de IA"
@@ -112,8 +112,8 @@ export function FloatingAssistant({ course }: { course: Course }) {
                 </AvatarFallback>
             </Avatar>
             <div>
-                <CardTitle className="text-lg">Professor AI</CardTitle>
-                <CardDescription>Assistente para o curso</CardDescription>
+                <CardTitle className="text-lg">Professor AI ao seu dispor!</CardTitle>
+                <CardDescription>Seu guia pessoal para este curso</CardDescription>
             </div>
           </div>
         </CardHeader>
@@ -148,7 +148,7 @@ export function FloatingAssistant({ course }: { course: Course }) {
                 {currentModule && <input type="hidden" name="moduleTitle" value={currentModule.title} />}
                 <Input
                     name="userMessage"
-                    placeholder="Digite sua dúvida aqui..."
+                    placeholder="Faça sua pergunta ao professor..."
                     className="pr-12"
                     autoComplete="off"
                 />
