@@ -19,19 +19,15 @@ export const posts: Post[] = [
   {
     slug: 'alerta-de-musk-sobre-o-big-bang-da-inteligencia',
     title: 'Superinteligência em 2025: O Alerta de Musk Sobre o "Big Bang da Inteligência" e o Risco de Aniquilação',
-    description: 'Uma análise profunda sobre para onde a tecnologia de IA generativa está indo e o que esperar nos próximos anos.',
+    description: 'Explorando a previsão de Elon Musk sobre a chegada da superinteligência já em 2025.',
     author: 'MorpheuJack',
     authorAvatar: 'https://placehold.co/100x100.png',
-    date: '15 de Julho, 2024',
+    date: '27 de Julho, 2025',
     isoDate: '2024-07-15',
     image: 'https://revolucaocognitiva.tech/wp-content/uploads/2025/06/20250627_1730_Mente-Tecnologica_remix_01jysh7g3bex183shwag1fsneh.png',
     'data-ai-hint': 'abstract future',
     category: 'IA',
-    content: `A inteligência artificial generativa capturou a imaginação do mundo, prometendo revolucionar tudo, desde a criação de conteúdo até a descoberta científica. Mas o que está além do hype? Nesta entrevista, sentamos com dois especialistas para discutir o estado atual da IA, seus desafios e o que o futuro realmente reserva.
-
-**O Início do Big Bang da Inteligência**
-
-**Elon Musk:** Estamos no estágio muito, muito inicial do Big Bang da inteligência. Ser uma espécie multiplanetária aumenta muito a provável vida útil da civilização, tanto biológica quanto digital. Acho que estamos bem perto da superinteligência digital. Se não acontecer este ano, no próximo ano com certeza.
+    content: `**O Início do Big Bang da Inteligência**
 
 **ENTREVISTADOR:** Elon, bem-vindo à AI Startup School. Estamos realmente privilegiados por ter sua presença aqui hoje.
 
@@ -41,7 +37,7 @@ export const posts: Post[] = [
 
 **Elon Musk:** Eu não pensei originalmente que construiria algo grandioso. Eu queria tentar construir algo útil, mas, se você olhar probabilisticamente, parecia improvável. Mas eu queria pelo menos tentar.
 
-**ENTREVISTador:** Esta é uma sala cheia de jovens de 18 a 25 anos, muitos são os pesquisadores de IA mais eminentes que estão surgindo.
+**ENTREVISTADOR:** Esta é uma sala cheia de jovens de 18 a 25 anos, muitos são os pesquisadores de IA mais eminentes que estão surgindo.
 
 **Elon Musk:** Eu acho que gosto mais do termo "engenheiro" do que "pesquisador". Suponho que se houver algum avanço algorítmico fundamental, isso é pesquisa, mas, caso contrário, é engenharia.
 
@@ -158,8 +154,6 @@ Estou preocupado com o paradoxo de Fermi: por que não vimos alienígenas? Talve
 **Elon Musk:** A Neuralink não é necessária para a superinteligência digital, que virá antes. Mas ela resolve o problema da largura de banda entre cérebro e máquina. Nossa saída de dados é muito baixa. Com a Neuralink, poderemos aumentar massivamente a entrada e saída. Já temos humanos com implantes de "leitura". Em breve, faremos implantes para visão, permitindo que cegos vejam, e no futuro, com superpoderes como visão infravermelha. Mas a superinteligência digital acontecerá bem antes disso.
 
 **Elon Musk:** Somos o bootloader biológico para a superinteligência digital.
-
-**Pensamentos Finais**
 
 **ENTREVISTADOR:** Qual seu pensamento final para as pessoas mais inteligentes desta geração?
 

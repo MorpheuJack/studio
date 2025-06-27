@@ -14,9 +14,10 @@ export default function Home() {
         <div className="blur-[106px] h-32 bg-gradient-to-r from-cyan-400 to-sky-300 dark:to-accent"></div>
       </div>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <section className="py-24 sm:py-32">
-          <div className="grid grid-cols-1 items-center gap-y-16 lg:grid-cols-2 lg:gap-x-16">
-            <div className="text-center lg:text-left">
+        <section className="py-16 sm:py-20 md:py-28">
+          <div className="flex flex-col-reverse items-center gap-16 lg:flex-row">
+            
+            <div className="flex flex-col items-center text-center lg:items-start lg:text-left lg:w-1/2">
               <h1 className="font-headline text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl">
                 O Futuro da Educação é Inteligente. Bem-vindo à{" "}
                 <span
@@ -26,10 +27,10 @@ export default function Home() {
                   Aetheria AI
                 </span>
               </h1>
-              <p className="mt-6 text-lg leading-8 text-muted-foreground">
+              <p className="mt-6 max-w-2xl text-lg leading-8 text-muted-foreground lg:max-w-none">
                 Navegue por cursos de ponta em Inteligência Artificial, Ciência de Dados e mais. Aprenda com uma plataforma construída sobre a tecnologia do amanhã.
               </p>
-              <div className="mt-10 flex items-center justify-center gap-x-6 lg:justify-start">
+              <div className="mt-10 flex items-center gap-x-6">
                 <Button asChild size="lg">
                   <Link href="/courses">
                     Explorar Cursos
@@ -41,7 +42,8 @@ export default function Home() {
                 </Button>
               </div>
             </div>
-            <div className="relative h-80 lg:h-full">
+
+            <div className="relative w-full h-80 lg:w-1/2 lg:h-[32rem]">
               <Image
                 src="https://placehold.co/600x400.png"
                 alt="Uma imagem abstrata representando uma rede neural e aprendizado"
@@ -51,6 +53,7 @@ export default function Home() {
                 priority
               />
             </div>
+
           </div>
         </section>
       </div>
