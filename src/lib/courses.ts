@@ -1,7 +1,7 @@
 export type Lesson = {
   id: string;
   title: string;
-  type: 'video' | 'article';
+  type: 'video' | 'article' | 'chat';
   duration: number; // in minutes
   content: string;
 };
@@ -31,44 +31,44 @@ export type Course = {
 export const courses: Course[] = [
   {
     id: 'c1',
-    title: 'Advanced JavaScript & AI',
-    description: 'Master modern JavaScript and integrate AI for powerful web applications.',
-    longDescription: 'This course dives deep into advanced JavaScript concepts including asynchronous patterns, performance optimization, and modern syntax. You will also learn how to leverage the power of AI APIs to build intelligent features like chatbots, content summarizers, and recommendation engines directly into your web projects.',
+    title: 'JavaScript Avançado & IA',
+    description: 'Domine JavaScript moderno e integre IA para aplicações web poderosas.',
+    longDescription: 'Este curso mergulha em conceitos avançados de JavaScript, incluindo padrões assíncronos, otimização de performance e sintaxe moderna. Você também aprenderá a alavancar o poder das APIs de IA para construir funcionalidades inteligentes como chatbots, sumarizadores de conteúdo e motores de recomendação diretamente em seus projetos web.',
     instructor: {
       name: 'Dr. Evelyn Reed',
-      title: 'Senior AI Engineer',
+      title: 'Engenheira de IA Sênior',
       avatar: 'https://placehold.co/100x100.png',
     },
     image: 'https://placehold.co/600x400.png',
     'data-ai-hint': 'glowing code',
-    category: 'Programming',
+    category: 'Programação',
     modules: [
       {
         id: 'm1',
-        title: 'Module 1: Asynchronous JavaScript',
+        title: 'Módulo 1: JavaScript Assíncrono',
         lessons: [
-          { id: 'l1_1', title: 'Promises and Async/Await', type: 'video', duration: 25, content: 'This lesson covers the fundamentals of asynchronous programming in JavaScript. We explore how Promises work and how the async/await syntax provides a cleaner way to handle asynchronous operations. We will walk through practical examples of fetching data from an API and managing asynchronous control flow. The content is crucial for building non-blocking applications.' },
-          { id: 'l1_2', title: 'The Event Loop', type: 'article', duration: 15, content: 'A deep dive into the JavaScript Event Loop. Understanding the event loop is key to understanding how JavaScript handles asynchronous code. This article explains the call stack, callback queue, and how they interact to execute code. We will visualize the process to make it easier to grasp.' },
+          { id: 'l1_1', title: 'Promises e Async/Await', type: 'video', duration: 25, content: 'Esta lição aborda os fundamentos da programação assíncrona em JavaScript. Exploramos como as Promises funcionam e como a sintaxe async/await fornece uma maneira mais limpa de lidar com operações assíncronas. Veremos exemplos práticos de busca de dados de uma API e gerenciamento de fluxo de controle assíncrono. O conteúdo é crucial para a construção de aplicações não bloqueantes.' },
+          { id: 'l1_2', title: 'Professor AI: Tire suas Dúvidas', type: 'chat', duration: 20, content: 'Converse com nosso assistente de IA para aprofundar seu conhecimento sobre JavaScript assíncrono e APIs de IA. Faça perguntas, peça exemplos e esclareça qualquer conceito do curso.' },
         ],
       },
       {
         id: 'm2',
-        title: 'Module 2: Introduction to AI APIs',
+        title: 'Módulo 2: Introdução a APIs de IA',
         lessons: [
-          { id: 'l2_1', title: 'Connecting to Generative AI', type: 'video', duration: 30, content: 'Learn how to connect your JavaScript application to a powerful Generative AI model. This lesson provides a step-by-step guide on setting up your environment, obtaining API keys, and making your first API call to generate text. We will build a simple "idea generator" application.' },
-          { id: 'l2_2', title: 'Building an AI Summarizer', type: 'article', duration: 45, content: 'This hands-on lesson guides you through building a practical AI tool: a text summarizer. You will learn about prompt engineering techniques to get the best results from the AI. We will use the concepts from previous lessons to create a web interface where users can paste text and get a concise summary.' },
+          { id: 'l2_1', title: 'Conectando a uma IA Generativa', type: 'video', duration: 30, content: 'Aprenda a conectar sua aplicação JavaScript a um poderoso modelo de IA Generativa. Esta lição fornece um guia passo a passo sobre como configurar seu ambiente, obter chaves de API e fazer sua primeira chamada de API para gerar texto. Construiremos uma aplicação simples de "gerador de ideias".' },
+          { id: 'l2_2', title: 'Construindo um Sumarizador com IA', type: 'article', duration: 45, content: 'Esta lição prática guia você na construção de uma ferramenta de IA útil: um sumarizador de texto. Você aprenderá sobre técnicas de engenharia de prompt para obter os melhores resultados da IA. Usaremos os conceitos das lições anteriores para criar uma interface web onde os usuários podem colar texto e obter um resumo conciso.' },
         ],
       },
     ],
   },
   {
     id: 'c2',
-    title: 'UI/UX Design with Figma',
-    description: 'From wireframes to interactive prototypes, learn the complete design process.',
-    longDescription: 'This comprehensive course takes you through the entire UI/UX design process using Figma, the industry-standard design tool. You will learn about user research, creating user personas, wireframing, designing high-fidelity mockups, and building interactive prototypes. The course is project-based, and you will build a complete mobile app design from scratch.',
+    title: 'Design UI/UX com Figma',
+    description: 'De wireframes a protótipos interativos, aprenda o processo completo de design.',
+    longDescription: 'Este curso abrangente leva você por todo o processo de design UI/UX usando o Figma, a ferramenta de design padrão do setor. Você aprenderá sobre pesquisa de usuário, criação de personas, wireframing, design de mockups de alta fidelidade e construção de protótipos interativos. O curso é baseado em projetos e você construirá um design completo de aplicativo móvel do zero.',
     instructor: {
       name: 'Liam Chen',
-      title: 'Principal Product Designer',
+      title: 'Designer de Produto Principal',
       avatar: 'https://placehold.co/100x100.png',
     },
     image: 'https://placehold.co/600x400.png',
@@ -77,22 +77,22 @@ export const courses: Course[] = [
     modules: [
       {
         id: 'm3',
-        title: 'Module 1: Design Fundamentals',
+        title: 'Módulo 1: Fundamentos do Design',
         lessons: [
-          { id: 'l3_1', title: 'Principles of Visual Design', type: 'article', duration: 20, content: 'Explore the core principles of visual design, including hierarchy, contrast, repetition, proximity, and white space. Understanding these principles is essential for creating user interfaces that are both beautiful and functional. This article includes examples from popular apps and websites.' },
-          { id: 'l3_2', title: 'Getting Started with Figma', type: 'video', duration: 35, content: 'A hands-on introduction to the Figma interface. We will cover the essential tools, such as frames, shapes, text, and auto layout. By the end of this lesson, you will be comfortable navigating Figma and creating basic design elements for your projects.' },
+          { id: 'l3_1', title: 'Princípios do Design Visual', type: 'article', duration: 20, content: 'Explore os princípios fundamentais do design visual, incluindo hierarquia, contraste, repetição, proximidade e espaço em branco. Entender esses princípios é essencial para criar interfaces de usuário que sejam bonitas e funcionais. Este artigo inclui exemplos de aplicativos e sites populares.' },
+          { id: 'l3_2', title: 'Introdução ao Figma', type: 'video', duration: 35, content: 'Uma introdução prática à interface do Figma. Abordaremos as ferramentas essenciais, como frames, formas, texto e layout automático. Ao final desta lição, você estará confortável para navegar no Figma e criar elementos de design básicos para seus projetos.' },
         ],
       },
     ],
   },
   {
     id: 'c3',
-    title: 'Digital Marketing Essentials',
-    description: 'Learn SEO, SEM, and social media marketing to grow any business online.',
-    longDescription: 'Unlock the secrets to successful online marketing. This course covers the three pillars of digital marketing: Search Engine Optimization (SEO), Search Engine Marketing (SEM), and Social Media Marketing. You will learn practical strategies to improve website rankings, run effective ad campaigns on Google and social platforms, and build an engaged online community.',
+    title: 'Fundamentos do Marketing Digital',
+    description: 'Aprenda SEO, SEM e marketing de mídia social para expandir qualquer negócio online.',
+    longDescription: 'Desvende os segredos para um marketing online de sucesso. Este curso cobre os três pilares do marketing digital: Otimização para Mecanismos de Busca (SEO), Marketing para Mecanismos de Busca (SEM) e Marketing de Mídia Social. Você aprenderá estratégias práticas para melhorar o ranking de sites, executar campanhas de anúncios eficazes no Google e em plataformas sociais, e construir uma comunidade online engajada.',
     instructor: {
       name: 'Aisha Khan',
-      title: 'Digital Marketing Strategist',
+      title: 'Estrategista de Marketing Digital',
       avatar: 'https://placehold.co/100x100.png',
     },
     image: 'https://placehold.co/600x400.png',
@@ -101,10 +101,10 @@ export const courses: Course[] = [
     modules: [
         {
           id: 'm4',
-          title: 'Module 1: Introduction to SEO',
+          title: 'Módulo 1: Introdução ao SEO',
           lessons: [
-            { id: 'l4_1', title: 'How Search Engines Work', type: 'article', duration: 15, content: 'This lesson demystifies search engines like Google. We will learn about crawling, indexing, and ranking, the three key stages that determine which websites appear at the top of search results. This foundational knowledge is crucial for any effective SEO strategy.' },
-            { id: 'l4_2', title: 'On-Page SEO Techniques', type: 'video', duration: 40, content: 'Learn how to optimize your website\'s content and HTML source code to rank higher. This video covers keyword research, writing effective title tags and meta descriptions, optimizing images, and creating user-friendly content. We will perform a live audit of a website and implement these techniques.' },
+            { id: 'l4_1', title: 'Como os Motores de Busca Funcionam', type: 'article', duration: 15, content: 'Esta lição desmistifica motores de busca como o Google. Aprenderemos sobre rastreamento, indexação e ranqueamento, os três estágios principais que determinam quais sites aparecem no topo dos resultados de busca. Este conhecimento fundamental é crucial para qualquer estratégia de SEO eficaz.' },
+            { id: 'l4_2', title: 'Técnicas de SEO On-Page', type: 'video', duration: 40, content: 'Aprenda a otimizar o conteúdo e o código-fonte HTML do seu site para ranquear mais alto. Este vídeo cobre pesquisa de palavras-chave, redação de tags de título e meta descrições eficazes, otimização de imagens e criação de conteúdo amigável ao usuário. Faremos uma auditoria ao vivo de um site e implementaremos essas técnicas.' },
         ],
       },
     ]
@@ -120,7 +120,7 @@ export const getLessonByIds = (courseId: string, lessonId: string) => {
     if (!course) return null;
     for (const module of course.modules) {
         const lesson = module.lessons.find(lesson => lesson.id === lessonId);
-        if (lesson) return { course, lesson };
+        if (lesson) return { course, module, lesson };
     }
     return null;
 }
