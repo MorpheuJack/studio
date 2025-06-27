@@ -11,6 +11,7 @@ export type Post = {
   'data-ai-hint'?: string;
   content: string;
   audioUrl?: string;
+  videoUrl?: string;
   category: string;
 };
 
@@ -165,7 +166,7 @@ Estou preocupado com o paradoxo de Fermi: por que não vimos alienígenas? Talve
 **Elon Musk:** Como comecei, tentem ser o mais úteis possível para seus semelhantes. Foquem em IA super verdadeira. Espero que possamos entender a natureza do universo. A IA pode nos dizer onde estão os alienígenas, como o universo começou e terminará, e quais perguntas ainda não sabemos fazer. Estamos em uma simulação? Eu sou um NPC?
 
 **ENTREVISTADOR:** Bem, acho que vamos descobrir. Elon, muito obrigado.`,
-    audioUrl: 'https://revolucaocognitiva.tech/wp-content/uploads/2025/06/Visao-de-Elon-Musk_-IA-Espaco-e-Consciencia-1.wav',
+    videoUrl: 'https://www.youtube.com/embed/cFIlta1GkiE',
   },
   {
     slug: '5-dicas-para-escrever-prompts-melhores',

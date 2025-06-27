@@ -41,7 +41,7 @@ export default function BlogPostPage() {
         <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-70" />
         <div className="absolute bottom-0 left-0 right-0 p-8 md:p-12 text-white">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <h1 className="font-headline text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl text-center md:text-left"
+            <h1 className="font-headline text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl text-center md:text-left"
                 style={{ textShadow: '0 2px 15px rgba(0,0,0,0.5)' }}>
               {post.title}
             </h1>
@@ -64,16 +64,33 @@ export default function BlogPostPage() {
             <div className="prose prose-lg dark:prose-invert mx-auto max-w-4xl
               prose-headings:font-headline prose-headings:tracking-tight prose-headings:text-foreground
               prose-h2:text-3xl prose-h2:mb-4 prose-h2:mt-12
-              prose-p:text-foreground/80 prose-p:leading-relaxed
+              prose-p:leading-relaxed prose-p:text-foreground/80 
               prose-strong:text-foreground prose-a:text-foreground hover:prose-a:text-foreground/80
               prose-blockquote:border-l-foreground prose-blockquote:text-muted-foreground prose-blockquote:font-normal">
               {post.content.split('\n\n').map((paragraph, index) => {
+                // If this is the paragraph to be replaced, and the post has a videoUrl, render the player instead.
+                if (post.videoUrl && paragraph.startsWith(introParagraphIdentifier)) {
+                  return (
+                    <div key="video-player" className="my-6 aspect-video">
+                      <iframe
+                        className="w-full h-full rounded-lg"
+                        src={post.videoUrl}
+                        title="YouTube video player"
+                        frameBorder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerPolicy="strict-origin-when-cross-origin"
+                        allowFullScreen
+                      ></iframe>
+                    </div>
+                  );
+                }
+
                 // If this is the paragraph to be replaced, and the post has an audioUrl, render the player instead.
                 if (post.audioUrl && paragraph.startsWith(introParagraphIdentifier)) {
                   return (
                       <div key="audio-player" className="my-6">
                         <p className="text-sm font-medium mb-2 text-center">Ouça o panorama da entrevista de Elon Musk</p>
-                        <audio controls className="w-full">
+                        <audio controls className="w-full" crossOrigin="anonymous">
                           <source src={post.audioUrl} type={getAudioType(post.audioUrl)} />
                           Seu navegador não suporta o elemento de áudio.
                         </audio>
