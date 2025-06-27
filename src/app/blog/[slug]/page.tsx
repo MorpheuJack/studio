@@ -15,8 +15,6 @@ export default function BlogPostPage() {
   if (!post) {
     notFound();
   }
-  
-  const introParagraphIdentifier = "A inteligência artificial generativa capturou a imaginação do mundo";
 
   return (
     <main>
@@ -55,42 +53,38 @@ export default function BlogPostPage() {
          <article className="my-16 rounded-xl border border-primary/20 bg-gradient-to-br from-slate-950 via-background to-slate-950 bg-[size:200%] p-8 shadow-2xl shadow-primary/10 animate-animated-gradient md:p-12">
             <div className="prose prose-lg dark:prose-invert mx-auto max-w-4xl
               prose-headings:font-headline prose-headings:tracking-tight prose-headings:text-foreground
-              prose-h2:text-3xl prose-h2:mb-4 prose-h2:mt-12
-              prose-p:leading-relaxed prose-p:text-foreground/80 
+              prose-h2:text-3xl prose-h2:mb-4 prose-h2:mt-12 prose-h2:text-foreground
+              prose-p:leading-relaxed prose-p:text-foreground/80
               prose-strong:text-foreground prose-a:text-foreground hover:prose-a:text-foreground/80
               prose-blockquote:border-l-foreground prose-blockquote:text-muted-foreground prose-blockquote:font-normal">
-              {post.content.split('\n\n').map((paragraph, index) => {
-                // If this is the paragraph to be replaced, render media players and don't render the paragraph.
-                if (paragraph.startsWith(introParagraphIdentifier)) {
-                  if (post.videoUrl || post.audioUrl) {
-                    return (
-                      <React.Fragment key="media-players">
-                        {post.videoUrl && (
-                          <div key="video-player" className="my-6 aspect-video">
-                            <iframe
-                              className="w-full h-full rounded-lg"
-                              src={post.videoUrl}
-                              title="YouTube video player"
-                              frameBorder="0"
-                              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                              referrerPolicy="strict-origin-when-cross-origin"
-                              allowFullScreen
-                            ></iframe>
-                          </div>
-                        )}
-                        {post.audioUrl && (
-                          <div key="audio-player" className="my-6">
-                            <p className="text-sm font-medium mb-2 text-center">Ouça o panorama da entrevista de Elon Musk</p>
-                            <audio controls className="w-full" src={post.audioUrl}>
-                              Seu navegador não suporta o elemento de áudio.
-                            </audio>
-                          </div>
-                        )}
-                      </React.Fragment>
-                    );
-                  }
-                }
+              
+              {(post.videoUrl || post.audioUrl) && (
+                <div className="not-prose">
+                  {post.videoUrl && (
+                    <div key="video-player" className="my-6 aspect-video">
+                      <iframe
+                        className="w-full h-full rounded-lg"
+                        src={post.videoUrl}
+                        title="YouTube video player"
+                        frameBorder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerPolicy="strict-origin-when-cross-origin"
+                        allowFullScreen
+                      ></iframe>
+                    </div>
+                  )}
+                  {post.audioUrl && (
+                    <div key="audio-player" className="my-6">
+                      <p className="text-sm font-medium mb-2 text-center">Ouça o panorama da entrevista de Elon Musk</p>
+                      <audio controls className="w-full" src={post.audioUrl}>
+                        Seu navegador não suporta o elemento de áudio.
+                      </audio>
+                    </div>
+                  )}
+                </div>
+              )}
 
+              {post.content.split('\n\n').map((paragraph, index) => {
                 // Handle H2
                 if (paragraph.startsWith('**') && paragraph.endsWith('**')) {
                   return (
@@ -116,5 +110,3 @@ export default function BlogPostPage() {
     </main>
   );
 }
-
-    

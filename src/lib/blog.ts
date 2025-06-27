@@ -24,7 +24,7 @@ export const posts: Post[] = [
     authorAvatar: 'https://placehold.co/100x100.png',
     date: '27 de Julho, 2025',
     isoDate: '2024-07-15',
-    image: 'https://revolucaocognitiva.tech/wp-content/uploads/2025/06/20250627_1730_Mente-Tecnologica_remix_01jysh7g3bex183shwag1fsneh.png',
+    image: '/img/elon.png',
     'data-ai-hint': 'abstract future',
     category: 'IA',
     content: `**O Início do Big Bang da Inteligência**
