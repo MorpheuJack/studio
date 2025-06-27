@@ -89,8 +89,7 @@ export default function BlogPostPage() {
                         {post.audioUrl && (
                           <div key="audio-player" className="my-6">
                             <p className="text-sm font-medium mb-2 text-center">Ouça o panorama da entrevista de Elon Musk</p>
-                            <audio controls className="w-full" crossOrigin="anonymous">
-                              <source src={post.audioUrl} type={getAudioType(post.audioUrl)} />
+                            <audio controls className="w-full" crossOrigin="anonymous" src={post.audioUrl}>
                               Seu navegador não suporta o elemento de áudio.
                             </audio>
                           </div>
