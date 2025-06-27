@@ -3,7 +3,6 @@
 import { summarizeLesson } from '@/ai/flows/summarize-lesson';
 import { courseAssistant } from '@/ai/flows/course-assistant-flow';
 import { z } from 'zod';
-import { useActionState } from 'react';
 
 const SummarizeSchema = z.object({
   lessonContent: z.string().min(1, { message: 'Lesson content cannot be empty.' }),
