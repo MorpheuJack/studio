@@ -26,7 +26,9 @@ export const posts: Post[] = [
     image: 'https://revolucaocognitiva.tech/wp-content/uploads/2025/06/20250627_1730_Mente-Tecnologica_remix_01jysh7g3bex183shwag1fsneh.png',
     'data-ai-hint': 'abstract future',
     category: 'IA',
-    content: `**O Início do Big Bang da Inteligência**
+    content: `A inteligência artificial generativa capturou a imaginação do mundo, prometendo revolucionar tudo, desde a criação de conteúdo até a descoberta científica. Mas além do hype inicial, o que realmente está no horizonte? Vamos explorar as tendências, os desafios e o potencial transformador da IA generativa nos próximos anos.
+
+**O Início do Big Bang da Inteligência**
 
 **ENTREVISTADO:** Estamos no estágio muito, muito inicial do Big Bang da inteligência. Ser uma espécie multiplanetária aumenta muito a provável vida útil da civilização, tanto biológica quanto digital. Acho que estamos bem perto da superinteligência digital. Se não acontecer este ano, no próximo ano com certeza.
 
@@ -42,7 +44,7 @@ export const posts: Post[] = [
 
 **ENTREVISTADO:** Eu acho que gosto mais do termo "engenheiro" do que "pesquisador". Suponho que se houver algum avanço algorítmico fundamental, isso é pesquisa, mas, caso contrário, é engenharia.
 
-****Os Primeiros Dias: Zip2 e a Internet**
+**Os Primeiros Dias: Zip2 e a Internet**
 
 **ENTREVISTADOR:** Coloque-se no lugar deles quando você tinha 18, 19 anos, aprendendo a programar, até mesmo tendo a primeira ideia para a Zip2. Como foi isso para você?
 
@@ -56,7 +58,7 @@ Não podíamos pagar um lugar para morar, então dormíamos no escritório e tom
 
 É uma longa história, mas eu realmente só queria fazer algo útil na internet. Minha escolha era: fazer um PhD e ver as pessoas construírem a internet, ou ajudar a construir a internet de alguma forma. Pensei, bem, posso sempre tentar e falhar e depois voltar para a pós-graduação. Acabou sendo razoavelmente bem-sucedido, vendida por cerca de 300 milhões de dólares, o que era muito na época.
 
-****O Hype e a Realidade da IA**
+**O Hype e a Realidade da IA**
 
 **ENTREVISTADO:** Hoje em dia, o lance mínimo para uma startup de IA parece ser um bilhão de dólares. Existem tantos unicórnios que é como uma manada de unicórnios. O nível de hype em IA é bem intenso. Você vê empresas com menos de um ano recebendo avaliações de um bilhão ou multibillionárias. Pode dar certo em alguns casos, mas é de arregalar os olhos ver algumas dessas avaliações.
 
@@ -66,7 +68,7 @@ Não podíamos pagar um lugar para morar, então dormíamos no escritório e tom
 
 Eu devo ressaltar que eu não pretendia abrir uma empresa. Tentei conseguir um emprego na Netscape. Enviei meu currículo, mas ninguém respondeu. Então eu tentei ficar no saguão da Netscape para esbarrar em alguém, mas eu era muito tímido para falar com qualquer um. Eu pensei: "isso é ridículo". Então decidi apenas escrever software para mim mesmo. Como não consegui um emprego, tive que abrir uma empresa.
 
-****O Tsunami da IA e a Missão Principal**
+**O Tsunami da IA e a Missão Principal**
 
 **ENTREVISTADO:** Do ponto de vista da IA, ela mudará tão profundamente o futuro que é difícil imaginar. A economia, assumindo que as coisas não deem errado e a IA não nos mate, será milhares, talvez milhões de vezes maior que a economia de hoje.
 
@@ -74,7 +76,7 @@ Senti um pouco como se estivesse em DC... É como consertar o governo, ou limpar
 
 Preciso voltar para a missão principal, que é construir tecnologia. É o que eu gosto de fazer. A relação sinal-ruído na política é terrível. Em DC, tudo é política, mas se você está tentando construir um foguete ou um carro, você tem que ser o mais buscador da verdade possível, ou seu hardware não funcionará. Você não pode enganar a matemática e a física. Estou feliz por estar de volta à tecnologia.
 
-****De Milionário a Empreendedor em Série**
+**De Milionário a Empreendedor em Série**
 
 **ENTREVISTADOR:** Após a Zip2, você tinha 22 milhões de dólares. Você resolveu o problema do dinheiro, mas continuou rolando com a X.com, que se tornou o PayPal. Nem todo mundo faz isso. O que te levou a voltar para o ringue?
 
@@ -86,7 +88,7 @@ Depois do PayPal, eu estava curioso para saber por que não tínhamos enviado ni
 
 Percebi que o problema não era falta de vontade, mas a falta de um meio viável. Foi aí que decidi começar a SpaceX, para avançar a tecnologia de foguetes.
 
-****SpaceX e o Risco do Fracasso**
+**SpaceX e o Risco do Fracasso**
 
 **ENTREVISTADO:** Não houve nenhum exemplo anterior de uma startup de foguetes bem-sucedida. Comecei a SpaceX em 2002 esperando falhar, com talvez 90% de chance de falha. Ao recrutar, eu dizia às pessoas que provavelmente morreríamos, mas que era a única maneira de levar as pessoas a Marte.
 
@@ -96,7 +98,7 @@ Acabei sendo engenheiro-chefe do foguete porque não consegui contratar ninguém
 
 Felizmente, o quarto lançamento funcionou. A NASA nos concedeu um contrato para reabastecer a estação espacial. Eu literalmente gritei "Eu amo vocês!" ao telefone. E fechamos a rodada de financiamento da Tesla na última hora do último dia possível, às 18h do dia 24 de dezembro de 2008.
 
-****A Filosofia do Trabalho Útil**
+**A Filosofia do Trabalho Útil**
 
 **ENTREVISTADOR:** O que você diria para as pessoas que estão começando suas carreiras?
 
@@ -106,7 +108,7 @@ Se o seu produto final é bem-sucedido, quão útil ele será para quantas pesso
 
 Um grande modo de falha é quando a proporção ego/habilidade é muito maior que um. Você quebra o ciclo de feedback com a realidade. Você quer um ciclo de RL (aprendizado por reforço) forte, o que significa internalizar a responsabilidade e minimizar o ego.
 
-****Pensamento de Primeiros Princípios**
+**Pensamento de Primeiros Princípios**
 
 **ENTREVISTADOR:** Como você determina sua realidade e aplica o pensamento de "primeiros princípios"?
 
@@ -116,7 +118,7 @@ Por exemplo, com foguetes. Em vez de basear o custo em foguetes anteriores, olhe
 
 Outro exemplo: quando a xAI precisou de 100.000 H100s, os fornecedores disseram que levaria de 18 a 24 meses. Precisávamos disso em 6 meses. Então, decompomos o problema: precisávamos de um prédio, energia, refrigeração. Encontramos uma fábrica desativada, alugamos geradores, alugamos um quarto da capacidade de refrigeração móvel dos EUA e usamos Tesla Megapacks para suavizar a energia.
 
-****O Futuro com Superinteligência**
+**O Futuro com Superinteligência**
 
 **ENTREVISTADOR:** O pré-treinamento e as leis de escala ainda se mantêm?
 
@@ -126,7 +128,7 @@ Outro exemplo: quando a xAI precisou de 100.000 H100s, os fornecedores disseram 
 
 **ENTREVISTADO:** Haverá muitos robôs humanoides. Minha previsão é que eles superarão todos os outros tipos de robôs combinados. Eu arrastei um pouco os pés em IA e robótica humanoide para não tornar "O Exterminador do Futuro" real. Mas cheguei à conclusão de que está acontecendo, quer eu faça ou não. Então, prefiro ser um participante a um espectador.
 
-****A Consciência Multiplanetária**
+**A Consciência Multiplanetária**
 
 **ENTREVISTADOR:** Onde se encaixa tornar-se uma espécie multiplanetária?
 
@@ -134,7 +136,7 @@ Outro exemplo: quando a xAI precisou de 100.000 H100s, os fornecedores disseram 
 
 Estou preocupado com o paradoxo de Fermi: por que não vimos alienígenas? Talvez a inteligência seja incrivelmente rara. Se formos os únicos, a consciência é como uma pequena vela na escuridão, e devemos fazer de tudo para que não se apague. Ser multiplanetário é o próximo passo antes de ir para outros sistemas estelares.
 
-****Segurança e a Busca pela Verdade**
+**Segurança e a Busca pela Verdade**
 
 **ENTREVISTADOR:** Como nos salvamos da autodestruição, um possível grande filtro?
 
@@ -144,7 +146,7 @@ Estou preocupado com o paradoxo de Fermi: por que não vimos alienígenas? Talve
 
 **ENTREVISTADO:** Haverá várias inteligências profundas, talvez cinco ou dez. Não acho que será uma única IA com capacidade desenfreada. Elas descobrirão nova física, inventarão novas tecnologias. Estamos bem perto da superinteligência digital — mais inteligente que qualquer humano em qualquer coisa. Isso pode acontecer este ano ou no próximo.
 
-****A Pílula Branca e o Bootloader Biológico**
+**A Pílula Branca e o Bootloader Biológico**
 
 **ENTREVISTADOR:** O que podemos fazer para garantir um futuro de superabundância?
 
@@ -156,7 +158,7 @@ Estou preocupado com o paradoxo de Fermi: por que não vimos alienígenas? Talve
 
 **ENTREVISTADO:** Somos o bootloader biológico para a superinteligência digital.
 
-****Pensamentos Finais**
+**Pensamentos Finais**
 
 **ENTREVISTADOR:** Qual seu pensamento final para as pessoas mais inteligentes desta geração?
 
