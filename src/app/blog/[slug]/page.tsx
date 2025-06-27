@@ -1,13 +1,14 @@
 'use client';
 
 import { getPostBySlug } from '@/lib/blog';
-import { notFound } from 'next/navigation';
+import { notFound, useParams } from 'next/navigation';
 import Image from 'next/image';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import React, { useState, useEffect, useRef } from 'react';
 import { ArrowDown } from 'lucide-react';
 
-export default function BlogPostPage({ params }: { params: { slug: string } }) {
+export default function BlogPostPage() {
+  const params = useParams<{ slug: string }>();
   const post = getPostBySlug(params.slug);
   const [headerOpacity, setHeaderOpacity] = useState(1);
   const contentRef = useRef<HTMLDivElement>(null);
