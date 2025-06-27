@@ -27,9 +27,10 @@ export default function CoursesPage({
   const displayCategories = categories.map(cat => {
     const translatedCategories: { [key: string]: string } = {
       'All': 'Todos',
-      'Programming': 'Programação',
+      'Programação': 'Programação',
       'Design': 'Design',
-      'Marketing': 'Marketing'
+      'Marketing': 'Marketing',
+      'IA': 'Inteligência Artificial'
     };
     return {
       value: cat,
@@ -40,8 +41,8 @@ export default function CoursesPage({
   return (
     <div className="container mx-auto px-4 py-8 sm:px-6 lg:px-8">
       <div className="mb-12 text-center">
-        <h1 className="font-headline text-4xl font-bold tracking-tight text-foreground sm:text-5xl">Explore a Galáxia do Conhecimento</h1>
-        <p className="mt-4 text-lg text-muted-foreground">Navegue por nossas constelações de cursos para encontrar sua próxima jornada de aprendizado.</p>
+        <h1 className="font-headline text-4xl font-bold tracking-tight text-foreground sm:text-5xl">Explore o Universo da Inteligência Artificial</h1>
+        <p className="mt-4 text-lg text-muted-foreground">Encontre o curso perfeito para iniciar ou avançar sua carreira em IA e tecnologia.</p>
       </div>
 
       <CourseFilters 

@@ -31,9 +31,9 @@ export type Course = {
 export const courses: Course[] = [
   {
     id: 'c1',
-    title: 'JavaScript Avançado & IA',
-    description: 'Domine JavaScript moderno e integre IA para aplicações web poderosas.',
-    longDescription: 'Este curso mergulha em conceitos avançados de JavaScript, incluindo padrões assíncronos, otimização de performance e sintaxe moderna. Você também aprenderá a alavancar o poder das APIs de IA para construir funcionalidades inteligentes como chatbots, sumarizadores de conteúdo e motores de recomendação diretamente em seus projetos web.',
+    title: 'Engenharia de Prompt para Gemini',
+    description: 'Aprenda a criar prompts eficazes para extrair o máximo dos modelos de IA generativa.',
+    longDescription: 'Este curso mergulha na arte e ciência da engenharia de prompt. Você aprenderá a estruturar suas perguntas e instruções para obter respostas precisas, criativas e contextualmente relevantes dos modelos de linguagem mais avançados do Google, como o Gemini. Abordaremos desde técnicas básicas até estratégias avançadas para tarefas complexas.',
     instructor: {
       name: 'Dr. Evelyn Reed',
       title: 'Engenheira de IA Sênior',
@@ -41,69 +41,69 @@ export const courses: Course[] = [
     },
     image: 'https://placehold.co/600x400.png',
     'data-ai-hint': 'glowing code',
-    category: 'Programação',
+    category: 'IA',
     modules: [
       {
         id: 'm1',
-        title: 'Módulo 1: JavaScript Assíncrono',
+        title: 'Módulo 1: Fundamentos da IA Generativa',
         lessons: [
-          { id: 'l1_1', title: 'Promises e Async/Await', type: 'video', duration: 25, content: 'Esta lição aborda os fundamentos da programação assíncrona em JavaScript. Exploramos como as Promises funcionam e como a sintaxe async/await fornece uma maneira mais limpa de lidar com operações assíncronas. Veremos exemplos práticos de busca de dados de uma API e gerenciamento de fluxo de controle assíncrono. O conteúdo é crucial para a construção de aplicações não bloqueantes.' },
+          { id: 'l1_1', title: 'O que são Prompts?', type: 'video', duration: 25, content: 'Esta lição introduz o conceito fundamental de prompts em modelos de IA generativa. Exploramos como os prompts guiam o modelo para gerar a saída desejada e por que a qualidade do prompt é crucial para a qualidade da resposta. Veremos exemplos práticos de prompts bons e ruins.' },
         ],
       },
       {
         id: 'm2',
-        title: 'Módulo 2: Introdução a APIs de IA',
+        title: 'Módulo 2: Técnicas Avançadas',
         lessons: [
-          { id: 'l2_1', title: 'Conectando a uma IA Generativa', type: 'video', duration: 30, content: 'Aprenda a conectar sua aplicação JavaScript a um poderoso modelo de IA Generativa. Esta lição fornece um guia passo a passo sobre como configurar seu ambiente, obter chaves de API e fazer sua primeira chamada de API para gerar texto. Construiremos uma aplicação simples de "gerador de ideias".' },
-          { id: 'l2_2', title: 'Construindo um Sumarizador com IA', type: 'article', duration: 45, content: 'Esta lição prática guia você na construção de uma ferramenta de IA útil: um sumarizador de texto. Você aprenderá sobre técnicas de engenharia de prompt para obter os melhores resultados da IA. Usaremos os conceitos das lições anteriores para criar uma interface web onde os usuários podem colar texto e obter um resumo conciso.' },
+          { id: 'l2_1', title: 'Prompt Chaining e Few-Shot Learning', type: 'video', duration: 30, content: 'Aprenda técnicas avançadas como o encadeamento de prompts para resolver problemas complexos em etapas e o "few-shot learning" para ensinar o modelo a executar tarefas com poucos exemplos. Construiremos um mini-aplicativo que usa essas técnicas para criar um assistente de escrita criativa.' },
+          { id: 'l2_2', title: 'Construindo um Chatbot com Contexto', type: 'article', duration: 45, content: 'Esta lição prática guia você na construção de um chatbot que mantém o contexto da conversa. Você aprenderá a gerenciar o histórico de diálogo para criar interações mais naturais e úteis. Usaremos os conceitos das lições anteriores para criar um chatbot de atendimento ao cliente.' },
         ],
       },
     ],
   },
   {
     id: 'c2',
-    title: 'Design UI/UX com Figma',
-    description: 'De wireframes a protótipos interativos, aprenda o processo completo de design.',
-    longDescription: 'Este curso abrangente leva você por todo o processo de design UI/UX usando o Figma, a ferramenta de design padrão do setor. Você aprenderá sobre pesquisa de usuário, criação de personas, wireframing, design de mockups de alta fidelidade e construção de protótipos interativos. O curso é baseado em projetos e você construirá um design completo de aplicativo móvel do zero.',
+    title: 'Design de Interfaces para Aplicações de IA',
+    description: 'Aprenda a projetar interfaces intuitivas e eficazes para produtos baseados em IA.',
+    longDescription: 'O design para IA apresenta desafios e oportunidades únicas. Este curso ensina como criar experiências de usuário que sejam transparentes, confiáveis e que comuniquem claramente as capacidades e limitações da IA. Usando o Figma, você projetará interfaces para chatbots, ferramentas de análise de dados e sistemas de recomendação, focando em como apresentar informações complexas de forma simples.',
     instructor: {
       name: 'Liam Chen',
       title: 'Designer de Produto Principal',
       avatar: 'https://placehold.co/100x100.png',
     },
     image: 'https://placehold.co/600x400.png',
-    'data-ai-hint': 'abstract design',
+    'data-ai-hint': 'futuristic interface',
     category: 'Design',
     modules: [
       {
         id: 'm3',
-        title: 'Módulo 1: Fundamentos do Design',
+        title: 'Módulo 1: Fundamentos do Design para IA',
         lessons: [
-          { id: 'l3_1', title: 'Princípios do Design Visual', type: 'article', duration: 20, content: 'Explore os princípios fundamentais do design visual, incluindo hierarquia, contraste, repetição, proximidade e espaço em branco. Entender esses princípios é essencial para criar interfaces de usuário que sejam bonitas e funcionais. Este artigo inclui exemplos de aplicativos e sites populares.' },
-          { id: 'l3_2', title: 'Introdução ao Figma', type: 'video', duration: 35, content: 'Uma introdução prática à interface do Figma. Abordaremos as ferramentas essenciais, como frames, formas, texto e layout automático. Ao final desta lição, você estará confortável para navegar no Figma e criar elementos de design básicos para seus projetos.' },
+          { id: 'l3_1', title: 'Princípios de UX para IA', type: 'article', duration: 20, content: 'Explore os princípios fundamentais para projetar boas experiências com IA, incluindo explicabilidade, controle do usuário e gerenciamento de expectativas. Entender esses princípios é essencial para criar produtos de IA que as pessoas confiem e gostem de usar.' },
+          { id: 'l3_2', title: 'Prototipando um Chatbot no Figma', type: 'video', duration: 35, content: 'Uma introdução prática ao design e prototipagem de uma interface de chatbot no Figma. Abordaremos como projetar fluxos de conversa, estados de mensagem (enviando, recebido, erro) e como criar um protótipo interativo para testar a experiência do usuário antes do desenvolvimento.' },
         ],
       },
     ],
   },
   {
     id: 'c3',
-    title: 'Fundamentos do Marketing Digital',
-    description: 'Aprenda SEO, SEM e marketing de mídia social para expandir qualquer negócio online.',
-    longDescription: 'Desvende os segredos para um marketing online de sucesso. Este curso cobre os três pilares do marketing digital: Otimização para Mecanismos de Busca (SEO), Marketing para Mecanismos de Busca (SEM) e Marketing de Mídia Social. Você aprenderá estratégias práticas para melhorar o ranking de sites, executar campanhas de anúncios eficazes no Google e em plataformas sociais, e construir uma comunidade online engajada.',
+    title: 'Marketing Digital Otimizado com IA',
+    description: 'Use ferramentas de IA para automatizar e otimizar suas campanhas de marketing.',
+    longDescription: 'Descubra como a Inteligência Artificial está revolucionando o marketing digital. Este curso ensina a usar ferramentas de IA para gerar copy para anúncios, analisar dados de mercado em larga escala, otimizar campanhas de SEO e personalizar a comunicação com o cliente. Você aprenderá a tomar decisões de marketing mais inteligentes e baseadas em dados com o poder da IA.',
     instructor: {
       name: 'Aisha Khan',
       title: 'Estrategista de Marketing Digital',
       avatar: 'https://placehold.co/100x100.png',
     },
     image: 'https://placehold.co/600x400.png',
-    'data-ai-hint': 'data visualization',
+    'data-ai-hint': 'data analytics',
     category: 'Marketing',
     modules: [
         {
           id: 'm4',
-          title: 'Módulo 1: Introdução ao SEO',
+          title: 'Módulo 1: Geração de Conteúdo com IA',
           lessons: [
-            { id: 'l4_1', title: 'Como os Motores de Busca Funcionam', type: 'article', duration: 15, content: 'Esta lição desmistifica motores de busca como o Google. Aprenderemos sobre rastreamento, indexação e ranqueamento, os três estágios principais que determinam quais sites aparecem no topo dos resultados de busca. Este conhecimento fundamental é crucial para qualquer estratégia de SEO eficaz.' },
-            { id: 'l4_2', title: 'Técnicas de SEO On-Page', type: 'video', duration: 40, content: 'Aprenda a otimizar o conteúdo e o código-fonte HTML do seu site para ranquear mais alto. Este vídeo cobre pesquisa de palavras-chave, redação de tags de título e meta descrições eficazes, otimização de imagens e criação de conteúdo amigável ao usuário. Faremos uma auditoria ao vivo de um site e implementaremos essas técnicas.' },
+            { id: 'l4_1', title: 'Criando Posts para Blog com IA', type: 'article', duration: 15, content: 'Esta lição mostra como usar geradores de texto de IA para criar rascunhos de posts para blogs. Aprenderemos a criar prompts eficazes para definir o tom, o público e as palavras-chave, e como refinar o conteúdo gerado para garantir qualidade e originalidade.' },
+            { id: 'l4_2', title: 'Análise de Sentimento em Mídias Sociais', type: 'video', duration: 40, content: 'Aprenda a usar APIs de IA para analisar o sentimento em comentários de mídias sociais. Este vídeo aborda como coletar dados e usar a IA para classificar automaticamente os comentários como positivos, negativos ou neutros, fornecendo insights valiosos sobre a percepção da sua marca.' },
         ],
       },
     ]

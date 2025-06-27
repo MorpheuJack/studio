@@ -7,8 +7,8 @@ import { EnrollmentProvider } from '@/context/EnrollmentContext';
 import { AuthProvider } from '@/context/AuthContext';
 
 export const metadata: Metadata = {
-  title: 'Aetheria AI - Elevate Your Learning',
-  description: 'An AI-powered learning platform to explore, enroll, and master new skills.',
+  title: 'Aetheria AI - Educação Inteligente',
+  description: 'Sua plataforma de aprendizado para dominar a Inteligência Artificial e tecnologias do futuro.',
 };
 
 export default function RootLayout({
