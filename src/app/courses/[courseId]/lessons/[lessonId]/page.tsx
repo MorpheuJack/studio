@@ -2,7 +2,6 @@ import { getLessonByIds } from '@/lib/courses';
 import { notFound } from 'next/navigation';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Video, FileText, Clock } from 'lucide-react';
-import { SummarizeAction } from '@/components/courses/SummarizeAction';
 import type { Course, Module, Lesson } from '@/lib/courses';
 
 export default function LessonPage({ params }: { params: { courseId: string, lessonId: string } }) {
@@ -31,7 +30,6 @@ export default function LessonPage({ params }: { params: { courseId: string, les
                 </div>
                 <CardTitle className="font-headline text-3xl md:text-4xl">{lesson.title}</CardTitle>
             </div>
-            {lesson.type === 'article' && <SummarizeAction lessonContent={lesson.content} />}
         </div>
       </CardHeader>
       
