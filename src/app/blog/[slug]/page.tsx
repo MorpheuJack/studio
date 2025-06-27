@@ -1,3 +1,4 @@
+
 'use client';
 
 import { getPostBySlug } from '@/lib/blog';
@@ -86,17 +87,17 @@ export default function BlogPostPage() {
                 if (post.slug === 'o-futuro-da-ia-generativa' && paragraph.startsWith(introParagraphIdentifier)) {
                   if (isLoadingAudio) {
                     return (
-                      <div key="audio-loader" className="flex items-center gap-4 p-4 rounded-lg bg-muted/50 my-6">
+                      <div key="audio-loader" className="flex items-center gap-4 p-4 rounded-lg bg-muted/50 my-6 border border-primary/20 shadow-inner">
                         <div className="space-y-2 flex-1">
-                          <p className='text-sm text-center text-muted-foreground'>Gerando narração de áudio...</p>
-                          <Skeleton className="h-4 w-full" />
+                          <p className='text-sm text-center text-muted-foreground'>Gerando narração de áudio com IA...</p>
+                          <Skeleton className="h-4 w-full bg-primary/20" />
                         </div>
                       </div>
                     );
                   }
                   if (audioSrc) {
                     return (
-                      <div key="audio-player" className="my-6">
+                      <div key="audio-player" className="my-6 p-4 rounded-lg bg-muted/50 border border-primary/20 shadow-inner">
                         <p className="text-sm font-medium text-center mb-2 text-muted-foreground">Ouça este artigo:</p>
                         <audio controls className="w-full">
                           <source src={audioSrc} type="audio/wav" />
