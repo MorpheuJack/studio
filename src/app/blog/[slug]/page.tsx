@@ -71,7 +71,7 @@ export default function BlogPostPage() {
                 if (post.audioUrl && paragraph.startsWith(introParagraphIdentifier)) {
                   return (
                       <div key="audio-player" className="my-6">
-                        <p className="text-sm font-medium mb-2 text-muted-foreground text-center md:text-left">Ouça o panorama da entrevista, apresentado por dois locutores:</p>
+                        <p className="text-sm font-medium mb-2 text-muted-foreground text-center">Ouça o panorama da entrevista de Elon Musk</p>
                         <audio controls className="w-full">
                           <source src={post.audioUrl} type={getAudioType(post.audioUrl)} />
                           Seu navegador não suporta o elemento de áudio.
