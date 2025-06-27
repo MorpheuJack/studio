@@ -25,6 +25,7 @@ export type Course = {
   image: string;
   category: string;
   modules: Module[];
+  'data-ai-hint'?: string;
 };
 
 export const courses: Course[] = [
@@ -39,7 +40,7 @@ export const courses: Course[] = [
       avatar: 'https://placehold.co/100x100.png',
     },
     image: 'https://placehold.co/600x400.png',
-    data-ai-hint: 'javascript code',
+    'data-ai-hint': 'javascript code',
     category: 'Programming',
     modules: [
       {
@@ -71,7 +72,7 @@ export const courses: Course[] = [
       avatar: 'https://placehold.co/100x100.png',
     },
     image: 'https://placehold.co/600x400.png',
-    data-ai-hint: 'design wireframe',
+    'data-ai-hint': 'design wireframe',
     category: 'Design',
     modules: [
       {
@@ -95,7 +96,7 @@ export const courses: Course[] = [
       avatar: 'https://placehold.co/100x100.png',
     },
     image: 'https://placehold.co/600x400.png',
-    data-ai-hint: 'marketing chart',
+    'data-ai-hint': 'marketing chart',
     category: 'Marketing',
     modules: [
         {

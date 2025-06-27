@@ -21,12 +21,25 @@ export default function CoursesPage() {
       return matchesCategory && matchesSearch;
     });
   }, [searchTerm, category]);
+  
+  const displayCategories = useMemo(() => {
+    const translatedCategories: { [key: string]: string } = {
+      'All': 'Todos',
+      'Programming': 'Programação',
+      'Design': 'Design',
+      'Marketing': 'Marketing'
+    };
+    return categories.map(cat => ({
+      value: cat,
+      label: translatedCategories[cat] || cat
+    }));
+  }, [categories]);
 
   return (
     <div className="container mx-auto px-4 py-8 sm:px-6 lg:px-8">
       <div className="mb-12 text-center">
-        <h1 className="font-headline text-4xl font-bold tracking-tight text-foreground sm:text-5xl">Course Catalog</h1>
-        <p className="mt-4 text-lg text-muted-foreground">Find your next learning adventure. Search and filter our courses to get started.</p>
+        <h1 className="font-headline text-4xl font-bold tracking-tight text-foreground sm:text-5xl">Catálogo de Cursos</h1>
+        <p className="mt-4 text-lg text-muted-foreground">Encontre sua próxima aventura de aprendizado. Pesquise e filtre nossos cursos para começar.</p>
       </div>
 
       <div className="mb-8 flex flex-col gap-4 sm:flex-row">
@@ -34,19 +47,19 @@ export default function CoursesPage() {
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
           <Input
             type="search"
-            placeholder="Search courses..."
+            placeholder="Buscar cursos..."
             className="pl-10 w-full"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
         </div>
         <Select value={category} onValueChange={setCategory}>
-          <SelectTrigger className="w-full sm:w-[180px]">
-            <SelectValue placeholder="Select a category" />
+          <SelectTrigger className="w-full sm:w-[220px]">
+            <SelectValue placeholder="Selecione uma categoria" />
           </SelectTrigger>
           <SelectContent>
-            {categories.map(cat => (
-              <SelectItem key={cat} value={cat}>{cat}</SelectItem>
+            {displayCategories.map(cat => (
+              <SelectItem key={cat.value} value={cat.value}>{cat.label}</SelectItem>
             ))}
           </SelectContent>
         </Select>
@@ -60,7 +73,7 @@ export default function CoursesPage() {
         </div>
       ) : (
         <div className="text-center py-16">
-            <p className="text-muted-foreground">No courses found matching your criteria. Try adjusting your search or filters.</p>
+            <p className="text-muted-foreground">Nenhum curso encontrado com seus critérios. Tente ajustar sua busca ou filtros.</p>
         </div>
       )}
     </div>
