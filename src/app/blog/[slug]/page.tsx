@@ -33,16 +33,16 @@ export default function BlogPostPage() {
         <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-70" />
         <div className="absolute bottom-0 left-0 right-0 p-8 md:p-12 text-white">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <h1 className="font-headline text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl text-center"
+            <h1 className="font-headline text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl"
                 style={{ textShadow: '0 2px 15px rgba(0,0,0,0.5)' }}>
               {post.title}
             </h1>
-            <div className="mt-6 flex items-center justify-center gap-4">
+            <div className="mt-6 flex items-center gap-4">
               <Avatar className="h-12 w-12 border-2 border-white/70">
                 <AvatarImage src={post.authorAvatar} alt={post.author} />
                 <AvatarFallback>{post.author.charAt(0)}</AvatarFallback>
               </Avatar>
-              <div className="text-center">
+              <div>
                 <p className="font-semibold text-white">{post.author}</p>
                 <p className="text-sm text-white/80">{post.date}</p>
               </div>
@@ -54,7 +54,7 @@ export default function BlogPostPage() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
          <article className="my-16 rounded-xl border border-primary/20 bg-gradient-to-br from-slate-950 via-background to-slate-950 bg-[size:200%] p-8 shadow-2xl shadow-primary/10 animate-animated-gradient md:p-12">
             <div className="prose prose-lg dark:prose-invert mx-auto max-w-4xl
-              prose-headings:font-headline prose-headings:tracking-tight prose-headings:text-foreground prose-headings:text-center
+              prose-headings:font-headline prose-headings:tracking-tight prose-headings:text-foreground
               prose-p:text-muted-foreground prose-p:leading-relaxed
               prose-strong:text-foreground prose-a:text-primary hover:prose-a:text-primary/80
               prose-blockquote:border-l-primary prose-blockquote:text-muted-foreground prose-blockquote:font-normal">
@@ -63,7 +63,7 @@ export default function BlogPostPage() {
                 if (post.audioUrl && paragraph.startsWith(introParagraphIdentifier)) {
                   return (
                       <div key="audio-player" className="my-6 p-4 rounded-lg bg-muted/50 border border-primary/20 shadow-inner">
-                        <p className="text-sm font-medium text-center mb-2 text-muted-foreground">Ouça este artigo:</p>
+                        <p className="text-sm font-medium mb-2 text-muted-foreground">Ouça este artigo:</p>
                         <audio controls className="w-full">
                           <source src={post.audioUrl} type="audio/mpeg" />
                           Seu navegador não suporta o elemento de áudio.
