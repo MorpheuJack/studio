@@ -1,18 +1,37 @@
 "use client";
 
 import Link from "next/link";
-import { BrainCircuit, User } from "lucide-react";
+import { BrainCircuit, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { usePathname } from 'next/navigation';
 import { cn } from "@/lib/utils";
+import { useAuth } from "@/context/AuthContext";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 const navLinks = [
-  { href: "/courses", label: "Courses" },
-  { href: "/my-courses", label: "My Courses" },
+  { href: "/courses", label: "Cursos" },
+  { href: "/my-courses", label: "Meus Cursos" },
 ];
 
 export function Header() {
   const pathname = usePathname();
+  const { isAuthenticated, user, logout, loading } = useAuth();
+
+  const getInitials = (name: string) => {
+    const names = name.split(' ');
+    if (names.length > 1) {
+      return `${names[0][0]}${names[names.length - 1][0]}`;
+    }
+    return name.substring(0, 2);
+  }
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -41,10 +60,38 @@ export function Header() {
           ))}
         </nav>
         <div className="flex flex-1 items-center justify-end">
-          <Button variant="ghost" size="icon">
-            <User className="h-5 w-5" />
-            <span className="sr-only">User Profile</span>
-          </Button>
+          {loading ? (
+            <div className="h-8 w-8 bg-muted rounded-full animate-pulse" />
+          ) : isAuthenticated && user ? (
+             <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" className="relative h-8 w-8 rounded-full">
+                  <Avatar className="h-8 w-8">
+                    <AvatarFallback>{getInitials(user.name)}</AvatarFallback>
+                  </Avatar>
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="w-56" align="end" forceMount>
+                <DropdownMenuLabel className="font-normal">
+                  <div className="flex flex-col space-y-1">
+                    <p className="text-sm font-medium leading-none">{user.name}</p>
+                    <p className="text-xs leading-none text-muted-foreground">
+                      {user.email}
+                    </p>
+                  </div>
+                </DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem onClick={logout}>
+                  <LogOut className="mr-2 h-4 w-4" />
+                  <span>Sair</span>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          ) : (
+            <Button asChild>
+              <Link href="/auth">Login</Link>
+            </Button>
+          )}
         </div>
       </div>
     </header>
