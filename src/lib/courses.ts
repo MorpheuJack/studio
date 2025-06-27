@@ -40,7 +40,7 @@ export const courses: Course[] = [
       avatar: 'https://placehold.co/100x100.png',
     },
     image: 'https://placehold.co/600x400.png',
-    'data-ai-hint': 'javascript code',
+    'data-ai-hint': 'glowing code',
     category: 'Programming',
     modules: [
       {
@@ -72,7 +72,7 @@ export const courses: Course[] = [
       avatar: 'https://placehold.co/100x100.png',
     },
     image: 'https://placehold.co/600x400.png',
-    'data-ai-hint': 'design wireframe',
+    'data-ai-hint': 'abstract design',
     category: 'Design',
     modules: [
       {
@@ -96,7 +96,7 @@ export const courses: Course[] = [
       avatar: 'https://placehold.co/100x100.png',
     },
     image: 'https://placehold.co/600x400.png',
-    'data-ai-hint': 'marketing chart',
+    'data-ai-hint': 'data visualization',
     category: 'Marketing',
     modules: [
         {

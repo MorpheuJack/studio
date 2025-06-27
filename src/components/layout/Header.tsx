@@ -19,7 +19,10 @@ export function Header() {
       <div className="container flex h-14 items-center">
         <Link href="/" className="mr-6 flex items-center space-x-2">
           <BrainCircuit className="h-6 w-6 text-primary" />
-          <span className="font-bold font-headline sm:inline-block">
+          <span
+            className="font-bold font-headline sm:inline-block"
+            style={{ textShadow: "0 0 8px hsl(var(--primary))" }}
+          >
             Aetheria AI
           </span>
         </Link>
