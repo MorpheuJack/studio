@@ -37,11 +37,16 @@ function SubmitButton() {
   );
 }
 
-export function FloatingAssistant({ course }: { course: Course }) {
+interface FloatingAssistantProps {
+  course: Course;
+  isOpen: boolean;
+  onOpenChange: (open: boolean) => void;
+}
+
+export function FloatingAssistant({ course, isOpen, onOpenChange }: FloatingAssistantProps) {
   const { user } = useAuth();
   const { toast } = useToast();
   const params = useParams<{ lessonId?: string }>();
-  const [isOpen, setIsOpen] = useState(false);
 
   const [messages, setMessages] = useState<Message[]>([
     { role: 'assistant', content: `Saudações, futuro(a) mestre do conhecimento! Sou o Professor AI, seu guia pessoal nesta jornada pelo curso "${course.title}". Não hesite em perguntar qualquer coisa. Estou aqui para iluminar seu caminho! ✨ Como posso ajudar a expandir seus horizontes hoje?` }
@@ -92,7 +97,7 @@ export function FloatingAssistant({ course }: { course: Course }) {
   }
 
   return (
-    <Popover open={isOpen} onOpenChange={setIsOpen}>
+    <Popover open={isOpen} onOpenChange={onOpenChange}>
       <PopoverTrigger asChild>
         <Button
           className="fixed bottom-6 right-6 h-16 w-16 rounded-full shadow-lg shadow-primary/30 animate-pulse"
