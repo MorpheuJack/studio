@@ -1,18 +1,17 @@
 'use client';
 
 import { getCourseById } from '@/lib/courses';
-import { notFound } from 'next/navigation';
+import { notFound, useParams } from 'next/navigation';
 import { LessonSidebar } from '@/components/courses/LessonSidebar';
 import { FloatingAssistant } from '@/components/courses/FloatingAssistant';
 import { useState } from 'react';
 
 export default function CourseLayout({
   children,
-  params,
 }: {
   children: React.ReactNode;
-  params: { courseId: string };
 }) {
+  const params = useParams<{ courseId: string }>();
   const course = getCourseById(params.courseId);
   const [isAssistantOpen, setAssistantOpen] = useState(false);
 
