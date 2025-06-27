@@ -40,7 +40,7 @@ export async function askAssistantAction(prevState: AssistantState | undefined, 
       moduleTitle: validatedData.moduleTitle,
     });
     
-    if (result.aiResponse) {
+    if (result?.aiResponse) {
       return { success: true, newMessage: { role: 'assistant', content: result.aiResponse } };
     } else {
       return { success: false, error: 'Não foi possível gerar uma resposta.' };
