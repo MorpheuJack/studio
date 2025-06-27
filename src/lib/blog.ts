@@ -41,7 +41,7 @@ export const posts: Post[] = [
 
 **Elon Musk:** Eu não pensei originalmente que construiria algo grandioso. Eu queria tentar construir algo útil, mas, se você olhar probabilisticamente, parecia improvável. Mas eu queria pelo menos tentar.
 
-**ENTREVISTADOR:** Esta é uma sala cheia de jovens de 18 a 25 anos, muitos são os pesquisadores de IA mais eminentes que estão surgindo.
+**ENTREVISTador:** Esta é uma sala cheia de jovens de 18 a 25 anos, muitos são os pesquisadores de IA mais eminentes que estão surgindo.
 
 **Elon Musk:** Eu acho que gosto mais do termo "engenheiro" do que "pesquisador". Suponho que se houver algum avanço algorítmico fundamental, isso é pesquisa, mas, caso contrário, é engenharia.
 
@@ -166,7 +166,7 @@ Estou preocupado com o paradoxo de Fermi: por que não vimos alienígenas? Talve
 **Elon Musk:** Como comecei, tentem ser o mais úteis possível para seus semelhantes. Foquem em IA super verdadeira. Espero que possamos entender a natureza do universo. A IA pode nos dizer onde estão os alienígenas, como o universo começou e terminará, e quais perguntas ainda não sabemos fazer. Estamos em uma simulação? Eu sou um NPC?
 
 **ENTREVISTADOR:** Bem, acho que vamos descobrir. Elon, muito obrigado.`,
-    audioUrl: 'https://revolucaocognitiva.tech/wp-content/uploads/2025/06/Visao-de-Elon-Musk_-IA-Espaco-e-Consciencia-1.wav',
+    audioUrl: '/audio/Visao-de-Elon-Musk_-IA-Espaco-e-Consciencia-1.wav',
     videoUrl: 'https://www.youtube.com/embed/cFIlta1GkiE',
   },
   {
@@ -239,4 +239,5 @@ export const getPostBySlug = (slug: string) => {
   return posts.find(post => post.slug === slug);
 };
 
+    
     

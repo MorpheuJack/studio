@@ -8,14 +8,6 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import React from 'react';
 import { CourseCta } from '@/components/blog/CourseCta';
 
-const getAudioType = (url: string | undefined): string => {
-  if (!url) return '';
-  if (url.endsWith('.mp3')) return 'audio/mpeg';
-  if (url.endsWith('.wav')) return 'audio/wav';
-  if (url.endsWith('.ogg')) return 'audio/ogg';
-  return 'audio/mpeg'; // default
-};
-
 export default function BlogPostPage() {
   const params = useParams<{ slug: string }>();
   const post = getPostBySlug(params.slug);
@@ -89,7 +81,7 @@ export default function BlogPostPage() {
                         {post.audioUrl && (
                           <div key="audio-player" className="my-6">
                             <p className="text-sm font-medium mb-2 text-center">Ouça o panorama da entrevista de Elon Musk</p>
-                            <audio controls className="w-full" crossOrigin="anonymous" src={post.audioUrl}>
+                            <audio controls className="w-full" src={post.audioUrl}>
                               Seu navegador não suporta o elemento de áudio.
                             </audio>
                           </div>
@@ -124,3 +116,5 @@ export default function BlogPostPage() {
     </main>
   );
 }
+
+    
