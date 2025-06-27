@@ -24,7 +24,7 @@ export function PostCard({ post }: PostCardProps) {
             />
           </div>
         </CardHeader>
-        <CardContent className="flex flex-1 flex-col p-6 text-center">
+        <CardContent className="flex flex-1 flex-col p-6">
           <h3 className="font-headline text-xl font-semibold leading-tight text-foreground group-hover:text-primary transition-colors">
             {post.title}
           </h3>

@@ -55,9 +55,9 @@ export default function BlogPostPage() {
          <article className="my-16 rounded-xl border border-primary/20 bg-gradient-to-br from-slate-950 via-background to-slate-950 bg-[size:200%] p-8 shadow-2xl shadow-primary/10 animate-animated-gradient md:p-12">
             <div className="prose prose-lg dark:prose-invert mx-auto max-w-4xl
               prose-headings:font-headline prose-headings:tracking-tight prose-headings:text-foreground prose-headings:text-center
-              prose-p:text-muted-foreground prose-p:leading-relaxed prose-p:text-center
+              prose-p:text-muted-foreground prose-p:leading-relaxed
               prose-strong:text-foreground prose-a:text-primary hover:prose-a:text-primary/80
-              prose-blockquote:border-l-primary prose-blockquote:text-muted-foreground prose-blockquote:font-normal prose-blockquote:text-center">
+              prose-blockquote:border-l-primary prose-blockquote:text-muted-foreground prose-blockquote:font-normal">
               {post.content.split('\n\n').map((paragraph, index) => {
                 // If this is the paragraph to be replaced, and the post has an audioUrl, render the player instead.
                 if (post.audioUrl && paragraph.startsWith(introParagraphIdentifier)) {
