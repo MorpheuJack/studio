@@ -14,7 +14,10 @@ export async function askAssistantAction(prevState: AssistantState | undefined, 
     userMessage: z.string().min(1, { message: 'A mensagem não pode estar vazia.' }),
     chatHistory: z.string(), // a stringified JSON array
     courseTitle: z.string(),
-    moduleTitle: z.string().optional(),
+    moduleTitle: z.preprocess(
+      (val) => (val === null ? undefined : val),
+      z.string().optional()
+    ),
   });
 
   try {
