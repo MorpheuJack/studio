@@ -4,15 +4,44 @@ import { getPostBySlug } from '@/lib/blog';
 import { notFound, useParams } from 'next/navigation';
 import Image from 'next/image';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { generateAudioFromText } from '@/ai/flows/tts-flow';
+import { Skeleton } from '@/components/ui/skeleton';
 
 export default function BlogPostPage() {
   const params = useParams<{ slug: string }>();
   const post = getPostBySlug(params.slug);
 
+  const [audioSrc, setAudioSrc] = useState<string | null>(null);
+  const [isLoadingAudio, setIsLoadingAudio] = useState(false);
+
+  useEffect(() => {
+    // Only generate audio for this specific post
+    if (post && post.slug === 'o-futuro-da-ia-generativa') {
+      const getAudio = async () => {
+        setIsLoadingAudio(true);
+        try {
+          const result = await generateAudioFromText(post.content);
+          if (result?.media) {
+            setAudioSrc(result.media);
+          }
+        } catch (error) {
+          console.error("Audio generation failed:", error);
+          // Don't show the player if it fails
+          setAudioSrc(null);
+        } finally {
+          setIsLoadingAudio(false);
+        }
+      };
+      getAudio();
+    }
+  }, [post]);
+
   if (!post) {
     notFound();
   }
+  
+  const introParagraphIdentifier = "A inteligência artificial generativa capturou a imaginação do mundo";
 
   return (
     <main>
@@ -54,6 +83,32 @@ export default function BlogPostPage() {
               prose-strong:text-foreground prose-a:text-primary hover:prose-a:text-primary/80
               prose-blockquote:border-l-primary prose-blockquote:text-muted-foreground prose-blockquote:font-normal">
               {post.content.split('\n\n').map((paragraph, index) => {
+                if (post.slug === 'o-futuro-da-ia-generativa' && paragraph.startsWith(introParagraphIdentifier)) {
+                  if (isLoadingAudio) {
+                    return (
+                      <div key="audio-loader" className="flex items-center gap-4 p-4 rounded-lg bg-muted/50 my-6">
+                        <div className="space-y-2 flex-1">
+                          <p className='text-sm text-center text-muted-foreground'>Gerando narração de áudio...</p>
+                          <Skeleton className="h-4 w-full" />
+                        </div>
+                      </div>
+                    );
+                  }
+                  if (audioSrc) {
+                    return (
+                      <div key="audio-player" className="my-6">
+                        <p className="text-sm font-medium text-center mb-2 text-muted-foreground">Ouça este artigo:</p>
+                        <audio controls className="w-full">
+                          <source src={audioSrc} type="audio/wav" />
+                          Seu navegador não suporta o elemento de áudio.
+                        </audio>
+                      </div>
+                    );
+                  }
+                  // If audio fails or isn't available, render the original paragraph
+                  return <p key={index}>{paragraph}</p>;
+                }
+
                 if (paragraph.startsWith('**') && paragraph.endsWith('**')) {
                   return (
                     <h2 key={index}>
