@@ -10,6 +10,7 @@ export type Post = {
   'data-ai-hint'?: string;
   content: string;
   audioUrl?: string;
+  category: string;
 };
 
 export const posts: Post[] = [
@@ -23,6 +24,7 @@ export const posts: Post[] = [
     isoDate: '2024-07-15',
     image: 'https://placehold.co/800x400.png',
     'data-ai-hint': 'abstract future',
+    category: 'IA',
     content: `A inteligência artificial generativa capturou a imaginação do mundo, mas o que vem depois da onda inicial de chatbots e geradores de imagem? Neste artigo, exploramos as tendências emergentes que moldarão a próxima geração de IA.
 
 **Rumo à Multimodalidade**
@@ -50,6 +52,7 @@ O futuro é brilhante e cheio de possibilidades. A IA generativa não é apenas 
     isoDate: '2024-07-10',
     image: 'https://placehold.co/800x400.png',
     'data-ai-hint': 'brain circuit',
+    category: 'IA',
     content: `A qualidade da sua saída de IA é diretamente proporcional à qualidade da sua entrada. Aqui estão cinco dicas para aprimorar suas habilidades de engenharia de prompt:
 
 **1. Clareza é Rainha: Seja Específico e Dê Contexto**
@@ -82,6 +85,7 @@ Seu primeiro prompt raramente é o melhor. Veja a primeira resposta como um rasc
     isoDate: '2024-07-05',
     image: 'https://placehold.co/800x400.png',
     'data-ai-hint': 'marketing chart',
+    category: 'Marketing',
     content: `A IA não é mais uma promessa futura para o marketing; é uma ferramenta presente e poderosa. Deixe o hype de lado e veja as aplicações práticas que os profissionais de marketing podem usar hoje:
 
 **Análise Preditiva para Foco em Vendas**

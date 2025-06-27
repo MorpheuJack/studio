@@ -6,6 +6,7 @@ import { notFound, useParams } from 'next/navigation';
 import Image from 'next/image';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import React from 'react';
+import { CourseCta } from '@/components/blog/CourseCta';
 
 export default function BlogPostPage() {
   const params = useParams<{ slug: string }>();
@@ -83,6 +84,8 @@ export default function BlogPostPage() {
             </div>
           </article>
       </div>
+
+      <CourseCta category={post.category} />
     </main>
   );
 }

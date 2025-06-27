@@ -110,6 +110,10 @@ export const courses: Course[] = [
   },
 ];
 
+export const getCoursesByCategory = (category: string, limit: number = 2) => {
+    return courses.filter(course => course.category === category).slice(0, limit);
+};
+
 export const getCourseById = (id: string) => {
     return courses.find(course => course.id === id);
 }
