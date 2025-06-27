@@ -17,7 +17,7 @@ export type Post = {
 
 export const posts: Post[] = [
   {
-    slug: 'alerta-de-musk-sobre-o-big-bang-da-inteligência',
+    slug: 'alerta-de-musk-sobre-o-big-bang-da-inteligencia',
     title: 'Superinteligência em 2025: O Alerta de Musk Sobre o "Big Bang da Inteligência" e o Risco de Aniquilação',
     description: 'Uma análise profunda sobre para onde a tecnologia de IA generativa está indo e o que esperar nos próximos anos.',
     author: 'MorpheuJack',
