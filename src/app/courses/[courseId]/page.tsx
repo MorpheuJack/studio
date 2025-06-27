@@ -1,7 +1,7 @@
 "use client";
 
 import { getCourseById } from '@/lib/courses';
-import { notFound, useRouter } from 'next/navigation';
+import { notFound, useRouter, useParams } from 'next/navigation';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { useEnrollment } from '@/context/EnrollmentContext';
@@ -10,7 +10,8 @@ import { Clock, Users, BarChart } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 
-export default function CourseDetailPage({ params }: { params: { courseId: string } }) {
+export default function CourseDetailPage() {
+  const params = useParams<{ courseId: string }>();
   const course = getCourseById(params.courseId);
   const { enrollCourse, isEnrolled } = useEnrollment();
   const router = useRouter();
