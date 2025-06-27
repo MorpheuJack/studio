@@ -91,10 +91,15 @@ export function FloatingAssistant({ course, isOpen, onOpenChange }: FloatingAssi
   };
   
   const getInitials = (name: string) => {
+    if (!name) return 'U';
     const names = name.split(' ');
-    if (names.length > 1) return `${names[0][0]}${names[names.length - 1][0]}`;
+    if (names.length > 1 && names[0] && names[names.length - 1]) {
+      return `${names[0][0]}${names[names.length - 1][0]}`;
+    }
     return name.substring(0, 2);
   }
+
+  const userName = user?.user_metadata?.full_name || user?.email || '';
 
   return (
     <Popover open={isOpen} onOpenChange={onOpenChange}>
@@ -140,7 +145,7 @@ export function FloatingAssistant({ course, isOpen, onOpenChange }: FloatingAssi
                 </div>
                  {user && message.role === 'user' && (
                   <Avatar className="h-8 w-8">
-                    <AvatarFallback>{getInitials(user.name)}</AvatarFallback>
+                    <AvatarFallback>{getInitials(userName)}</AvatarFallback>
                   </Avatar>
                 )}
               </div>

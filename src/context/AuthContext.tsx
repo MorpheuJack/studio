@@ -3,11 +3,8 @@
 import React, { createContext, useState, useContext, ReactNode, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useToast } from "@/hooks/use-toast";
-
-type User = {
-  name: string;
-  email: string;
-};
+import { supabase } from '@/lib/supabase';
+import type { User } from '@supabase/supabase-js';
 
 interface AuthContextType {
   user: User | null;
@@ -20,18 +17,6 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-const getUsersFromStorage = () => {
-  if (typeof window === 'undefined') return [];
-  const users = localStorage.getItem('users');
-  return users ? JSON.parse(users) : [];
-};
-
-const getCurrentUserFromStorage = () => {
-    if (typeof window === 'undefined') return null;
-    const user = localStorage.getItem('currentUser');
-    return user ? JSON.parse(user) : null;
-}
-
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
@@ -39,64 +24,81 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const router = useRouter();
 
   useEffect(() => {
-    const currentUser = getCurrentUserFromStorage();
-    if (currentUser) {
-      setUser(currentUser);
+    const getSession = async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+      setUser(session?.user ?? null);
+      setLoading(false);
     }
-    setLoading(false);
+    getSession();
+    
+    const { data: authListener } = supabase.auth.onAuthStateChange(
+      (event, session) => {
+        const currentUser = session?.user ?? null;
+        setUser(currentUser);
+        setLoading(false);
+      }
+    );
+
+    return () => {
+      authListener.subscription.unsubscribe();
+    };
   }, []);
 
-  const register = async (name: string, email: string, pass: string): Promise<boolean> => {
-    const users = getUsersFromStorage();
-    const existingUser = users.find((u: any) => u.email === email);
+  const register = async (name: string, email: string, password: string): Promise<boolean> => {
+    setLoading(true);
+    const { error } = await supabase.auth.signUp({
+      email,
+      password,
+      options: {
+        data: {
+          full_name: name,
+        },
+      },
+    });
+    setLoading(false);
 
-    if (existingUser) {
+    if (error) {
       toast({
         title: "Erro de Cadastro",
-        description: "Este e-mail já está em uso.",
+        description: error.message,
         variant: "destructive",
       });
       return false;
     }
     
-    const newUser = { name, email, password: pass };
-    users.push(newUser);
-    localStorage.setItem('users', JSON.stringify(users));
-    
-    localStorage.setItem('currentUser', JSON.stringify({ name, email }));
-    setUser({ name, email });
     toast({
       title: "Cadastro Realizado!",
-      description: "Bem-vindo(a) à Aetheria AI!",
+      description: "Bem-vindo(a)! Verifique seu e-mail para confirmar sua conta.",
     });
     return true;
   };
 
-  const login = async (email: string, pass: string): Promise<boolean> => {
-    const users = getUsersFromStorage();
-    const foundUser = users.find((u: any) => u.email === email && u.password === pass);
+  const login = async (email: string, password: string): Promise<boolean> => {
+    setLoading(true);
+    const { error } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
+    setLoading(false);
 
-    if (foundUser) {
-      const userData = { name: foundUser.name, email: foundUser.email };
-      localStorage.setItem('currentUser', JSON.stringify(userData));
-      setUser(userData);
-      toast({
-        title: "Login bem-sucedido!",
-        description: `Bem-vindo(a) de volta, ${foundUser.name}!`,
-      });
-      return true;
-    } else {
+    if (error) {
       toast({
         title: "Erro de Login",
-        description: "E-mail ou senha inválidos.",
+        description: error.message,
         variant: "destructive",
       });
       return false;
     }
+
+    toast({
+      title: "Login bem-sucedido!",
+      description: `Bem-vindo(a) de volta!`,
+    });
+    return true;
   };
 
-  const logout = () => {
-    localStorage.removeItem('currentUser');
+  const logout = async () => {
+    await supabase.auth.signOut();
     setUser(null);
     toast({
       title: "Logout realizado.",

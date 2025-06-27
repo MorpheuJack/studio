@@ -88,12 +88,15 @@ export function ChatAssistant({ course, module, lesson }: ChatAssistantProps) {
   };
   
   const getInitials = (name: string) => {
+    if (!name) return 'U';
     const names = name.split(' ');
-    if (names.length > 1) {
+    if (names.length > 1 && names[0] && names[names.length - 1]) {
       return `${names[0][0]}${names[names.length - 1][0]}`;
     }
     return name.substring(0, 2);
   }
+
+  const userName = user?.user_metadata?.full_name || user?.email || '';
 
   return (
     <CardContent className="flex flex-col flex-grow p-0">
@@ -114,7 +117,7 @@ export function ChatAssistant({ course, module, lesson }: ChatAssistantProps) {
                 </div>
                  {message.role === 'user' && user && (
                   <Avatar className="h-8 w-8">
-                    <AvatarFallback>{getInitials(user.name)}</AvatarFallback>
+                    <AvatarFallback>{getInitials(userName)}</AvatarFallback>
                   </Avatar>
                 )}
               </div>
