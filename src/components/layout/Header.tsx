@@ -23,6 +23,7 @@ import { Label } from "@/components/ui/label";
 const navLinks = [
   { href: "/courses", label: "Cursos" },
   { href: "/my-courses", label: "Meus Cursos" },
+  { href: "/blog", label: "Blog" },
 ];
 
 export function Header() {
@@ -59,7 +60,7 @@ export function Header() {
               href={link.href}
               className={cn(
                 "transition-colors hover:text-foreground/80",
-                pathname === link.href ? "text-foreground" : "text-foreground/60"
+                pathname.startsWith(link.href) ? "text-foreground" : "text-foreground/60"
               )}
             >
               {link.label}
