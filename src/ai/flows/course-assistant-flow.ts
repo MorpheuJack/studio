@@ -71,6 +71,10 @@ const courseAssistantFlow = ai.defineFlow(
   },
   async input => {
     const {output} = await prompt(input);
-    return output!;
+    if (output) {
+      return output;
+    }
+    // Fallback response if the model fails to generate valid structured output
+    return { aiResponse: "Peço desculpas, mas não consegui formular uma resposta clara no momento. Você poderia tentar reformular sua pergunta?" };
   }
 );
