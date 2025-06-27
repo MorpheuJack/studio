@@ -70,7 +70,7 @@ export default function BlogPostPage() {
                 // If this is the paragraph to be replaced, and the post has an audioUrl, render the player instead.
                 if (post.audioUrl && paragraph.startsWith(introParagraphIdentifier)) {
                   return (
-                      <div key="audio-player" className="my-6 p-4 rounded-lg bg-muted/50 border border-primary/20 shadow-inner">
+                      <div key="audio-player" className="my-6">
                         <p className="text-sm font-medium mb-2 text-muted-foreground text-center md:text-left">Ouça o panorama da entrevista, apresentado por dois locutores:</p>
                         <audio controls className="w-full">
                           <source src={post.audioUrl} type={getAudioType(post.audioUrl)} />
