@@ -16,14 +16,10 @@ const nextConfig: NextConfig = {
         port: '',
         pathname: '/**',
       },
-      {
-        protocol: 'https',
-        hostname: 'revolucaocognitiva.tech',
-        port: '',
-        pathname: '/**',
-      },
     ],
   },
 };
 
 export default nextConfig;
+
+    

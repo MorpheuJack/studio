@@ -20,7 +20,7 @@ export const posts: Post[] = [
     slug: 'alerta-de-musk-sobre-o-big-bang-da-inteligencia',
     title: 'Superinteligência em 2025: O Alerta de Musk Sobre o "Big Bang da Inteligência" e o Risco de Aniquilação',
     description: 'Explorando a previsão de Elon Musk sobre a chegada da superinteligência já em 2025.',
-    author: 'MorpheuJack',
+    author: 'Aetheria AI',
     authorAvatar: 'https://placehold.co/100x100.png',
     date: '27 de Julho, 2025',
     isoDate: '2024-07-15',
@@ -145,7 +145,7 @@ Estou preocupado com o paradoxo de Fermi: por que não vimos alienígenas? Talve
 
 **A Pílula Branca e o Bootloader Biológico**
 
-**ENTREVISTADOR:** O que podemos fazer para garantir um futuro de superabundância?
+**ENTREVISTgador:** O que podemos fazer para garantir um futuro de superabundância?
 
 **Elon Musk:** Provavelmente teremos um bom resultado. Concordo com Jeff Hinton que há uma chance de 10 a 20% de aniquilação, mas isso significa 80 a 90% de um ótimo resultado. Repito: adesão rigorosa à verdade é a coisa mais importante para a segurança da IA.
 
@@ -234,4 +234,6 @@ export const getPostBySlug = (slug: string) => {
 };
 
     
+    
+
     
