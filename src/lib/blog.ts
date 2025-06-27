@@ -5,6 +5,7 @@ export type Post = {
   author: string;
   authorAvatar: string;
   date: string;
+  isoDate: string;
   image: string;
   'data-ai-hint'?: string;
   content: string;
@@ -18,6 +19,7 @@ export const posts: Post[] = [
     author: 'Dr. Evelyn Reed',
     authorAvatar: 'https://placehold.co/100x100.png',
     date: '15 de Julho, 2024',
+    isoDate: '2024-07-15',
     image: 'https://placehold.co/800x400.png',
     'data-ai-hint': 'abstract future',
     content: `
@@ -39,6 +41,7 @@ O futuro é brilhante e cheio de possibilidades. A IA generativa não é apenas 
     author: 'Liam Chen',
     authorAvatar: 'https://placehold.co/100x100.png',
     date: '10 de Julho, 2024',
+    isoDate: '2024-07-10',
     image: 'https://placehold.co/800x400.png',
     'data-ai-hint': 'brain circuit',
     content: `
@@ -62,6 +65,7 @@ A qualidade da sua saída de IA é diretamente proporcional à qualidade da sua 
     author: 'Aisha Khan',
     authorAvatar: 'https://placehold.co/100x100.png',
     date: '5 de Julho, 2024',
+    isoDate: '2024-07-05',
     image: 'https://placehold.co/800x400.png',
     'data-ai-hint': 'marketing chart',
     content: `
@@ -79,7 +83,7 @@ A adoção dessas ferramentas não se trata de substituir os profissionais de ma
 ];
 
 export const getAllPosts = () => {
-  return posts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+  return posts.sort((a, b) => new Date(b.isoDate).getTime() - new Date(a.isoDate).getTime());
 };
 
 export const getPostBySlug = (slug: string) => {

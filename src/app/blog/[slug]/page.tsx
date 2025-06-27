@@ -26,7 +26,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
             <span className="font-medium text-foreground">{post.author}</span>
           </div>
           <span>•</span>
-          <time dateTime={new Date(post.date).toISOString()}>{post.date}</time>
+          <time dateTime={post.isoDate}>{post.date}</time>
         </div>
       </header>
 
