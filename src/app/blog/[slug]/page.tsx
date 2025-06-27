@@ -8,6 +8,14 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import React from 'react';
 import { CourseCta } from '@/components/blog/CourseCta';
 
+const getAudioType = (url: string | undefined): string => {
+  if (!url) return '';
+  if (url.endsWith('.mp3')) return 'audio/mpeg';
+  if (url.endsWith('.wav')) return 'audio/wav';
+  if (url.endsWith('.ogg')) return 'audio/ogg';
+  return 'audio/mpeg'; // default
+};
+
 export default function BlogPostPage() {
   const params = useParams<{ slug: string }>();
   const post = getPostBySlug(params.slug);
@@ -65,7 +73,7 @@ export default function BlogPostPage() {
                       <div key="audio-player" className="my-6 p-4 rounded-lg bg-muted/50 border border-primary/20 shadow-inner">
                         <p className="text-sm font-medium mb-2 text-muted-foreground text-center md:text-left">Ouça este artigo:</p>
                         <audio controls className="w-full">
-                          <source src={post.audioUrl} type="audio/mpeg" />
+                          <source src={post.audioUrl} type={getAudioType(post.audioUrl)} />
                           Seu navegador não suporta o elemento de áudio.
                         </audio>
                       </div>
