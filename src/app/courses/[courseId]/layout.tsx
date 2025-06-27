@@ -1,6 +1,7 @@
 import { getCourseById } from '@/lib/courses';
 import { notFound } from 'next/navigation';
 import { LessonSidebar } from '@/components/courses/LessonSidebar';
+import { FloatingAssistant } from '@/components/courses/FloatingAssistant';
 
 export default function CourseLayout({
   children,
@@ -23,6 +24,7 @@ export default function CourseLayout({
         </aside>
         <main className="flex-1 min-w-0">{children}</main>
       </div>
+      <FloatingAssistant course={course} />
     </div>
   );
 }

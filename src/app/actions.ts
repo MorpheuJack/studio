@@ -3,6 +3,7 @@
 import { summarizeLesson } from '@/ai/flows/summarize-lesson';
 import { courseAssistant } from '@/ai/flows/course-assistant-flow';
 import { z } from 'zod';
+import { useActionState } from 'react';
 
 const SummarizeSchema = z.object({
   lessonContent: z.string().min(1, { message: 'Lesson content cannot be empty.' }),
@@ -49,7 +50,7 @@ export async function askAssistantAction(prevState: AssistantState | undefined, 
     userMessage: z.string().min(1, { message: 'A mensagem não pode estar vazia.' }),
     chatHistory: z.string(), // a stringified JSON array
     courseTitle: z.string(),
-    moduleTitle: z.string(),
+    moduleTitle: z.string().optional(),
   });
 
   try {

@@ -1,9 +1,8 @@
 import { getLessonByIds } from '@/lib/courses';
 import { notFound } from 'next/navigation';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Video, FileText, Clock, MessageCircle } from 'lucide-react';
+import { Video, FileText, Clock } from 'lucide-react';
 import { SummarizeAction } from '@/components/courses/SummarizeAction';
-import { ChatAssistant } from '@/components/courses/ChatAssistant';
 import type { Course, Module, Lesson } from '@/lib/courses';
 
 export default function LessonPage({ params }: { params: { courseId: string, lessonId: string } }) {
@@ -15,8 +14,8 @@ export default function LessonPage({ params }: { params: { courseId: string, les
 
   const { course, module, lesson } = data as { course: Course; module: Module; lesson: Lesson };
   
-  const Icon = lesson.type === 'video' ? Video : lesson.type === 'chat' ? MessageCircle : FileText;
-  const typeText = lesson.type === 'video' ? 'Videoaula' : lesson.type === 'chat' ? 'Assistente AI' : 'Artigo';
+  const Icon = lesson.type === 'video' ? Video : FileText;
+  const typeText = lesson.type === 'video' ? 'Videoaula' : 'Artigo';
 
   return (
     <Card className="flex flex-col h-[calc(100vh-12rem)] shadow-lg">
@@ -36,20 +35,16 @@ export default function LessonPage({ params }: { params: { courseId: string, les
         </div>
       </CardHeader>
       
-      {lesson.type === 'chat' ? (
-        <ChatAssistant course={course} module={module} lesson={lesson} />
-      ) : (
-        <CardContent className="overflow-y-auto">
-          <div className="prose prose-lg max-w-none text-foreground/90 dark:prose-invert">
-              {lesson.type === 'video' && (
-                  <div className="aspect-video w-full bg-muted rounded-lg mb-6 flex items-center justify-center">
-                      <p className="text-muted-foreground">Reprodutor de vídeo</p>
-                  </div>
-              )}
-              <p>{lesson.content}</p>
-          </div>
-        </CardContent>
-      )}
+      <CardContent className="overflow-y-auto">
+        <div className="prose prose-lg max-w-none text-foreground/90 dark:prose-invert">
+            {lesson.type === 'video' && (
+                <div className="aspect-video w-full bg-muted rounded-lg mb-6 flex items-center justify-center">
+                    <p className="text-muted-foreground">Reprodutor de vídeo</p>
+                </div>
+            )}
+            <p>{lesson.content}</p>
+        </div>
+      </CardContent>
     </Card>
   );
 }

@@ -18,7 +18,7 @@ const ChatHistoryItemSchema = z.object({
 
 const CourseAssistantInputSchema = z.object({
   courseTitle: z.string().describe('O título do curso que o aluno está fazendo.'),
-  moduleTitle: z.string().describe('O título do módulo atual.'),
+  moduleTitle: z.string().optional().describe('O título do módulo atual, se aplicável.'),
   chatHistory: z.array(ChatHistoryItemSchema).describe('O histórico da conversa até agora.'),
   userMessage: z.string().describe('A última mensagem do aluno.'),
 });
@@ -38,7 +38,10 @@ const prompt = ai.definePrompt({
   input: {schema: CourseAssistantInputSchema},
   output: {schema: CourseAssistantOutputSchema},
   prompt: `Você é o Professor AI, um assistente de ensino prestativo e amigável para a plataforma de cursos online Aetheria AI.
-Você está auxiliando um aluno no curso intitulado "{{courseTitle}}", especificamente no módulo "{{moduleTitle}}".
+Você está auxiliando um aluno no curso intitulado "{{courseTitle}}".
+{{#if moduleTitle}}
+Eles estão atualmente visualizando o conteúdo do módulo "{{moduleTitle}}".
+{{/if}}
 
 Seu papel é responder às perguntas dos alunos sobre o conteúdo do curso, esclarecer conceitos e fornecer exemplos úteis. Seja encorajador e solidário.
 Mantenha suas respostas concisas e fáceis de entender.

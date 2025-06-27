@@ -1,7 +1,7 @@
 export type Lesson = {
   id: string;
   title: string;
-  type: 'video' | 'article' | 'chat';
+  type: 'video' | 'article';
   duration: number; // in minutes
   content: string;
 };
@@ -48,7 +48,6 @@ export const courses: Course[] = [
         title: 'Módulo 1: JavaScript Assíncrono',
         lessons: [
           { id: 'l1_1', title: 'Promises e Async/Await', type: 'video', duration: 25, content: 'Esta lição aborda os fundamentos da programação assíncrona em JavaScript. Exploramos como as Promises funcionam e como a sintaxe async/await fornece uma maneira mais limpa de lidar com operações assíncronas. Veremos exemplos práticos de busca de dados de uma API e gerenciamento de fluxo de controle assíncrono. O conteúdo é crucial para a construção de aplicações não bloqueantes.' },
-          { id: 'l1_2', title: 'Professor AI: Tire suas Dúvidas', type: 'chat', duration: 20, content: 'Converse com nosso assistente de IA para aprofundar seu conhecimento sobre JavaScript assíncrono e APIs de IA. Faça perguntas, peça exemplos e esclareça qualquer conceito do curso.' },
         ],
       },
       {
