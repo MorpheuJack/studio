@@ -1,20 +1,15 @@
 "use client";
-import React, { useState, useMemo } from 'react';
+import React, { useMemo } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { CourseCard } from '@/components/courses/CourseCard';
 import { courses } from '@/lib/courses';
 import type { Course } from '@/lib/courses';
 import { CourseFilters } from '@/components/courses/CourseFilters';
 
-export default function CoursesPage({
-  searchParams,
-}: {
-  searchParams?: {
-    q?: string;
-    category?: string;
-  };
-}) {
-  const searchTerm = searchParams?.q || '';
-  const category = searchParams?.category || 'All';
+export default function CoursesPage() {
+  const searchParams = useSearchParams();
+  const searchTerm = searchParams.get('q') || '';
+  const category = searchParams.get('category') || 'All';
 
   const filteredCourses = useMemo(() => {
     return courses.filter(course => {
