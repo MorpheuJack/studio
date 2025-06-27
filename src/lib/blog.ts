@@ -238,3 +238,5 @@ export const getAllPosts = () => {
 export const getPostBySlug = (slug: string) => {
   return posts.find(post => post.slug === slug);
 };
+
+    
