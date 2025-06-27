@@ -39,7 +39,7 @@ export default function Home() {
                   </Link>
                 </Button>
                 <Button asChild variant="ghost" size="lg">
-                  <Link href="#">Saber Mais &rarr;</Link>
+                  <Link href="/courses">Saber Mais &rarr;</Link>
                 </Button>
               </div>
             </div>

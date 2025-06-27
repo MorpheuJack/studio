@@ -1,39 +1,41 @@
-"use client";
-import React, { useMemo } from 'react';
-import { useSearchParams } from 'next/navigation';
+import React from 'react';
 import { CourseCard } from '@/components/courses/CourseCard';
 import { courses } from '@/lib/courses';
 import type { Course } from '@/lib/courses';
 import { CourseFilters } from '@/components/courses/CourseFilters';
 
-export default function CoursesPage() {
-  const searchParams = useSearchParams();
-  const searchTerm = searchParams.get('q') || '';
-  const category = searchParams.get('category') || 'All';
+export default function CoursesPage({
+  searchParams,
+}: {
+  searchParams?: {
+    q?: string;
+    category?: string;
+  };
+}) {
+  const searchTerm = searchParams?.q || '';
+  const category = searchParams?.category || 'All';
 
-  const filteredCourses = useMemo(() => {
-    return courses.filter(course => {
-      const matchesCategory = category === 'All' || course.category === category;
-      const matchesSearch = course.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                            course.description.toLowerCase().includes(searchTerm.toLowerCase());
-      return matchesCategory && matchesSearch;
-    });
-  }, [searchTerm, category]);
+  const filteredCourses = courses.filter(course => {
+    const matchesCategory = category === 'All' || course.category === category;
+    const matchesSearch = course.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                          course.description.toLowerCase().includes(searchTerm.toLowerCase());
+    return matchesCategory && matchesSearch;
+  });
   
-  const categories = useMemo(() => ['All', ...new Set(courses.map(c => c.category))], []);
+  const categories = ['All', ...new Set(courses.map(c => c.category))];
   
-  const displayCategories = useMemo(() => {
+  const displayCategories = categories.map(cat => {
     const translatedCategories: { [key: string]: string } = {
       'All': 'Todos',
       'Programming': 'Programação',
       'Design': 'Design',
       'Marketing': 'Marketing'
     };
-    return categories.map(cat => ({
+    return {
       value: cat,
       label: translatedCategories[cat] || cat
-    }));
-  }, [categories]);
+    };
+  });
 
   return (
     <div className="container mx-auto px-4 py-8 sm:px-6 lg:px-8">
