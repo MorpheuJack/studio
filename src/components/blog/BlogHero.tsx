@@ -98,7 +98,7 @@ export function BlogHero() {
 
       {/* Foreground Content Grid */}
       <div className="container relative z-10 mx-auto h-full px-4 sm:px-6 lg:px-8">
-        <div className="grid h-full w-full grid-cols-1 items-end gap-8 pb-12 md:grid-cols-3 md:items-center md:gap-8 md:pb-0 lg:grid-cols-4">
+        <div className="grid h-full w-full grid-cols-1 items-end gap-6 pb-8 md:grid-cols-3 md:items-center md:gap-8 md:pb-0 lg:grid-cols-4">
           
           {/* Main Content Text (Left) */}
           <div className="md:col-span-2 lg:col-span-3 text-white">
@@ -125,48 +125,52 @@ export function BlogHero() {
           </div>
 
           {/* Side Posts Navigation (Right) */}
-          <div
-            className="group/sidebar flex flex-row gap-4 overflow-x-auto pb-2 md:flex-col md:justify-center md:overflow-x-visible md:pb-0"
-            onMouseEnter={plugin.current.stop}
-            onMouseLeave={plugin.current.play}
-          >
-            {featuredPosts.map((post, index) => (
-              <button
-                key={post.slug}
-                onClick={() => scrollTo(index)}
-                className={cn(
-                  "relative w-64 flex-shrink-0 rounded-xl border-2 bg-card/10 p-4 text-left backdrop-blur-md transition-all duration-300 md:w-full",
-                  current === index 
-                    ? "border-primary shadow-lg" 
-                    : "border-white/20 hover:border-primary/50 hover:bg-card/20"
-                )}
-              >
-                <div className="flex items-start gap-4">
-                  <div className="relative h-16 w-16 flex-shrink-0 overflow-hidden rounded-md">
-                    <Image
-                      src={post.image}
-                      alt={post.title}
-                      fill
-                      className="object-cover"
-                      data-ai-hint={post['data-ai-hint']}
-                    />
+          <div className="relative md:col-span-1">
+            <div
+              className="group/sidebar flex flex-row gap-3 overflow-x-auto pb-2 hide-scrollbar md:flex-col md:gap-4 md:overflow-x-visible md:pb-0"
+              onMouseEnter={plugin.current.stop}
+              onMouseLeave={plugin.current.play}
+            >
+              {featuredPosts.map((post, index) => (
+                <button
+                  key={post.slug}
+                  onClick={() => scrollTo(index)}
+                  className={cn(
+                    "relative w-56 flex-shrink-0 rounded-xl border-2 bg-white/5 p-3 text-left backdrop-blur-md transition-all duration-300 hover:bg-white/10 md:w-full",
+                    current === index 
+                      ? "border-primary shadow-lg" 
+                      : "border-white/20 hover:border-primary/50"
+                  )}
+                >
+                  <div className="flex items-start gap-3">
+                    <div className="relative h-14 w-14 flex-shrink-0 overflow-hidden rounded-md">
+                      <Image
+                        src={post.image}
+                        alt={post.title}
+                        fill
+                        className="object-cover"
+                        data-ai-hint={post['data-ai-hint']}
+                      />
+                    </div>
+                    <div className="text-white">
+                      <h3 className="text-sm font-semibold leading-tight line-clamp-2">{post.title}</h3>
+                      <p className="mt-1 text-xs text-white/70">{post.author}</p>
+                    </div>
                   </div>
-                  <div className="text-white">
-                    <h3 className="font-semibold line-clamp-2 leading-tight">{post.title}</h3>
-                    <p className="text-sm text-white/80 mt-1">{post.author}</p>
-                  </div>
-                </div>
-                {current === index && (
-                  <div className="absolute bottom-0 left-0 h-1 w-full bg-primary/20">
-                    <div
-                      key={current} // Key change restarts animation
-                      className="h-full bg-primary animate-progress-bar group-hover/sidebar:animate-pause"
-                      style={{ animationDuration: `${AUTOPLAY_DELAY / 1000}s` }}
-                    />
-                  </div>
-                )}
-              </button>
-            ))}
+                  {current === index && (
+                    <div className="absolute bottom-0 left-0 h-1 w-full overflow-hidden rounded-b-lg bg-primary/20">
+                      <div
+                        key={current} // Key change restarts animation
+                        className="h-full bg-primary animate-progress-bar group-hover/sidebar:animate-pause"
+                        style={{ animationDuration: `${AUTOPLAY_DELAY / 1000}s` }}
+                      />
+                    </div>
+                  )}
+                </button>
+              ))}
+            </div>
+             {/* Fade effect for mobile */}
+            <div className="pointer-events-none absolute inset-y-0 right-0 w-8 bg-gradient-to-l from-background to-transparent md:hidden" />
           </div>
 
         </div>
