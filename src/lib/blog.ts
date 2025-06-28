@@ -18,7 +18,7 @@ export type Post = {
 export const posts: Post[] = [
   {
     slug: 'alerta-de-musk-sobre-o-big-bang-da-inteligencia',
-    title: 'Superinteligência em 2025: O Alerta de Musk Sobre o "Big Bang da Inteligência" e o Risco de Aniquilação',
+    title: 'Superinteligência em 2025: O Alerta de Musk Sobre o Big Bang da Inteligência e o Risco de Aniquilação',
     description: 'Explorando a previsão de Elon Musk sobre a chegada da superinteligência já em 2025.',
     author: 'Revolução Cognitiva',
     authorAvatar: 'https://placehold.co/100x100.png',
