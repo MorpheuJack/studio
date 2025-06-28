@@ -1,4 +1,3 @@
-
 "use client";
 
 import React, { createContext, useState, useContext, ReactNode, useEffect } from 'react';
@@ -25,18 +24,22 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const router = useRouter();
 
   useEffect(() => {
-    // A função onAuthStateChange é disparada imediatamente com a sessão atual,
-    // então não precisamos de uma chamada extra para getSession().
-    const { data: authListener } = supabase.auth.onAuthStateChange(
-      (event, session) => {
-        const currentUser = session?.user ?? null;
-        setUser(currentUser);
-        setLoading(false);
-      }
-    );
+    // Fetch the initial session data to set the user state.
+    const fetchSession = async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+      setUser(session?.user ?? null);
+      setLoading(false);
+    };
+
+    fetchSession();
+
+    // Listen for changes in auth state (e.g., login, logout).
+    const { data: authListener } = supabase.auth.onAuthStateChange((_event, session) => {
+      setUser(session?.user ?? null);
+    });
 
     return () => {
-      authListener.subscription.unsubscribe();
+      authListener?.subscription.unsubscribe();
     };
   }, []);
 
