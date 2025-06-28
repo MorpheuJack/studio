@@ -53,14 +53,13 @@ export function Header() {
       setScrolled(window.scrollY > 10);
     };
     window.addEventListener('scroll', handleScroll);
-    handleScroll(); // Check on mount
+    handleScroll();
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
-  // Logo animation logic
   useEffect(() => {
     if (animationPhase === 'initial' && hasMounted) {
       setLogoText('');
@@ -95,14 +94,22 @@ export function Header() {
   
   const showAuthContent = hasMounted && !loading;
 
+  const isTransparentPage = ['/', '/blog', '/courses'].includes(pathname);
+  const isHeaderOpaque = scrolled || !isTransparentPage;
+
+  // Define classes for server (and initial client) render vs. post-hydration render
+  const headerBaseClass = "sticky top-0 z-50 w-full transition-colors duration-300";
+  const opaqueHeaderClass = "border-b border-border/40 bg-background/95 backdrop-blur-sm supports-[backdrop-filter]:bg-background/60";
+  const transparentHeaderClass = "border-b border-transparent";
+
+  // The class on the server and initial client render must match.
+  const serverClass = isTransparentPage ? transparentHeaderClass : opaqueHeaderClass;
+  // After hydration, the class can change based on the `scrolled` state.
+  const clientClass = isHeaderOpaque ? opaqueHeaderClass : transparentHeaderClass;
+
   return (
-    <header className={cn(
-        "sticky top-0 z-50 w-full transition-colors duration-300",
-        scrolled ? "border-b border-border/40 bg-background/95 backdrop-blur-sm supports-[backdrop-filter]:bg-background/60" : "border-b border-transparent",
-        (pathname === '/' || pathname === '/blog' || pathname === '/courses') && !scrolled ? '' : 'border-b border-border/40 bg-background/95 backdrop-blur-sm supports-[backdrop-filter]:bg-background/60'
-    )}>
+    <header className={cn(headerBaseClass, hasMounted ? clientClass : serverClass)}>
       <div className="container flex h-14 items-center md:grid md:grid-cols-3">
-        {/* Left Side: Logo (Desktop) / Mobile Menu Wrapper */}
         <div className="flex items-center justify-start md:flex-1">
             <Link href="/" className="flex items-center space-x-2">
             <BrainCircuit className="h-6 w-6 text-primary" />
@@ -110,15 +117,16 @@ export function Header() {
                 className="relative font-bold font-headline h-6 hidden items-center md:flex" 
                 style={{ textShadow: "0 0 8px hsl(var(--primary))" }}
             >
-                <span className="min-w-[170px] text-left">{logoText}</span>
+                {/* Render full text on server and initial client render to prevent mismatch */}
+                <span className="min-w-[170px] text-left">{hasMounted ? logoText : fullLogoText}</span>
+                {/* Only render cursor animation on the client after mount */}
                 {hasMounted && animationPhase === 'typing' && (
-                <span className="inline-block w-px h-5 bg-primary animate-blinking-cursor ml-1"></span>
+                  <span className="inline-block w-px h-5 bg-primary animate-blinking-cursor ml-1"></span>
                 )}
             </div>
             </Link>
         </div>
         
-        {/* Center: Desktop Navigation */}
         <nav className="hidden items-center justify-center space-x-8 text-sm font-medium md:flex">
           {navLinks.map((link) => (
             <Link
@@ -134,9 +142,7 @@ export function Header() {
           ))}
         </nav>
 
-        {/* Right Side: Auth & Mobile Menu Trigger */}
         <div className="flex flex-1 items-center justify-end">
-          {/* Desktop Auth UI */}
           <div className="hidden md:block">
             {!showAuthContent ? (
               <div className="h-9 w-9 bg-muted rounded-full animate-pulse" />
@@ -204,7 +210,6 @@ export function Header() {
             )}
           </div>
 
-          {/* Mobile Menu */}
           <div className="md:hidden">
             <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
               <SheetTrigger asChild>
