@@ -1,3 +1,4 @@
+
 export type Lesson = {
   id: string;
   title: string;
@@ -26,6 +27,7 @@ export type Course = {
   category: string;
   modules: Module[];
   'data-ai-hint'?: string;
+  backgroundVideo?: string;
 };
 
 export const courses: Course[] = [
@@ -42,6 +44,7 @@ export const courses: Course[] = [
     image: 'https://placehold.co/600x400.png',
     'data-ai-hint': 'glowing code',
     category: 'IA',
+    backgroundVideo: 'https://videos.pexels.com/video-files/853874/853874-hd_1920_1080_30fps.mp4',
     modules: [
       {
         id: 'm1',
@@ -73,6 +76,7 @@ export const courses: Course[] = [
     image: 'https://placehold.co/600x400.png',
     'data-ai-hint': 'futuristic interface',
     category: 'Design',
+    backgroundVideo: 'https://videos.pexels.com/video-files/3194234/3194234-hd_1920_1080_25fps.mp4',
     modules: [
       {
         id: 'm3',

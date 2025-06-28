@@ -13,6 +13,7 @@ export type Post = {
   content: string;
   audioUrl?: string;
   videoUrl?: string;
+  backgroundVideo?: string;
   category: string;
 };
 
@@ -29,6 +30,7 @@ export const posts: Post[] = [
     mobileImage: '/img/elon-vertical.png',
     'data-ai-hint': 'abstract future',
     category: 'IA',
+    backgroundVideo: 'https://videos.pexels.com/video-files/2887333/2887333-hd_1920_1080_24fps.mp4',
     content: `**O Início do Big Bang da Inteligência**
 
 **ENTREVISTADOR:** Elon, bem-vindo à AI Startup School. Estamos realmente privilegiados por ter sua presença aqui hoje.

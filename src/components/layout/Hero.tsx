@@ -2,7 +2,6 @@
 'use client';
 
 import * as React from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
 import Autoplay from 'embla-carousel-autoplay';
 
@@ -29,7 +28,7 @@ export function Hero() {
       title: course.title,
       description: course.description,
       image: course.image,
-      'data-ai-hint': course['data-ai-hint'],
+      backgroundVideo: course.backgroundVideo,
       href: `/courses/${course.id}`,
     })),
     ...posts.slice(0, 1).map((post) => ({
@@ -37,8 +36,7 @@ export function Hero() {
       title: post.title,
       description: post.description,
       image: post.image,
-      mobileImage: post.mobileImage,
-      'data-ai-hint': post['data-ai-hint'],
+      backgroundVideo: post.backgroundVideo,
       href: `/blog/${post.slug}`,
     })),
   ];
@@ -56,6 +54,11 @@ export function Hero() {
 
     const onSelect = () => {
       setCurrent(api.selectedScrollSnap());
+      // Ensure the video in the current slide is playing
+      const video = api.containerNode().querySelector<HTMLVideoElement>(`[data-slide-index="${api.selectedScrollSnap()}"] video`);
+      if (video) {
+        video.play().catch(error => console.error("Video play failed:", error));
+      }
     };
 
     api.on('select', onSelect);
@@ -80,26 +83,21 @@ export function Hero() {
       >
         <CarouselContent>
           {featuredContent.map((item: any, index) => (
-            <CarouselItem key={index}>
+            <CarouselItem key={index} data-slide-index={index}>
               <div className="relative h-screen min-h-[600px] w-full">
-                <Image
-                  src={item.image}
-                  alt={item.title}
-                  fill
-                  priority={index === 0}
-                  className="object-cover hidden md:block"
-                  data-ai-hint={item['data-ai-hint'] || ''}
-                />
-                 <Image
-                  src={item.mobileImage || item.image}
-                  alt={item.title}
-                  fill
-                  priority={index === 0}
-                  className="object-cover md:hidden"
-                  data-ai-hint={item['data-ai-hint'] || ''}
-                />
+                <video
+                  key={item.href}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  poster={item.image}
+                  className="absolute inset-0 w-full h-full object-cover"
+                >
+                  {item.backgroundVideo && <source src={item.backgroundVideo} type="video/mp4" />}
+                </video>
                 <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-transparent" />
-                <div className="absolute inset-0 bg-black/30" />
+                <div className="absolute inset-0 bg-black/50" />
                 
                 <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8">
                   <div className="relative z-10 flex h-full flex-col justify-end pb-20 md:pb-28 text-white">
