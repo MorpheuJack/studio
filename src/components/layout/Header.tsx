@@ -43,46 +43,64 @@ export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   
   const [logoText, setLogoText] = useState('');
-  const [animationPhase, setAnimationPhase] = useState<'typing' | 'pausing' | 'deleting' | 'finished'>('typing');
+  const [animationPhase, setAnimationPhase] = useState<'typing' | 'pausing' | 'deleting' | 'swapping' | 'inserting-slash' | 'finished'>('typing');
 
   useEffect(() => {
     const fullText = "Revolução Cognitiva";
-    const targetText = "R/G";
+    const twoLetterText = "Re";
+    const intermediateText = "RC";
+    const finalText = "R/C";
     const typeSpeed = 100;
     const deleteSpeed = 60;
-    const pauseDelay = 2000;
+    const pauseDelay = 1500;
+    const swapDelay = 100;
+    const slashDelay = 200;
 
     if (animationPhase === 'finished') return;
 
-    let delay = typeSpeed;
-    if (animationPhase === 'pausing') delay = pauseDelay;
-    if (animationPhase === 'deleting') delay = deleteSpeed;
+    let timer: NodeJS.Timeout;
 
-    const timer = setTimeout(() => {
-        switch (animationPhase) {
-            case 'typing':
-                if (logoText === fullText) {
-                    setAnimationPhase('pausing');
-                } else {
+    switch (animationPhase) {
+        case 'typing':
+            timer = setTimeout(() => {
+                if (logoText.length < fullText.length) {
                     setLogoText(fullText.substring(0, logoText.length + 1));
+                } else {
+                    setAnimationPhase('pausing');
                 }
-                break;
-            case 'pausing':
+            }, typeSpeed);
+            break;
+        case 'pausing':
+            timer = setTimeout(() => {
                 setAnimationPhase('deleting');
-                break;
-            case 'deleting':
-                if (logoText.length > 2) {
+            }, pauseDelay);
+            break;
+        case 'deleting':
+            timer = setTimeout(() => {
+                if (logoText.length > twoLetterText.length) {
                     setLogoText(logoText.substring(0, logoText.length - 1));
                 } else {
-                    setLogoText(targetText);
-                    setAnimationPhase('finished');
+                    setAnimationPhase('swapping');
                 }
-                break;
-            default:
-              break;
-        }
-    }, delay);
+            }, deleteSpeed);
+            break;
+        case 'swapping':
+            timer = setTimeout(() => {
+                setLogoText(intermediateText);
+                setAnimationPhase('inserting-slash');
+            }, swapDelay);
+            break;
+        case 'inserting-slash':
+            timer = setTimeout(() => {
+                setLogoText(finalText);
+                setAnimationPhase('finished');
+            }, slashDelay);
+            break;
+        default:
+            break;
+    }
 
+    // @ts-ignore
     return () => clearTimeout(timer);
 }, [logoText, animationPhase]);
 
