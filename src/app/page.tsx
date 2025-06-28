@@ -1,62 +1,38 @@
-import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
-import Image from "next/image";
-import Link from "next/link";
+
+import { Hero } from "@/components/layout/Hero";
+import { courses } from '@/lib/courses';
+import Link from 'next/link';
+import { CourseCard } from '@/components/courses/CourseCard';
+import { Button } from '@/components/ui/button';
+import { ArrowRight } from 'lucide-react';
 
 export default function Home() {
+  // Get first 3 courses to feature
+  const featuredCourses = courses.slice(0, 3);
+
   return (
-    <div className="relative overflow-hidden">
-       <div
-        aria-hidden="true"
-        className="absolute inset-0 grid grid-cols-2 -space-x-52 opacity-40 dark:opacity-20"
-      >
-        <div className="blur-[106px] h-56 bg-gradient-to-br from-primary to-purple-400 dark:from-primary"></div>
-        <div className="blur-[106px] h-32 bg-gradient-to-r from-cyan-400 to-sky-300 dark:to-accent"></div>
-      </div>
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <section className="py-16 sm:py-20 md:py-28">
-          <div className="flex flex-col items-center gap-16 lg:flex-row lg:flex-row-reverse">
-            
-            <div className="flex flex-col items-center text-center lg:items-start lg:text-left lg:w-1/2">
-              <h1 className="font-headline text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl">
-                O Futuro da Educação é Inteligente. Bem-vindo à{" "}
-                <span
-                  className="text-primary"
-                  style={{ textShadow: "0 0 15px hsl(var(--primary))" }}
-                >
-                  Revolução Cognitiva
-                </span>
-              </h1>
-              <p className="mt-6 max-w-2xl text-lg leading-8 text-muted-foreground lg:max-w-none">
-                Navegue por cursos de ponta em Inteligência Artificial, Ciência de Dados e mais. Aprenda com uma plataforma construída sobre a tecnologia do amanhã.
-              </p>
-              <div className="mt-10 flex items-center gap-x-6">
-                <Button asChild size="lg">
-                  <Link href="/courses">
-                    Explorar Cursos
-                    <ArrowRight className="ml-2 h-5 w-5" />
-                  </Link>
-                </Button>
-                <Button asChild variant="ghost" size="lg">
-                  <Link href="/courses">Saber Mais &rarr;</Link>
-                </Button>
-              </div>
-            </div>
-
-            <div className="relative w-full h-80 lg:w-1/2 lg:h-[32rem]">
-              <Image
-                src="https://placehold.co/600x400.png"
-                alt="Uma imagem abstrata representando uma rede neural e aprendizado"
-                data-ai-hint="neural network"
-                fill
-                className="rounded-xl object-cover shadow-2xl shadow-primary/20"
-                priority
-              />
-            </div>
-
+    <>
+      <Hero />
+      <div className="container mx-auto px-4 py-16 sm:px-6 lg:px-8">
+        <section>
+          <div className="mb-8 flex items-center justify-between">
+            <h2 className="font-headline text-3xl font-bold tracking-tight sm:text-4xl">
+              Cursos em Destaque
+            </h2>
+            <Button asChild variant="link" className="text-sm text-primary hover:text-primary/80 shrink-0">
+              <Link href="/courses/all">
+                Ver todos os cursos
+                <ArrowRight className="ml-1 h-4 w-4" />
+              </Link>
+            </Button>
+          </div>
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+            {featuredCourses.map((course) => (
+              <CourseCard key={course.id} course={course} />
+            ))}
           </div>
         </section>
       </div>
-    </div>
+    </>
   );
 }
