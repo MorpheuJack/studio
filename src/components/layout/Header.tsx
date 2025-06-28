@@ -24,8 +24,6 @@ import {
   SheetTitle,
 } from "@/components/ui/sheet";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { Switch } from "@/components/ui/switch";
-import { Label } from "@/components/ui/label";
 import { useState, useEffect } from "react";
 import { Separator } from "@/components/ui/separator";
 
@@ -41,10 +39,9 @@ export function Header() {
   const { isAuthenticated, user, logout, loading } = useAuth();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   
+  // `hasMounted` is used to prevent hydration errors by delaying client-side-only rendering.
   const [hasMounted, setHasMounted] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [logoText, setLogoText] = useState(fullLogoText);
-  const [animationPhase, setAnimationPhase] = useState<'initial' | 'typing' | 'finished'>('initial');
 
   useEffect(() => {
     setHasMounted(true);
@@ -52,34 +49,15 @@ export function Header() {
     const handleScroll = () => {
       setScrolled(window.scrollY > 10);
     };
-    window.addEventListener('scroll', handleScroll);
+    
+    // Set initial state
     handleScroll();
 
+    window.addEventListener('scroll', handleScroll);
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
-
-  useEffect(() => {
-    if (animationPhase === 'initial' && hasMounted) {
-      setLogoText('');
-      setAnimationPhase('typing');
-    }
-  }, [hasMounted, animationPhase]);
-
-  useEffect(() => {
-    if (animationPhase !== 'typing') return;
-    
-    if (logoText.length < fullLogoText.length) {
-      const timer = setTimeout(() => {
-        setLogoText(fullLogoText.substring(0, logoText.length + 1));
-      }, 80);
-      return () => clearTimeout(timer);
-    } else {
-      setAnimationPhase('finished');
-    }
-  }, [logoText, animationPhase]);
-
 
   const userName = user?.user_metadata?.full_name || user?.email || 'Usuário';
   
@@ -92,38 +70,30 @@ export function Header() {
     return name.substring(0, 2);
   }
   
+  // This flag ensures that we only render auth-related content on the client after hydration.
   const showAuthContent = hasMounted && !loading;
 
   const isTransparentPage = ['/', '/blog', '/courses'].includes(pathname);
-  const isHeaderOpaque = scrolled || !isTransparentPage;
-
-  // Define classes for server (and initial client) render vs. post-hydration render
-  const headerBaseClass = "sticky top-0 z-50 w-full transition-colors duration-300";
-  const opaqueHeaderClass = "border-b border-border/40 bg-background/95 backdrop-blur-sm supports-[backdrop-filter]:bg-background/60";
-  const transparentHeaderClass = "border-b border-transparent";
-
-  // The class on the server and initial client render must match.
-  const serverClass = isTransparentPage ? transparentHeaderClass : opaqueHeaderClass;
-  // After hydration, the class can change based on the `scrolled` state.
-  const clientClass = isHeaderOpaque ? opaqueHeaderClass : transparentHeaderClass;
+  
+  // The header is opaque if we are not on a transparent page or if the user has scrolled.
+  // On the server, `scrolled` is always false, so this depends only on `pathname`.
+  // On the client, `scrolled` will update after mount, triggering a re-render with the correct class.
+  const isHeaderOpaque = !isTransparentPage || scrolled;
 
   return (
-    <header className={cn(headerBaseClass, hasMounted ? clientClass : serverClass)}>
+    <header className={cn(
+      "sticky top-0 z-50 w-full transition-colors duration-300",
+      isHeaderOpaque 
+        ? "border-b border-border/40 bg-background/95 backdrop-blur-sm supports-[backdrop-filter]:bg-background/60"
+        : "border-b border-transparent"
+    )}>
       <div className="container flex h-14 items-center md:grid md:grid-cols-3">
         <div className="flex items-center justify-start md:flex-1">
             <Link href="/" className="flex items-center space-x-2">
-            <BrainCircuit className="h-6 w-6 text-primary" />
-            <div 
-                className="relative font-bold font-headline h-6 hidden items-center md:flex" 
-                style={{ textShadow: "0 0 8px hsl(var(--primary))" }}
-            >
-                {/* Render full text on server and initial client render to prevent mismatch */}
-                <span className="min-w-[170px] text-left">{hasMounted ? logoText : fullLogoText}</span>
-                {/* Only render cursor animation on the client after mount */}
-                {hasMounted && animationPhase === 'typing' && (
-                  <span className="inline-block w-px h-5 bg-primary animate-blinking-cursor ml-1"></span>
-                )}
-            </div>
+              <BrainCircuit className="h-6 w-6 text-primary" />
+              <span className="font-bold font-headline hidden md:block">
+                {fullLogoText}
+              </span>
             </Link>
         </div>
         
@@ -144,6 +114,7 @@ export function Header() {
 
         <div className="flex flex-1 items-center justify-end">
           <div className="hidden md:block">
+            {/* We wait for the component to mount and auth to load before showing user-specific content */}
             {!showAuthContent ? (
               <div className="h-9 w-9 bg-muted rounded-full animate-pulse" />
             ) : isAuthenticated && user ? (
@@ -186,12 +157,6 @@ export function Header() {
                     </DropdownMenuItem>
                   </DropdownMenuGroup>
                   <DropdownMenuSeparator className="bg-border/50" />
-                  <DropdownMenuItem onSelect={(e) => e.preventDefault()}>
-                      <Label htmlFor="dark-mode-switch" className="flex items-center w-full cursor-pointer">
-                          <span>Modo Escuro</span>
-                          <Switch id="dark-mode-switch" className="ml-auto" defaultChecked />
-                      </Label>
-                  </DropdownMenuItem>
                   <DropdownMenuItem>
                     <LifeBuoy className="mr-2 h-4 w-4" />
                     <span>Suporte</span>
@@ -224,7 +189,7 @@ export function Header() {
                 </SheetHeader>
                 <Link href="/" className="mb-6 flex items-center space-x-2" onClick={() => setIsMobileMenuOpen(false)}>
                    <BrainCircuit className="h-6 w-6 text-primary" />
-                   <span className="font-bold font-headline text-lg">Revolução Cognitiva</span>
+                   <span className="font-bold font-headline text-lg">{fullLogoText}</span>
                 </Link>
 
                 <nav className="flex flex-col gap-4 text-lg font-medium">
