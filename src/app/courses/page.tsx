@@ -29,7 +29,7 @@ export default function CoursesCategoriesPage() {
 
   return (
     <>
-      <section className="relative bg-muted py-20 md:py-28 overflow-hidden border-b">
+      <section className="relative bg-muted -mt-14 h-screen min-h-[800px] flex items-center overflow-hidden border-b">
           <div className="absolute inset-0">
               <Image
                   src="https://placehold.co/1920x500.png"
