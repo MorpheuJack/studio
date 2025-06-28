@@ -47,7 +47,7 @@ export function BlogHero() {
 
   const scrollTo = (index: number) => {
     api?.scrollTo(index);
-    plugin.current.reset();
+    plugin.current.play(); // Restart autoplay after manual navigation
   };
   
   if (featuredPosts.length === 0) {
@@ -60,7 +60,7 @@ export function BlogHero() {
     <section 
       className="relative w-full -mt-14 h-screen min-h-[700px] overflow-hidden"
       onMouseEnter={plugin.current.stop}
-      onMouseLeave={plugin.current.reset}
+      onMouseLeave={() => plugin.current.play()}
     >
       {/* Background Image Stacker */}
       <div className="absolute inset-0 z-0">
