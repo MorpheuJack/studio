@@ -41,14 +41,51 @@ export function Header() {
   const pathname = usePathname();
   const { isAuthenticated, user, logout, loading } = useAuth();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isLogoExpanded, setIsLogoExpanded] = useState(true);
+  
+  const [logoText, setLogoText] = useState('');
+  const [animationPhase, setAnimationPhase] = useState<'typing' | 'pausing' | 'deleting' | 'finished'>('typing');
 
   useEffect(() => {
+    const fullText = "Revolução Cognitiva";
+    const targetText = "R/G";
+    const typeSpeed = 100;
+    const deleteSpeed = 60;
+    const pauseDelay = 2000;
+
+    if (animationPhase === 'finished') return;
+
+    let delay = typeSpeed;
+    if (animationPhase === 'pausing') delay = pauseDelay;
+    if (animationPhase === 'deleting') delay = deleteSpeed;
+
     const timer = setTimeout(() => {
-      setIsLogoExpanded(false);
-    }, 2500); // Delay before animating
+        switch (animationPhase) {
+            case 'typing':
+                if (logoText === fullText) {
+                    setAnimationPhase('pausing');
+                } else {
+                    setLogoText(fullText.substring(0, logoText.length + 1));
+                }
+                break;
+            case 'pausing':
+                setAnimationPhase('deleting');
+                break;
+            case 'deleting':
+                if (logoText.length > 2) {
+                    setLogoText(logoText.substring(0, logoText.length - 1));
+                } else {
+                    setLogoText(targetText);
+                    setAnimationPhase('finished');
+                }
+                break;
+            default:
+              break;
+        }
+    }, delay);
+
     return () => clearTimeout(timer);
-  }, []);
+}, [logoText, animationPhase]);
+
 
   const userName = user?.user_metadata?.full_name || user?.email || 'Usuário';
   
@@ -66,25 +103,14 @@ export function Header() {
       <div className="container flex h-14 items-center">
         <Link href="/" className="mr-6 flex items-center space-x-2">
           <BrainCircuit className="h-6 w-6 text-primary" />
-          <div className="relative font-bold font-headline overflow-hidden h-6 flex items-center">
-            <span
-              className={cn(
-                "block transition-all duration-700 ease-in-out",
-                isLogoExpanded ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4"
-              )}
-              style={{ textShadow: "0 0 8px hsl(var(--primary))" }}
-            >
-              Revolução Cognitiva
-            </span>
-            <span
-              className={cn(
-                "absolute left-0 block transition-all duration-700 ease-in-out",
-                isLogoExpanded ? "opacity-0 translate-y-4" : "opacity-100 translate-y-0"
-              )}
-              style={{ textShadow: "0 0 8px hsl(var(--primary))" }}
-            >
-              R/G
-            </span>
+          <div 
+            className="relative font-bold font-headline h-6 flex items-center" 
+            style={{ textShadow: "0 0 8px hsl(var(--primary))" }}
+          >
+            <span className="min-w-[170px] text-left">{logoText}</span>
+            {animationPhase !== 'finished' && (
+              <span className="inline-block w-px h-5 bg-primary animate-blinking-cursor ml-1"></span>
+            )}
           </div>
         </Link>
         <nav className="hidden items-center space-x-6 text-sm font-medium md:flex">
