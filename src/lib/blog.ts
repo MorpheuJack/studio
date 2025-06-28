@@ -8,6 +8,7 @@ export type Post = {
   date: string;
   isoDate: string;
   image: string;
+  mobileImage?: string;
   'data-ai-hint'?: string;
   content: string;
   audioUrl?: string;
@@ -25,6 +26,7 @@ export const posts: Post[] = [
     date: '27 de Julho, 2025',
     isoDate: '2024-07-15',
     image: '/img/elon.png',
+    mobileImage: '/img/elon-vertical.png',
     'data-ai-hint': 'abstract future',
     category: 'IA',
     content: `**O Início do Big Bang da Inteligência**
@@ -145,7 +147,7 @@ Estou preocupado com o paradoxo de Fermi: por que não vimos alienígenas? Talve
 
 **A Pílula Branca e o Bootloader Biológico**
 
-**ENTREVISTgador:** O que podemos fazer para garantir um futuro de superabundância?
+**ENTREVISTADOR:** O que podemos fazer para garantir um futuro de superabundância?
 
 **Elon Musk:** Provavelmente teremos um bom resultado. Concordo com Jeff Hinton que há uma chance de 10 a 20% de aniquilação, mas isso significa 80 a 90% de um ótimo resultado. Repito: adesão rigorosa à verdade é a coisa mais importante para a segurança da IA.
 

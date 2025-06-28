@@ -23,7 +23,15 @@ export default function BlogPostPage() {
           src={post.image}
           alt={post.title}
           fill
-          className="object-cover animate-slow-zoom"
+          className="object-cover animate-slow-zoom hidden md:block"
+          data-ai-hint={post['data-ai-hint']}
+          priority
+        />
+        <Image
+          src={post.mobileImage || post.image}
+          alt={post.title}
+          fill
+          className="object-cover animate-slow-zoom md:hidden"
           data-ai-hint={post['data-ai-hint']}
           priority
         />
