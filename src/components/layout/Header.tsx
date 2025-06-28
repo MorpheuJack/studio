@@ -41,9 +41,21 @@ export function Header() {
   const pathname = usePathname();
   const { isAuthenticated, user, logout, loading } = useAuth();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   
   const [logoText, setLogoText] = useState('');
   const [animationPhase, setAnimationPhase] = useState<'typing' | 'pausing' | 'deleting' | 'swapping' | 'inserting-slash' | 'finished'>('typing');
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 10);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   useEffect(() => {
     const fullText = "Revolução Cognitiva";
@@ -117,7 +129,12 @@ export function Header() {
   }
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur-sm supports-[backdrop-filter]:bg-background/60">
+    <header className={cn(
+        "sticky top-0 z-50 w-full transition-colors duration-300",
+        scrolled ? "border-b border-border/40 bg-background/95 backdrop-blur-sm supports-[backdrop-filter]:bg-background/60" : "border-b border-transparent",
+        // Only apply special logic for pages with a hero section
+        (pathname === '/' || pathname === '/blog' || pathname === '/courses') ? '' : 'border-b border-border/40 bg-background/95 backdrop-blur-sm supports-[backdrop-filter]:bg-background/60'
+    )}>
       <div className="container flex h-14 items-center">
         <Link href="/" className="mr-6 flex items-center space-x-2">
           <BrainCircuit className="h-6 w-6 text-primary" />
@@ -293,3 +310,5 @@ export function Header() {
     </header>
   );
 }
+
+    
