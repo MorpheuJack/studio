@@ -3,7 +3,8 @@ import Link from 'next/link';
 import type { Post } from '@/lib/blog';
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import { ArrowRight } from 'lucide-react';
 
 interface PostCardProps {
   post: Post;
@@ -25,10 +26,13 @@ export function PostCard({ post }: PostCardProps) {
           </div>
         </CardHeader>
         <CardContent className="flex flex-1 flex-col p-6">
-          <h3 className="font-headline text-xl font-semibold leading-tight text-foreground group-hover:text-primary transition-colors">
-            {post.title}
-          </h3>
-          <p className="mt-2 flex-1 text-sm text-muted-foreground">{post.description}</p>
+          <div className="flex-1">
+            <Badge variant="secondary" className="mb-2">{post.category}</Badge>
+            <h3 className="font-headline text-xl font-semibold leading-tight text-foreground">
+              {post.title}
+            </h3>
+            <p className="mt-2 text-sm text-muted-foreground">{post.description}</p>
+          </div>
         </CardContent>
         <CardFooter className="flex items-center justify-between p-6 pt-0">
           <div className="flex items-center gap-3">
@@ -41,7 +45,9 @@ export function PostCard({ post }: PostCardProps) {
               <p className="text-xs text-muted-foreground">{post.date}</p>
             </div>
           </div>
-          <Button variant="link" className="p-0 text-primary">Ler mais &rarr;</Button>
+          <div className="flex items-center text-sm font-medium text-primary opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+            Ler mais <ArrowRight className="ml-1 h-4 w-4" />
+          </div>
         </CardFooter>
       </Card>
     </Link>

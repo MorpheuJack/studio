@@ -32,7 +32,7 @@ export default function BlogPage({
       <BlogHero />
       <div className="container mx-auto px-4 py-8 sm:px-6 lg:px-8">
         <div className="mb-12 text-center">
-            <h2 className="font-headline text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+            <h2 className="font-headline text-3xl font-bold text-foreground sm:text-4xl">
               Todos os Artigos
             </h2>
             <p className="mt-3 text-lg text-muted-foreground">
