@@ -48,7 +48,7 @@ export default function CoursesCategoriesPage() {
                     alt="Professor AI, mascote da Revolução Cognitiva"
                     width={400}
                     height={400}
-                    className="w-full h-auto max-w-[350px] md:max-w-full object-contain"
+                    className="w-full h-auto max-w-[350px] md:max-w-full object-contain animate-float-subtle"
                     data-ai-hint="character mascot"
                     priority
                   />

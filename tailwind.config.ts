@@ -109,6 +109,10 @@ export default {
           '0%, 100%': { opacity: '1' },
           '50%': { opacity: '0' },
         },
+        'float-subtle': {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-10px)' },
+        },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
@@ -116,6 +120,7 @@ export default {
         'slow-zoom': 'slow-zoom 20s ease-out forwards',
         'animated-gradient': 'animated-gradient 15s ease infinite',
         'blinking-cursor': 'blinking-cursor 0.8s step-end infinite',
+        'float-subtle': 'float-subtle 4s ease-in-out infinite',
       },
     },
   },
