@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useActionState, useRef, useEffect } from 'react';
+import Image from 'next/image';
 import { useFormStatus } from 'react-dom';
 import { useParams } from 'next/navigation';
 import { askAssistantAction } from '@/app/actions';
@@ -10,7 +11,7 @@ import { ScrollArea } from '@/components/ui/scroll-area';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Send, Loader2, BrainCircuit } from 'lucide-react';
-import { Avatar, AvatarFallback } from '@/components/ui/avatar';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { useAuth } from '@/context/AuthContext';
 import { cn } from '@/lib/utils';
 import { useToast } from '@/hooks/use-toast';
@@ -105,18 +106,25 @@ export function FloatingAssistant({ course, isOpen, onOpenChange }: FloatingAssi
     <Popover open={isOpen} onOpenChange={onOpenChange}>
       <PopoverTrigger asChild>
         <Button
-          className="fixed bottom-6 right-6 h-16 w-16 rounded-full shadow-lg shadow-primary/30 animate-pulse"
+          className="fixed bottom-6 right-6 h-16 w-16 rounded-full shadow-lg shadow-primary/30 animate-pulse p-0 overflow-hidden"
           style={{ animationDuration: '3s' }}
           size="icon"
           aria-label="Abrir Assistente de IA"
         >
-          <BrainCircuit className="h-8 w-8" />
+          <Image 
+            src="/img/RG-personagem.png"
+            alt="Professor AI"
+            fill
+            className="object-cover"
+            data-ai-hint="character mascot"
+          />
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-[26rem] h-[70vh] mr-4 flex flex-col p-0 rounded-xl" sideOffset={16}>
         <CardHeader>
           <div className="flex items-center gap-3">
             <Avatar className="h-10 w-10 border-2 border-primary/50">
+                <AvatarImage src="/img/RG-personagem.png" alt="Professor AI" className="object-cover" />
                 <AvatarFallback className="bg-primary/20">
                     <BrainCircuit className="h-5 w-5 text-primary" />
                 </AvatarFallback>
@@ -134,6 +142,7 @@ export function FloatingAssistant({ course, isOpen, onOpenChange }: FloatingAssi
               <div key={index} className={cn("flex items-start gap-4", message.role === 'user' ? "justify-end" : "justify-start")}>
                 {message.role === 'assistant' && (
                   <Avatar className="h-8 w-8 border-2 border-primary/50">
+                    <AvatarImage src="/img/RG-personagem.png" alt="Professor AI Avatar" className="object-cover" />
                     <AvatarFallback className="bg-primary/20">
                       <BrainCircuit className="h-4 w-4 text-primary" />
                     </AvatarFallback>
