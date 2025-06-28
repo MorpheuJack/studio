@@ -5,10 +5,17 @@ import Link from 'next/link';
 import { CourseCard } from '@/components/courses/CourseCard';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 export default function Home() {
-  // Get first 3 courses to feature
-  const featuredCourses = courses.slice(0, 3);
+  // Use more courses for a better carousel experience
+  const featuredCourses = courses.slice(0, 6);
 
   return (
     <>
@@ -26,11 +33,23 @@ export default function Home() {
               </Link>
             </Button>
           </div>
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {featuredCourses.map((course) => (
-              <CourseCard key={course.id} course={course} />
-            ))}
-          </div>
+           <Carousel
+              opts={{
+                align: "start",
+                loop: featuredCourses.length > 3,
+              }}
+              className="w-full"
+            >
+              <CarouselContent className="-ml-4">
+                {featuredCourses.map((course) => (
+                  <CarouselItem key={course.id} className="pl-4 md:basis-1/2 lg:basis-1/3">
+                    <CourseCard course={course} />
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselPrevious className="hidden sm:flex" />
+              <CarouselNext className="hidden sm:flex" />
+            </Carousel>
         </section>
       </div>
     </>
