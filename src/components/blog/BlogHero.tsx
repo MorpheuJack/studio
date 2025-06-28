@@ -85,7 +85,8 @@ export function BlogHero() {
       </Carousel>
 
       {/* Overlays */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-transparent" />
+      <div className="absolute inset-0 bg-black/50" />
 
       {/* Foreground Content Grid */}
       <div className="container relative z-10 mx-auto h-full px-4 sm:px-6 lg:px-8">
