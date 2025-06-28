@@ -113,6 +113,10 @@ export default {
           '0%, 100%': { transform: 'translateY(0)' },
           '50%': { transform: 'translateY(-10px)' },
         },
+        'fade-in-up-bubble': {
+          '0%': { opacity: '0', transform: 'translateY(10px) scale(0.95)' },
+          '100%': { opacity: '1', transform: 'translateY(0) scale(1)' },
+        },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
@@ -121,6 +125,7 @@ export default {
         'animated-gradient': 'animated-gradient 15s ease infinite',
         'blinking-cursor': 'blinking-cursor 0.8s step-end infinite',
         'float-subtle': 'float-subtle 4s ease-in-out infinite',
+        'fade-in-up-bubble': 'fade-in-up-bubble 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards',
       },
     },
   },

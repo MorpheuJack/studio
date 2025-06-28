@@ -43,15 +43,24 @@ export default function CoursesCategoriesPage() {
           <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8">
               <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-8 md:gap-12">
                 <div className="flex justify-center md:justify-start">
-                  <Image
-                    src="/img/RG-personagem.png"
-                    alt="Professor AI, mascote da Revolução Cognitiva"
-                    width={400}
-                    height={400}
-                    className="w-full h-auto max-w-[350px] md:max-w-full object-contain animate-float-subtle"
-                    data-ai-hint="character mascot"
-                    priority
-                  />
+                  <div className="relative">
+                    <Image
+                      src="/img/RG-personagem.png"
+                      alt="Professor AI, mascote da Revolução Cognitiva"
+                      width={400}
+                      height={400}
+                      className="w-full h-auto max-w-[350px] md:max-w-full object-contain animate-float-subtle"
+                      data-ai-hint="character mascot"
+                      priority
+                    />
+                    <div 
+                      className="hidden md:block absolute bottom-2/3 left-[70%] w-max max-w-[260px] bg-card text-card-foreground p-4 rounded-xl shadow-2xl opacity-0 animate-fade-in-up-bubble"
+                      style={{ animationDelay: '0.7s' }}
+                    >
+                        <p className="text-sm font-medium">Pronto para explorar um universo de conhecimento? 🚀</p>
+                        <div className="absolute left-6 -bottom-2 w-0 h-0 border-x-[10px] border-x-transparent border-t-[10px] border-t-card drop-shadow-md"></div>
+                    </div>
+                  </div>
                 </div>
                 <div className="text-center md:text-left">
                   <h1 className="font-headline text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl">
