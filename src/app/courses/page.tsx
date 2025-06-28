@@ -29,7 +29,7 @@ export default function CoursesCategoriesPage() {
 
   return (
     <>
-      <section className="relative bg-muted -mt-14 h-screen min-h-[800px] flex items-center overflow-hidden border-b">
+      <section className="relative bg-muted -mt-14 h-[700px] flex items-center overflow-hidden border-b">
           <div className="absolute inset-0">
               <video
                   autoPlay
@@ -39,7 +39,7 @@ export default function CoursesCategoriesPage() {
                   poster="https://placehold.co/1920x1080.png"
                   className="absolute inset-0 w-full h-full object-cover"
                 >
-                  <source src="video/video-t.mp4" type="video/mp4" />
+                  <source src="/video/video-t.mp4" type="video/mp4" />
                 </video>
               <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-transparent" />
               <div className="absolute inset-0 bg-black/50" />
@@ -92,9 +92,8 @@ export default function CoursesCategoriesPage() {
                     </CarouselItem>
                   ))}
                 </CarouselContent>
-                {/* Hide arrows on mobile, where swiping is more common */}
-                <CarouselPrevious className="hidden sm:flex" />
-                <CarouselNext className="hidden sm:flex" />
+                <CarouselPrevious />
+                <CarouselNext />
               </Carousel>
             </section>
           ))}

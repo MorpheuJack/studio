@@ -42,13 +42,13 @@ export default function Home() {
             >
               <CarouselContent className="-ml-4">
                 {featuredCourses.map((course) => (
-                  <CarouselItem key={course.id} className="pl-4 md:basis-1/2 lg:basis-1/3">
+                  <CarouselItem key={course.id} className="pl-4 basis-4/5 md:basis-1/2 lg:basis-1/3">
                     <CourseCard course={course} />
                   </CarouselItem>
                 ))}
               </CarouselContent>
-              <CarouselPrevious className="hidden sm:flex" />
-              <CarouselNext className="hidden sm:flex" />
+              <CarouselPrevious />
+              <CarouselNext />
             </Carousel>
         </section>
       </div>
