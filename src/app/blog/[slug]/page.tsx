@@ -1,4 +1,3 @@
-
 'use client';
 
 import { getPostBySlug } from '@/lib/blog';
@@ -58,7 +57,7 @@ export default function BlogPostPage() {
                     >
                         {post.title}
                     </h1>
-                    <div className="mt-6 flex items-center gap-4">
+                    <div className="mt-6 flex items-center justify-center gap-4 md:justify-start">
                         <Avatar className="h-12 w-12 border-2 border-white/70">
                             <AvatarImage src={post.authorAvatar} alt={post.author} />
                             <AvatarFallback>{post.author.charAt(0)}</AvatarFallback>
