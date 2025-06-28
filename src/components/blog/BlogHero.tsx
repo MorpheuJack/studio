@@ -75,7 +75,7 @@ export function BlogHero() {
                   alt={post.title}
                   fill
                   className="object-cover animate-slow-zoom"
-                  priority={index === 0}
+                  priority
                   data-ai-hint={post['data-ai-hint']}
                 />
               </div>
