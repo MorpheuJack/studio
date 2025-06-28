@@ -20,10 +20,14 @@ export default function CoursesPage() {
     return acc;
   }, {} as Record<string, Course[]>);
 
-  const categories = Object.keys(coursesByCategory);
-  const [activeCategory, setActiveCategory] = useState(categories[0] || '');
+  const uniqueCategories = Object.keys(coursesByCategory);
+  const displayCategories = ['Todos', ...uniqueCategories];
+  
+  const [activeCategory, setActiveCategory] = useState(displayCategories[0]);
 
-  const activeCourses = coursesByCategory[activeCategory] || [];
+  const activeCourses = activeCategory === 'Todos' 
+    ? courses 
+    : coursesByCategory[activeCategory] || [];
 
   return (
     <>
@@ -67,7 +71,7 @@ export default function CoursesPage() {
               {/* Mobile: Horizontal scrollable tabs */}
               <div className="lg:hidden">
                 <div className="flex flex-row gap-3 overflow-x-auto pb-4 hide-scrollbar">
-                  {categories.map((category) => (
+                  {displayCategories.map((category) => (
                     <button
                       key={category}
                       onClick={() => setActiveCategory(category)}
@@ -86,7 +90,7 @@ export default function CoursesPage() {
 
               {/* Desktop: Vertical list */}
               <nav className="hidden lg:flex lg:flex-col lg:gap-2">
-                {categories.map((category) => (
+                {displayCategories.map((category) => (
                   <button
                     key={category}
                     onClick={() => setActiveCategory(category)}
@@ -121,15 +125,15 @@ export default function CoursesPage() {
                 <div className="flex items-center gap-4">
                     <BookOpenCheck className="h-8 w-8 text-primary"/>
                     <div>
-                        <h2 className="font-headline text-3xl font-bold">{activeCategory}</h2>
+                        <h2 className="font-headline text-3xl font-bold">{activeCategory === 'Todos' ? 'Todos os Cursos' : activeCategory}</h2>
                         <p className="text-muted-foreground">
                             {activeCourses.length} {activeCourses.length === 1 ? 'curso disponível' : 'cursos disponíveis'}
                         </p>
                     </div>
                 </div>
                 <Button asChild variant="link" className="hidden sm:inline-flex">
-                  <Link href={`/courses/all?category=${encodeURIComponent(activeCategory)}`}>
-                    Explorar Categoria
+                  <Link href={activeCategory === 'Todos' ? '/courses/all' : `/courses/all?category=${encodeURIComponent(activeCategory)}`}>
+                    {activeCategory === 'Todos' ? 'Explorar Todos' : 'Explorar Categoria'}
                     <ArrowRight className="ml-1 h-4 w-4" />
                   </Link>
                 </Button>
