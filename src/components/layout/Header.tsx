@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { BrainCircuit, LogOut, User, Settings, CreditCard, LifeBuoy, Menu } from "lucide-react";
+import { BrainCircuit, LogOut, User, Settings, CreditCard, LifeBuoy, Menu, LayoutGrid } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { usePathname } from 'next/navigation';
 import { cn } from "@/lib/utils";
@@ -29,7 +29,6 @@ import { Separator } from "@/components/ui/separator";
 
 const navLinks = [
   { href: "/courses", label: "Cursos" },
-  { href: "/my-courses", label: "Meus Cursos" },
   { href: "/blog", label: "Blog" },
 ];
 const fullLogoText = "Revolução Cognitiva";
@@ -143,6 +142,12 @@ export function Header() {
                   </DropdownMenuLabel>
                   <DropdownMenuSeparator className="bg-border/50" />
                   <DropdownMenuGroup>
+                    <DropdownMenuItem asChild>
+                      <Link href="/my-courses">
+                        <LayoutGrid className="mr-2 h-4 w-4" />
+                        <span>Meus Cursos</span>
+                      </Link>
+                    </DropdownMenuItem>
                     <DropdownMenuItem>
                       <User className="mr-2 h-4 w-4" />
                       <span>Membros</span>
@@ -227,8 +232,26 @@ export function Header() {
                             </p>
                           </div>
                         </div>
+                        <Separator />
+                        <nav className="flex flex-col gap-2">
+                          <SheetClose asChild>
+                            <Link
+                              href="/my-courses"
+                              className={cn(
+                                'flex items-center gap-3 rounded-md p-2 text-base font-medium transition-colors hover:bg-accent',
+                                pathname.startsWith('/my-courses')
+                                  ? 'text-primary'
+                                  : 'text-foreground'
+                              )}
+                            >
+                              <LayoutGrid className="h-5 w-5" />
+                              <span>Meus Cursos</span>
+                            </Link>
+                          </SheetClose>
+                        </nav>
+                        <Separator />
                         <SheetClose asChild>
-                          <Button onClick={logout} variant="outline" className="w-full justify-start">
+                          <Button onClick={logout} variant="ghost" className="w-full justify-start gap-3 p-2 text-base font-medium text-red-400 hover:bg-red-500/10 hover:text-red-400">
                             <LogOut className="mr-2 h-4 w-4" />
                             Sair
                           </Button>
