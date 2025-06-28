@@ -39,15 +39,15 @@ export default function BlogPostPage() {
         <div className="absolute inset-0 bg-black/30" />
         
         <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8">
-            <div className="relative z-10 flex h-full flex-col justify-end pb-20 text-white md:pb-28">
-                <div className="max-w-3xl text-center md:text-left">
+            <div className="relative z-10 flex h-full flex-col justify-end pb-16 text-white md:pb-24">
+                <div className="max-w-3xl">
                     <h1
                         className="font-headline text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl"
                         style={{ textShadow: '0 2px 20px rgba(0,0,0,0.7)' }}
                     >
                         {post.title}
                     </h1>
-                    <div className="mt-6 flex items-center justify-center md:justify-start gap-4">
+                    <div className="mt-6 flex items-center gap-4">
                         <Avatar className="h-12 w-12 border-2 border-white/70">
                             <AvatarImage src={post.authorAvatar} alt={post.author} />
                             <AvatarFallback>{post.author.charAt(0)}</AvatarFallback>
