@@ -1,3 +1,4 @@
+
 'use client';
 
 import { getPostBySlug } from '@/lib/blog';
@@ -49,7 +50,7 @@ export default function BlogPostPage() {
                     </Link>
                 </Button>
             </div>
-            <div className="relative z-10 flex h-full flex-col justify-end pb-16 text-white md:pb-24">
+            <div className="relative z-10 flex h-full flex-col justify-center text-white md:justify-end md:pb-24">
                 <div className="max-w-3xl text-center md:text-left">
                     <h1
                         className="font-headline text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl"
