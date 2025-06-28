@@ -43,37 +43,34 @@ export function Header() {
   
   const [hasMounted, setHasMounted] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [logoText, setLogoText] = useState(fullLogoText); // Start with full text for SSR
-  const [animationPhase, setAnimationPhase] = useState<'typing' | 'finished'>('finished');
+  const [logoText, setLogoText] = useState(fullLogoText);
+  const [animationPhase, setAnimationPhase] = useState<'initial' | 'typing' | 'finished'>('initial');
 
   useEffect(() => {
     setHasMounted(true);
-  }, []);
 
-  // Effect to handle scroll and re-trigger animation on client
-  useEffect(() => {
-    if (!hasMounted) return;
-
-    // Scroll detection
     const handleScroll = () => {
       setScrolled(window.scrollY > 10);
     };
-    handleScroll(); // Set initial state
     window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Check on mount
 
-    // Reset and start logo animation on mount
-    setLogoText('');
-    setAnimationPhase('typing');
-    
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, [hasMounted]);
+  }, []);
 
   // Logo animation logic
   useEffect(() => {
-    if (!hasMounted || animationPhase !== 'typing') return;
+    if (animationPhase === 'initial' && hasMounted) {
+      setLogoText('');
+      setAnimationPhase('typing');
+    }
+  }, [hasMounted, animationPhase]);
 
+  useEffect(() => {
+    if (animationPhase !== 'typing') return;
+    
     if (logoText.length < fullLogoText.length) {
       const timer = setTimeout(() => {
         setLogoText(fullLogoText.substring(0, logoText.length + 1));
@@ -82,7 +79,7 @@ export function Header() {
     } else {
       setAnimationPhase('finished');
     }
-  }, [logoText, animationPhase, hasMounted]);
+  }, [logoText, animationPhase]);
 
 
   const userName = user?.user_metadata?.full_name || user?.email || 'Usuário';
@@ -95,6 +92,8 @@ export function Header() {
     }
     return name.substring(0, 2);
   }
+  
+  const showAuthContent = hasMounted && !loading;
 
   return (
     <header className={cn(
@@ -139,7 +138,7 @@ export function Header() {
         <div className="flex flex-1 items-center justify-end">
           {/* Desktop Auth UI */}
           <div className="hidden md:block">
-            {loading ? (
+            {!showAuthContent ? (
               <div className="h-9 w-9 bg-muted rounded-full animate-pulse" />
             ) : isAuthenticated && user ? (
               <DropdownMenu>
@@ -241,7 +240,7 @@ export function Header() {
 
                 <div className="mt-auto">
                    <Separator className="my-6" />
-                   {loading ? (
+                   {!showAuthContent ? (
                       <div className="h-10 w-full bg-muted rounded-md animate-pulse" />
                     ) : isAuthenticated && user ? (
                       <div className="flex flex-col gap-4">
