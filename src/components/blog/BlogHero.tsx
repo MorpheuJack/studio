@@ -1,3 +1,4 @@
+
 'use client';
 
 import * as React from 'react';
@@ -66,7 +67,15 @@ export function BlogHero() {
                   src={item.image}
                   alt={item.title}
                   fill
-                  className="object-cover"
+                  className="object-cover hidden md:block"
+                  priority={index === 0}
+                  data-ai-hint={item['data-ai-hint']}
+                />
+                <Image
+                  src={item.mobileImage || item.image}
+                  alt={item.title}
+                  fill
+                  className="object-cover md:hidden"
                   priority={index === 0}
                   data-ai-hint={item['data-ai-hint']}
                 />
