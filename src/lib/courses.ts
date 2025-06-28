@@ -41,7 +41,7 @@ export const courses: Course[] = [
       title: 'Engenheira de IA Sênior',
       avatar: 'https://placehold.co/100x100.png',
     },
-    image: 'https://placehold.co/600x400.png',
+    image: '/gemini.jpeg',
     'data-ai-hint': 'glowing code',
     category: 'IA',
     backgroundVideo: '/video-t.mp4',
