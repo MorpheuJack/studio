@@ -98,7 +98,7 @@ export function BlogHero() {
 
       {/* Foreground Content Grid */}
       <div className="container relative z-10 mx-auto h-full px-4 sm:px-6 lg:px-8">
-        <div className="grid h-full w-full grid-cols-1 items-center gap-8 md:grid-cols-3 lg:grid-cols-4">
+        <div className="grid h-full w-full grid-cols-1 items-end gap-8 pb-12 md:grid-cols-3 md:items-center md:gap-8 md:pb-0 lg:grid-cols-4">
           
           {/* Main Content Text (Left) */}
           <div className="md:col-span-2 lg:col-span-3 text-white">
@@ -126,7 +126,7 @@ export function BlogHero() {
 
           {/* Side Posts Navigation (Right) */}
           <div
-            className="group/sidebar hidden md:flex flex-col gap-4 justify-center"
+            className="group/sidebar flex flex-row gap-4 overflow-x-auto pb-2 md:flex-col md:justify-center md:overflow-x-visible md:pb-0"
             onMouseEnter={plugin.current.stop}
             onMouseLeave={plugin.current.play}
           >
@@ -135,7 +135,7 @@ export function BlogHero() {
                 key={post.slug}
                 onClick={() => scrollTo(index)}
                 className={cn(
-                  "relative text-left p-4 rounded-xl transition-all duration-300 w-full overflow-hidden bg-card/10 backdrop-blur-md border-2",
+                  "relative w-64 flex-shrink-0 rounded-xl border-2 bg-card/10 p-4 text-left backdrop-blur-md transition-all duration-300 md:w-full",
                   current === index 
                     ? "border-primary shadow-lg" 
                     : "border-white/20 hover:border-primary/50 hover:bg-card/20"
@@ -157,7 +157,7 @@ export function BlogHero() {
                   </div>
                 </div>
                 {current === index && (
-                  <div className="absolute bottom-0 left-0 h-1 bg-primary/20 w-full">
+                  <div className="absolute bottom-0 left-0 h-1 w-full bg-primary/20">
                     <div
                       key={current} // Key change restarts animation
                       className="h-full bg-primary animate-progress-bar group-hover/sidebar:animate-pause"
