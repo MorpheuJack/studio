@@ -21,7 +21,7 @@ export default function BlogPostPage() {
 
   return (
     <main>
-      <header className="relative w-full h-screen min-h-[600px] overflow-hidden">
+      <header className="relative w-full h-screen min-h-[700px] overflow-hidden">
         <Image
           src={post.image}
           alt={post.title}
@@ -42,14 +42,6 @@ export default function BlogPostPage() {
         <div className="absolute inset-0 bg-black/30" />
         
         <div className="container relative mx-auto h-full px-4 sm:px-6 lg:px-8">
-            <div className="absolute top-20 z-20">
-                <Button asChild variant="outline" className="bg-background/20 text-white backdrop-blur-sm border-white/30 hover:bg-background/40">
-                    <Link href="/blog">
-                        <ArrowLeft className="mr-2 h-4 w-4" />
-                        Voltar para o Blog
-                    </Link>
-                </Button>
-            </div>
             <div className="relative z-10 flex h-full flex-col items-center justify-end pb-40 text-white md:items-start md:justify-end md:pb-24">
                 <div className="max-w-3xl text-center md:text-left">
                     <h1
