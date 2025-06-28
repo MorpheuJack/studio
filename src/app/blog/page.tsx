@@ -3,6 +3,13 @@ import { getAllPosts } from '@/lib/blog';
 import { PostCard } from '@/components/blog/PostCard';
 import { BlogSearch } from '@/components/blog/BlogSearch';
 import { BlogHero } from '@/components/blog/BlogHero';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 export default function BlogPage({
   searchParams,
@@ -36,11 +43,23 @@ export default function BlogPage({
         <BlogSearch initialSearch={searchTerm} />
 
         {filteredPosts.length > 0 ? (
-          <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-3">
-            {filteredPosts.map(post => (
-              <PostCard key={post.slug} post={post} />
-            ))}
-          </div>
+           <Carousel
+              opts={{
+                align: "start",
+                loop: filteredPosts.length > 3,
+              }}
+              className="w-full"
+            >
+              <CarouselContent className="-ml-4">
+                {filteredPosts.map((post) => (
+                  <CarouselItem key={post.slug} className="pl-4 basis-4/5 md:basis-1/2 lg:basis-1/3">
+                    <PostCard post={post} />
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselPrevious />
+              <CarouselNext />
+            </Carousel>
         ) : (
           <div className="text-center py-16">
             <p className="text-muted-foreground">Nenhum artigo encontrado com seus critérios de busca.</p>
