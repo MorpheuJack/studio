@@ -30,7 +30,6 @@ export const posts: Post[] = [
     mobileImage: '/img/elon-vertical.png',
     'data-ai-hint': 'abstract future',
     category: 'IA',
-    backgroundVideo: 'https://videos.pexels.com/video-files/2887333/2887333-hd_1920_1080_24fps.mp4',
     content: `**O Início do Big Bang da Inteligência**
 
 **ENTREVISTADOR:** Elon, bem-vindo à AI Startup School. Estamos realmente privilegiados por ter sua presença aqui hoje.
@@ -175,7 +174,8 @@ Estou preocupado com o paradoxo de Fermi: por que não vimos alienígenas? Talve
     authorAvatar: 'https://placehold.co/100x100.png',
     date: '10 de Julho, 2024',
     isoDate: '2024-07-10',
-    image: 'https://placehold.co/800x400.png',
+    image: '/img/comando.png',
+    mobileImage: '/img/comando.png',
     'data-ai-hint': 'brain circuit',
     category: 'IA',
     content: `A qualidade da sua saída de IA é diretamente proporcional à qualidade da sua entrada. Aqui estão cinco dicas para aprimorar suas habilidades de engenharia de prompt:
@@ -208,7 +208,8 @@ Seu primeiro prompt raramente é o melhor. Veja a primeira resposta como um rasc
     authorAvatar: 'https://placehold.co/100x100.png',
     date: '5 de Julho, 2024',
     isoDate: '2024-07-05',
-    image: 'https://placehold.co/800x400.png',
+    image: '/img/programador.png',
+    mobileImage: '/img/programador.png',
     'data-ai-hint': 'marketing chart',
     category: 'Marketing',
     content: `A IA não é mais uma promessa futura para o marketing; é uma ferramenta presente e poderosa. Deixe o hype de lado e veja as aplicações práticas que os profissionais de marketing podem usar hoje:
