@@ -1,7 +1,8 @@
+
 'use client';
 
 import { useEffect } from 'react';
-import { notFound } from 'next/navigation';
+import { notFound, useParams } from 'next/navigation';
 import { useAuth } from '@/context/AuthContext';
 import { getLessonByIds } from '@/lib/courses';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
@@ -10,7 +11,8 @@ import type { Course, Module, Lesson } from '@/lib/courses';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 
-export default function LessonPage({ params }: { params: { courseId: string, lessonId: string } }) {
+export default function LessonPage() {
+  const params = useParams<{ courseId: string, lessonId: string }>();
   const { isAuthenticated, loading } = useAuth();
   
   const data = getLessonByIds(params.courseId, params.lessonId);
