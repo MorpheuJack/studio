@@ -28,7 +28,7 @@ import {
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Separator } from "@/components/ui/separator";
 
 const navLinks = [
@@ -41,6 +41,14 @@ export function Header() {
   const pathname = usePathname();
   const { isAuthenticated, user, logout, loading } = useAuth();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isLogoExpanded, setIsLogoExpanded] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLogoExpanded(false);
+    }, 2500); // Delay before animating
+    return () => clearTimeout(timer);
+  }, []);
 
   const userName = user?.user_metadata?.full_name || user?.email || 'Usuário';
   
@@ -58,12 +66,26 @@ export function Header() {
       <div className="container flex h-14 items-center">
         <Link href="/" className="mr-6 flex items-center space-x-2">
           <BrainCircuit className="h-6 w-6 text-primary" />
-          <span
-            className="font-bold font-headline"
-            style={{ textShadow: "0 0 8px hsl(var(--primary))" }}
-          >
-            Revolução Cognitiva
-          </span>
+          <div className="relative font-bold font-headline overflow-hidden h-6 flex items-center">
+            <span
+              className={cn(
+                "block transition-all duration-700 ease-in-out",
+                isLogoExpanded ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4"
+              )}
+              style={{ textShadow: "0 0 8px hsl(var(--primary))" }}
+            >
+              Revolução Cognitiva
+            </span>
+            <span
+              className={cn(
+                "absolute left-0 block transition-all duration-700 ease-in-out",
+                isLogoExpanded ? "opacity-0 translate-y-4" : "opacity-100 translate-y-0"
+              )}
+              style={{ textShadow: "0 0 8px hsl(var(--primary))" }}
+            >
+              R/G
+            </span>
+          </div>
         </Link>
         <nav className="hidden items-center space-x-6 text-sm font-medium md:flex">
           {navLinks.map((link) => (
