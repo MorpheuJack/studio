@@ -41,9 +41,17 @@ export default function BlogPostPage() {
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-transparent" />
         <div className="absolute inset-0 bg-black/30" />
         
-        <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8">
+        <div className="container relative mx-auto h-full px-4 sm:px-6 lg:px-8">
+            <div className="absolute top-20 z-20">
+                <Button asChild variant="outline" className="bg-background/20 text-white backdrop-blur-sm border-white/30 hover:bg-background/40">
+                    <Link href="/blog">
+                        <ArrowLeft className="mr-2 h-4 w-4" />
+                        Voltar para o Blog
+                    </Link>
+                </Button>
+            </div>
             <div className="relative z-10 flex h-full flex-col justify-end pb-16 text-white md:pb-24">
-                <div className="max-w-3xl">
+                <div className="max-w-3xl text-center md:text-left">
                     <h1
                         className="font-headline text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl"
                         style={{ textShadow: '0 2px 20px rgba(0,0,0,0.7)' }}
@@ -66,14 +74,6 @@ export default function BlogPostPage() {
       </header>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-         <div className="mt-12">
-            <Button asChild variant="outline">
-                <Link href="/blog">
-                    <ArrowLeft className="mr-2 h-4 w-4" />
-                    Voltar para o Blog
-                </Link>
-            </Button>
-        </div>
          <article className="my-12 rounded-xl border border-primary/20 bg-gradient-to-br from-slate-950 via-background to-slate-950 bg-[size:200%] p-8 shadow-2xl shadow-primary/10 animate-animated-gradient md:p-12">
             <div className="prose prose-lg dark:prose-invert mx-auto max-w-4xl
               prose-headings:font-headline prose-headings:tracking-tight prose-headings:text-foreground
