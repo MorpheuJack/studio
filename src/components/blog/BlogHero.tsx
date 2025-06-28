@@ -59,8 +59,6 @@ export function BlogHero() {
   return (
     <section 
       className="relative w-full -mt-14 h-screen min-h-[700px] overflow-hidden"
-      onMouseEnter={plugin.current.stop}
-      onMouseLeave={() => plugin.current.play()}
     >
       {/* Background Image Stacker */}
       <div className="absolute inset-0 z-0">
@@ -127,7 +125,11 @@ export function BlogHero() {
           </div>
 
           {/* Side Posts Navigation (Right) */}
-          <div className="hidden md:flex flex-col gap-4 justify-center">
+          <div
+            className="group/sidebar hidden md:flex flex-col gap-4 justify-center"
+            onMouseEnter={plugin.current.stop}
+            onMouseLeave={plugin.current.play}
+          >
             {featuredPosts.map((post, index) => (
               <button
                 key={post.slug}
@@ -158,7 +160,7 @@ export function BlogHero() {
                   <div className="absolute bottom-0 left-0 h-1 bg-primary/20 w-full">
                     <div
                       key={current} // Key change restarts animation
-                      className="h-full bg-primary animate-progress-bar"
+                      className="h-full bg-primary animate-progress-bar group-hover/sidebar:animate-pause"
                       style={{ animationDuration: `${AUTOPLAY_DELAY / 1000}s` }}
                     />
                   </div>

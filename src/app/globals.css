@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+  .animate-pause {
+    animation-play-state: paused;
+  }
+}
+
 @layer base {
   :root {
     --background: 210 40% 98%;
