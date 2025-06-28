@@ -44,7 +44,7 @@ export const courses: Course[] = [
     image: 'https://placehold.co/600x400.png',
     'data-ai-hint': 'glowing code',
     category: 'IA',
-    backgroundVideo: 'https://videos.pexels.com/video-files/853874/853874-hd_1920_1080_30fps.mp4',
+    backgroundVideo: '/video-t.mp4',
     modules: [
       {
         id: 'm1',
