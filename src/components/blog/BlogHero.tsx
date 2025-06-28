@@ -34,7 +34,9 @@ export function BlogHero() {
     if (!api) return;
     
     const onSelect = () => {
-      setCurrent(api.selectedScrollSnap());
+      if (api.selectedScrollSnap() !== current) {
+        setCurrent(api.selectedScrollSnap());
+      }
     };
 
     setCurrent(api.selectedScrollSnap());
@@ -43,7 +45,7 @@ export function BlogHero() {
     return () => {
       api.off('select', onSelect);
     };
-  }, [api]);
+  }, [api, current]);
 
   const scrollTo = (index: number) => {
     api?.scrollTo(index);
@@ -57,32 +59,42 @@ export function BlogHero() {
   const currentPost = featuredPosts[current];
 
   return (
-    <section className="relative w-full -mt-14 h-screen min-h-[700px] overflow-hidden">
-      {/* Background Image Carousel */}
+    <section 
+      className="relative w-full -mt-14 h-screen min-h-[700px] overflow-hidden"
+      onMouseEnter={plugin.current.stop}
+      onMouseLeave={plugin.current.reset}
+    >
+      {/* Background Image Stacker */}
+      <div className="absolute inset-0 z-0">
+        {featuredPosts.map((post, index) => (
+          <Image
+            key={post.slug}
+            src={post.image}
+            alt={post.title}
+            fill
+            className={cn(
+              "object-cover transition-opacity duration-1000 ease-in-out",
+              current === index ? "opacity-100 animate-slow-zoom" : "opacity-0"
+            )}
+            priority={index === 0}
+            data-ai-hint={post['data-ai-hint']}
+          />
+        ))}
+      </div>
+
+      {/* Controller Carousel (hidden) */}
       <Carousel
         setApi={setApi}
         plugins={[plugin.current]}
-        className="absolute inset-0 z-0"
-        onMouseEnter={plugin.current.stop}
-        onMouseLeave={plugin.current.reset}
+        className="hidden"
       >
-        <CarouselContent className="h-full">
-          {featuredPosts.map((post, index) => (
-            <CarouselItem key={post.slug} className="h-full">
-              <div className="relative h-full w-full">
-                <Image
-                  src={post.image}
-                  alt={post.title}
-                  fill
-                  className="object-cover animate-slow-zoom"
-                  priority
-                  data-ai-hint={post['data-ai-hint']}
-                />
-              </div>
-            </CarouselItem>
+        <CarouselContent>
+          {featuredPosts.map((post) => (
+            <CarouselItem key={post.slug} />
           ))}
         </CarouselContent>
       </Carousel>
+
 
       {/* Overlays */}
       <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-transparent" />
