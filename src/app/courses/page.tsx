@@ -54,16 +54,38 @@ export default function CoursesPage() {
         </div>
       </section>
       
-      <main className="container mx-auto px-4 py-16 sm:px-6 lg:py-24 lg:px-8">
+      <main className="container mx-auto px-4 py-12 sm:px-6 lg:py-16 lg:px-8">
         <div className="flex flex-col gap-12 lg:flex-row lg:gap-16">
-          {/* Category Sidebar */}
+          {/* Category Sidebar/Tabs */}
           <aside className="lg:w-1/4">
-            <div className="sticky top-24">
+            <div className="lg:sticky lg:top-24">
               <div className="flex items-center gap-3 mb-6">
                 <SlidersHorizontal className="h-6 w-6 text-primary"/>
                 <h2 className="font-headline text-2xl font-bold">Categorias</h2>
               </div>
-              <nav className="flex flex-col gap-2">
+              
+              {/* Mobile: Horizontal scrollable tabs */}
+              <div className="lg:hidden">
+                <div className="flex flex-row gap-3 overflow-x-auto pb-4 hide-scrollbar">
+                  {categories.map((category) => (
+                    <button
+                      key={category}
+                      onClick={() => setActiveCategory(category)}
+                      className={cn(
+                        'group shrink-0 whitespace-nowrap rounded-full border-2 px-4 py-2 text-sm font-semibold transition-colors duration-300',
+                        activeCategory === category
+                          ? 'border-primary bg-primary text-primary-foreground'
+                          : 'border-border bg-transparent text-muted-foreground hover:bg-muted'
+                      )}
+                    >
+                      {category}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Desktop: Vertical list */}
+              <nav className="hidden lg:flex lg:flex-col lg:gap-2">
                 {categories.map((category) => (
                   <button
                     key={category}
@@ -84,7 +106,8 @@ export default function CoursesPage() {
                   </button>
                 ))}
               </nav>
-              <Button asChild variant="outline" className="mt-8 w-full">
+
+              <Button asChild variant="outline" className="mt-8 w-full hidden lg:flex">
                 <Link href="/courses/all">
                   Ver Todos os Cursos
                 </Link>
@@ -112,7 +135,7 @@ export default function CoursesPage() {
                 </Button>
             </div>
             
-            <div className="grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-2">
+            <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
               {activeCourses.map((course, index) => (
                 <div key={course.id} style={{animationDelay: `${index * 100}ms`}} className="animate-in fade-in-0 slide-in-from-bottom-4 duration-500">
                   <CourseCard course={course} />
