@@ -132,23 +132,27 @@ export function Header() {
     <header className={cn(
         "sticky top-0 z-50 w-full transition-colors duration-300",
         scrolled ? "border-b border-border/40 bg-background/95 backdrop-blur-sm supports-[backdrop-filter]:bg-background/60" : "border-b border-transparent",
-        // Only apply special logic for pages with a hero section
-        (pathname === '/' || pathname === '/blog' || pathname === '/courses') ? '' : 'border-b border-border/40 bg-background/95 backdrop-blur-sm supports-[backdrop-filter]:bg-background/60'
+        (pathname === '/' || pathname === '/blog' || pathname === '/courses') && !scrolled ? '' : 'border-b border-border/40 bg-background/95 backdrop-blur-sm supports-[backdrop-filter]:bg-background/60'
     )}>
-      <div className="container flex h-14 items-center">
-        <Link href="/" className="mr-6 flex items-center space-x-2">
-          <BrainCircuit className="h-6 w-6 text-primary" />
-          <div 
-            className="relative font-bold font-headline h-6 flex items-center" 
-            style={{ textShadow: "0 0 8px hsl(var(--primary))" }}
-          >
-            <span className="min-w-[170px] text-left">{logoText}</span>
-            {animationPhase !== 'finished' && (
-              <span className="inline-block w-px h-5 bg-primary animate-blinking-cursor ml-1"></span>
-            )}
-          </div>
-        </Link>
-        <nav className="hidden items-center space-x-6 text-sm font-medium md:flex">
+      <div className="container flex h-14 items-center md:grid md:grid-cols-3">
+        {/* Left Side: Logo (Desktop) / Mobile Menu Wrapper */}
+        <div className="flex items-center justify-start md:flex-1">
+            <Link href="/" className="flex items-center space-x-2">
+            <BrainCircuit className="h-6 w-6 text-primary" />
+            <div 
+                className="relative font-bold font-headline h-6 hidden items-center md:flex" 
+                style={{ textShadow: "0 0 8px hsl(var(--primary))" }}
+            >
+                <span className="min-w-[170px] text-left">{logoText}</span>
+                {animationPhase !== 'finished' && (
+                <span className="inline-block w-px h-5 bg-primary animate-blinking-cursor ml-1"></span>
+                )}
+            </div>
+            </Link>
+        </div>
+        
+        {/* Center: Desktop Navigation */}
+        <nav className="hidden items-center justify-center space-x-6 text-sm font-medium md:flex">
           {navLinks.map((link) => (
             <Link
               key={link.href}
@@ -162,6 +166,8 @@ export function Header() {
             </Link>
           ))}
         </nav>
+
+        {/* Right Side: Auth & Mobile Menu Trigger */}
         <div className="flex flex-1 items-center justify-end">
           {/* Desktop Auth UI */}
           <div className="hidden md:block">
@@ -310,5 +316,3 @@ export function Header() {
     </header>
   );
 }
-
-    
