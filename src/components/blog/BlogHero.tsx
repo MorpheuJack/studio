@@ -8,6 +8,7 @@ import { getAllPosts } from '@/lib/blog';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 
 export function BlogHero() {
   // Get first 3 posts to feature
@@ -26,7 +27,7 @@ export function BlogHero() {
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 py-12 lg:py-24 items-center">
             {/* Main Featured Post */}
             <div className="lg:col-span-3">
-                <Link href={`/blog/${mainPost.slug}`} className="group block relative h-[400px] md:h-[450px] w-full rounded-xl overflow-hidden shadow-2xl">
+                <Link href={`/blog/${mainPost.slug}`} className="group block relative h-[400px] md:h-[500px] w-full rounded-xl overflow-hidden shadow-2xl">
                     <Image
                         src={mainPost.image}
                         alt={mainPost.title}
@@ -44,7 +45,7 @@ export function BlogHero() {
                         >
                             {mainPost.title}
                         </h1>
-                        <p className="mt-4 text-lg leading-8 text-white/80 max-w-xl hidden sm:block">
+                        <p className="mt-4 text-lg leading-8 text-white/80 max-w-2xl hidden sm:block">
                             {mainPost.description}
                         </p>
                         <div className="mt-6">
@@ -60,27 +61,33 @@ export function BlogHero() {
             </div>
 
             {/* Other Featured Posts */}
-            <div className="lg:col-span-2 flex flex-col gap-8">
+            <div className="lg:col-span-2 flex flex-col gap-6">
                 {otherPosts.map(post => (
-                    <Link key={post.slug} href={`/blog/${post.slug}`} className="group block">
+                    <Link key={post.slug} href={`/blog/${post.slug}`} className="group block p-4 rounded-lg -m-4 transition-colors hover:bg-muted/50">
                         <div className="flex gap-4 items-start">
-                            <div className="relative h-24 w-24 flex-shrink-0 overflow-hidden rounded-lg shadow-lg">
+                            <div className="relative h-24 w-24 flex-shrink-0 overflow-hidden rounded-lg shadow-md">
                                 <Image
                                     src={post.image}
                                     alt={post.title}
                                     fill
                                     className="object-cover transition-transform duration-300 group-hover:scale-105"
+                                    sizes="(max-width: 768px) 25vw, 10vw"
                                     data-ai-hint={post['data-ai-hint']}
                                 />
                             </div>
-                            <div className="flex flex-col">
+                            <div className="flex-1">
                                 <h3 className="font-headline text-lg font-semibold leading-tight text-foreground group-hover:text-primary transition-colors">
                                     {post.title}
                                 </h3>
-                                <div className="mt-2 text-sm text-muted-foreground flex items-center gap-2">
-                                  <span>{post.author}</span>
+                                <div className="mt-2 flex items-center gap-2 text-xs text-muted-foreground">
+                                    <Avatar className="h-5 w-5">
+                                        <AvatarImage src={post.authorAvatar} alt={post.author} />
+                                        <AvatarFallback>{post.author.charAt(0)}</AvatarFallback>
+                                    </Avatar>
+                                    <span className="font-medium">{post.author}</span>
+                                    <span>·</span>
+                                    <span>{post.date}</span>
                                 </div>
-                                <p className="text-xs text-muted-foreground">{post.date}</p>
                             </div>
                         </div>
                     </Link>
