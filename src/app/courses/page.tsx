@@ -1,3 +1,4 @@
+
 import { courses } from '@/lib/courses';
 import type { Course } from '@/lib/courses';
 import Link from 'next/link';
@@ -28,7 +29,7 @@ export default function CoursesCategoriesPage() {
 
   return (
     <>
-      <section className="relative bg-muted py-20 md:py-28 text-center overflow-hidden border-b">
+      <section className="relative bg-muted py-20 md:py-28 overflow-hidden border-b">
           <div className="absolute inset-0">
               <Image
                   src="https://placehold.co/1920x500.png"
@@ -40,18 +41,33 @@ export default function CoursesCategoriesPage() {
               <div className="absolute inset-0 bg-gradient-to-t from-background via-background/90 to-background/50" />
           </div>
           <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8">
-              <h1 className="font-headline text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl">
-                  Explore Nossas Trilhas de Conhecimento
-              </h1>
-              <p className="mt-6 max-w-3xl mx-auto text-lg text-muted-foreground">
-                  Mergulhe em cursos projetados por especialistas para impulsionar sua carreira em Inteligência Artificial, Design e Marketing. Encontre sua próxima paixão e comece a aprender hoje.
-              </p>
-              <Button asChild size="lg" className="mt-8">
-                  <Link href="/courses/all">
-                      Ver Todos os Cursos
-                      <ArrowRight className="ml-2 h-5 w-5" />
-                  </Link>
-              </Button>
+              <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-8 md:gap-12">
+                <div className="flex justify-center md:justify-start">
+                  <Image
+                    src="/img/RG-personagem.png"
+                    alt="Professor AI, mascote da Revolução Cognitiva"
+                    width={400}
+                    height={400}
+                    className="w-full h-auto max-w-[350px] md:max-w-full object-contain"
+                    data-ai-hint="character mascot"
+                    priority
+                  />
+                </div>
+                <div className="text-center md:text-left">
+                  <h1 className="font-headline text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl">
+                      Explore Nossas Trilhas de Conhecimento
+                  </h1>
+                  <p className="mt-6 text-lg text-muted-foreground">
+                      Mergulhe em cursos projetados por especialistas para impulsionar sua carreira em Inteligência Artificial, Design e Marketing. Encontre sua próxima paixão e comece a aprender hoje.
+                  </p>
+                  <Button asChild size="lg" className="mt-8">
+                      <Link href="/courses/all">
+                          Ver Todos os Cursos
+                          <ArrowRight className="ml-2 h-5 w-5" />
+                      </Link>
+                  </Button>
+                </div>
+              </div>
           </div>
       </section>
       
