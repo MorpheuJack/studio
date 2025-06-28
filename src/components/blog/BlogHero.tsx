@@ -98,10 +98,10 @@ export function BlogHero() {
 
       {/* Foreground Content Grid */}
       <div className="container relative z-10 mx-auto h-full px-4 sm:px-6 lg:px-8">
-        <div className="grid h-full w-full grid-cols-1 items-end gap-6 pb-8 md:grid-cols-3 md:items-center md:gap-8 md:pb-0 lg:grid-cols-4">
+        <div className="flex h-full w-full flex-col justify-end gap-6 pb-20 md:grid md:grid-cols-3 md:items-center md:gap-8 md:pb-0 lg:grid-cols-4">
           
           {/* Main Content Text (Left) */}
-          <div className="md:col-span-2 lg:col-span-3 text-white">
+          <div className="text-white md:col-span-2 lg:col-span-3">
             {currentPost && (
               <div className="max-w-3xl">
                 <Badge variant="secondary" className="mb-4 bg-white/10 text-white backdrop-blur-sm border-white/20">Artigo em Destaque</Badge>
@@ -136,14 +136,14 @@ export function BlogHero() {
                   key={post.slug}
                   onClick={() => scrollTo(index)}
                   className={cn(
-                    "relative w-56 flex-shrink-0 rounded-xl border-2 bg-white/5 p-3 text-left backdrop-blur-md transition-all duration-300 hover:bg-white/10 md:w-full",
+                    "relative w-full max-w-[12rem] flex-shrink-0 rounded-xl border-2 bg-white/5 p-3 text-left backdrop-blur-md transition-all duration-300 hover:bg-white/10 sm:max-w-[14rem] md:max-w-none",
                     current === index 
                       ? "border-primary shadow-lg" 
                       : "border-white/20 hover:border-primary/50"
                   )}
                 >
-                  <div className="flex items-start gap-3">
-                    <div className="relative h-14 w-14 flex-shrink-0 overflow-hidden rounded-md">
+                  <div className="flex items-center gap-3">
+                    <div className="relative h-12 w-12 flex-shrink-0 overflow-hidden rounded-md md:h-14 md:w-14">
                       <Image
                         src={post.image}
                         alt={post.title}
@@ -153,7 +153,7 @@ export function BlogHero() {
                       />
                     </div>
                     <div className="text-white">
-                      <h3 className="text-sm font-semibold leading-tight line-clamp-2">{post.title}</h3>
+                      <h3 className="text-xs font-semibold leading-tight line-clamp-2 md:text-sm">{post.title}</h3>
                       <p className="mt-1 text-xs text-white/70">{post.author}</p>
                     </div>
                   </div>
