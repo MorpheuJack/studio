@@ -1,4 +1,3 @@
-
 "use client";
 
 import Link from "next/link";
@@ -35,42 +34,55 @@ const navLinks = [
   { href: "/my-courses", label: "Meus Cursos" },
   { href: "/blog", label: "Blog" },
 ];
+const fullLogoText = "Revolução Cognitiva";
 
 export function Header() {
   const pathname = usePathname();
   const { isAuthenticated, user, logout, loading } = useAuth();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
   
-  const [logoText, setLogoText] = useState('');
-  const [animationPhase, setAnimationPhase] = useState<'typing' | 'finished'>('typing');
+  const [hasMounted, setHasMounted] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [logoText, setLogoText] = useState(fullLogoText); // Start with full text for SSR
+  const [animationPhase, setAnimationPhase] = useState<'typing' | 'finished'>('finished');
 
   useEffect(() => {
+    setHasMounted(true);
+  }, []);
+
+  // Effect to handle scroll and re-trigger animation on client
+  useEffect(() => {
+    if (!hasMounted) return;
+
+    // Scroll detection
     const handleScroll = () => {
       setScrolled(window.scrollY > 10);
     };
-
+    handleScroll(); // Set initial state
     window.addEventListener('scroll', handleScroll);
+
+    // Reset and start logo animation on mount
+    setLogoText('');
+    setAnimationPhase('typing');
+    
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, []);
+  }, [hasMounted]);
 
-  // Simplified logo typing animation
+  // Logo animation logic
   useEffect(() => {
-    const fullText = "Revolução Cognitiva";
-    const typeSpeed = 80;
+    if (!hasMounted || animationPhase !== 'typing') return;
 
-    if (animationPhase === 'typing' && logoText.length < fullText.length) {
+    if (logoText.length < fullLogoText.length) {
       const timer = setTimeout(() => {
-        setLogoText(fullText.substring(0, logoText.length + 1));
-      }, typeSpeed);
-      // @ts-ignore
+        setLogoText(fullLogoText.substring(0, logoText.length + 1));
+      }, 80);
       return () => clearTimeout(timer);
-    } else if (logoText.length === fullText.length) {
+    } else {
       setAnimationPhase('finished');
     }
-  }, [logoText, animationPhase]);
+  }, [logoText, animationPhase, hasMounted]);
 
 
   const userName = user?.user_metadata?.full_name || user?.email || 'Usuário';
@@ -100,7 +112,7 @@ export function Header() {
                 style={{ textShadow: "0 0 8px hsl(var(--primary))" }}
             >
                 <span className="min-w-[170px] text-left">{logoText}</span>
-                {animationPhase !== 'finished' && (
+                {hasMounted && animationPhase === 'typing' && (
                 <span className="inline-block w-px h-5 bg-primary animate-blinking-cursor ml-1"></span>
                 )}
             </div>
