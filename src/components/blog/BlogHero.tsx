@@ -23,7 +23,6 @@ export function BlogHero() {
   const [api, setApi] = React.useState<CarouselApi>();
   const [current, setCurrent] = React.useState(0);
 
-  // Get first 3 posts to feature
   const featuredPosts = getAllPosts().slice(0, 3);
   const AUTOPLAY_DELAY = 6000;
 
@@ -32,14 +31,15 @@ export function BlogHero() {
   );
 
   React.useEffect(() => {
-    if (!api) {
-      return;
-    }
-    setCurrent(api.selectedScrollSnap());
+    if (!api) return;
+    
     const onSelect = () => {
       setCurrent(api.selectedScrollSnap());
     };
+
+    setCurrent(api.selectedScrollSnap());
     api.on('select', onSelect);
+    
     return () => {
       api.off('select', onSelect);
     };
@@ -54,104 +54,110 @@ export function BlogHero() {
     return null;
   }
 
+  const currentPost = featuredPosts[current];
+
   return (
-    <section className="relative w-full -mt-14 border-b bg-background/50 h-screen min-h-[700px] overflow-hidden flex items-center">
-        <div className="container mx-auto h-full max-h-[700px] py-10">
-            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8 w-full h-full">
-                
-                {/* Main Carousel */}
-                <div className="md:col-span-2 lg:col-span-3 h-full">
-                    <Carousel
-                        setApi={setApi}
-                        plugins={[plugin.current]}
-                        className="w-full h-full"
-                        onMouseEnter={plugin.current.stop}
-                        onMouseLeave={plugin.current.reset}
-                    >
-                        <CarouselContent className="h-full -ml-4">
-                        {featuredPosts.map((post, index) => (
-                            <CarouselItem key={post.slug} className="h-full pl-4">
-                                <div className="relative h-full w-full rounded-2xl overflow-hidden shadow-2xl group">
-                                    <Image
-                                        src={post.image}
-                                        alt={post.title}
-                                        fill
-                                        className="object-cover transition-transform duration-500 ease-in-out group-hover:scale-105"
-                                        priority={index === 0}
-                                        data-ai-hint={post['data-ai-hint']}
-                                    />
-                                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
-                                    
-                                    <div className="absolute bottom-0 left-0 p-8 md:p-12 text-white">
-                                        <div className="max-w-2xl">
-                                            <Badge variant="secondary" className="mb-4 bg-white/10 text-white backdrop-blur-sm border-white/20">Artigo em Destaque</Badge>
-                                            <h1
-                                                className="font-headline text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl"
-                                                style={{ textShadow: '0 2px 20px rgba(0,0,0,0.7)' }}
-                                            >
-                                                {post.title}
-                                            </h1>
-                                            <p className="mt-4 text-white/80 line-clamp-2">{post.description}</p>
-                                            <div className="mt-8">
-                                                <Button asChild size="lg">
-                                                    <Link href={`/blog/${post.slug}`}>
-                                                        Ler Artigo
-                                                        <ArrowRight className="ml-2 h-5 w-5" />
-                                                    </Link>
-                                                </Button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </CarouselItem>
-                        ))}
-                        </CarouselContent>
-                    </Carousel>
-                </div>
+    <section className="relative w-full -mt-14 h-screen min-h-[700px] overflow-hidden">
+      {/* Background Image Carousel */}
+      <Carousel
+        setApi={setApi}
+        plugins={[plugin.current]}
+        className="absolute inset-0 z-0"
+        onMouseEnter={plugin.current.stop}
+        onMouseLeave={plugin.current.reset}
+      >
+        <CarouselContent className="h-full">
+          {featuredPosts.map((post, index) => (
+            <CarouselItem key={post.slug} className="h-full">
+              <div className="relative h-full w-full">
+                <Image
+                  src={post.image}
+                  alt={post.title}
+                  fill
+                  className="object-cover animate-slow-zoom"
+                  priority={index === 0}
+                  data-ai-hint={post['data-ai-hint']}
+                />
+              </div>
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+      </Carousel>
 
-                {/* Side Posts */}
-                <div className="hidden md:flex flex-col gap-4 justify-center h-full">
-                    {featuredPosts.map((post, index) => (
-                        <button
-                            key={post.slug}
-                            onClick={() => scrollTo(index)}
-                            className={cn(
-                                "relative text-left p-4 rounded-xl border-2 transition-all duration-300 w-full overflow-hidden bg-card",
-                                current === index 
-                                ? "border-primary shadow-lg" 
-                                : "border-transparent hover:border-primary/50"
-                            )}
-                        >
-                            <div className="flex items-start gap-4">
-                                <div className="relative h-16 w-16 flex-shrink-0 overflow-hidden rounded-md">
-                                    <Image
-                                        src={post.image}
-                                        alt={post.title}
-                                        fill
-                                        className="object-cover"
-                                        data-ai-hint={post['data-ai-hint']}
-                                    />
-                                </div>
-                                <div>
-                                    <h3 className="font-semibold text-foreground line-clamp-2 leading-tight">{post.title}</h3>
-                                    <p className="text-sm text-muted-foreground mt-1">{post.author}</p>
-                                </div>
-                            </div>
-                            {current === index && (
-                                <div className="absolute bottom-0 left-0 h-1 bg-primary/20 w-full">
-                                    <div
-                                        key={current}
-                                        className="h-full bg-primary animate-progress-bar"
-                                        style={{ animationDuration: `${AUTOPLAY_DELAY / 1000}s` }}
-                                    />
-                                </div>
-                            )}
-                        </button>
-                    ))}
-                </div>
+      {/* Overlays */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
 
-            </div>
+      {/* Foreground Content Grid */}
+      <div className="container relative z-10 mx-auto h-full px-4 sm:px-6 lg:px-8">
+        <div className="grid h-full w-full grid-cols-1 items-center gap-8 md:grid-cols-3 lg:grid-cols-4">
+          
+          {/* Main Content Text (Left) */}
+          <div className="md:col-span-2 lg:col-span-3 text-white">
+            {currentPost && (
+              <div className="max-w-3xl">
+                <Badge variant="secondary" className="mb-4 bg-white/10 text-white backdrop-blur-sm border-white/20">Artigo em Destaque</Badge>
+                <h1
+                  className="font-headline text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl"
+                  style={{ textShadow: '0 2px 20px rgba(0,0,0,0.7)' }}
+                >
+                  {currentPost.title}
+                </h1>
+                <p className="mt-6 text-lg text-white/80 line-clamp-3">{currentPost.description}</p>
+                <div className="mt-10">
+                  <Button asChild size="lg">
+                    <Link href={`/blog/${currentPost.slug}`}>
+                      Ler Artigo
+                      <ArrowRight className="ml-2 h-5 w-5" />
+                    </Link>
+                  </Button>
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* Side Posts Navigation (Right) */}
+          <div className="hidden md:flex flex-col gap-4 justify-center">
+            {featuredPosts.map((post, index) => (
+              <button
+                key={post.slug}
+                onClick={() => scrollTo(index)}
+                className={cn(
+                  "relative text-left p-4 rounded-xl transition-all duration-300 w-full overflow-hidden bg-card/10 backdrop-blur-md border-2",
+                  current === index 
+                    ? "border-primary shadow-lg" 
+                    : "border-white/20 hover:border-primary/50 hover:bg-card/20"
+                )}
+              >
+                <div className="flex items-start gap-4">
+                  <div className="relative h-16 w-16 flex-shrink-0 overflow-hidden rounded-md">
+                    <Image
+                      src={post.image}
+                      alt={post.title}
+                      fill
+                      className="object-cover"
+                      data-ai-hint={post['data-ai-hint']}
+                    />
+                  </div>
+                  <div className="text-white">
+                    <h3 className="font-semibold line-clamp-2 leading-tight">{post.title}</h3>
+                    <p className="text-sm text-white/80 mt-1">{post.author}</p>
+                  </div>
+                </div>
+                {current === index && (
+                  <div className="absolute bottom-0 left-0 h-1 bg-primary/20 w-full">
+                    <div
+                      key={current} // Key change restarts animation
+                      className="h-full bg-primary animate-progress-bar"
+                      style={{ animationDuration: `${AUTOPLAY_DELAY / 1000}s` }}
+                    />
+                  </div>
+                )}
+              </button>
+            ))}
+          </div>
+
         </div>
+      </div>
     </section>
   );
 }
