@@ -50,21 +50,40 @@ export function Hero() {
       return;
     }
 
-    setCurrent(api.selectedScrollSnap());
-
     const onSelect = () => {
-      setCurrent(api.selectedScrollSnap());
-      // Ensure the video in the current slide is playing
-      const video = api.containerNode().querySelector<HTMLVideoElement>(`[data-slide-index="${api.selectedScrollSnap()}"] video`);
-      if (video) {
-        video.play().catch(error => console.error("Video play failed:", error));
+      // Pause all videos
+      const videos = api.containerNode().querySelectorAll<HTMLVideoElement>('video');
+      videos.forEach(v => {
+        if (!v.paused) {
+          v.pause();
+        }
+      });
+
+      // Play the video in the current slide
+      const selectedIndex = api.selectedScrollSnap();
+      setCurrent(selectedIndex);
+      const videoInView = api.slideNodes()[selectedIndex]?.querySelector('video');
+
+      if (videoInView) {
+        // The play() method returns a Promise. We catch and ignore the
+        // AbortError that browsers throw when the play request is interrupted
+        // by a new one (e.g., when the user quickly navigates between slides).
+        videoInView.play().catch(error => {
+          if (error.name !== 'AbortError') {
+            console.error("Video play failed:", error);
+          }
+        });
       }
     };
 
+    onSelect(); // For initial load
     api.on('select', onSelect);
+    api.on('reInit', onSelect);
+
 
     return () => {
       api.off('select', onSelect);
+      api.off('reInit', onSelect);
     };
   }, [api]);
 
@@ -83,7 +102,7 @@ export function Hero() {
       >
         <CarouselContent>
           {featuredContent.map((item: any, index) => (
-            <CarouselItem key={index} data-slide-index={index}>
+            <CarouselItem key={item.href} data-slide-index={index}>
               <div className="relative h-screen min-h-[600px] w-full">
                 <video
                   key={item.href}
