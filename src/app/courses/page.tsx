@@ -31,14 +31,18 @@ export default function CoursesCategoriesPage() {
     <>
       <section className="relative bg-muted -mt-14 h-screen min-h-[800px] flex items-center overflow-hidden border-b">
           <div className="absolute inset-0">
-              <Image
-                  src="https://placehold.co/1920x500.png"
-                  alt="Alunos estudando tecnologia"
-                  fill
-                  className="object-cover opacity-10"
-                  data-ai-hint="learning technology"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/90 to-background/50" />
+              <video
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  poster="https://placehold.co/1920x1080.png"
+                  className="absolute inset-0 w-full h-full object-cover"
+                >
+                  <source src="/video-t.mp4" type="video/mp4" />
+                </video>
+              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-transparent" />
+              <div className="absolute inset-0 bg-black/50" />
           </div>
           <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8">
               <div className="max-w-4xl mx-auto text-center">

@@ -3,6 +3,7 @@
 
 import * as React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import Autoplay from 'embla-carousel-autoplay';
 
 import { courses } from '@/lib/courses';
@@ -28,7 +29,6 @@ export function Hero() {
       title: course.title,
       description: course.description,
       image: course.image,
-      backgroundVideo: course.backgroundVideo,
       href: `/courses/${course.id}`,
     })),
     ...posts.slice(0, 1).map((post) => ({
@@ -36,7 +36,6 @@ export function Hero() {
       title: post.title,
       description: post.description,
       image: post.image,
-      backgroundVideo: post.backgroundVideo,
       href: `/blog/${post.slug}`,
     })),
   ];
@@ -49,41 +48,13 @@ export function Hero() {
     if (!api) {
       return;
     }
-
+    setCurrent(api.selectedScrollSnap());
     const onSelect = () => {
-      // Pause all videos
-      const videos = api.containerNode().querySelectorAll<HTMLVideoElement>('video');
-      videos.forEach(v => {
-        if (!v.paused) {
-          v.pause();
-        }
-      });
-
-      // Play the video in the current slide
-      const selectedIndex = api.selectedScrollSnap();
-      setCurrent(selectedIndex);
-      const videoInView = api.slideNodes()[selectedIndex]?.querySelector('video');
-
-      if (videoInView) {
-        // The play() method returns a Promise. We catch and ignore the
-        // AbortError that browsers throw when the play request is interrupted
-        // by a new one (e.g., when the user quickly navigates between slides).
-        videoInView.play().catch(error => {
-          if (error.name !== 'AbortError') {
-            console.error("Video play failed:", error);
-          }
-        });
-      }
+      setCurrent(api.selectedScrollSnap());
     };
-
-    onSelect(); // For initial load
     api.on('select', onSelect);
-    api.on('reInit', onSelect);
-
-
     return () => {
       api.off('select', onSelect);
-      api.off('reInit', onSelect);
     };
   }, [api]);
 
@@ -104,17 +75,13 @@ export function Hero() {
           {featuredContent.map((item: any, index) => (
             <CarouselItem key={item.href} data-slide-index={index}>
               <div className="relative h-screen min-h-[600px] w-full">
-                <video
-                  key={item.href}
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  poster={item.image}
-                  className="absolute inset-0 w-full h-full object-cover"
-                >
-                  {item.backgroundVideo && <source src={item.backgroundVideo} type="video/mp4" />}
-                </video>
+                <Image
+                  src={item.image}
+                  alt={item.title}
+                  fill
+                  className="object-cover"
+                  priority={index === 0}
+                />
                 <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-transparent" />
                 <div className="absolute inset-0 bg-black/50" />
                 
