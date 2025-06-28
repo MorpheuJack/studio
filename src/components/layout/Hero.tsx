@@ -80,7 +80,7 @@ export function Hero() {
         <CarouselContent>
           {featuredContent.map((item, index) => (
             <CarouselItem key={index}>
-              <div className="relative h-[80vh] min-h-[600px] w-full">
+              <div className="relative h-screen min-h-[600px] w-full">
                 <Image
                   src={item.image}
                   alt={item.title}
@@ -93,7 +93,7 @@ export function Hero() {
                 <div className="absolute inset-0 bg-black/30" />
                 
                 <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8">
-                  <div className="relative z-10 flex h-full flex-col justify-end pb-24 md:pb-32 text-white">
+                  <div className="relative z-10 flex h-full flex-col justify-end pb-20 md:pb-28 text-white">
                     <div className="max-w-3xl">
                       <Badge variant="secondary" className="mb-4 bg-white/10 text-white backdrop-blur-sm border-white/20">{item.type}</Badge>
                       <h1
