@@ -119,9 +119,9 @@ export function Header() {
             ) : isAuthenticated && user ? (
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" className="relative h-9 w-9 rounded-full">
+                  <Button variant="ghost" className="relative h-9 w-9 rounded-full group">
                     <Avatar className="h-9 w-9 border-2 border-primary/50">
-                      <AvatarFallback className="bg-primary/20 text-primary font-bold">
+                      <AvatarFallback className="bg-primary/20 text-primary font-bold transition-colors duration-200 group-hover:bg-primary group-hover:text-accent">
                         {getInitials(userName)}
                       </AvatarFallback>
                     </Avatar>
