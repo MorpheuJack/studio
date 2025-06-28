@@ -14,7 +14,6 @@ import {
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
-  DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import {
@@ -44,7 +43,7 @@ export function Header() {
   const [scrolled, setScrolled] = useState(false);
   
   const [logoText, setLogoText] = useState('');
-  const [animationPhase, setAnimationPhase] = useState<'typing' | 'pausing' | 'deleting' | 'swapping' | 'inserting-slash' | 'finished'>('typing');
+  const [animationPhase, setAnimationPhase] = useState<'typing' | 'finished'>('typing');
 
   useEffect(() => {
     const handleScroll = () => {
@@ -57,64 +56,21 @@ export function Header() {
     };
   }, []);
 
+  // Simplified logo typing animation
   useEffect(() => {
     const fullText = "Revolução Cognitiva";
-    const twoLetterText = "Re";
-    const intermediateText = "RC";
-    const finalText = "R/C";
-    const typeSpeed = 100;
-    const deleteSpeed = 60;
-    const pauseDelay = 1500;
-    const swapDelay = 100;
-    const slashDelay = 200;
+    const typeSpeed = 80;
 
-    if (animationPhase === 'finished') return;
-
-    let timer: NodeJS.Timeout;
-
-    switch (animationPhase) {
-        case 'typing':
-            timer = setTimeout(() => {
-                if (logoText.length < fullText.length) {
-                    setLogoText(fullText.substring(0, logoText.length + 1));
-                } else {
-                    setAnimationPhase('pausing');
-                }
-            }, typeSpeed);
-            break;
-        case 'pausing':
-            timer = setTimeout(() => {
-                setAnimationPhase('deleting');
-            }, pauseDelay);
-            break;
-        case 'deleting':
-            timer = setTimeout(() => {
-                if (logoText.length > twoLetterText.length) {
-                    setLogoText(logoText.substring(0, logoText.length - 1));
-                } else {
-                    setAnimationPhase('swapping');
-                }
-            }, deleteSpeed);
-            break;
-        case 'swapping':
-            timer = setTimeout(() => {
-                setLogoText(intermediateText);
-                setAnimationPhase('inserting-slash');
-            }, swapDelay);
-            break;
-        case 'inserting-slash':
-            timer = setTimeout(() => {
-                setLogoText(finalText);
-                setAnimationPhase('finished');
-            }, slashDelay);
-            break;
-        default:
-            break;
+    if (animationPhase === 'typing' && logoText.length < fullText.length) {
+      const timer = setTimeout(() => {
+        setLogoText(fullText.substring(0, logoText.length + 1));
+      }, typeSpeed);
+      // @ts-ignore
+      return () => clearTimeout(timer);
+    } else if (logoText.length === fullText.length) {
+      setAnimationPhase('finished');
     }
-
-    // @ts-ignore
-    return () => clearTimeout(timer);
-}, [logoText, animationPhase]);
+  }, [logoText, animationPhase]);
 
 
   const userName = user?.user_metadata?.full_name || user?.email || 'Usuário';
@@ -152,14 +108,14 @@ export function Header() {
         </div>
         
         {/* Center: Desktop Navigation */}
-        <nav className="hidden items-center justify-center space-x-6 text-sm font-medium md:flex">
+        <nav className="hidden items-center justify-center space-x-8 text-sm font-medium md:flex">
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
               className={cn(
-                "transition-colors hover:text-foreground/80",
-                pathname.startsWith(link.href) ? "text-foreground" : "text-foreground/60"
+                "transition-colors hover:text-primary",
+                pathname.startsWith(link.href) ? "text-primary font-semibold" : "text-muted-foreground"
               )}
             >
               {link.label}
@@ -202,17 +158,14 @@ export function Header() {
                     <DropdownMenuItem>
                       <User className="mr-2 h-4 w-4" />
                       <span>Membros</span>
-                      <DropdownMenuShortcut>⌘M</DropdownMenuShortcut>
                     </DropdownMenuItem>
                     <DropdownMenuItem>
                       <CreditCard className="mr-2 h-4 w-4" />
                       <span>Conquistas</span>
-                      <DropdownMenuShortcut>⌘C</DropdownMenuShortcut>
                     </DropdownMenuItem>
                     <DropdownMenuItem>
                       <Settings className="mr-2 h-4 w-4" />
                       <span>Configurações</span>
-                      <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
                     </DropdownMenuItem>
                   </DropdownMenuGroup>
                   <DropdownMenuSeparator className="bg-border/50" />
