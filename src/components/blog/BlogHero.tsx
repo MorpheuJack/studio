@@ -80,11 +80,11 @@ export function BlogHero() {
         ))}
       </div>
 
-      {/* Controller Carousel (hidden) */}
+      {/* Controller Carousel (visually hidden, but available to JS) */}
       <Carousel
         setApi={setApi}
         plugins={[plugin.current]}
-        className="hidden"
+        className="sr-only"
       >
         <CarouselContent>
           {featuredPosts.map((post) => (
