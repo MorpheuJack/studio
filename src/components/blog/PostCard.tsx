@@ -14,12 +14,19 @@ export function PostCard({ post }: PostCardProps) {
     <Link href={`/blog/${post.slug}`} className="group block">
       <Card className="flex h-full flex-col overflow-hidden transition-all duration-300 hover:shadow-[0_10px_25px_-5px_hsl(var(--primary)/0.2),0_8px_10px_-6px_hsl(var(--primary)/0.2)] hover:-translate-y-1 border-border hover:border-primary/30">
         <CardHeader className="p-0">
-          <div className="relative h-48 w-full">
+          <div className="relative h-64 w-full md:h-48">
             <Image
               src={post.image}
               alt={post.title}
               fill
-              className="object-cover"
+              className="object-cover hidden md:block"
+              data-ai-hint={post['data-ai-hint']}
+            />
+            <Image
+              src={post.mobileImage || post.image}
+              alt={post.title}
+              fill
+              className="object-cover md:hidden"
               data-ai-hint={post['data-ai-hint']}
             />
           </div>

@@ -37,6 +37,7 @@ export function Hero() {
       title: post.title,
       description: post.description,
       image: post.image,
+      mobileImage: post.mobileImage,
       'data-ai-hint': post['data-ai-hint'],
       href: `/blog/${post.slug}`,
     })),
@@ -78,7 +79,7 @@ export function Hero() {
         onMouseLeave={plugin.current.reset}
       >
         <CarouselContent>
-          {featuredContent.map((item, index) => (
+          {featuredContent.map((item: any, index) => (
             <CarouselItem key={index}>
               <div className="relative h-screen min-h-[600px] w-full">
                 <Image
@@ -86,7 +87,15 @@ export function Hero() {
                   alt={item.title}
                   fill
                   priority={index === 0}
-                  className="object-cover"
+                  className="object-cover hidden md:block"
+                  data-ai-hint={item['data-ai-hint'] || ''}
+                />
+                 <Image
+                  src={item.mobileImage || item.image}
+                  alt={item.title}
+                  fill
+                  priority={index === 0}
+                  className="object-cover md:hidden"
                   data-ai-hint={item['data-ai-hint'] || ''}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-transparent" />
