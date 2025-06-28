@@ -109,6 +109,10 @@ export default {
           '0%, 100%': { opacity: '1' },
           '50%': { opacity: '0' },
         },
+        'progress-bar': {
+          from: { width: '0%' },
+          to: { width: '100%' },
+        },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
@@ -116,6 +120,7 @@ export default {
         'slow-zoom': 'slow-zoom 20s ease-out forwards',
         'animated-gradient': 'animated-gradient 15s ease infinite',
         'blinking-cursor': 'blinking-cursor 0.8s step-end infinite',
+        'progress-bar': 'progress-bar linear forwards',
       },
     },
   },
