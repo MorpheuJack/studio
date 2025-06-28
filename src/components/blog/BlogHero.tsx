@@ -34,9 +34,7 @@ export function BlogHero() {
     if (!api) return;
     
     const onSelect = () => {
-      if (api.selectedScrollSnap() !== current) {
-        setCurrent(api.selectedScrollSnap());
-      }
+      setCurrent(api.selectedScrollSnap());
     };
 
     setCurrent(api.selectedScrollSnap());
@@ -45,7 +43,7 @@ export function BlogHero() {
     return () => {
       api.off('select', onSelect);
     };
-  }, [api, current]);
+  }, [api]);
 
   const scrollTo = (index: number) => {
     api?.scrollTo(index);
@@ -76,7 +74,7 @@ export function BlogHero() {
               "object-cover transition-opacity duration-1000 ease-in-out",
               current === index ? "opacity-100 animate-slow-zoom" : "opacity-0"
             )}
-            priority={index === 0}
+            priority
             data-ai-hint={post['data-ai-hint']}
           />
         ))}
