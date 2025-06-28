@@ -39,7 +39,7 @@ export default function CoursesCategoriesPage() {
                   poster="https://placehold.co/1920x1080.png"
                   className="absolute inset-0 w-full h-full object-cover"
                 >
-                  <source src="/video-t.mp4" type="video/mp4" />
+                  <source src="video/video-t.mp4" type="video/mp4" />
                 </video>
               <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-transparent" />
               <div className="absolute inset-0 bg-black/50" />

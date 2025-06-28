@@ -2,6 +2,7 @@ import React from 'react';
 import { getAllPosts } from '@/lib/blog';
 import { PostCard } from '@/components/blog/PostCard';
 import { BlogSearch } from '@/components/blog/BlogSearch';
+import { BlogHero } from '@/components/blog/BlogHero';
 
 export default function BlogPage({
   searchParams,
@@ -20,29 +21,32 @@ export default function BlogPage({
   });
 
   return (
-    <div className="container mx-auto px-4 py-8 sm:px-6 lg:px-8">
-      <div className="mb-12 text-center">
-        <h1 className="font-headline text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
-          Revolução Cognitiva Blog
-        </h1>
-        <p className="mt-4 text-lg text-muted-foreground">
-          Notícias, tutoriais e insights sobre o futuro da Inteligência Artificial.
-        </p>
+    <>
+      <BlogHero />
+      <div className="container mx-auto px-4 py-8 sm:px-6 lg:px-8">
+        <div className="mb-12 text-center">
+            <h2 className="font-headline text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+              Todos os Artigos
+            </h2>
+            <p className="mt-3 text-lg text-muted-foreground">
+              Explore nossos insights mais recentes sobre IA, design, marketing e muito mais.
+            </p>
+        </div>
+        
+        <BlogSearch initialSearch={searchTerm} />
+
+        {filteredPosts.length > 0 ? (
+          <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-3">
+            {filteredPosts.map(post => (
+              <PostCard key={post.slug} post={post} />
+            ))}
+          </div>
+        ) : (
+          <div className="text-center py-16">
+            <p className="text-muted-foreground">Nenhum artigo encontrado com seus critérios de busca.</p>
+          </div>
+        )}
       </div>
-
-      <BlogSearch initialSearch={searchTerm} />
-
-      {filteredPosts.length > 0 ? (
-        <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-3">
-          {filteredPosts.map(post => (
-            <PostCard key={post.slug} post={post} />
-          ))}
-        </div>
-      ) : (
-        <div className="text-center py-16">
-          <p className="text-muted-foreground">Nenhum artigo encontrado com seus critérios de busca.</p>
-        </div>
-      )}
-    </div>
+    </>
   );
 }
