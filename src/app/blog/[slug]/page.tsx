@@ -7,6 +7,9 @@ import Image from 'next/image';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import React from 'react';
 import { CourseCta } from '@/components/blog/CourseCta';
+import { Button } from '@/components/ui/button';
+import Link from 'next/link';
+import { ArrowLeft } from 'lucide-react';
 
 export default function BlogPostPage() {
   const params = useParams<{ slug: string }>();
@@ -63,7 +66,15 @@ export default function BlogPostPage() {
       </header>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-         <article className="my-16 rounded-xl border border-primary/20 bg-gradient-to-br from-slate-950 via-background to-slate-950 bg-[size:200%] p-8 shadow-2xl shadow-primary/10 animate-animated-gradient md:p-12">
+         <div className="mt-12">
+            <Button asChild variant="outline">
+                <Link href="/blog">
+                    <ArrowLeft className="mr-2 h-4 w-4" />
+                    Voltar para o Blog
+                </Link>
+            </Button>
+        </div>
+         <article className="my-12 rounded-xl border border-primary/20 bg-gradient-to-br from-slate-950 via-background to-slate-950 bg-[size:200%] p-8 shadow-2xl shadow-primary/10 animate-animated-gradient md:p-12">
             <div className="prose prose-lg dark:prose-invert mx-auto max-w-4xl
               prose-headings:font-headline prose-headings:tracking-tight prose-headings:text-foreground
               prose-h2:text-3xl prose-h2:mb-4 prose-h2:mt-12 prose-h2:text-foreground
