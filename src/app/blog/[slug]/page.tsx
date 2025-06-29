@@ -109,9 +109,6 @@ export default function BlogPostPage() {
                             src={post.audioUrl}
                             imageUrl={post.image}
                             imageAiHint={post['data-ai-hint']}
-                            title={post.title}
-                            artist={post.author}
-                            album="Revolução Cognitiva"
                         />
                     </div>
                   )}

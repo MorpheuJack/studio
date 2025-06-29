@@ -17,9 +17,6 @@ interface AudioPlayerProps extends React.HTMLAttributes<HTMLDivElement> {
   src: string;
   imageUrl: string;
   imageAiHint?: string;
-  title: string;
-  artist: string;
-  album: string;
 }
 
 const formatTime = (seconds: number) => {
@@ -30,7 +27,7 @@ const formatTime = (seconds: number) => {
 };
 
 const AudioPlayer = React.forwardRef<HTMLDivElement, AudioPlayerProps>(
-  ({ className, src, imageUrl, imageAiHint, title, artist, album, ...props }, ref) => {
+  ({ className, src, imageUrl, imageAiHint, ...props }, ref) => {
     const audioRef = React.useRef<HTMLAudioElement>(null);
     const [isPlaying, setIsPlaying] = React.useState(false);
     const [duration, setDuration] = React.useState(0);
@@ -101,7 +98,7 @@ const AudioPlayer = React.forwardRef<HTMLDivElement, AudioPlayerProps>(
                  <div className="relative aspect-square md:aspect-auto md:h-full w-full overflow-hidden rounded-md group cursor-pointer" onClick={togglePlayPause}>
                     <Image
                       src={imageUrl}
-                      alt={title}
+                      alt="Capa do áudio"
                       fill
                       className="object-cover"
                       data-ai-hint={imageAiHint}
@@ -114,8 +111,8 @@ const AudioPlayer = React.forwardRef<HTMLDivElement, AudioPlayerProps>(
 
             <div className="md:col-span-2 flex flex-col justify-center">
                 <div className="mb-2 text-center md:text-left">
-                    <h3 className="font-bold text-lg md:text-xl text-foreground truncate">{title}</h3>
-                    <p className="text-muted-foreground text-sm">{artist} - {album}</p>
+                    <h3 className="font-bold text-lg md:text-xl text-foreground truncate">Continue a Conversa</h3>
+                    <p className="text-muted-foreground text-sm">Aperte o play para ouvir o confronto de ideias por trás deste conteúdo.</p>
                 </div>
                 
                 <div className="mt-2 space-y-1">

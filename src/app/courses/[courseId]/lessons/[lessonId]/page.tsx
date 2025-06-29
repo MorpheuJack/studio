@@ -108,9 +108,6 @@ export default function LessonPage() {
                         src={lesson.audioUrl}
                         imageUrl={course.image}
                         imageAiHint={course['data-ai-hint']}
-                        title={lesson.title}
-                        artist="Revolução Cognitiva"
-                        album={course.title}
                     />
                 </div>
               )}
