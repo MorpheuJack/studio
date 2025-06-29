@@ -76,7 +76,7 @@ export function FeaturesSection() {
               <FeatureCard title={features[1].title} description={features[1].description} className="sm:ml-auto" />
             </div>
             {/* Right Column */}
-            <div className="space-y-10 sm:space-y-16">
+            <div className="space-y-10 sm:space-y-16 sm:mt-24">
               <FeatureCard title={features[2].title} description={features[2].description} />
               <FeatureCard title={features[3].title} description={features[3].description} />
             </div>
