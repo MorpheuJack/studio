@@ -38,8 +38,8 @@ export default function BlogPostPage() {
           data-ai-hint={post['data-ai-hint']}
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-transparent" />
-        <div className="absolute inset-0 bg-black/30" />
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent" />
+        <div className="absolute inset-0 bg-black/60" />
         
         <div className="container relative mx-auto h-full px-4 sm:px-6 lg:px-8">
             <div className="relative z-10 flex h-full flex-col items-center justify-end pb-40 text-white md:items-start md:justify-end md:pb-24">
@@ -66,7 +66,7 @@ export default function BlogPostPage() {
       </header>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-         <article className="my-12 rounded-xl border border-primary/20 bg-gradient-to-br from-slate-950 via-background to-slate-950 bg-[size:200%] p-8 shadow-2xl shadow-primary/10 animate-animated-gradient md:p-12">
+         <article className="my-12 rounded-xl border bg-card p-8 shadow-lg md:p-12">
             <div className="prose prose-lg dark:prose-invert mx-auto max-w-4xl
               prose-headings:font-headline prose-headings:tracking-tight prose-headings:text-foreground
               prose-h2:text-3xl prose-h2:mb-4 prose-h2:mt-12 prose-h2:text-foreground

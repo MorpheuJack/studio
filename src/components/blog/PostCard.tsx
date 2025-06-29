@@ -13,7 +13,7 @@ interface PostCardProps {
 export function PostCard({ post }: PostCardProps) {
   return (
     <Link href={`/blog/${post.slug}`} className="group block h-full">
-      <Card className="flex h-full flex-col overflow-hidden transition-all duration-300 hover:shadow-[0_10px_25px_-5px_hsl(var(--primary)/0.2),0_8px_10px_-6px_hsl(var(--primary)/0.2)] hover:-translate-y-1 border-border hover:border-primary/30">
+      <Card className="flex h-full flex-col overflow-hidden transition-all duration-300 bg-card border border-border hover:border-primary/50 hover:-translate-y-1">
         <CardHeader className="p-0">
           <div className="relative h-48 w-full">
             <Image

@@ -93,8 +93,8 @@ export function BlogHero() {
 
 
       {/* Overlays */}
-      <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-transparent" />
-      <div className="absolute inset-0 bg-black/50" />
+      <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent" />
+      <div className="absolute inset-0 bg-black/60" />
 
       {/* Foreground Content Grid */}
       <div className="container relative z-10 mx-auto h-full px-4 sm:px-6 lg:px-8">
@@ -136,10 +136,10 @@ export function BlogHero() {
                   key={post.slug}
                   onClick={() => scrollTo(index)}
                   className={cn(
-                    "relative w-full max-w-[12rem] flex-shrink-0 rounded-xl border-2 bg-white/5 p-3 text-left backdrop-blur-md transition-all duration-300 hover:bg-white/10 sm:max-w-[14rem] md:max-w-none",
+                    "relative w-full max-w-[12rem] flex-shrink-0 rounded-xl border-2 bg-secondary/50 p-3 text-left backdrop-blur-md transition-all duration-300 hover:bg-secondary sm:max-w-[14rem] md:max-w-none",
                     current === index 
                       ? "border-primary shadow-lg" 
-                      : "border-white/20 hover:border-primary/50"
+                      : "border-border hover:border-primary/50"
                   )}
                 >
                   <div className="flex items-center gap-3">

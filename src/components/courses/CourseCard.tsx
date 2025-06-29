@@ -12,7 +12,7 @@ interface CourseCardProps {
 export function CourseCard({ course }: CourseCardProps) {
   return (
     <Link href={`/courses/${course.id}`} className="group block h-full">
-      <Card className="flex h-full flex-col overflow-hidden rounded-2xl transition-all duration-300 bg-card/60 backdrop-blur-lg border border-white/10 hover:border-primary/30 hover:shadow-2xl hover:shadow-primary/20 hover:-translate-y-2">
+      <Card className="flex h-full flex-col overflow-hidden rounded-lg transition-all duration-300 bg-card border border-border hover:border-primary/50 hover:-translate-y-1">
         <CardHeader className="p-0">
           <div className="relative h-48 w-full">
             <Image

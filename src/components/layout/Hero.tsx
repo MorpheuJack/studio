@@ -105,8 +105,8 @@ export function Hero() {
                   priority={index === 0}
                   data-ai-hint={item['data-ai-hint']}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-transparent" />
-                <div className="absolute inset-0 bg-black/50" />
+                <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent" />
+                <div className="absolute inset-0 bg-black/60" />
                 
                 <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8">
                   <div className="relative z-10 flex h-full flex-col justify-end pb-20 md:pb-28 text-white">
@@ -121,12 +121,17 @@ export function Hero() {
                       <p className="mt-6 text-lg leading-8 text-white/80">
                         {item.description}
                       </p>
-                      <div className="mt-10">
+                      <div className="mt-10 flex items-center gap-4">
                         <Button asChild size="lg">
                           <Link href={item.href}>
                             Saiba Mais
                             <ArrowRight className="ml-2 h-5 w-5" />
                           </Link>
+                        </Button>
+                         <Button asChild size="lg" variant="outline">
+                            <Link href="#"> {/* Placeholder */}
+                                Como funciona?
+                            </Link>
                         </Button>
                       </div>
                     </div>
