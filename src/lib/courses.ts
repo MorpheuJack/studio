@@ -71,9 +71,9 @@ export const courses: Course[] = [
     instructor: {
       name: 'Liam Chen',
       title: 'Designer de Produto Principal',
-      avatar: 'https://placehold.co/100x100.png',
+      avatar: '/img/design-curso.png',
     },
-    image: 'https://placehold.co/600x400.png',
+    image: '/img/design-curso.png',
     'data-ai-hint': 'futuristic interface',
     category: 'Design',
     modules: [
