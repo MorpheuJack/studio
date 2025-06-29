@@ -3,7 +3,6 @@
 import { useState } from 'react';
 import { getCourseById } from '@/lib/courses';
 import { notFound, useParams } from 'next/navigation';
-import { LessonSidebar } from '@/components/courses/LessonSidebar';
 import { FloatingAssistant } from '@/components/courses/FloatingAssistant';
 
 export default function CourseLayout({
@@ -21,13 +20,8 @@ export default function CourseLayout({
 
   return (
     <>
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col-reverse gap-8 py-8 md:flex-row">
-          <aside className="w-full md:w-80 lg:w-96 md:flex-shrink-0">
-            <LessonSidebar course={course} />
-          </aside>
-          <main className="flex-1 min-w-0">{children}</main>
-        </div>
+      <div className="container mx-auto px-4 py-8 sm:px-6 lg:px-8">
+        {children}
       </div>
       <FloatingAssistant
         course={course}

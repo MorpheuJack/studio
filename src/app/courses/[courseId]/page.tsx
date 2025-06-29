@@ -142,6 +142,45 @@ export default function CourseDetailPage() {
             </div>
           </section>
         )}
+
+        {/* What You'll Learn Section */}
+        <section>
+            <div className="text-center mb-12">
+              <h2 className="font-headline text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+                O que você vai aprender
+              </h2>
+              <p className="mt-3 text-lg text-muted-foreground max-w-2xl mx-auto">
+                Explore o currículo completo do curso, módulo por módulo.
+              </p>
+            </div>
+            <div className="mx-auto max-w-3xl">
+                <Accordion type="single" collapsible className="w-full space-y-4">
+                    {course.modules.map((module) => (
+                        <AccordionItem value={module.id} key={module.id} className="border-none">
+                            <AccordionTrigger className="text-left font-semibold text-xl hover:no-underline p-6 bg-card rounded-lg data-[state=open]:rounded-b-none">
+                                {module.title}
+                            </AccordionTrigger>
+                            <AccordionContent className="bg-card rounded-b-lg mt-0">
+                                <ul className="space-y-1 p-6 pt-2">
+                                    {module.lessons.map((lesson) => {
+                                    const Icon = lesson.type === 'video' ? Video : FileText;
+                                    return (
+                                        <li key={lesson.id} className="flex items-center gap-4 justify-between rounded-md p-3 text-muted-foreground transition-colors hover:bg-muted/50 hover:text-foreground">
+                                            <div className="flex items-center gap-3">
+                                                <Icon className="h-5 w-5 flex-shrink-0" />
+                                                <span className="font-medium">{lesson.title}</span>
+                                            </div>
+                                            <span className="text-sm">{lesson.duration} min</span>
+                                        </li>
+                                    );
+                                    })}
+                                </ul>
+                            </AccordionContent>
+                        </AccordionItem>
+                    ))}
+                </Accordion>
+            </div>
+        </section>
       </main>
     </div>
   );
