@@ -29,7 +29,7 @@ export default function Home() {
         <section>
           <div className="mb-8 text-center">
             <h2 className="font-headline text-3xl font-bold sm:text-4xl">
-              Jornadas em Destaque
+              Jornadas para a Maestria
             </h2>
             <Button asChild variant="link" className="mt-2 text-sm text-primary hover:text-primary/80">
               <Link href="/courses/all">
@@ -63,7 +63,7 @@ export default function Home() {
         <section>
           <div className="mb-8 text-center">
             <h2 className="font-headline text-3xl font-bold sm:text-4xl">
-              Ideias em Destaque
+              Ideias da Forja
             </h2>
             <Button asChild variant="link" className="mt-2 text-sm text-primary hover:text-primary/80">
               <Link href="/blog">

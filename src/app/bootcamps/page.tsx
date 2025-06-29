@@ -10,7 +10,7 @@ import Link from 'next/link';
 const bootcamps = [
   {
     id: 'b1',
-    title: 'Bootcamp Intensivo de IA com Gemini',
+    title: 'Forja Intensiva de IA com Gemini',
     description: 'Do zero ao deploy de uma aplicação de IA completa em 8 semanas. Construa um projeto real e adicione ao seu portfólio.',
     duration: '8 Semanas',
     tools: ['Gemini', 'Next.js', 'Genkit', 'Firebase'],
@@ -20,7 +20,7 @@ const bootcamps = [
   {
     id: 'b2',
     title: 'Mestres do Design de UI/UX para IA',
-    description: 'Aprenda a criar interfaces intuitivas e centradas no usuário para produtos de inteligência artificial complexos.',
+    description: 'Aprenda a forjar interfaces intuitivas e centradas no usuário para produtos de inteligência artificial complexos.',
     duration: '6 Semanas',
     tools: ['Figma', 'React', 'IA Principles'],
     image: 'https://placehold.co/600x400.png',
@@ -59,7 +59,7 @@ export default function BootcampsPage() {
               Arenas de Domínio
             </h1>
             <p className="mt-6 text-lg text-muted-foreground max-w-2xl mx-auto">
-              Aqui é onde o conhecimento se torna maestria. Mergulhe em jornadas intensivas e prove seu domínio em desafios com recompensas reais.
+              Aqui é onde o conhecimento se torna maestria. Mergulhe em forjas intensivas e prove seu domínio em desafios com recompensas reais.
             </p>
              <div className="mt-10 flex items-center justify-center">
                 <Button asChild size="lg">
@@ -73,7 +73,7 @@ export default function BootcampsPage() {
         </div>
       </section>
       
-      <main className="container mx-auto px-4 py-16 sm:px-6 lg:py-24 lg:px-8 space-y-24">
+      <main className="container mx-auto px-4 py-16 sm:py-24 lg:px-8 space-y-24">
         {/* Bootcamps Section */}
         <section id="bootcamps">
           <div className="mb-12 text-center">
@@ -81,7 +81,7 @@ export default function BootcampsPage() {
               Jornadas Intensivas
             </h2>
             <p className="mt-3 text-lg text-muted-foreground">
-              Conversas aceleradas para você dominar as tecnologias que definem o presente.
+              Forjas aceleradas para você dominar as tecnologias que definem o presente.
             </p>
           </div>
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2">

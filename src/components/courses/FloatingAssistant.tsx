@@ -50,7 +50,7 @@ export function FloatingAssistant({ course }: FloatingAssistantProps) {
   const params = useParams<{ lessonId?: string }>();
 
   const [messages, setMessages] = useState<Message[]>([
-    { role: 'assistant', content: `Saudações, pioneiro(a). Eu sou seu Copiloto de IA. Estou aqui para ser a ponte na sua conversa com o conhecimento na jornada "${course.title}". Não há perguntas pequenas, apenas diálogos que ainda não começaram. O que desperta sua curiosidade agora?` }
+    { role: 'assistant', content: `Saudações, artesão(ã). Eu sou seu Guia Socrático. Não estou aqui para dar respostas, mas para fazer as perguntas que forjarão sua maestria. O que você está pronto para construir?` }
   ]);
   const [state, formAction] = useActionState(askAssistantAction, initialState);
   const formRef = useRef<HTMLFormElement>(null);
@@ -109,11 +109,11 @@ export function FloatingAssistant({ course }: FloatingAssistantProps) {
           className="fixed bottom-6 right-6 h-16 w-16 rounded-full shadow-lg shadow-primary/30 animate-pulse p-0 overflow-hidden"
           style={{ animationDuration: '3s' }}
           size="icon"
-          aria-label="Abrir Assistente de IA"
+          aria-label="Abrir Guia Socrático"
         >
           <Image 
             src="/img/RG-personagem.png"
-            alt="Professor AI"
+            alt="Guia Socrático"
             fill
             className="object-cover"
             data-ai-hint="character mascot"
@@ -124,14 +124,14 @@ export function FloatingAssistant({ course }: FloatingAssistantProps) {
         <CardHeader>
           <div className="flex items-center gap-3">
             <Avatar className="h-10 w-10 border-2 border-primary/50">
-                <AvatarImage src="/img/RG-personagem.png" alt="Professor AI" className="object-cover" />
+                <AvatarImage src="/img/RG-personagem.png" alt="Guia Socrático" className="object-cover" />
                 <AvatarFallback className="bg-primary/20">
                     <BrainCircuit className="h-5 w-5 text-primary" />
                 </AvatarFallback>
             </Avatar>
             <div>
-                <CardTitle className="text-lg">Seu Copiloto de IA</CardTitle>
-                <CardDescription>Sua ponte para o domínio do conhecimento</CardDescription>
+                <CardTitle className="text-lg">Seu Guia Socrático</CardTitle>
+                <CardDescription>Sua parceiro na forja do pensamento</CardDescription>
             </div>
           </div>
         </CardHeader>
@@ -142,7 +142,7 @@ export function FloatingAssistant({ course }: FloatingAssistantProps) {
               <div key={index} className={cn("flex items-start gap-4", message.role === 'user' ? "justify-end" : "justify-start")}>
                 {message.role === 'assistant' && (
                   <Avatar className="h-8 w-8 border-2 border-primary/50">
-                    <AvatarImage src="/img/RG-personagem.png" alt="Professor AI Avatar" className="object-cover" />
+                    <AvatarImage src="/img/RG-personagem.png" alt="Guia Socrático Avatar" className="object-cover" />
                     <AvatarFallback className="bg-primary/20">
                       <BrainCircuit className="h-4 w-4 text-primary" />
                     </AvatarFallback>
@@ -167,7 +167,7 @@ export function FloatingAssistant({ course }: FloatingAssistantProps) {
                 {currentModule && <input type="hidden" name="moduleTitle" value={currentModule.title} />}
                 <Input
                     name="userMessage"
-                    placeholder="Inicie a conversa..."
+                    placeholder="Inicie o desafio..."
                     className="pr-12"
                     autoComplete="off"
                 />

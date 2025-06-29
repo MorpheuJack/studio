@@ -14,8 +14,8 @@ export const projects: ProjectBase[] = [
   {
     id: 'proj-c1',
     courseId: 'c1',
-    title: 'Copiloto de Escrita Criativa',
-    description: 'Um copiloto de IA que mantém o contexto da conversa, uma prova do seu domínio em engenharia de prompt avançada.',
+    title: 'Guia Socrático de Escrita',
+    description: 'A prova do seu domínio em engenharia de prompt. Uma IA que não dá respostas, mas faz as perguntas que forçam a criatividade.',
     image: 'https://placehold.co/600x450.png',
     'data-ai-hint': 'chatbot interface conversation',
     tags: ['Gemini', 'Genkit', 'IA'],
@@ -24,8 +24,8 @@ export const projects: ProjectBase[] = [
   {
     id: 'proj-c2',
     courseId: 'c2',
-    title: 'Protótipo Interativo de Copiloto',
-    description: 'Um protótipo de alta fidelidade para uma conversa com IA, projetado no Figma com foco na mágica da experiência do usuário.',
+    title: 'Protótipo de Confiança para IA',
+    description: 'Um protótipo de alta fidelidade que comunica com clareza os poderes e limites da IA, forjando a confiança do usuário.',
     image: 'https://placehold.co/600x450.png',
     'data-ai-hint': 'user interface design',
     tags: ['Figma', 'UI/UX', 'Prototipagem'],
@@ -34,8 +34,8 @@ export const projects: ProjectBase[] = [
   {
     id: 'proj-c3',
     courseId: 'c3',
-    title: 'Painel de Análise de Sentimento',
-    description: 'Uma criação que analisa o sentimento de dados em tempo real, provando seu domínio em extrair insights valiosos com IA.',
+    title: 'Painel de Intuição de Mercado',
+    description: 'Uma criação que analisa o sentimento de dados em tempo real, provando seu domínio em forjar insights de mercado a partir de ruído.',
     image: 'https://placehold.co/600x450.png',
     'data-ai-hint': 'data dashboard charts',
     tags: ['Análise de Dados', 'Marketing', 'IA'],

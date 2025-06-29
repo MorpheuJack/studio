@@ -23,7 +23,7 @@ export default function MyCoursesPage() {
   
   const baseProjects = getProjectsForCourses(enrolledCourses);
 
-  const userName = user?.user_metadata?.full_name || user?.email || 'Aluno(a)';
+  const userName = user?.user_metadata?.full_name || user?.email || 'Artesão(ã)';
 
   // Enrich project data with author info to match ProjectCard's expected props
   const userProjects: Project[] = baseProjects.map(project => ({
@@ -45,7 +45,7 @@ export default function MyCoursesPage() {
     <div className="container mx-auto px-4 pb-8 pt-22 sm:px-6 lg:px-8">
       <div className="mb-12">
         <h1 className="font-headline text-4xl font-bold tracking-tight text-foreground sm:text-5xl">Meu Estúdio</h1>
-        <p className="mt-4 text-lg text-muted-foreground">Sua galeria de criações. A prova do seu domínio. Mostre ao mundo o que você despertou.</p>
+        <p className="mt-4 text-lg text-muted-foreground">Sua galeria de criações. A prova do seu domínio. Mostre ao mundo o que você forjou.</p>
       </div>
 
       {userProjects.length > 0 ? (
@@ -56,8 +56,8 @@ export default function MyCoursesPage() {
         </div>
       ) : (
         <div className="text-center rounded-lg border border-white/10 bg-card/50 backdrop-blur-lg p-12">
-            <h3 className="text-lg font-medium text-foreground">Sua Tela está em Branco</h3>
-          <p className="mt-2 text-muted-foreground">A revolução começa com a primeira criação. Inicie uma jornada e comece a construir.</p>
+            <h3 className="text-lg font-medium text-foreground">Sua Forja está Vazia</h3>
+          <p className="mt-2 text-muted-foreground">A maestria começa com a primeira faísca. Inicie uma jornada e comece a construir.</p>
           <Button asChild className="mt-6">
             <Link href="/courses">
               Explorar Jornadas

@@ -84,7 +84,7 @@ export default function CommunityPage() {
               O Estúdio dos Pioneiros
             </h1>
             <p className="mt-6 text-lg text-muted-foreground max-w-2xl mx-auto">
-              Isto não é uma galeria. É a prova. Explore os projetos e as criações nascidas neste movimento. Inspire-se. Conecte-se com outros pioneiros.
+              Isto não é uma galeria. É a prova. Explore os projetos e as criações nascidas neste movimento. Inspire-se. Conecte-se com outros artesãos do pensamento.
             </p>
              <div className="mt-10 flex items-center justify-center">
                 <Button asChild size="lg">

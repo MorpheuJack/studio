@@ -56,10 +56,10 @@ export default function CoursesPage() {
         <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
             <h1 className="font-headline text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl">
-              Jornadas para Dominar o Futuro
+              Jornadas para Forjar a Maestria
             </h1>
             <p className="mt-6 text-lg text-muted-foreground max-w-2xl mx-auto">
-              Aprender passivamente é o inimigo. Aqui, cada jornada é uma conversa interativa. Um convite para você dominar as tecnologias que estão escrevendo o amanhã.
+              Acumular informação é para os discos rígidos. Aqui, cada jornada é uma forja para a sua mente, um convite para construir os modelos mentais que definem o futuro.
             </p>
             <div className="mt-10 flex items-center justify-center">
                 <Button asChild size="lg">

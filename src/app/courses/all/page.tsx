@@ -26,7 +26,7 @@ export default function AllCoursesPage({
   
   const displayCategories = categories.map(cat => {
     const translatedCategories: { [key:string]: string } = {
-      'All': 'Todos',
+      'All': 'Todas as Jornadas',
       'Programação': 'Programação',
       'Design': 'Design',
       'Marketing': 'Marketing',
@@ -44,9 +44,9 @@ export default function AllCoursesPage({
     <div className="container mx-auto px-4 pb-8 pt-22 sm:px-6 lg:px-8">
       <div className="mb-12 text-center">
         <h1 className="font-headline text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
-          {category === 'All' ? 'Explore Todas as Jornadas' : `Jornadas de ${currentCategoryLabel}`}
+          {category === 'All' ? 'Explore Todas as Forjas' : `Forjas de ${currentCategoryLabel}`}
         </h1>
-        <p className="mt-4 text-lg text-muted-foreground">Escolha sua conversa. Encontre a jornada perfeita para despertar seu domínio em IA e tecnologia.</p>
+        <p className="mt-4 text-lg text-muted-foreground">Escolha sua arena. Encontre a jornada perfeita para forjar seu domínio em IA e tecnologia.</p>
       </div>
 
       <CourseFilters 
@@ -63,7 +63,7 @@ export default function AllCoursesPage({
         </div>
       ) : (
         <div className="text-center py-16">
-            <p className="text-muted-foreground">Nenhuma jornada encontrada. A revolução aguarda sua busca.</p>
+            <p className="text-muted-foreground">Nenhuma forja encontrada. A maestria aguarda sua busca.</p>
         </div>
       )}
     </div>

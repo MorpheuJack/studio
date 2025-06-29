@@ -2,20 +2,20 @@ import { Sparkle } from "lucide-react";
 
 const features = [
   {
-    title: "Construa o Futuro, Hoje",
-    description: "Cada linha de código que você escreve, cada modelo que você treina, é um passo real. Você não apenas aprende, você cria provas tangíveis do seu domínio.",
+    title: "O Ginásio da Mente",
+    description: "Aqui, você não consome conteúdo. Você luta com as ideias. Cada lição é um round contra o conhecimento frágil, projetado para construir seu músculo intelectual.",
   },
   {
-    title: "Junte-se aos Pioneiros",
-    description: "Você não está sozinho. Conecte-se com uma comunidade de mentes curiosas, visionários e mentores que, como você, estão construindo o amanhã.",
+    title: "Prova de Maestria",
+    description: "Seu perfil não é uma lista de cursos, é uma galeria de criações. Ao final de cada jornada, você não tem um certificado. Você tem um projeto de IA funcional, a prova tangível do seu domínio.",
   },
   {
-    title: "Seu Copiloto de IA",
-    description: "Imagine um tutor genial, disponível 24/7, que responde, desafia e acelera seu despertar. Esse é o seu copiloto pessoal em cada jornada.",
+    title: "Seu Guia Socrático",
+    description: "Sua IA não dá respostas, ela faz perguntas. É um parceiro de treino incansável que te força a conectar conceitos, justificar suas hipóteses e construir um entendimento à prova de fogo.",
   },
   {
-    title: "Conversas com o Amanhã",
-    description: "O futuro não espera. Nossas jornadas são vivas, sempre evoluindo para que você domine as tecnologias que estão definindo o próximo capítulo da humanidade.",
+    title: "Forje Modelos Mentais",
+    description: "Informação é commodity. Nós te ajudamos a construir algo muito mais valioso: intuição. Estruturas de pensamento resilientes que você pode aplicar a qualquer problema do mundo real.",
   },
 ];
 
@@ -37,10 +37,10 @@ export function FeaturesSection() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="font-headline text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-            A Nossa Promessa
+            Como Nós Forjamos a Maestria
           </h2>
           <p className="mt-4 text-lg text-muted-foreground">
-            Aprender não é assistir. É conversar. Nosso palco foi construído para provocar o diálogo entre você e o conhecimento, com um copiloto de IA ao seu lado.
+            Aprender não é assistir. É construir. Nosso ginásio foi projetado para forjar o pensamento, não para acumular fatos, com um Guia Socrático ao seu lado.
           </p>
         </div>
 

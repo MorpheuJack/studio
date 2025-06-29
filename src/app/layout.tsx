@@ -6,8 +6,8 @@ import { AuthProvider } from '@/context/AuthContext';
 import { AppLayout } from '@/components/layout/AppLayout';
 
 export const metadata: Metadata = {
-  title: 'Revolução Cognitiva - O Despertar do Conhecimento',
-  description: 'Participe do movimento que está redefinindo o aprendizado. Aqui, a conversa com a inteligência é a chave para dominar o futuro.',
+  title: 'Revolução Cognitiva - A Forja para a Mente',
+  description: 'Nós não ensinamos o que pensar. Nós construímos o lugar onde você aprende a pensar. Forje modelos mentais, não apenas acumule informações.',
 };
 
 export default function RootLayout({

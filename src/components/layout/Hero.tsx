@@ -19,7 +19,7 @@ import { ArrowRight } from 'lucide-react';
 import { Badge } from '../ui/badge';
 
 type FeaturedItem = {
-  type: 'Curso' | 'Blog';
+  type: 'Jornada' | 'Ideia';
   title: string;
   description: string;
   image: string;
@@ -34,24 +34,33 @@ export function Hero() {
 
   // Combine featured content from courses and blog posts
   const featuredContent: FeaturedItem[] = [
-    ...courses.slice(0, 2).map((course: Course) => ({
-      type: 'Curso',
-      title: course.title,
-      description: course.description,
-      image: course.image,
-      mobileImage: course.mobileImage,
-      href: `/courses/${course.id}`,
-      'data-ai-hint': course['data-ai-hint'],
-    })),
-    ...posts.slice(0, 1).map((post: Post) => ({
-      type: 'Blog',
-      title: post.title,
-      description: post.description,
-      image: post.image,
-      mobileImage: post.mobileImage,
-      href: `/blog/${post.slug}`,
-      'data-ai-hint': post['data-ai-hint'],
-    })),
+    {
+      type: 'Jornada',
+      title: 'Engenharia de Prompt: A Arte de Forjar o Pensamento',
+      description: 'Abandone a busca por respostas. Neste ginásio intelectual, você aprende a fazer as perguntas que constroem a maestria.',
+      image: courses[0].image,
+      mobileImage: courses[0].mobileImage,
+      href: `/courses/${courses[0].id}`,
+      'data-ai-hint': courses[0]['data-ai-hint'],
+    },
+    {
+      type: 'Jornada',
+      title: 'Design para IA: Modele a Intuição',
+      description: 'Não desenhe telas, construa pontes. Aprenda a forjar a confiança entre a mente humana e a inteligência artificial.',
+      image: courses[1].image,
+      mobileImage: courses[1].mobileImage,
+      href: `/courses/${courses[1].id}`,
+      'data-ai-hint': courses[1]['data-ai-hint'],
+    },
+    {
+      type: 'Ideia',
+      title: 'Superinteligência: O Alerta de Musk',
+      description: 'Uma conversa sobre o futuro da consciência e o despertar de uma nova era de pensamento.',
+      image: posts[0].image,
+      mobileImage: posts[0].mobileImage,
+      href: `/blog/${posts[0].slug}`,
+      'data-ai-hint': posts[0]['data-ai-hint'],
+    },
   ];
 
   const plugin = React.useRef(
@@ -124,13 +133,13 @@ export function Hero() {
                       <div className="mt-10 flex items-center gap-4">
                         <Button asChild size="lg">
                           <Link href={item.href}>
-                            Inicie a Revolução
+                            Entre na Forja
                             <ArrowRight className="ml-2 h-5 w-5" />
                           </Link>
                         </Button>
                          <Button asChild size="lg" variant="outline">
-                            <Link href="#">
-                                Descubra a Mágica
+                            <Link href="/#faq">
+                                Nossa Promessa
                             </Link>
                         </Button>
                       </div>

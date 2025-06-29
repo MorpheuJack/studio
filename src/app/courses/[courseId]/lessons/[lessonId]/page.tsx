@@ -68,7 +68,7 @@ export default function LessonPage() {
                   <div className="flex items-center gap-2">
                       <Button onClick={() => setAssistantOpen(true)}>
                           <BrainCircuit className="mr-2 h-4 w-4" />
-                          Converse com seu Copiloto
+                          Desafie seu Guia Socrático
                       </Button>
                   </div>
               </div>
@@ -115,9 +115,9 @@ export default function LessonPage() {
     <div className="container mx-auto">
         <Card className="flex flex-col h-[calc(100vh-12rem)] shadow-lg items-center justify-center text-center p-8">
             <Lock className="h-16 w-16 text-primary mb-4" />
-            <CardTitle className="font-headline text-3xl md:text-4xl">A Conversa Aguarda</CardTitle>
+            <CardTitle className="font-headline text-3xl md:text-4xl">A Forja Aguarda</CardTitle>
             <CardDescription className="mt-2 text-lg text-muted-foreground max-w-md">
-                Apenas pioneiros registrados podem entrar nesta conversa. Faça login ou junte-se ao movimento para continuar sua jornada.
+                Apenas artesãos registrados podem entrar nesta forja. Faça login ou junte-se ao movimento para construir sua maestria.
             </CardDescription>
             <div className="mt-8 flex gap-4">
                 <Button asChild size="lg">

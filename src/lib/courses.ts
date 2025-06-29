@@ -41,8 +41,8 @@ export const courses: Course[] = [
   {
     id: 'c1',
     title: 'Engenharia de Prompt para Gemini',
-    description: 'Inicie a conversa com a inteligência. Aprenda a arte de criar prompts que despertam o poder máximo do seu copiloto de IA.',
-    longDescription: 'Nesta jornada, você não vai apenas aprender a escrever perguntas. Você vai dominar a arte da conversa com a inteligência. Descubra como estruturar instruções que geram respostas precisas, criativas e mágicas dos mais avançados modelos de linguagem do Google. Dos fundamentos ao domínio de técnicas complexas, esta é sua porta de entrada para comandar a IA.',
+    description: 'Esqueça as respostas prontas. Aprenda a fazer as perguntas que forjam o entendimento profundo e comande a inteligência.',
+    longDescription: 'Nesta forja, você não vai decorar truques de prompt. Você vai construir o modelo mental de como a IA pensa. Através de desafios socráticos, você aprenderá a construir diálogos que testam, contradizem e aprofundam seu domínio sobre os modelos de linguagem, transformando-os em verdadeiros parceiros intelectuais.',
     tools: ['Gemini', 'Google AI Studio', 'Next.js', 'TypeScript'],
     image: '/img/p-curso-destaque.jpg',
     mobileImage: '/img/pr-curso-vertical.jpg',
@@ -53,31 +53,31 @@ export const courses: Course[] = [
     modules: [
       {
         id: 'm1',
-        title: 'Módulo 1: Fundamentos da Conversa com IA',
+        title: 'Módulo 1: Fundamentos da Forja de Prompts',
         lessons: [
           { 
             id: 'l1_1', 
-            title: 'O que são Prompts?', 
+            title: 'Desafiando a Inteligência', 
             type: 'video', 
             duration: 25, 
-            content: 'Esta lição introduz o conceito fundamental de prompts em modelos de IA generativa. Exploramos como os prompts guiam o modelo para gerar a saída desejada e por que a qualidade do prompt é crucial para a qualidade da resposta. Veremos exemplos práticos de prompts bons e ruins.',
+            content: 'Esta lição destrói a ideia de que prompts são apenas perguntas. Exploramos como construir instruções que forçam a IA a raciocinar, justificar e criar, em vez de apenas regurgitar informação. É o primeiro passo para transformar a IA de um oráculo para um parceiro de forja.',
             complementaryMaterials: [
-                { type: 'tool', name: 'Google AI Studio', url: '#', description: 'Plataforma para prototipagem de prompts.' },
-                { type: 'book', name: 'The Prompt Engineering Guide', url: '#', description: 'Um guia completo sobre o assunto.' }
+                { type: 'tool', name: 'Google AI Studio', url: '#', description: 'A arena para seus primeiros desafios de prompt.' },
+                { type: 'book', name: 'The Socratic Method for AI', url: '#', description: 'Um guia sobre como questionar a máquina.' }
             ]
           },
         ],
       },
       {
         id: 'm2',
-        title: 'Módulo 2: Dominando a Arte da Conversa',
+        title: 'Módulo 2: Dominando a Arte do Diálogo Socrático',
         lessons: [
           { 
             id: 'l2_1', 
-            title: 'Prompt Chaining e Few-Shot Learning', 
+            title: 'Forjando Lógica com Chaining e Few-Shot', 
             type: 'video', 
             duration: 30, 
-            content: 'Aprenda técnicas avançadas como o encadeamento de prompts para resolver problemas complexos em etapas e o "few-shot learning" para ensinar o modelo a executar tarefas com poucos exemplos. Construiremos um mini-aplicativo que usa essas técnicas para criar um assistente de escrita criativa.',
+            content: 'Aprenda a construir raciocínios complexos encadeando desafios e a ensinar a IA a executar tarefas com poucos exemplos, forçando-a a generalizar. Construiremos um mini-aplicativo que usa essas técnicas para criar um assistente de escrita criativa que desafia o escritor.',
             complementaryMaterials: [
                 { type: 'tool', name: 'LangChain', url: '#', description: 'Framework para desenvolvimento de aplicações com LLMs.' },
                 { type: 'pdf', name: 'Artigo sobre Few-Shot Learning', url: '#', description: 'Paper acadêmico sobre a técnica.' }
@@ -85,10 +85,10 @@ export const courses: Course[] = [
           },
           { 
             id: 'l2_2', 
-            title: 'Construindo um Copiloto com Contexto', 
+            title: 'Construindo um Guia Socrático com Contexto', 
             type: 'article', 
             duration: 45, 
-            content: 'Esta lição prática guia você na construção de um chatbot que mantém o contexto da conversa. Você aprenderá a gerenciar o histórico de diálogo para criar interações mais naturais e úteis. Usaremos os conceitos das lições anteriores para criar um chatbot de atendimento ao cliente.',
+            content: 'Esta lição prática guia você na construção de um chatbot que não apenas lembra, mas desafia. Você aprenderá a gerenciar o histórico de diálogo para criar interações que forçam a profundidade e a consistência do pensamento. Usaremos os conceitos das lições anteriores para criar um chatbot que treina a equipe de vendas.',
             complementaryMaterials: [
               { type: 'tool', name: 'Genkit', url: '#', description: 'Toolkit de IA da Google.' },
             ]
@@ -100,8 +100,8 @@ export const courses: Course[] = [
   {
     id: 'c2',
     title: 'Design de Interfaces para IA',
-    description: 'Aprenda a desenhar as pontes entre humanos e a inteligência artificial. Crie experiências que sejam claras, mágicas e intuitivas.',
-    longDescription: 'O design para IA é uma nova fronteira. Nesta jornada, você aprenderá a criar experiências de usuário que constroem confiança, comunicando com clareza os poderes e limites da inteligência. Usando o Figma, você vai projetar as faces de chatbots, painéis de análise e sistemas de recomendação, focando em traduzir o complexo em algo belo e simples.',
+    description: 'Modele a ponte entre a mente humana e a inteligência artificial. Crie experiências que traduzem o complexo em intuição.',
+    longDescription: 'Design para IA não é sobre desenhar telas, é sobre esculpir a confiança. Nesta jornada, você construirá o modelo mental para criar produtos de IA que se sentem como uma extensão da mente do usuário. Aprenda a comunicar os poderes e os limites da inteligência, transformando o complexo em algo magicamente intuitivo.',
     tools: ['Figma', 'Miro', 'React', 'Component-Driven Design'],
     image: '/img/des-curso-destaque.jpg',
     mobileImage: '/img/des-curso-vertical.jpg',
@@ -112,7 +112,7 @@ export const courses: Course[] = [
     modules: [
       {
         id: 'm3',
-        title: 'Módulo 1: Fundamentos do Design para IA',
+        title: 'Módulo 1: Forjando a Confiança do Usuário',
         lessons: [
           { id: 'l3_1', title: 'Princípios de UX para IA', type: 'article', duration: 20, content: 'Explore os princípios fundamentais para projetar boas experiências com IA, incluindo explicabilidade, controle do usuário e gerenciamento de expectativas. Entender esses princípios é essencial para criar produtos de IA que as pessoas confiem e gostem de usar.' },
           { id: 'l3_2', title: 'Prototipando um Chatbot no Figma', type: 'video', duration: 35, content: 'Uma introdução prática ao design e prototipagem de uma interface de chatbot no Figma. Abordaremos como projetar fluxos de conversa, estados de mensagem (enviando, recebido, erro) e como criar um protótipo interativo para testar a experiência do usuário antes do desenvolvimento.' },
@@ -122,9 +122,9 @@ export const courses: Course[] = [
   },
   {
     id: 'c3',
-    title: 'Marketing com um Copiloto de IA',
-    description: 'Deixe a IA ser seu copiloto estratégico. Descubra como usar a inteligência para criar e escalar suas campanhas de marketing.',
-    longDescription: 'Descubra como a Inteligência Artificial está iniciando uma revolução no marketing. Esta jornada mostra como usar seu copiloto de IA para gerar textos para anúncios, decifrar dados de mercado em grande escala, comandar o SEO e personalizar a conversa com cada cliente. Suas decisões de marketing nunca mais serão as mesmas.',
+    title: 'Marketing com um Guia de IA',
+    description: 'Construa o modelo mental do seu cliente. Use a IA não para automatizar, mas para entender o comportamento humano em uma escala sem precedentes.',
+    longDescription: 'Marketing de sucesso é um reflexo de um profundo modelo mental sobre o comportamento humano. Nesta forja, você usará a IA não como uma ferramenta de automação, mas como um microscópio para a psicologia do consumidor. Lute com os dados, construa hipóteses e forje uma intuição sobre o mercado que nenhuma análise superficial pode oferecer.',
     tools: ['Google Analytics', 'HubSpot', 'ChatGPT', 'Midjourney'],
     image: '/img/programador-curso-destaque.jpg',
     mobileImage: '/img/programador-curso-vertical.jpg',
@@ -135,7 +135,7 @@ export const courses: Course[] = [
     modules: [
         {
           id: 'm4',
-          title: 'Módulo 1: Geração de Conteúdo com IA',
+          title: 'Módulo 1: Forjando Conteúdo com IA',
           lessons: [
             { id: 'l4_1', title: 'Criando Posts para Blog com IA', type: 'article', duration: 15, content: 'Esta lição mostra como usar geradores de texto de IA para criar rascunhos de posts para blogs. Aprenderemos a criar prompts eficazes para definir o tom, o público e as palavras-chave, e como refinar o conteúdo gerado para garantir qualidade e originalidade.' },
             { id: 'l4_2', title: 'Análise de Sentimento em Mídias Sociais', type: 'video', duration: 40, content: 'Aprenda a usar APIs de IA para analisar o sentimento em comentários de mídias sociais. Este vídeo aborda como coletar dados e usar a IA para classificar automaticamente os comentários como positivos, negativos ou neutros, fornecendo insights valiosos sobre a percepção da sua marca.' },

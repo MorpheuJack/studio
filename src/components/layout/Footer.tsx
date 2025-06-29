@@ -21,7 +21,7 @@ export function Footer() {
               </span>
             </Link>
             <p className="text-sm text-muted-foreground">
-              O palco onde a conversa com a inteligência redefine o futuro do conhecimento.
+              O ginásio onde você aprende a pensar, forjando modelos mentais para dominar o futuro.
             </p>
             <div className="mt-6 flex space-x-6">
               <Link href="#" aria-label="Twitter">
@@ -64,7 +64,7 @@ export function Footer() {
               <div className="col-span-2 text-center sm:col-span-1 sm:text-left">
                 <h3 className="font-headline text-lg font-semibold text-foreground">Junte-se à Revolução</h3>
                 <p className="mt-4 text-sm text-muted-foreground">
-                  Seja o primeiro a saber sobre novas jornadas, ideias e o futuro do nosso movimento.
+                  Seja o primeiro a saber sobre novas forjas, ideias e o futuro do nosso movimento.
                 </p>
                 <form className="mt-4 flex w-full max-w-sm items-center gap-2">
                   <Input type="email" placeholder="seu@email.com" className="flex-1" />

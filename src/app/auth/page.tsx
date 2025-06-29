@@ -81,9 +81,9 @@ export default function AuthPage() {
         <TabsContent value="login">
           <Card>
             <CardHeader>
-              <CardTitle>Bem-vindo(a) de volta, Pioneiro(a)!</CardTitle>
+              <CardTitle>Bem-vindo(a) de volta à Forja</CardTitle>
               <CardDescription>
-                Continue sua conversa com o futuro. O conhecimento aguarda.
+                Continue a luta contra o conhecimento frágil. A maestria aguarda.
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -100,7 +100,7 @@ export default function AuthPage() {
                 </div>
                 <Button type="submit" className="w-full" disabled={loading}>
                   {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                  Entrar
+                  Entrar na Forja
                 </Button>
               </form>
             </CardContent>
@@ -109,9 +109,9 @@ export default function AuthPage() {
         <TabsContent value="register">
           <Card>
             <CardHeader>
-              <CardTitle>Junte-se à Revolução</CardTitle>
+              <CardTitle>Junte-se aos Artesãos do Pensamento</CardTitle>
               <CardDescription>
-                Torne-se um pioneiro. Comece sua jornada para dominar o futuro do conhecimento.
+                Torne-se um pioneiro. Comece sua jornada para forjar modelos mentais e dominar o futuro.
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -133,7 +133,7 @@ export default function AuthPage() {
                 </div>
                 <Button type="submit" className="w-full" disabled={loading}>
                   {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                  Cadastrar
+                  Construir Minha Mente
                 </Button>
               </form>
             </CardContent>

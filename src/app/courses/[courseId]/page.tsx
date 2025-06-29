@@ -76,19 +76,19 @@ export default function CourseDetailPage() {
                         </div>
                         <div className="flex items-center gap-2">
                             <BarChart className="h-4 w-4" />
-                            <span>{totalLessons} aulas</span>
+                            <span>{totalLessons} desafios</span>
                         </div>
                     </div>
                     <p className="mt-4 text-base text-white/80 line-clamp-3 md:mt-6 md:text-lg">{course.longDescription}</p>
                     <div className="mt-8 flex flex-wrap items-center gap-4">
                          {enrolled ? (
                           <Button size="lg" onClick={handleContinue}>
-                            Continuar a Conversa
+                            Continuar na Forja
                           </Button>
                           ) : (
                           <>
                             <Button size="lg" onClick={handleEnroll}>
-                              Inicie a Jornada. É Gratuito.
+                              Entre na Forja. É Gratuito.
                             </Button>
                              {course.previewVideoUrl && (
                                 <Dialog>
@@ -149,7 +149,7 @@ export default function CourseDetailPage() {
                         Seu Arsenal de Criação
                       </h2>
                       <p className="mt-4 text-lg text-muted-foreground">
-                        Domine o arsenal que os pioneiros usam. Aqui, você não aprende sobre tecnologia, você a comanda.
+                        Domine o arsenal que os artesãos usam. Aqui, você não aprende sobre tecnologia, você a comanda.
                       </p>
                     </div>
                     <div className="grid grid-cols-2 gap-x-8 gap-y-4">
@@ -168,10 +168,10 @@ export default function CourseDetailPage() {
                 <section>
                     <div className="text-center mb-12">
                       <h2 className="font-headline text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-                        O Mapa da Sua Jornada
+                        O Mapa da Sua Forja
                       </h2>
                       <p className="mt-3 text-lg text-muted-foreground max-w-2xl mx-auto">
-                        Cada módulo é um novo capítulo na sua conversa com o conhecimento. Veja o mapa do seu despertar.
+                        Cada módulo é um novo desafio para o seu intelecto. Veja o mapa da sua jornada para a maestria.
                       </p>
                     </div>
                     <div className="mx-auto max-w-3xl">
