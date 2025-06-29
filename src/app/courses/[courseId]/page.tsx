@@ -60,7 +60,7 @@ export default function CourseDetailPage() {
         <div className="absolute inset-0 bg-black/60" />
         
         <div className="container relative mx-auto h-full px-4 sm:px-6 lg:px-8">
-            <div className="relative z-10 flex h-full flex-col justify-end pb-16 text-white md:pb-28">
+            <div className="relative z-10 flex h-full flex-col justify-end pb-24 text-white md:pb-36">
                 <div className="max-w-3xl">
                     <p className="font-headline text-lg font-bold text-primary">#{course.category}</p>
                     <h1
