@@ -5,7 +5,7 @@ import { z } from 'zod';
 
 type AssistantState = {
   success: boolean;
-  newMessage?: { role: 'assistant'; content: string };
+  newMessage?: { role: 'assistant'; content: string; audioUrl?: string };
   error?: string;
 };
 
@@ -41,7 +41,7 @@ export async function askAssistantAction(prevState: AssistantState | undefined, 
     });
     
     if (result?.aiResponse) {
-      return { success: true, newMessage: { role: 'assistant', content: result.aiResponse } };
+      return { success: true, newMessage: { role: 'assistant', content: result.aiResponse, audioUrl: result.audioUrl } };
     } else {
       return { success: false, error: 'Não foi possível gerar uma resposta.' };
     }

@@ -10,6 +10,7 @@
 
 import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
+import { generateSpeech } from './tts-flow';
 
 const ChatHistoryItemSchema = z.object({
   role: z.enum(['user', 'assistant']),
@@ -26,6 +27,7 @@ export type CourseAssistantInput = z.infer<typeof CourseAssistantInputSchema>;
 
 const CourseAssistantOutputSchema = z.object({
   aiResponse: z.string().describe("A resposta do copiloto de IA para o aluno."),
+  audioUrl: z.string().optional().describe("A URL de dados de áudio da resposta de IA."),
 });
 export type CourseAssistantOutput = z.infer<typeof CourseAssistantOutputSchema>;
 
@@ -66,12 +68,23 @@ A resposta deve nascer na mente do aluno, forjada pela sua orientação. Comece.
         prompt: input.userMessage,
         system: systemPrompt,
         output: {
-          schema: CourseAssistantOutputSchema,
+          schema: z.object({ aiResponse: z.string() }),
         },
       });
 
-      if (output) {
-        return output;
+      if (output?.aiResponse) {
+        let audioUrl: string | undefined;
+        try {
+            const speech = await generateSpeech(output.aiResponse);
+            audioUrl = speech.media;
+        } catch (e) {
+            console.error("Error generating speech:", e);
+            // Não bloqueie a resposta se o TTS falhar
+        }
+        return { 
+            aiResponse: output.aiResponse, 
+            audioUrl: audioUrl
+        };
       }
     } catch (e) {
       console.error("Error generating AI response:", e);
