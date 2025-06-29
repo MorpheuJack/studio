@@ -1,3 +1,4 @@
+
 "use client";
 
 import Link from "next/link";
@@ -35,7 +36,7 @@ const fullLogoText = "Revolução Cognitiva";
 
 export function Header() {
   const pathname = usePathname();
-  const { isAuthenticated, user, logout } = useAuth();
+  const { isAuthenticated, user, logout, loading } = useAuth();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   
   const [hasMounted, setHasMounted] = useState(false);
@@ -82,11 +83,11 @@ export function Header() {
     return name.substring(0, 2);
   }
   
-  const isHeaderOpaque = scrolled;
+  const isHeaderOpaque = scrolled || isLessonPage;
 
   const authContent = (
     <>
-      {!hasMounted ? (
+      {(!hasMounted || loading) ? (
         <div className="h-9 w-9 bg-muted rounded-full animate-pulse" />
       ) : isAuthenticated && user ? (
         <DropdownMenu>
@@ -153,53 +154,50 @@ export function Header() {
     </>
   );
 
-  if (isLessonPage) {
-    return (
-      <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur-sm">
-        <div className="container flex h-14 items-center justify-between">
-          <Link href="/courses" aria-label="Voltar para os cursos">
-            <BrainCircuit className="h-6 w-6 text-primary" />
-          </Link>
-          <div>{authContent}</div>
-        </div>
-      </header>
-    );
-  }
-
   return (
     <header className={cn(
       "sticky top-0 z-50 w-full transition-all duration-300",
-      isHeaderOpaque 
-        ? "border-b border-border/40 bg-background/95 backdrop-blur-sm supports-[backdrop-filter]:bg-background/60"
+      isHeaderOpaque
+        ? "border-b border-border/40 bg-card/95 backdrop-blur-sm supports-[backdrop-filter]:bg-card/60"
         : "border-b border-transparent",
-      hidden ? "-translate-y-full" : "translate-y-0"
+      hidden && !isLessonPage ? "-translate-y-full" : "translate-y-0"
     )}>
-      <div className="container flex h-14 items-center md:grid md:grid-cols-3">
-        <div className="flex items-center justify-start md:flex-1">
-            <Link href="/" className="flex items-center space-x-2">
+      <div className="container flex h-14 items-center">
+        <div className={cn(
+          "flex items-center",
+          isLessonPage ? "justify-start" : "justify-start md:flex-1"
+        )}>
+            <Link href={isLessonPage ? "/courses" : "/"} className="flex items-center space-x-2">
               <BrainCircuit className="h-6 w-6 text-primary" />
-              <span className="font-bold font-headline hidden md:block">
-                {fullLogoText}
-              </span>
+              {!isLessonPage && (
+                <span className="font-bold font-headline hidden md:block">
+                  {fullLogoText}
+                </span>
+              )}
             </Link>
         </div>
         
-        <nav className="hidden items-center justify-center space-x-8 text-sm font-medium md:flex">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className={cn(
-                "transition-colors hover:text-primary",
-                pathname.startsWith(link.href) ? "text-primary font-semibold" : "text-muted-foreground"
-              )}
-            >
-              {link.label}
-            </Link>
-          ))}
-        </nav>
+        {!isLessonPage && (
+          <nav className="hidden items-center justify-center space-x-8 text-sm font-medium md:flex">
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={cn(
+                  "transition-colors hover:text-primary",
+                  pathname.startsWith(link.href) ? "text-primary font-semibold" : "text-muted-foreground"
+                )}
+              >
+                {link.label}
+              </Link>
+            ))}
+          </nav>
+        )}
 
-        <div className="flex flex-1 items-center justify-end">
+        <div className={cn(
+          "flex items-center",
+          isLessonPage ? "ml-auto" : "flex-1 justify-end"
+        )}>
           <div className="hidden md:block">
             {authContent}
           </div>
@@ -239,7 +237,7 @@ export function Header() {
 
                 <div className="mt-auto">
                    <Separator className="my-6" />
-                   {!hasMounted ? (
+                   {(!hasMounted || loading) ? (
                       <div className="h-10 w-full bg-muted rounded-md animate-pulse" />
                     ) : isAuthenticated && user ? (
                       <div className="flex flex-col gap-4">
