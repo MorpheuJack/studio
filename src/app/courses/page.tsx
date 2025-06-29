@@ -31,7 +31,7 @@ export default function CoursesPage() {
 
   return (
     <>
-      <section className="relative bg-muted -mt-14 h-[500px] flex items-center justify-center text-center overflow-hidden border-b">
+      <section className="relative bg-muted -mt-14 h-screen min-h-[700px] flex items-center justify-center text-center overflow-hidden border-b">
         <div className="absolute inset-0">
           <video
             autoPlay
