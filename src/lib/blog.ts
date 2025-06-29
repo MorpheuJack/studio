@@ -199,6 +199,7 @@ Essa é uma ferramenta poderosa emprestada de Charlie Munger. Em vez de pergunta
 **5. A Pergunta da Analogia Distante: "Qual é a conexão entre isso e [um domínio completamente diferente]?"**
 
 Force a criação de pontes neurais inesperadas. "Mostre-me a conexão entre a estratégia de enxame de um formigueiro e uma estratégia de marketing de guerrilha para uma startup de tecnologia. Quais são os princípios operacionais compartilhados?" Isso treina sua mente para ver padrões universais, a base de modelos mentais verdadeiramente poderosos.`,
+    audioUrl: '/audio/5-dicas-para-forjar-modelos-mentais.wav',
   },
   {
     slug: 'como-a-ia-esta-mudando-o-marketing',
@@ -227,6 +228,7 @@ Ferramentas de IA podem analisar milhares de páginas de concorrentes e resultad
 Use a IA para gerar dezenas de variações de texto e imagens para seus anúncios no Google, Facebook e outras plataformas. Isso permite testes A/B em uma escala que seria impossível manualmente, otimizando rapidamente para os criativos de melhor desempenho e maximizando seu ROI.
 
 A adoção dessas ferramentas não se trata de substituir os profissionais de marketing, mas de aumentar suas capacidades. A IA cuida da análise de dados em grande escala, liberando os humanos para se concentrarem no que fazem de melhor: estratégia, criatividade e construção de relacionamentos.`,
+    audioUrl: '/audio/como-a-ia-esta-mudando-o-marketing.wav',
   },
 ];
 

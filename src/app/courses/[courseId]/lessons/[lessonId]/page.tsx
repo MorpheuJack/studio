@@ -5,7 +5,7 @@ import { notFound, useParams } from 'next/navigation';
 import { useAuth } from '@/context/AuthContext';
 import { getLessonByIds } from '@/lib/courses';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { Loader2, Lock, Heart, Share2, Eye, Signal, Clock, BrainCircuit } from 'lucide-react';
+import { Loader2, Lock, Heart, Share2, Eye, Signal, Clock, BrainCircuit, Volume2 } from 'lucide-react';
 import type { Course, Module, Lesson } from '@/lib/courses';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
@@ -100,6 +100,22 @@ export default function LessonPage() {
                       <span>{lesson.duration} min duration</span>
                   </div>
               </div>
+              
+              {lesson.audioUrl && (
+                <Card className="my-6 bg-muted/50">
+                    <CardContent className="p-4 flex items-center gap-4">
+                        <div className="flex-shrink-0">
+                           <Volume2 className="h-6 w-6 text-primary" />
+                        </div>
+                        <div className="w-full">
+                           <p className="text-sm font-semibold mb-2 text-muted-foreground">Ouça a narração da lição</p>
+                            <audio controls className="w-full" src={lesson.audioUrl}>
+                                Seu navegador não suporta o elemento de áudio.
+                            </audio>
+                        </div>
+                    </CardContent>
+                </Card>
+              )}
 
               <div className="prose prose-lg max-w-none text-foreground/90 dark:prose-invert">
                   <p>{lesson.content}</p>

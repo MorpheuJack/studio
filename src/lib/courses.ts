@@ -14,6 +14,7 @@ export type Lesson = {
   content: string;
   starterCode?: string;
   complementaryMaterials?: ComplementaryMaterial[];
+  audioUrl?: string;
 };
 
 export type Module = {
@@ -65,7 +66,8 @@ export const courses: Course[] = [
             complementaryMaterials: [
                 { type: 'tool', name: 'Google AI Studio', url: '#', description: 'A arena para seus primeiros desafios de prompt.' },
                 { type: 'book', name: 'The Socratic Method for AI', url: '#', description: 'Um guia sobre como questionar a máquina.' }
-            ]
+            ],
+            audioUrl: '/audio/c1-l1_1.wav',
           },
         ],
       },
@@ -82,7 +84,8 @@ export const courses: Course[] = [
             complementaryMaterials: [
                 { type: 'tool', name: 'LangChain', url: '#', description: 'Framework para desenvolvimento de aplicações com LLMs.' },
                 { type: 'pdf', name: 'Artigo sobre Few-Shot Learning', url: '#', description: 'Paper acadêmico sobre a técnica.' }
-            ]
+            ],
+            audioUrl: '/audio/c1-l2_1.wav',
           },
           { 
             id: 'l2_2', 
@@ -92,7 +95,8 @@ export const courses: Course[] = [
             content: 'Esta lição prática guia você na construção de um chatbot que não apenas lembra, mas desafia. Você aprenderá a gerenciar o histórico de diálogo para criar interações que forçam a profundidade e a consistência do pensamento. Usaremos os conceitos das lições anteriores para criar um chatbot que treina a equipe de vendas.',
             complementaryMaterials: [
               { type: 'tool', name: 'Genkit', url: '#', description: 'Toolkit de IA da Google.' },
-            ]
+            ],
+            audioUrl: '/audio/c1-l2_2.wav',
           },
           { 
             id: 'l2_3', 
@@ -157,7 +161,8 @@ decrementBtn.addEventListener('click', () => {
   count--;
   updateCounter();
 });
-`
+`,
+            audioUrl: '/audio/c1-l2_3.wav',
           },
         ],
       },
@@ -180,8 +185,8 @@ decrementBtn.addEventListener('click', () => {
         id: 'm3',
         title: 'Módulo 1: Forjando a Confiança do Usuário',
         lessons: [
-          { id: 'l3_1', title: 'Princípios de UX para IA', type: 'article', duration: 20, content: 'Explore os princípios fundamentais para projetar boas experiências com IA, incluindo explicabilidade, controle do usuário e gerenciamento de expectativas. Entender esses princípios é essencial para criar produtos de IA que as pessoas confiem e gostem de usar.' },
-          { id: 'l3_2', title: 'Prototipando um Chatbot no Figma', type: 'video', duration: 35, content: 'Uma introdução prática ao design e prototipagem de uma interface de chatbot no Figma. Abordaremos como projetar fluxos de conversa, estados de mensagem (enviando, recebido, erro) e como criar um protótipo interativo para testar a experiência do usuário antes do desenvolvimento.' },
+          { id: 'l3_1', title: 'Princípios de UX para IA', type: 'article', duration: 20, content: 'Explore os princípios fundamentais para projetar boas experiências com IA, incluindo explicabilidade, controle do usuário e gerenciamento de expectativas. Entender esses princípios é essencial para criar produtos de IA que as pessoas confiem e gostem de usar.', audioUrl: '/audio/c2-l3_1.wav' },
+          { id: 'l3_2', title: 'Prototipando um Chatbot no Figma', type: 'video', duration: 35, content: 'Uma introdução prática ao design e prototipagem de uma interface de chatbot no Figma. Abordaremos como projetar fluxos de conversa, estados de mensagem (enviando, recebido, erro) e como criar um protótipo interativo para testar a experiência do usuário antes do desenvolvimento.', audioUrl: '/audio/c2-l3_2.wav' },
         ],
       },
     ],
@@ -203,8 +208,8 @@ decrementBtn.addEventListener('click', () => {
           id: 'm4',
           title: 'Módulo 1: Forjando Conteúdo com IA',
           lessons: [
-            { id: 'l4_1', title: 'Criando Posts para Blog com IA', type: 'article', duration: 15, content: 'Esta lição mostra como usar geradores de texto de IA para criar rascunhos de posts para blogs. Aprenderemos a criar prompts eficazes para definir o tom, o público e as palavras-chave, e como refinar o conteúdo gerado para garantir qualidade e originalidade.' },
-            { id: 'l4_2', title: 'Análise de Sentimento em Mídias Sociais', type: 'video', duration: 40, content: 'Aprenda a usar APIs de IA para analisar o sentimento em comentários de mídias sociais. Este vídeo aborda como coletar dados e usar a IA para classificar automaticamente os comentários como positivos, negativos ou neutros, fornecendo insights valiosos sobre a percepção da sua marca.' },
+            { id: 'l4_1', title: 'Criando Posts para Blog com IA', type: 'article', duration: 15, content: 'Esta lição mostra como usar geradores de texto de IA para criar rascunhos de posts para blogs. Aprenderemos a criar prompts eficazes para definir o tom, o público e as palavras-chave, e como refinar o conteúdo gerado para garantir qualidade e originalidade.', audioUrl: '/audio/c3-l4_1.wav' },
+            { id: 'l4_2', title: 'Análise de Sentimento em Mídias Sociais', type: 'video', duration: 40, content: 'Aprenda a usar APIs de IA para analisar o sentimento em comentários de mídias sociais. Este vídeo aborda como coletar dados e usar a IA para classificar automaticamente os comentários como positivos, negativos ou neutros, fornecendo insights valiosos sobre a percepção da sua marca.', audioUrl: '/audio/c3-l4_2.wav' },
         ],
       },
     ]

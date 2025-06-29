@@ -7,7 +7,8 @@ import Image from 'next/image';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import React from 'react';
 import { CourseCta } from '@/components/blog/CourseCta';
-import { ChevronDown } from 'lucide-react';
+import { ChevronDown, Volume2 } from 'lucide-react';
+import { Card, CardContent } from '@/components/ui/card';
 
 export default function BlogPostPage() {
   const params = useParams<{ slug: string }>();
@@ -102,12 +103,19 @@ export default function BlogPostPage() {
                     </div>
                   )}
                   {post.audioUrl && (
-                    <div key="audio-player" className="my-6">
-                      <p className="text-sm font-medium mb-2 text-center">Ouça o panorama da entrevista de Elon Musk</p>
-                      <audio controls className="w-full" src={post.audioUrl}>
-                        Seu navegador não suporta o elemento de áudio.
-                      </audio>
-                    </div>
+                    <Card key="audio-player" className="my-6 bg-muted/50">
+                        <CardContent className="p-4 flex items-center gap-4">
+                            <div className="flex-shrink-0">
+                               <Volume2 className="h-6 w-6 text-primary" />
+                            </div>
+                            <div className="w-full">
+                                <p className="text-sm font-semibold mb-2 text-muted-foreground">Ouça este artigo</p>
+                                <audio controls className="w-full" src={post.audioUrl}>
+                                    Seu navegador não suporta o elemento de áudio.
+                                </audio>
+                            </div>
+                        </CardContent>
+                    </Card>
                   )}
                 </div>
               )}
