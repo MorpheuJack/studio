@@ -31,9 +31,9 @@ export default function LessonPage() {
 
   if (loading) {
     return (
-      <div className="container mx-auto flex h-[calc(100vh-12rem)] items-center justify-center">
+      <div className="container mx-auto flex h-screen items-center justify-center">
         <Loader2 className="h-8 w-8 animate-spin text-primary" />
-        <p className="mt-4 text-muted-foreground">Verificando acesso...</p>
+        <p className="ml-4 text-muted-foreground">Verificando acesso...</p>
       </div>
     );
   }
@@ -130,19 +130,19 @@ export default function LessonPage() {
 
   // Not Authenticated View
   return (
-    <div className="container mx-auto">
-        <Card className="flex flex-col h-[calc(100vh-12rem)] shadow-lg items-center justify-center text-center p-8">
+    <div className="flex flex-1 items-center justify-center p-8">
+        <div className="flex flex-col items-center justify-center text-center">
             <Lock className="h-16 w-16 text-primary mb-4" />
-            <CardTitle className="font-headline text-3xl md:text-4xl">A Forja Aguarda</CardTitle>
-            <CardDescription className="mt-2 text-lg text-muted-foreground max-w-md">
+            <h1 className="font-headline text-3xl md:text-4xl font-bold">A Forja Aguarda</h1>
+            <p className="mt-2 text-lg text-muted-foreground max-w-md">
                 Apenas artesãos registrados podem entrar nesta forja. Faça login ou junte-se ao movimento para construir sua maestria.
-            </CardDescription>
-            <div className="mt-8 flex gap-4">
+            </p>
+            <div className="mt-8 flex gap-4 justify-center">
                 <Button asChild size="lg">
                     <Link href="/auth">Entrar / Juntar-se à Revolução</Link>
                 </Button>
             </div>
-        </Card>
+        </div>
     </div>
   );
 }
