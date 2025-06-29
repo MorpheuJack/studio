@@ -10,8 +10,8 @@ import type { Course, Module, Lesson } from '@/lib/courses';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { LiveChat } from '@/components/courses/LiveChat';
 import { RelatedVideos } from '@/components/courses/RelatedVideos';
+import { CourseLessonNavigator } from '@/components/courses/CourseLessonNavigator';
 
 export default function LessonPage() {
   const params = useParams<{ courseId: string, lessonId: string }>();
@@ -104,7 +104,7 @@ export default function LessonPage() {
 
           {/* Right Sidebar */}
           <div className="lg:col-span-1 xl:col-span-1 space-y-6">
-              <LiveChat />
+              <CourseLessonNavigator course={course} />
               <RelatedVideos course={course} currentLessonId={lesson.id} />
           </div>
         </div>
