@@ -69,9 +69,6 @@ export function Header() {
     return name.substring(0, 2);
   }
   
-  // This flag ensures that we only render auth-related content on the client after hydration.
-  const showAuthContent = hasMounted && !loading;
-  
   // The header is transparent on all pages when at the top of the page,
   // and becomes opaque on scroll.
   const isHeaderOpaque = scrolled;
@@ -110,8 +107,7 @@ export function Header() {
 
         <div className="flex flex-1 items-center justify-end">
           <div className="hidden md:block">
-            {/* We wait for the component to mount and auth to load before showing user-specific content */}
-            {!showAuthContent ? (
+            {(!hasMounted || loading) ? (
               <div className="h-9 w-9 bg-muted rounded-full animate-pulse" />
             ) : isAuthenticated && user ? (
               <DropdownMenu>
@@ -212,7 +208,7 @@ export function Header() {
 
                 <div className="mt-auto">
                    <Separator className="my-6" />
-                   {!showAuthContent ? (
+                   {(!hasMounted || loading) ? (
                       <div className="h-10 w-full bg-muted rounded-md animate-pulse" />
                     ) : isAuthenticated && user ? (
                       <div className="flex flex-col gap-4">

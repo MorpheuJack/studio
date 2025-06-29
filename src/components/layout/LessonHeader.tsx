@@ -35,8 +35,6 @@ export function LessonHeader() {
     return name.substring(0, 2);
   }
   
-  const showAuthContent = hasMounted && !loading;
-
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur-sm">
       <div className="container flex h-14 items-center justify-between">
@@ -45,7 +43,7 @@ export function LessonHeader() {
         </Link>
 
         <div>
-          {!showAuthContent ? (
+          {(!hasMounted || loading) ? (
             <div className="h-9 w-9 rounded-full bg-muted animate-pulse" />
           ) : isAuthenticated && user ? (
             <DropdownMenu>
