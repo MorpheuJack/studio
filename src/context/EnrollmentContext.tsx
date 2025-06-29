@@ -23,9 +23,9 @@ export const EnrollmentProvider = ({ children }: { children: ReactNode }) => {
       return newSet;
     });
     toast({
-      title: "Enrollment Successful!",
-      description: `You have successfully enrolled in "${course.title}".`,
-      variant: "default",
+      title: "Inscrição bem-sucedida!",
+      description: `Você se inscreveu com sucesso no curso "${course.title}".`,
+      variant: "success",
     });
   };
 
