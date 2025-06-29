@@ -66,9 +66,18 @@ export default function BlogPostPage() {
           <p className="text-xs font-semibold text-white/70">Role para ler</p>
           <ChevronDown className="h-6 w-6 animate-bounce text-white" />
         </div>
+
+        {/* Desktop scroll indicator */}
+        <a 
+          href="#content" 
+          aria-label="Rolar para o conteúdo" 
+          className="absolute bottom-10 right-10 z-20 hidden h-16 w-16 items-center justify-center rounded-full border-2 border-white/20 bg-black/30 text-white backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:border-white/40 hover:bg-black/50 md:flex group"
+        >
+          <ChevronDown className="h-8 w-8 transition-transform group-hover:translate-y-1" />
+        </a>
       </header>
 
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div id="content" className="container mx-auto px-4 sm:px-6 lg:px-8">
          <article className="my-12 rounded-xl border bg-card p-8 shadow-lg md:p-12">
             <div className="prose prose-lg dark:prose-invert mx-auto max-w-4xl
               prose-headings:font-headline prose-headings:tracking-tight prose-headings:text-foreground
