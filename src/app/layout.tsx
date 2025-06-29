@@ -1,10 +1,9 @@
 import type {Metadata} from 'next';
 import './globals.css';
 import { Toaster } from "@/components/ui/toaster";
-import { Header } from '@/components/layout/Header';
-import { Footer } from '@/components/layout/Footer';
 import { EnrollmentProvider } from '@/context/EnrollmentContext';
 import { AuthProvider } from '@/context/AuthContext';
+import { AppLayout } from '@/components/layout/AppLayout';
 
 export const metadata: Metadata = {
   title: 'Revolução Cognitiva - Educação Inteligente',
@@ -28,13 +27,9 @@ export default function RootLayout({
         <div className="fixed inset-0 -z-10 h-full w-full bg-background bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,hsl(var(--primary)/0.1),transparent_50%)]" />
         <AuthProvider>
           <EnrollmentProvider>
-            <div className="flex min-h-screen flex-col">
-              <Header />
-              <main className="flex-1">
-                {children}
-              </main>
-              <Footer />
-            </div>
+            <AppLayout>
+              {children}
+            </AppLayout>
             <Toaster />
           </EnrollmentProvider>
         </AuthProvider>
