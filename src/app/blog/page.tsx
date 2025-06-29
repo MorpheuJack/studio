@@ -1,7 +1,7 @@
 import React from 'react';
 import { getAllPosts } from '@/lib/blog';
 import { PostCard } from '@/components/blog/PostCard';
-import { BlogSearch } from '@/components/blog/BlogSearch';
+import { BlogFilters } from '@/components/blog/BlogFilters';
 import { BlogHero } from '@/components/blog/BlogHero';
 import {
   Carousel,
@@ -17,31 +17,48 @@ export default function BlogPage({
 }: {
   searchParams?: {
     q?: string;
+    category?: string;
   };
 }) {
   const allPosts = getAllPosts();
   const searchTerm = searchParams?.q || '';
+  const category = searchParams?.category || 'All';
 
   const filteredPosts = allPosts.filter(post => {
-    return post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    const matchesCategory = category === 'All' || post.category === category;
+    const matchesSearch = post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
            post.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
            post.content.toLowerCase().includes(searchTerm.toLowerCase());
+    return matchesCategory && matchesSearch;
   });
-
+  
+  const categories = ['All', ...new Set(allPosts.map(p => p.category))];
+  
+  const displayCategories = categories.map(cat => {
+    return {
+      value: cat,
+      label: cat === 'All' ? 'Todas' : cat
+    };
+  });
+  
   return (
     <>
       <BlogHero />
       <div className="container mx-auto px-4 py-16 sm:px-6 lg:px-8">
         <div className="mb-12 text-center">
             <h2 className="font-headline text-3xl font-bold text-foreground sm:text-4xl">
-              Todos os Artigos
+              {category === 'All' ? 'Todos os Artigos' : `Artigos sobre ${category}`}
             </h2>
             <p className="mt-3 text-lg text-muted-foreground">
               Explore nossos insights mais recentes sobre IA, design, marketing e muito mais.
             </p>
         </div>
         
-        <BlogSearch initialSearch={searchTerm} />
+        <BlogFilters 
+          categories={displayCategories}
+          initialCategory={category}
+          initialSearch={searchTerm}
+        />
 
         {filteredPosts.length > 0 ? (
            <Carousel
