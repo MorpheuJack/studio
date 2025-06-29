@@ -22,7 +22,7 @@ import {
   TabsList,
   TabsTrigger,
 } from "@/components/ui/tabs";
-import { Loader2 } from 'lucide-react';
+import { Loader2, BrainCircuit } from 'lucide-react';
 
 const loginSchema = z.object({
   email: z.string().email({ message: "Por favor, insira um e-mail válido." }),
@@ -72,7 +72,11 @@ export default function AuthPage() {
   };
 
   return (
-    <div className="container mx-auto flex flex-1 items-center justify-center">
+    <div className="container mx-auto flex flex-1 flex-col items-center justify-center p-4 sm:p-6 lg:p-8">
+      <div className="mb-8 flex flex-col items-center gap-4 text-center">
+        <BrainCircuit className="h-12 w-12 text-primary" />
+        <h1 className="sr-only">Revolução Cognitiva</h1>
+      </div>
       <Tabs defaultValue="login" className="w-full max-w-md">
         <TabsList className="grid w-full grid-cols-2">
           <TabsTrigger value="login">Login</TabsTrigger>

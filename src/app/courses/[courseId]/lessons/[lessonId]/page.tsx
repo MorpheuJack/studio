@@ -130,7 +130,10 @@ export default function LessonPage() {
 
   // Not Authenticated View
   return (
-    <div className="flex flex-1 items-center justify-center p-8">
+    <div className="flex flex-1 flex-col items-center justify-center p-8">
+        <div className="mb-8">
+            <BrainCircuit className="h-12 w-12 text-primary" />
+        </div>
         <div className="flex flex-col items-center justify-center text-center">
             <Lock className="h-16 w-16 text-primary mb-4" />
             <h1 className="font-headline text-3xl md:text-4xl font-bold">A Forja Aguarda</h1>
