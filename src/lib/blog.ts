@@ -21,7 +21,7 @@ export const posts: Post[] = [
   {
     slug: 'alerta-de-musk-sobre-o-big-bang-da-inteligencia',
     title: 'Superinteligência em 2025: O Alerta de Musk Sobre o Big Bang da Inteligência e o Risco de Aniquilação',
-    description: 'Explorando a previsão de Elon Musk sobre a chegada da superinteligência já em 2025.',
+    description: 'Elon Musk prevê a chegada da superinteligência já em 2025. Uma conversa sobre o futuro da consciência e o despertar de uma nova era.',
     author: 'Revolução Cognitiva',
     authorAvatar: 'https://placehold.co/100x100.png',
     date: '27 de Julho, 2025',
@@ -168,8 +168,8 @@ Estou preocupado com o paradoxo de Fermi: por que não vimos alienígenas? Talve
   },
   {
     slug: '5-dicas-para-escrever-prompts-melhores',
-    title: '5 Dicas para Escrever Prompts de IA Melhores',
-    description: 'Desbloqueie todo o potencial dos modelos de linguagem com estas dicas práticas para engenharia de prompt.',
+    title: '5 Dicas para Dominar a Conversa com a IA',
+    description: 'Desperte o poder máximo do seu copiloto de IA com estas 5 chaves para uma conversa perfeita.',
     author: 'Liam Chen',
     authorAvatar: 'https://placehold.co/100x100.png',
     date: '10 de Julho, 2024',
@@ -202,8 +202,8 @@ Seu primeiro prompt raramente é o melhor. Veja a primeira resposta como um rasc
   },
   {
     slug: 'como-a-ia-esta-mudando-o-marketing',
-    title: 'Como a IA Está (Realmente) Mudando o Marketing Digital',
-    description: 'Deixe o hype de lado e veja as aplicações práticas da IA que os profissionais de marketing podem usar hoje.',
+    title: 'Marketing e IA: A Revolução da Conversa com o Cliente',
+    description: 'A passividade no marketing morreu. Veja como a IA está transformando a maneira como as marcas conversam com seus clientes.',
     author: 'Aisha Khan',
     authorAvatar: 'https://placehold.co/100x100.png',
     date: '5 de Julho, 2024',

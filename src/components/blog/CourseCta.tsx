@@ -44,17 +44,17 @@ export function CourseCta({ category }: CourseCtaProps) {
         <CardHeader className="p-8">
           <div className="flex items-center gap-4 text-primary">
             <GraduationCap className="h-8 w-8" />
-            <h2 className="font-headline text-3xl font-bold">Aprofunde Seus Conhecimentos</h2>
+            <h2 className="font-headline text-3xl font-bold">Continue a Conversa</h2>
           </div>
           <CardDescription className="text-lg mt-2">
-            Gostou deste artigo? Temos cursos completos que podem levar suas habilidades para o próximo nível.
+            Gostou desta ideia? Temos jornadas completas que transformam inspiração em domínio.
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4 px-8 pt-0 pb-8">
           {recommendedCourses.length > 0 && (
             <div>
               <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-muted-foreground">
-                Cursos Recomendados para Você
+                Jornadas Recomendadas
               </h3>
               <div className="space-y-4">
                 {recommendedCourses.map(course => (
@@ -66,7 +66,7 @@ export function CourseCta({ category }: CourseCtaProps) {
            <div className="pt-4">
              <Button asChild size="lg" className="w-full sm:w-auto">
                 <Link href="/courses/all">
-                  Explorar Todos os Cursos
+                  Explorar Todas as Jornadas
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
              </Button>

@@ -2,20 +2,20 @@ import { Sparkle } from "lucide-react";
 
 const features = [
   {
-    title: "Aprendizado Prático",
-    description: "Projetos do mundo real que constroem seu portfólio desde o primeiro dia.",
+    title: "Construa o Futuro, Hoje",
+    description: "Cada linha de código que você escreve, cada modelo que você treina, é um passo real. Você não apenas aprende, você cria provas tangíveis do seu domínio.",
   },
   {
-    title: "Comunidade Exclusiva",
-    description: "Conecte-se com outros inovadores, mentores e profissionais da indústria.",
+    title: "Junte-se aos Pioneiros",
+    description: "Você não está sozinho. Conecte-se com uma comunidade de mentes curiosas, visionários e mentores que, como você, estão construindo o amanhã.",
   },
   {
-    title: "Assistente de IA Pessoal",
-    description: "Seu próprio tutor de IA para tirar dúvidas e acelerar seu aprendizado 24/7.",
+    title: "Seu Copiloto de IA",
+    description: "Imagine um tutor genial, disponível 24/7, que responde, desafia e acelera seu despertar. Esse é o seu copiloto pessoal em cada jornada.",
   },
   {
-    title: "Conteúdo de Ponta",
-    description: "Currículo sempre atualizado com as últimas tendências e ferramentas do mercado.",
+    title: "Conversas com o Amanhã",
+    description: "O futuro não espera. Nossas jornadas são vivas, sempre evoluindo para que você domine as tecnologias que estão definindo o próximo capítulo da humanidade.",
   },
 ];
 
@@ -37,10 +37,10 @@ export function FeaturesSection() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="font-headline text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-            O Que Nos Coloca à Frente
+            A Nossa Promessa
           </h2>
           <p className="mt-4 text-lg text-muted-foreground">
-            Nosso ecossistema de aprendizado amplifica cada passo da sua jornada, ajudando você a se lançar e escalar sem necessidade de experiência prévia.
+            Aprender não é assistir. É conversar. Nosso palco foi construído para provocar o diálogo entre você e o conhecimento, com um copiloto de IA ao seu lado.
           </p>
         </div>
 

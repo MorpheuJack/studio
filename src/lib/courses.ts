@@ -41,8 +41,8 @@ export const courses: Course[] = [
   {
     id: 'c1',
     title: 'Engenharia de Prompt para Gemini',
-    description: 'Aprenda a criar prompts eficazes para extrair o máximo dos modelos de IA generativa.',
-    longDescription: 'Este curso mergulha na arte e ciência da engenharia de prompt. Você aprenderá a estruturar suas perguntas e instruções para obter respostas precisas, criativas e contextualmente relevantes dos modelos de linguagem mais avançados do Google, como o Gemini. Abordaremos desde técnicas básicas até estratégias avançadas para tarefas complexas.',
+    description: 'Inicie a conversa com a inteligência. Aprenda a arte de criar prompts que despertam o poder máximo do seu copiloto de IA.',
+    longDescription: 'Nesta jornada, você não vai apenas aprender a escrever perguntas. Você vai dominar a arte da conversa com a inteligência. Descubra como estruturar instruções que geram respostas precisas, criativas e mágicas dos mais avançados modelos de linguagem do Google. Dos fundamentos ao domínio de técnicas complexas, esta é sua porta de entrada para comandar a IA.',
     tools: ['Gemini', 'Google AI Studio', 'Next.js', 'TypeScript'],
     image: '/img/p-curso-destaque.jpg',
     mobileImage: '/img/pr-curso-vertical.jpg',
@@ -53,7 +53,7 @@ export const courses: Course[] = [
     modules: [
       {
         id: 'm1',
-        title: 'Módulo 1: Fundamentos da IA Generativa',
+        title: 'Módulo 1: Fundamentos da Conversa com IA',
         lessons: [
           { 
             id: 'l1_1', 
@@ -70,7 +70,7 @@ export const courses: Course[] = [
       },
       {
         id: 'm2',
-        title: 'Módulo 2: Técnicas Avançadas',
+        title: 'Módulo 2: Dominando a Arte da Conversa',
         lessons: [
           { 
             id: 'l2_1', 
@@ -85,7 +85,7 @@ export const courses: Course[] = [
           },
           { 
             id: 'l2_2', 
-            title: 'Construindo um Chatbot com Contexto', 
+            title: 'Construindo um Copiloto com Contexto', 
             type: 'article', 
             duration: 45, 
             content: 'Esta lição prática guia você na construção de um chatbot que mantém o contexto da conversa. Você aprenderá a gerenciar o histórico de diálogo para criar interações mais naturais e úteis. Usaremos os conceitos das lições anteriores para criar um chatbot de atendimento ao cliente.',
@@ -99,9 +99,9 @@ export const courses: Course[] = [
   },
   {
     id: 'c2',
-    title: 'Design de Interfaces para Aplicações de IA',
-    description: 'Aprenda a projetar interfaces intuitivas e eficazes para produtos baseados em IA.',
-    longDescription: 'O design para IA apresenta desafios e oportunidades únicas. Este curso ensina como criar experiências de usuário que sejam transparentes, confiáveis e que comuniquem claramente as capacidades e limitações da IA. Usando o Figma, você projetará interfaces para chatbots, ferramentas de análise de dados e sistemas de recomendação, focando em como apresentar informações complexas de forma simples.',
+    title: 'Design de Interfaces para IA',
+    description: 'Aprenda a desenhar as pontes entre humanos e a inteligência artificial. Crie experiências que sejam claras, mágicas e intuitivas.',
+    longDescription: 'O design para IA é uma nova fronteira. Nesta jornada, você aprenderá a criar experiências de usuário que constroem confiança, comunicando com clareza os poderes e limites da inteligência. Usando o Figma, você vai projetar as faces de chatbots, painéis de análise e sistemas de recomendação, focando em traduzir o complexo em algo belo e simples.',
     tools: ['Figma', 'Miro', 'React', 'Component-Driven Design'],
     image: '/img/des-curso-destaque.jpg',
     mobileImage: '/img/des-curso-vertical.jpg',
@@ -122,9 +122,9 @@ export const courses: Course[] = [
   },
   {
     id: 'c3',
-    title: 'Marketing Digital Otimizado com IA',
-    description: 'Use ferramentas de IA para automatizar e otimizar suas campanhas de marketing.',
-    longDescription: 'Descubra como a Inteligência Artificial está revolucionando o marketing digital. Este curso ensina a usar ferramentas de IA para gerar copy para anúncios, analisar dados de mercado em larga escala, otimizar campanhas de SEO e personalizar a comunicação com o cliente. Você aprenderá a tomar decisões de marketing mais inteligentes e baseadas em dados com o poder da IA.',
+    title: 'Marketing com um Copiloto de IA',
+    description: 'Deixe a IA ser seu copiloto estratégico. Descubra como usar a inteligência para criar e escalar suas campanhas de marketing.',
+    longDescription: 'Descubra como a Inteligência Artificial está iniciando uma revolução no marketing. Esta jornada mostra como usar seu copiloto de IA para gerar textos para anúncios, decifrar dados de mercado em grande escala, comandar o SEO e personalizar a conversa com cada cliente. Suas decisões de marketing nunca mais serão as mesmas.',
     tools: ['Google Analytics', 'HubSpot', 'ChatGPT', 'Midjourney'],
     image: '/img/programador-curso-destaque.jpg',
     mobileImage: '/img/programador-curso-vertical.jpg',

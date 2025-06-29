@@ -56,15 +56,15 @@ export default function BootcampsPage() {
          <div className="container relative z-10 mx-auto px-4 py-24 sm:py-32 lg:py-40 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
             <h1 className="font-headline text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl">
-              Bootcamps & Desafios
+              Arenas de Domínio
             </h1>
             <p className="mt-6 text-lg text-muted-foreground max-w-2xl mx-auto">
-              Acelere sua carreira com nossos bootcamps intensivos e teste suas habilidades em desafios com prêmios incríveis.
+              Aqui é onde o conhecimento se torna maestria. Mergulhe em jornadas intensivas e prove seu domínio em desafios com recompensas reais.
             </p>
              <div className="mt-10 flex items-center justify-center">
                 <Button asChild size="lg">
                     <Link href="#bootcamps">
-                        Ver Bootcamps
+                        Explorar Arenas
                         <ArrowRight className="ml-2 h-5 w-5" />
                     </Link>
                 </Button>
@@ -78,10 +78,10 @@ export default function BootcampsPage() {
         <section id="bootcamps">
           <div className="mb-12 text-center">
             <h2 className="font-headline text-3xl font-bold sm:text-4xl">
-              Bootcamps em Destaque
+              Jornadas Intensivas
             </h2>
             <p className="mt-3 text-lg text-muted-foreground">
-              Programas intensivos para você dominar as tecnologias mais demandadas.
+              Conversas aceleradas para você dominar as tecnologias que definem o presente.
             </p>
           </div>
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
@@ -98,10 +98,10 @@ export default function BootcampsPage() {
                  <Trophy className="h-8 w-8" />
              </div>
             <h2 className="font-headline text-3xl font-bold sm:text-4xl">
-              Desafios Atuais com Premiações
+              Prove seu Domínio
             </h2>
             <p className="mt-3 text-lg text-muted-foreground">
-              Mostre seu talento, resolva problemas reais e ganhe prêmios.
+              A teoria acabou. Mostre seu talento, construa o real e seja recompensado.
             </p>
           </div>
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2">

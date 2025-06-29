@@ -68,7 +68,7 @@ export default function LessonPage() {
                   <div className="flex items-center gap-2">
                       <Button onClick={() => setAssistantOpen(true)}>
                           <BrainCircuit className="mr-2 h-4 w-4" />
-                          Pergunte ao Professor
+                          Converse com seu Copiloto
                       </Button>
                   </div>
               </div>
@@ -115,13 +115,13 @@ export default function LessonPage() {
     <div className="container mx-auto">
         <Card className="flex flex-col h-[calc(100vh-12rem)] shadow-lg items-center justify-center text-center p-8">
             <Lock className="h-16 w-16 text-primary mb-4" />
-            <CardTitle className="font-headline text-3xl md:text-4xl">Conteúdo Bloqueado</CardTitle>
+            <CardTitle className="font-headline text-3xl md:text-4xl">A Conversa Aguarda</CardTitle>
             <CardDescription className="mt-2 text-lg text-muted-foreground max-w-md">
-                Você precisa estar logado para acessar esta lição. Crie uma conta ou faça login para continuar sua jornada de aprendizado.
+                Apenas pioneiros registrados podem entrar nesta conversa. Faça login ou junte-se ao movimento para continuar sua jornada.
             </CardDescription>
             <div className="mt-8 flex gap-4">
                 <Button asChild size="lg">
-                    <Link href="/auth">Login / Cadastro</Link>
+                    <Link href="/auth">Entrar / Juntar-se à Revolução</Link>
                 </Button>
             </div>
         </Card>

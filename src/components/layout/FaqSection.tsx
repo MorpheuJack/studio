@@ -8,23 +8,23 @@ import {
 const faqData = [
   {
     question: "O que é a Revolução Cognitiva?",
-    answer: "A Revolução Cognitiva é uma plataforma de aprendizado de ponta focada em Inteligência Artificial e tecnologias emergentes. Nossos cursos são projetados para serem práticos, imersivos e guiados por um assistente de IA para uma experiência de aprendizado única.",
+    answer: "Revolução Cognitiva é o nosso movimento. Um palco onde o aprendizado passivo morre e a conversa com a inteligência começa. Usamos um copiloto de IA como a ponte mágica entre o conhecimento e a sua mente.",
   },
   {
-    question: "Para quem são os cursos?",
-    answer: "Nossos cursos são para todos: desde iniciantes curiosos que querem dar os primeiros passos em tecnologia até profissionais experientes que buscam aprimorar suas habilidades com as ferramentas mais recentes do mercado.",
+    question: "Este movimento é para mim?",
+    answer: "É para os curiosos. Os pioneiros. Aqueles que se recusam a ser espectadores. Seja você um iniciante buscando o despertar ou um profissional pronto para dominar o futuro, este é o seu lugar.",
   },
   {
-    question: "Preciso pagar para me inscrever?",
-    answer: "Atualmente, todos os nossos cursos são oferecidos gratuitamente. Acreditamos no acesso democrático à educação de alta qualidade para capacitar o maior número possível de pessoas.",
+    question: "Qual o preço da revolução?",
+    answer: "A verdadeira revolução é o acesso. Nosso conhecimento é aberto e gratuito. Nossa promessa é despertar o maior número de mentes possível, sem barreiras.",
   },
   {
-    question: "Que tipo de suporte eu recebo como aluno?",
-    answer: "Além do conteúdo de alta qualidade, cada curso vem com o 'Professor AI', seu assistente de IA pessoal disponível 24/7 para tirar dúvidas, explicar conceitos complexos e mantê-lo motivado durante sua jornada de aprendizado.",
+    question: "Como funciona a conversa?",
+    answer: "Você nunca está sozinho. Em cada jornada, o 'Professor AI', seu copiloto pessoal, está ao seu lado. Ele está disponível 24/7 para responder, provocar e acelerar seu domínio.",
   },
   {
     question: "Posso obter um certificado?",
-    answer: "Sim, ao concluir com sucesso um curso, você receberá um certificado de conclusão para validar suas novas habilidades, que pode ser adicionado ao seu currículo e perfil do LinkedIn.",
+    answer: "Sim. Ao final de cada jornada, você não recebe apenas um certificado. Você recebe a prova do seu domínio. Uma conquista para validar suas novas habilidades e mostrar ao mundo o que você é capaz de construir.",
   },
 ];
 
@@ -34,10 +34,10 @@ export function FaqSection() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="font-headline text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-            Perguntas Frequentes
+            O Manifesto
           </h2>
           <p className="mt-4 text-lg text-muted-foreground">
-            Tem alguma dúvida? Encontre respostas para as perguntas mais comuns abaixo.
+            Perguntas não são um obstáculo. São o início da conversa. Aqui estão as respostas para as suas.
           </p>
         </div>
 

@@ -38,15 +38,15 @@ export default function AllCoursesPage({
     };
   });
   
-  const currentCategoryLabel = displayCategories.find(c => c.value === category)?.label || 'Todos os Cursos';
+  const currentCategoryLabel = displayCategories.find(c => c.value === category)?.label || 'Todas as Jornadas';
 
   return (
     <div className="container mx-auto px-4 pb-8 pt-22 sm:px-6 lg:px-8">
       <div className="mb-12 text-center">
         <h1 className="font-headline text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
-          {category === 'All' ? 'Explore Todos os Cursos' : `Cursos de ${currentCategoryLabel}`}
+          {category === 'All' ? 'Explore Todas as Jornadas' : `Jornadas de ${currentCategoryLabel}`}
         </h1>
-        <p className="mt-4 text-lg text-muted-foreground">Encontre o curso perfeito para iniciar ou avançar sua carreira em IA e tecnologia.</p>
+        <p className="mt-4 text-lg text-muted-foreground">Escolha sua conversa. Encontre a jornada perfeita para despertar seu domínio em IA e tecnologia.</p>
       </div>
 
       <CourseFilters 
@@ -63,7 +63,7 @@ export default function AllCoursesPage({
         </div>
       ) : (
         <div className="text-center py-16">
-            <p className="text-muted-foreground">Nenhum curso encontrado com seus critérios. Tente ajustar sua busca ou filtros.</p>
+            <p className="text-muted-foreground">Nenhuma jornada encontrada. A revolução aguarda sua busca.</p>
         </div>
       )}
     </div>

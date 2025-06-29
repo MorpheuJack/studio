@@ -49,7 +49,7 @@ export function ChallengeCard({ challenge }: ChallengeCardProps) {
           </div>
           <Button asChild variant="outline" className="w-full">
             <Link href={`/challenges/${challenge.id}`}>
-              Participar do Desafio
+              Aceitar o Desafio
               <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
           </Button>

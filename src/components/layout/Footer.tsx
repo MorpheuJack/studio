@@ -21,7 +21,7 @@ export function Footer() {
               </span>
             </Link>
             <p className="text-sm text-muted-foreground">
-              Sua plataforma de aprendizado para dominar a Inteligência Artificial e tecnologias do futuro.
+              O palco onde a conversa com a inteligência redefine o futuro do conhecimento.
             </p>
             <div className="mt-6 flex space-x-6">
               <Link href="#" aria-label="Twitter">
@@ -42,9 +42,9 @@ export function Footer() {
               <div className="text-center sm:text-left">
                 <h3 className="font-headline text-lg font-semibold text-foreground">Navegação</h3>
                 <ul className="mt-4 space-y-3 text-sm">
-                  <li><Link href="/courses/all" className="text-muted-foreground transition-colors hover:text-primary">Todos os Cursos</Link></li>
+                  <li><Link href="/courses/all" className="text-muted-foreground transition-colors hover:text-primary">Todas as Jornadas</Link></li>
                   <li><Link href="/blog" className="text-muted-foreground transition-colors hover:text-primary">Blog</Link></li>
-                  <li><Link href="#faq" className="text-muted-foreground transition-colors hover:text-primary">FAQ</Link></li>
+                  <li><Link href="#faq" className="text-muted-foreground transition-colors hover:text-primary">Manifesto</Link></li>
                   <li><Link href="#" className="text-muted-foreground transition-colors hover:text-primary">Sobre Nós</Link></li>
                 </ul>
               </div>
@@ -53,7 +53,7 @@ export function Footer() {
               <div className="text-center sm:text-left">
                 <h3 className="font-headline text-lg font-semibold text-foreground">Recursos</h3>
                 <ul className="mt-4 space-y-3 text-sm">
-                  <li><Link href="#" className="text-muted-foreground transition-colors hover:text-primary">Comunidade</Link></li>
+                  <li><Link href="/community" className="text-muted-foreground transition-colors hover:text-primary">Comunidade</Link></li>
                   <li><Link href="#" className="text-muted-foreground transition-colors hover:text-primary">Suporte</Link></li>
                   <li><Link href="#" className="text-muted-foreground transition-colors hover:text-primary">Termos de Serviço</Link></li>
                   <li><Link href="#" className="text-muted-foreground transition-colors hover:text-primary">Política de Privacidade</Link></li>
@@ -62,9 +62,9 @@ export function Footer() {
 
               {/* Column 4: Newsletter */}
               <div className="col-span-2 text-center sm:col-span-1 sm:text-left">
-                <h3 className="font-headline text-lg font-semibold text-foreground">Fique por Dentro</h3>
+                <h3 className="font-headline text-lg font-semibold text-foreground">Junte-se à Revolução</h3>
                 <p className="mt-4 text-sm text-muted-foreground">
-                  Receba as últimas novidades sobre IA e aprendizado, direto no seu email.
+                  Seja o primeiro a saber sobre novas jornadas, ideias e o futuro do nosso movimento.
                 </p>
                 <form className="mt-4 flex w-full max-w-sm items-center gap-2">
                   <Input type="email" placeholder="seu@email.com" className="flex-1" />

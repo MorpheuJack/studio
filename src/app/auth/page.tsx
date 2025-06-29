@@ -81,9 +81,9 @@ export default function AuthPage() {
         <TabsContent value="login">
           <Card>
             <CardHeader>
-              <CardTitle>Bem-vindo(a) de volta!</CardTitle>
+              <CardTitle>Bem-vindo(a) de volta, Pioneiro(a)!</CardTitle>
               <CardDescription>
-                Acesse sua conta para continuar sua jornada de aprendizado.
+                Continue sua conversa com o futuro. O conhecimento aguarda.
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -109,9 +109,9 @@ export default function AuthPage() {
         <TabsContent value="register">
           <Card>
             <CardHeader>
-              <CardTitle>Crie sua conta</CardTitle>
+              <CardTitle>Junte-se à Revolução</CardTitle>
               <CardDescription>
-                Comece a explorar o futuro do aprendizado com Revolução Cognitiva.
+                Torne-se um pioneiro. Comece sua jornada para dominar o futuro do conhecimento.
               </CardDescription>
             </CardHeader>
             <CardContent>

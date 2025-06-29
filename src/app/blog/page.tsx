@@ -47,10 +47,10 @@ export default function BlogPage({
       <div className="container mx-auto px-4 py-16 sm:px-6 lg:px-8">
         <div className="mb-12 text-center">
             <h2 className="font-headline text-3xl font-bold text-foreground sm:text-4xl">
-              {category === 'All' ? 'Todos os Artigos' : `Artigos sobre ${category}`}
+              {category === 'All' ? 'O Manifesto' : `Ideias sobre ${category}`}
             </h2>
             <p className="mt-3 text-lg text-muted-foreground">
-              Explore nossos insights mais recentes sobre IA, design, marketing e muito mais.
+              Nossas ideias, visões e a crônica da revolução do conhecimento.
             </p>
         </div>
         
@@ -80,7 +80,7 @@ export default function BlogPage({
             </Carousel>
         ) : (
           <div className="text-center py-16">
-            <p className="text-muted-foreground">Nenhum artigo encontrado com seus critérios de busca.</p>
+            <p className="text-muted-foreground">Nenhuma ideia encontrada com seus critérios.</p>
           </div>
         )}
       </div>

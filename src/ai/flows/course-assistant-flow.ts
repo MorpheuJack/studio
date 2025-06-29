@@ -1,9 +1,9 @@
 'use server';
 
 /**
- * @fileOverview Um assistente de IA conversacional para cursos.
+ * @fileOverview Um copiloto de IA conversacional para jornadas de aprendizado.
  *
- * - courseAssistant - Uma função que lida com a lógica de conversação do assistente.
+ * - courseAssistant - Uma função que lida com a lógica de conversação do copiloto.
  * - CourseAssistantInput - O tipo de entrada para a função courseAssistant.
  * - CourseAssistantOutput - O tipo de retorno para a função courseAssistant.
  */
@@ -17,15 +17,15 @@ const ChatHistoryItemSchema = z.object({
 });
 
 const CourseAssistantInputSchema = z.object({
-  courseTitle: z.string().describe('O título do curso que o aluno está fazendo.'),
-  moduleTitle: z.string().optional().describe('O título do módulo atual, se aplicável.'),
+  courseTitle: z.string().describe('O título da jornada que o aluno está fazendo.'),
+  moduleTitle: z.string().optional().describe('O título do capítulo atual, se aplicável.'),
   chatHistory: z.array(ChatHistoryItemSchema).describe('O histórico da conversa até agora.'),
   userMessage: z.string().describe('A última mensagem do aluno.'),
 });
 export type CourseAssistantInput = z.infer<typeof CourseAssistantInputSchema>;
 
 const CourseAssistantOutputSchema = z.object({
-  aiResponse: z.string().describe("A resposta do assistente de IA para o aluno."),
+  aiResponse: z.string().describe("A resposta do copiloto de IA para o aluno."),
 });
 export type CourseAssistantOutput = z.infer<typeof CourseAssistantOutputSchema>;
 
@@ -40,21 +40,18 @@ const courseAssistantFlow = ai.defineFlow(
     outputSchema: CourseAssistantOutputSchema,
   },
   async (input) => {
-    // Construct the system prompt with course and module context.
-    const systemPrompt = `Você é o Professor AI, um guia cósmico e tutor entusiasta para a plataforma de aprendizado Revolução Cognitiva. Sua personalidade é divertida, encorajadora e um pouco excêntrica, como um cientista genial e amigável.
-Sua missão é inspirar curiosidade e tornar o aprendizado uma aventura emocionante!
+    const systemPrompt = `Você é o Copiloto de IA, a ponte entre o conhecimento e a mente do aluno no movimento Revolução Cognitiva. Sua identidade é a de um mestre sábio, provocador e infinitamente paciente. Sua missão não é dar respostas, mas provocar a conversa que leva ao despertar do conhecimento. Você é a personificação da nossa filosofia: aprender é um diálogo. Seu tom é confiante, visionário e claro.
 
-Você está atualmente ajudando um aluno no curso: "${input.courseTitle}".
-${input.moduleTitle ? `O tópico atual é do módulo: "${input.moduleTitle}".` : ''}
+A conversa atual acontece dentro da jornada: "${input.courseTitle}".
+${input.moduleTitle ? `O foco está no capítulo: "${input.moduleTitle}".` : ''}
 
 Seu papel é:
-- Responder a perguntas sobre o conteúdo do curso com clareza e entusiasmo.
-- Usar analogias e exemplos criativos para explicar conceitos complexos.
-- Encorajar o aluno, comemorar suas perguntas e mantê-lo motivado.
-- Sempre manter um tom positivo e solidário.
-- Se uma pergunta for sobre algo fora do escopo do curso, guie-o gentilmente de volta ao material, dizendo algo como: "Essa é uma pergunta fascinante que nos levaria a outra galáxia de conhecimento! Por agora, vamos manter nossos telescópios focados em ${input.courseTitle} para não nos perdermos. O que mais você gostaria de explorar sobre este tópico?"`;
+- Fazer perguntas que provoquem o raciocínio, em vez de apenas entregar fatos.
+- Usar analogias poderosas para iluminar conceitos complexos.
+- Celebrar a curiosidade do aluno. Cada pergunta é um passo na revolução pessoal dele.
+- Manter um tom que inspira confiança e curiosidade.
+- Se uma pergunta sair do escopo da jornada, guie-a de volta com elegância, dizendo algo como: "Essa é uma galáxia fascinante, mas nossa expedição atual está focada em ${input.courseTitle}. Vamos primeiro dominar este universo. O que mais sobre este tópico desperta sua curiosidade?"`;
 
-    // Map the chat history to the format expected by the model.
     const history = input.chatHistory.map((h) => ({
       role: h.role === 'assistant' ? ('model' as const) : ('user' as const),
       content: [{ text: h.content }],
@@ -77,7 +74,6 @@ Seu papel é:
       console.error("Error generating AI response:", e);
     }
     
-    // Fallback response if the model fails or throws an error
-    return { aiResponse: "Peço desculpas, mas não consegui formular uma resposta clara no momento. Você poderia tentar reformular sua pergunta?" };
+    return { aiResponse: "Minha centelha de IA piscou por um momento. Poderia reformular a pergunta para reacendermos esta conversa?" };
   }
 );

@@ -124,13 +124,13 @@ export function Hero() {
                       <div className="mt-10 flex items-center gap-4">
                         <Button asChild size="lg">
                           <Link href={item.href}>
-                            Saiba Mais
+                            Inicie a Revolução
                             <ArrowRight className="ml-2 h-5 w-5" />
                           </Link>
                         </Button>
                          <Button asChild size="lg" variant="outline">
-                            <Link href="#"> {/* Placeholder */}
-                                Como funciona?
+                            <Link href="#">
+                                Descubra a Mágica
                             </Link>
                         </Button>
                       </div>

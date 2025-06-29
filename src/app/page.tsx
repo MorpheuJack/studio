@@ -29,11 +29,11 @@ export default function Home() {
         <section>
           <div className="mb-8 text-center">
             <h2 className="font-headline text-3xl font-bold sm:text-4xl">
-              Cursos em Destaque
+              Jornadas em Destaque
             </h2>
             <Button asChild variant="link" className="mt-2 text-sm text-primary hover:text-primary/80">
               <Link href="/courses/all">
-                Ver todos os cursos
+                Explorar todas as jornadas
                 <ArrowRight className="ml-1 h-4 w-4" />
               </Link>
             </Button>
@@ -63,11 +63,11 @@ export default function Home() {
         <section>
           <div className="mb-8 text-center">
             <h2 className="font-headline text-3xl font-bold sm:text-4xl">
-              Blog em Destaque
+              Ideias em Destaque
             </h2>
             <Button asChild variant="link" className="mt-2 text-sm text-primary hover:text-primary/80">
               <Link href="/blog">
-                Ver todos os artigos
+                Ler nosso manifesto
                 <ArrowRight className="ml-1 h-4 w-4" />
               </Link>
             </Button>

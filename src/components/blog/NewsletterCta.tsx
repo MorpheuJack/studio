@@ -11,16 +11,16 @@ export function NewsletterCta() {
             <CardHeader className="p-8 md:p-12">
               <div className="flex items-center gap-4 text-primary">
                   <Mail className="h-8 w-8" />
-                  <CardTitle className="font-headline text-3xl font-bold">Fique por Dentro</CardTitle>
+                  <CardTitle className="font-headline text-3xl font-bold">Junte-se à Revolução</CardTitle>
               </div>
               <CardDescription className="mt-2 text-lg">
-                Assine nossa newsletter e receba as últimas novidades sobre IA, tecnologia e aprendizado diretamente no seu email.
+                Receba o manifesto do futuro em seu email. Novas jornadas, ideias e os próximos passos do nosso movimento.
               </CardDescription>
             </CardHeader>
             <CardContent className="flex items-center p-8 pt-0 md:py-12">
               <form className="flex w-full max-w-sm items-center space-x-2">
                 <Input type="email" placeholder="seu@email.com" className="flex-1" />
-                <Button type="submit">Inscrever-se</Button>
+                <Button type="submit">Assinar</Button>
               </form>
             </CardContent>
         </div>

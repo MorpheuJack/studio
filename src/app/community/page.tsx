@@ -81,16 +81,16 @@ export default function CommunityPage() {
          <div className="container relative z-10 mx-auto px-4 py-24 sm:py-32 lg:py-40 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
             <h1 className="font-headline text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl">
-              Galeria da Comunidade
+              O Estúdio dos Pioneiros
             </h1>
             <p className="mt-6 text-lg text-muted-foreground max-w-2xl mx-auto">
-              Explore os projetos, portfólios e demoreels incríveis criados pelos membros da nossa comunidade. Inspire-se e conecte-se.
+              Isto não é uma galeria. É a prova. Explore os projetos e as criações nascidas neste movimento. Inspire-se. Conecte-se com outros pioneiros.
             </p>
              <div className="mt-10 flex items-center justify-center">
                 <Button asChild size="lg">
                     <Link href="#"> {/* Placeholder for upload page */}
                         <UploadCloud className="mr-2 h-5 w-5" />
-                        Envie seu Projeto
+                        Mostre sua Criação
                     </Link>
                 </Button>
             </div>

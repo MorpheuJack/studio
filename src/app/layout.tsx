@@ -6,8 +6,8 @@ import { AuthProvider } from '@/context/AuthContext';
 import { AppLayout } from '@/components/layout/AppLayout';
 
 export const metadata: Metadata = {
-  title: 'Revolução Cognitiva - Educação Inteligente',
-  description: 'Sua plataforma de aprendizado para dominar a Inteligência Artificial e tecnologias do futuro.',
+  title: 'Revolução Cognitiva - O Despertar do Conhecimento',
+  description: 'Participe do movimento que está redefinindo o aprendizado. Aqui, a conversa com a inteligência é a chave para dominar o futuro.',
 };
 
 export default function RootLayout({

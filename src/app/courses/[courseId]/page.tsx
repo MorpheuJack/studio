@@ -83,18 +83,18 @@ export default function CourseDetailPage() {
                     <div className="mt-8 flex flex-wrap items-center gap-4">
                          {enrolled ? (
                           <Button size="lg" onClick={handleContinue}>
-                            Continuar Aprendendo
+                            Continuar a Conversa
                           </Button>
                           ) : (
                           <>
                             <Button size="lg" onClick={handleEnroll}>
-                              Inscreva-se Gratuitamente
+                              Inicie a Jornada. É Gratuito.
                             </Button>
                              {course.previewVideoUrl && (
                                 <Dialog>
                                     <DialogTrigger asChild>
                                         <Button size="lg" variant="outline">
-                                            Como funciona?
+                                            Veja a Mágica
                                         </Button>
                                     </DialogTrigger>
                                     <DialogContent className="max-w-2xl lg:max-w-4xl p-0 overflow-hidden rounded-xl">
@@ -110,7 +110,7 @@ export default function CourseDetailPage() {
                                             ></iframe>
                                         </div>
                                         <div className="p-6 space-y-4">
-                                            <DialogTitle className="font-headline text-2xl">{`Sobre o Curso: ${course.title}`}</DialogTitle>
+                                            <DialogTitle className="font-headline text-2xl">{`A Promessa: ${course.title}`}</DialogTitle>
                                             <DialogDescription className="text-base text-muted-foreground">
                                                 {course.longDescription}
                                             </DialogDescription>
@@ -131,7 +131,7 @@ export default function CourseDetailPage() {
             <div className="space-y-16 md:space-y-24">
                 <section className="relative z-10 -mt-20 sm:-mt-40 md:-mt-48">
                     <div className="rounded-2xl p-8 border border-white/10 bg-card/50 backdrop-blur-lg shadow-2xl">
-                      <h2 className="font-headline text-2xl font-bold mb-4">Destaques do Curso</h2>
+                      <h2 className="font-headline text-2xl font-bold mb-4">O Que Você Vai Dominar</h2>
                       <div className="flex flex-wrap gap-2">
                         {course.highlights.map((highlight) => (
                           <Badge key={highlight} variant="default" className="text-sm">
@@ -146,10 +146,10 @@ export default function CourseDetailPage() {
                 <section className="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-12 lg:gap-16 items-center rounded-2xl p-8 sm:p-12 border border-white/10 bg-card/50 backdrop-blur-lg">
                     <div>
                       <h2 className="font-headline text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-                        Ferramentas e Tecnologias
+                        Seu Arsenal de Criação
                       </h2>
                       <p className="mt-4 text-lg text-muted-foreground">
-                        Domine as ferramentas que o mercado de trabalho exige. Você aprenderá a usar as seguintes tecnologias na prática.
+                        Domine o arsenal que os pioneiros usam. Aqui, você não aprende sobre tecnologia, você a comanda.
                       </p>
                     </div>
                     <div className="grid grid-cols-2 gap-x-8 gap-y-4">
@@ -168,10 +168,10 @@ export default function CourseDetailPage() {
                 <section>
                     <div className="text-center mb-12">
                       <h2 className="font-headline text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-                        O que você vai aprender
+                        O Mapa da Sua Jornada
                       </h2>
                       <p className="mt-3 text-lg text-muted-foreground max-w-2xl mx-auto">
-                        Explore o currículo completo do curso, módulo por módulo.
+                        Cada módulo é um novo capítulo na sua conversa com o conhecimento. Veja o mapa do seu despertar.
                       </p>
                     </div>
                     <div className="mx-auto max-w-3xl">

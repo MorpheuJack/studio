@@ -56,15 +56,15 @@ export default function CoursesPage() {
         <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
             <h1 className="font-headline text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl">
-              Ecossistema de Aprendizado do Futuro
+              Jornadas para Dominar o Futuro
             </h1>
             <p className="mt-6 text-lg text-muted-foreground max-w-2xl mx-auto">
-              Navegue por nossas trilhas de conhecimento imersivas. Cada curso é um portal para dominar as tecnologias que moldarão o amanhã.
+              Aprender passivamente é o inimigo. Aqui, cada jornada é uma conversa interativa. Um convite para você dominar as tecnologias que estão escrevendo o amanhã.
             </p>
             <div className="mt-10 flex items-center justify-center">
                 <Button asChild size="lg">
                     <Link href="/courses/all">
-                        Explorar Todos os Cursos
+                        Explorar Todas as Jornadas
                         <ArrowRight className="ml-2 h-5 w-5" />
                     </Link>
                 </Button>
@@ -132,7 +132,7 @@ export default function CoursesPage() {
 
               <Button asChild variant="outline" className="mt-8 w-full hidden lg:flex">
                 <Link href="/courses/all">
-                  Ver Todos os Cursos
+                  Ver Todas as Jornadas
                 </Link>
               </Button>
             </div>
@@ -144,15 +144,15 @@ export default function CoursesPage() {
                 <div className="flex items-center gap-4">
                     <BookOpenCheck className="h-8 w-8 text-primary"/>
                     <div>
-                        <h2 className="font-headline text-3xl font-bold">{activeCategory === 'Todos' ? 'Todos os Cursos' : activeCategory}</h2>
+                        <h2 className="font-headline text-3xl font-bold">{activeCategory === 'Todos' ? 'Todas as Jornadas' : activeCategory}</h2>
                         <p className="text-muted-foreground">
-                            {activeCourses.length} {activeCourses.length === 1 ? 'curso disponível' : 'cursos disponíveis'}
+                            {activeCourses.length} {activeCourses.length === 1 ? 'jornada disponível' : 'jornadas disponíveis'}
                         </p>
                     </div>
                 </div>
                 <Button asChild variant="link" className="hidden sm:inline-flex">
                   <Link href={activeCategory === 'Todos' ? '/courses/all' : `/courses/all?category=${encodeURIComponent(activeCategory)}`}>
-                    {activeCategory === 'Todos' ? 'Explorar Todos' : 'Explorar Categoria'}
+                    {activeCategory === 'Todos' ? 'Explorar Todas' : 'Explorar Jornada'}
                     <ArrowRight className="ml-1 h-4 w-4" />
                   </Link>
                 </Button>

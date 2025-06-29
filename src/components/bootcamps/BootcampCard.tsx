@@ -56,7 +56,7 @@ export function BootcampCard({ bootcamp }: BootcampCardProps) {
         <CardFooter className="p-6 pt-0">
           <Button asChild className="w-full">
             <Link href={`/bootcamps/${bootcamp.id}`}>
-              Ver Detalhes
+              Entrar na Arena
               <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
           </Button>
