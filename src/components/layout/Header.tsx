@@ -71,13 +71,10 @@ export function Header() {
   
   // This flag ensures that we only render auth-related content on the client after hydration.
   const showAuthContent = hasMounted && !loading;
-
-  const isTransparentPage = ['/', '/blog', '/courses'].includes(pathname);
   
-  // The header is opaque if we are not on a transparent page or if the user has scrolled.
-  // On the server, `scrolled` is always false, so this depends only on `pathname`.
-  // On the client, `scrolled` will update after mount, triggering a re-render with the correct class.
-  const isHeaderOpaque = !isTransparentPage || scrolled;
+  // The header is transparent on all pages when at the top of the page,
+  // and becomes opaque on scroll.
+  const isHeaderOpaque = scrolled;
 
   return (
     <header className={cn(

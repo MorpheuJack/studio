@@ -41,7 +41,7 @@ export default function AllCoursesPage({
   const currentCategoryLabel = displayCategories.find(c => c.value === category)?.label || 'Todos os Cursos';
 
   return (
-    <div className="container mx-auto px-4 py-8 sm:px-6 lg:px-8">
+    <div className="container mx-auto px-4 pb-8 pt-22 sm:px-6 lg:px-8">
       <div className="mb-12 text-center">
         <h1 className="font-headline text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
           {category === 'All' ? 'Explore Todos os Cursos' : `Cursos de ${currentCategoryLabel}`}

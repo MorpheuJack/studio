@@ -20,7 +20,7 @@ export default function BlogPostPage() {
   }
 
   return (
-    <main>
+    <div className="-mt-14">
       <header className="relative w-full h-screen min-h-[700px] overflow-hidden">
         <Image
           src={post.image}
@@ -123,6 +123,6 @@ export default function BlogPostPage() {
       </div>
 
       <CourseCta category={post.category} />
-    </main>
+    </div>
   );
 }

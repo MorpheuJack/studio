@@ -32,7 +32,7 @@ export default function MyCoursesPage() {
   }
 
   return (
-    <div className="container mx-auto px-4 py-8 sm:px-6 lg:px-8">
+    <div className="container mx-auto px-4 pb-8 pt-22 sm:px-6 lg:px-8">
       <div className="mb-12">
         <h1 className="font-headline text-4xl font-bold tracking-tight text-foreground sm:text-5xl">Minha Jornada</h1>
         <p className="mt-4 text-lg text-muted-foreground">Continue sua jornada e domine novas habilidades.</p>
