@@ -1,3 +1,4 @@
+
 "use client";
 
 import { getCourseById } from '@/lib/courses';
@@ -9,6 +10,7 @@ import { Clock, BarChart, Check, Video, FileText } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import Link from 'next/link';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 
 export default function CourseDetailPage() {
   const params = useParams<{ courseId: string }>();
@@ -78,15 +80,45 @@ export default function CourseDetailPage() {
                         </div>
                     </div>
                     <p className="mt-4 text-base text-white/80 line-clamp-3 md:mt-6 md:text-lg">{course.longDescription}</p>
-                    <div className="mt-8">
+                    <div className="mt-8 flex flex-wrap items-center gap-4">
                          {enrolled ? (
                           <Button size="lg" onClick={handleContinue}>
                             Continuar Aprendendo
                           </Button>
                           ) : (
-                          <Button size="lg" onClick={handleEnroll}>
-                            Inscreva-se Gratuitamente
-                          </Button>
+                          <>
+                            <Button size="lg" onClick={handleEnroll}>
+                              Inscreva-se Gratuitamente
+                            </Button>
+                             {course.previewVideoUrl && (
+                                <Dialog>
+                                    <DialogTrigger asChild>
+                                        <Button size="lg" variant="outline">
+                                            Como funciona?
+                                        </Button>
+                                    </DialogTrigger>
+                                    <DialogContent className="max-w-4xl p-0 overflow-hidden">
+                                        <div className="aspect-video">
+                                            <iframe
+                                                className="w-full h-full"
+                                                src={course.previewVideoUrl}
+                                                title={`Prévia do curso ${course.title}`}
+                                                frameBorder="0"
+                                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                                referrerPolicy="strict-origin-when-cross-origin"
+                                                allowFullScreen
+                                            ></iframe>
+                                        </div>
+                                        <div className="p-6 space-y-4">
+                                            <DialogTitle className="font-headline text-2xl">{`Sobre o Curso: ${course.title}`}</DialogTitle>
+                                            <DialogDescription className="text-base text-muted-foreground">
+                                                {course.longDescription}
+                                            </DialogDescription>
+                                        </div>
+                                    </DialogContent>
+                                </Dialog>
+                            )}
+                          </>
                          )}
                     </div>
                 </div>
