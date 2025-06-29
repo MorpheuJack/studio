@@ -142,47 +142,6 @@ export default function CourseDetailPage() {
             </div>
           </section>
         )}
-
-        <section>
-          <div className="text-center mb-12">
-            <h2 className="font-headline text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-              O que você vai aprender
-            </h2>
-            <p className="mt-3 text-lg text-muted-foreground max-w-3xl mx-auto">
-              Explore todos os módulos e aulas que preparamos para você mergulhar de cabeça no conhecimento.
-            </p>
-          </div>
-          <div className="max-w-4xl mx-auto border rounded-xl shadow-lg overflow-hidden">
-            <Accordion type="single" collapsible className="w-full">
-              {course.modules.map((module, index) => (
-                <AccordionItem value={`item-${index}`} key={module.id} className={index === course.modules.length - 1 ? "border-b-0" : ""}>
-                  <AccordionTrigger className="text-left hover:no-underline p-6">
-                    <div className="flex items-center gap-4">
-                      <span className="text-primary font-bold text-lg">{`0${index + 1}`}</span>
-                      <span className="font-headline text-xl font-semibold">{module.title}</span>
-                    </div>
-                  </AccordionTrigger>
-                  <AccordionContent className="bg-muted/30">
-                    <ul className="space-y-1 p-6 pt-2">
-                      {module.lessons.map((lesson) => {
-                        const Icon = lesson.type === 'video' ? Video : FileText;
-                        return (
-                          <li key={lesson.id} className="flex items-center justify-between rounded-md p-4 transition-colors">
-                            <div className="flex items-center gap-4">
-                              <Icon className="h-5 w-5 text-primary" />
-                              <span className="font-medium text-foreground/90">{lesson.title}</span>
-                            </div>
-                            <span className="text-sm text-muted-foreground">{lesson.duration} min</span>
-                          </li>
-                        );
-                      })}
-                    </ul>
-                  </AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
-          </div>
-        </section>
       </main>
     </div>
   );
