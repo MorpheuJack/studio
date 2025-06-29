@@ -37,12 +37,20 @@ export default function CourseDetailPage() {
 
   return (
     <>
-      <header className="relative w-full h-screen min-h-[700px] overflow-hidden -mt-14">
+      <header className="relative w-full h-[85vh] min-h-[650px] md:h-screen md:min-h-[700px] overflow-hidden -mt-14">
         <Image
           src={course.image}
           alt={course.title}
           fill
-          className="object-cover animate-slow-zoom"
+          className="object-cover animate-slow-zoom hidden md:block"
+          data-ai-hint={course['data-ai-hint']}
+          priority
+        />
+        <Image
+          src={course.mobileImage || course.image}
+          alt={course.title}
+          fill
+          className="object-cover animate-slow-zoom md:hidden"
           data-ai-hint={course['data-ai-hint']}
           priority
         />
@@ -50,7 +58,7 @@ export default function CourseDetailPage() {
         <div className="absolute inset-0 bg-black/60" />
         
         <div className="container relative mx-auto h-full px-4 sm:px-6 lg:px-8">
-            <div className="relative z-10 flex h-full flex-col justify-end pb-20 text-white md:pb-28">
+            <div className="relative z-10 flex h-full flex-col justify-end pb-16 text-white md:pb-28">
                 <div className="max-w-3xl">
                     <p className="font-headline text-lg font-bold text-primary">#{course.category}</p>
                     <h1
@@ -69,7 +77,7 @@ export default function CourseDetailPage() {
                             <span>{totalLessons} aulas</span>
                         </div>
                     </div>
-                    <p className="mt-6 text-lg text-white/80 line-clamp-3">{course.longDescription}</p>
+                    <p className="mt-4 text-base text-white/80 line-clamp-3 md:mt-6 md:text-lg">{course.longDescription}</p>
                     <div className="mt-8">
                          {enrolled ? (
                           <Button size="lg" onClick={handleContinue}>
@@ -87,10 +95,10 @@ export default function CourseDetailPage() {
       </header>
 
       <main className="relative bg-background">
-        <div className="container mx-auto px-4 py-24 sm:px-6 lg:px-8">
-            <div className="space-y-24">
-                <section className="-mt-48 relative z-10">
-                    <div className="rounded-2xl p-8 md:p-12 border border-white/10 bg-card/50 backdrop-blur-lg shadow-2xl">
+        <div className="container mx-auto px-4 py-16 sm:py-24 sm:px-6 lg:px-8">
+            <div className="space-y-16 md:space-y-24">
+                <section className="relative z-10 -mt-36 sm:-mt-40 md:-mt-48">
+                    <div className="rounded-2xl p-8 border border-white/10 bg-card/50 backdrop-blur-lg shadow-2xl">
                       <h2 className="font-headline text-2xl font-bold mb-4">Destaques do Curso</h2>
                       <div className="flex flex-wrap gap-2">
                         {course.highlights.map((highlight) => (
@@ -103,7 +111,7 @@ export default function CourseDetailPage() {
                 </section>
 
                 {/* Tools Section */}
-                <section className="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-12 lg:gap-16 items-center rounded-2xl p-12 border border-white/10 bg-card/50 backdrop-blur-lg">
+                <section className="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-12 lg:gap-16 items-center rounded-2xl p-8 sm:p-12 border border-white/10 bg-card/50 backdrop-blur-lg">
                     <div>
                       <h2 className="font-headline text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
                         Ferramentas e Tecnologias
