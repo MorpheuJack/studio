@@ -17,7 +17,7 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { useState, useEffect } from "react";
 
 export function LessonHeader() {
-  const { isAuthenticated, user, logout, loading } = useAuth();
+  const { isAuthenticated, user, logout } = useAuth();
   const [hasMounted, setHasMounted] = useState(false);
 
   useEffect(() => {
@@ -43,7 +43,7 @@ export function LessonHeader() {
         </Link>
 
         <div>
-          {(!hasMounted || loading) ? (
+          {!hasMounted ? (
             <div className="h-9 w-9 rounded-full bg-muted animate-pulse" />
           ) : isAuthenticated && user ? (
             <DropdownMenu>

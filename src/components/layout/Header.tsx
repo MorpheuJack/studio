@@ -35,7 +35,7 @@ const fullLogoText = "Revolução Cognitiva";
 
 export function Header() {
   const pathname = usePathname();
-  const { isAuthenticated, user, logout, loading } = useAuth();
+  const { isAuthenticated, user, logout } = useAuth();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   
   const [hasMounted, setHasMounted] = useState(false);
@@ -115,7 +115,7 @@ export function Header() {
 
         <div className="flex flex-1 items-center justify-end">
           <div className="hidden md:block">
-            {(!hasMounted || loading) ? (
+            {!hasMounted ? (
               <div className="h-9 w-9 bg-muted rounded-full animate-pulse" />
             ) : isAuthenticated && user ? (
               <DropdownMenu>
@@ -216,7 +216,7 @@ export function Header() {
 
                 <div className="mt-auto">
                    <Separator className="my-6" />
-                   {(!hasMounted || loading) ? (
+                   {!hasMounted ? (
                       <div className="h-10 w-full bg-muted rounded-md animate-pulse" />
                     ) : isAuthenticated && user ? (
                       <div className="flex flex-col gap-4">
