@@ -43,7 +43,7 @@ export default function LessonPage() {
       <div className="container mx-auto px-4 pb-8 pt-22 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 gap-8">
           {/* Main Content */}
-          <div className="lg:col-span-2 xl:col-span-3 space-y-6">
+          <div className="lg:col-span-2 xl:col-span-3 space-y-6 order-2 lg:order-1">
             {/* Player / IDE */}
             {lesson.type === 'video' && (
               <div className="aspect-video w-full overflow-hidden rounded-xl bg-muted shadow-lg">
@@ -117,7 +117,7 @@ export default function LessonPage() {
           </div>
 
           {/* Right Sidebar */}
-          <div className="lg:col-span-1 xl:col-span-1 space-y-6">
+          <div className="lg:col-span-1 xl:col-span-1 space-y-6 order-1 lg:order-2">
               <CourseLessonNavigator course={course} />
               <RelatedVideos lesson={lesson} />
           </div>
