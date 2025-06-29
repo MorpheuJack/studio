@@ -43,25 +43,27 @@ export default function LessonPage() {
       <div className="container mx-auto px-4 pb-8 pt-22 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 gap-8">
           {/* Main Content */}
-          <div className="lg:col-span-2 xl:col-span-3 space-y-6 order-2 lg:order-1">
+          <div className="lg:col-span-2 xl:col-span-3 flex flex-col space-y-6 order-2 lg:order-1">
             {/* Player / IDE */}
-            {lesson.type === 'video' && (
-              <div className="aspect-video w-full overflow-hidden rounded-xl bg-muted shadow-lg">
-                {/* This would be a real video player */}
-                <div className="w-full h-full flex items-center justify-center">
-                  <p className="text-muted-foreground">Reprodutor de vídeo</p>
+            <div className="order-2 lg:order-1">
+              {lesson.type === 'video' && (
+                <div className="aspect-video w-full overflow-hidden rounded-xl bg-muted shadow-lg">
+                  {/* This would be a real video player */}
+                  <div className="w-full h-full flex items-center justify-center">
+                    <p className="text-muted-foreground">Reprodutor de vídeo</p>
+                  </div>
                 </div>
-              </div>
-            )}
-            
-            {lesson.type === 'code' && lesson.starterCode && (
-              <div className="h-[70vh] min-h-[600px] w-full">
-                <IntegratedIDE starterCode={lesson.starterCode} />
-              </div>
-            )}
+              )}
+              
+              {lesson.type === 'code' && lesson.starterCode && (
+                <div className="h-[70vh] min-h-[600px] w-full">
+                  <IntegratedIDE starterCode={lesson.starterCode} />
+                </div>
+              )}
+            </div>
 
             {/* Lesson Details */}
-            <div className="space-y-4">
+            <div className="space-y-4 order-1 lg:order-2">
               <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                   <div className="flex items-center gap-3">
                       <Avatar className="h-12 w-12">
