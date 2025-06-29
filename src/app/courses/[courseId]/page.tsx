@@ -164,31 +164,6 @@ export default function CourseDetailPage() {
                     </div>
                 </section>
 
-                {/* Preview Section */}
-                {course.previewVideoUrl && (
-                  <section>
-                    <div className="text-center mb-8">
-                      <h2 className="font-headline text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-                        Assista a uma prévia
-                      </h2>
-                      <p className="mt-3 text-lg text-muted-foreground max-w-2xl mx-auto">
-                        Tenha um gostinho do que você vai aprender. Assista a uma aula introdutória e comece sua jornada.
-                      </p>
-                    </div>
-                    <div className="aspect-video">
-                      <iframe
-                        className="w-full h-full rounded-2xl border shadow-2xl shadow-primary/10"
-                        src={course.previewVideoUrl}
-                        title={`Prévia do curso ${course.title}`}
-                        frameBorder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        referrerPolicy="strict-origin-when-cross-origin"
-                        allowFullScreen
-                      ></iframe>
-                    </div>
-                  </section>
-                )}
-
                 {/* What You'll Learn Section */}
                 <section>
                     <div className="text-center mb-12">
