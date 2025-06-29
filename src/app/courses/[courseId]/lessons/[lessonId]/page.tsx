@@ -14,6 +14,7 @@ import { RelatedVideos } from '@/components/courses/RelatedVideos';
 import { CourseLessonNavigator } from '@/components/courses/CourseLessonNavigator';
 import { useAssistant } from '@/context/AssistantContext';
 import { IntegratedIDE } from '@/components/courses/IntegratedIDE';
+import { AudioPlayer } from '@/components/ui/audio-player';
 
 export default function LessonPage() {
   const params = useParams<{ courseId: string, lessonId: string }>();
@@ -102,19 +103,16 @@ export default function LessonPage() {
               </div>
               
               {lesson.audioUrl && (
-                <Card className="my-6 overflow-hidden">
-                  <CardContent className="p-4 sm:p-6 flex items-center gap-4">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 flex-shrink-0">
-                      <Volume2 className="h-6 w-6 text-primary" />
-                    </div>
-                    <div className="w-full">
-                      <p className="text-sm font-semibold mb-1 text-muted-foreground">Ouça a narração da lição</p>
-                      <audio controls className="w-full h-10" src={lesson.audioUrl}>
-                        Seu navegador não suporta o elemento de áudio.
-                      </audio>
-                    </div>
-                  </CardContent>
-                </Card>
+                <div className="my-6">
+                    <AudioPlayer
+                        src={lesson.audioUrl}
+                        imageUrl={course.image}
+                        imageAiHint={course['data-ai-hint']}
+                        title={lesson.title}
+                        artist="Revolução Cognitiva"
+                        album={course.title}
+                    />
+                </div>
               )}
 
               <div className="prose prose-lg max-w-none text-foreground/90 dark:prose-invert">
