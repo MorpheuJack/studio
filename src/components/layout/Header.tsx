@@ -30,8 +30,6 @@ import { Separator } from "@/components/ui/separator";
 
 const navLinks = [
   { href: "/courses", label: "Cursos" },
-  { href: "/bootcamps", label: "Bootcamps" },
-  { href: "/community", label: "Comunidade" },
   { href: "/blog", label: "Blog" },
 ];
 const fullLogoText = "Revolução Cognitiva";
