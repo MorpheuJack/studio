@@ -100,7 +100,8 @@ export const courses: Course[] = [
       title: 'Estrategista de Marketing Digital',
       avatar: 'https://placehold.co/100x100.png',
     },
-    image: 'https://placehold.co/600x400.png',
+    image: '/img/programador-curso-destaque.jpg',
+    mobileImage: '/img/programador-curso-vertical.jpg',
     'data-ai-hint': 'data analytics',
     category: 'Marketing',
     modules: [
