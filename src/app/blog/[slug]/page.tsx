@@ -104,7 +104,7 @@ export default function BlogPostPage() {
                     </div>
                   )}
                   {post.audioUrl && (
-                    <div className="not-prose my-6 flex justify-center">
+                    <div className="not-prose my-6">
                         <AudioPlayer
                             src={post.audioUrl}
                             imageUrl={post.image}
