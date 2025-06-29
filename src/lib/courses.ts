@@ -45,10 +45,9 @@ export const courses: Course[] = [
     longDescription: 'Este curso mergulha na arte e ciência da engenharia de prompt. Você aprenderá a estruturar suas perguntas e instruções para obter respostas precisas, criativas e contextualmente relevantes dos modelos de linguagem mais avançados do Google, como o Gemini. Abordaremos desde técnicas básicas até estratégias avançadas para tarefas complexas.',
     tools: ['Gemini', 'Google AI Studio', 'Next.js', 'TypeScript'],
     image: '/img/p-curso-destaque.jpg',
-    mobileImage: '/img/prompt-curso-vertical.jpg',
+    mobileImage: '/img/pr-curso-vertical.jpg',
     'data-ai-hint': 'glowing code',
     category: 'IA',
-    backgroundVideo: '/video-t.mp4',
     highlights: ['Técnicas de Prompt Chaining', 'Construção de Chatbots', 'Aprendizado Few-Shot', 'Otimização de Respostas'],
     previewVideoUrl: 'https://www.youtube.com/embed/cFIlta1GkiE',
     modules: [
