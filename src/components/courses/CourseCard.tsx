@@ -36,19 +36,19 @@ export function CourseCard({ course }: CourseCardProps) {
             <Wrench className="h-4 w-4 text-muted-foreground" />
             <div className="flex flex-wrap items-center gap-1.5">
               {course.tools.slice(0, 2).map((tool) => (
-                <Badge key={tool} variant="outline" className="text-xs font-semibold">
+                <Badge key={tool} variant="secondary">
                   {tool}
                 </Badge>
               ))}
               {course.tools.length > 2 && (
-                <Badge variant="outline" className="text-xs font-semibold">
+                <Badge variant="secondary">
                   +{course.tools.length - 2} mais
                 </Badge>
               )}
             </div>
           </div>
           <div className="flex items-center text-sm font-medium text-primary opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-            View <ArrowRight className="ml-1 h-4 w-4" />
+            Acessar <ArrowRight className="ml-1 h-4 w-4" />
           </div>
         </CardFooter>
       </Card>
