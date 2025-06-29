@@ -136,7 +136,7 @@ export function FloatingAssistant({ course }: FloatingAssistantProps) {
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-[26rem] h-[70vh] mr-4 flex flex-col p-0 rounded-xl" sideOffset={16}>
-        <audio ref={audioRef} src={audioSrc} className="hidden" />
+        {audioSrc && <audio ref={audioRef} src={audioSrc} className="hidden" />}
         <CardHeader>
           <div className="flex items-center gap-3">
             <Avatar className="h-10 w-10 border-2 border-primary/50">
