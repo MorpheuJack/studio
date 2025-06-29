@@ -14,6 +14,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import { FeaturesSection } from "@/components/layout/FeaturesSection";
 
 export default function Home() {
   const featuredCourses = courses.slice(0, 6);
@@ -54,6 +55,8 @@ export default function Home() {
               <CarouselNext />
             </Carousel>
         </section>
+
+        <FeaturesSection />
 
         {/* Featured Blog Posts Section */}
         <section>
