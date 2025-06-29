@@ -9,10 +9,10 @@ export function Footer() {
 
   return (
     <footer className="border-t border-white/10 bg-background/95 backdrop-blur-sm">
-      <div className="container mx-auto px-4 py-16 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4 lg:gap-12">
+      <div className="container mx-auto px-4 py-12 sm:px-6 md:py-16 lg:px-8">
+        <div className="grid grid-cols-1 gap-12 text-center md:grid-cols-2 md:text-left lg:grid-cols-4 lg:gap-8">
           {/* Column 1: Brand & Social */}
-          <div className="flex flex-col items-start">
+          <div className="flex flex-col items-center md:items-start">
             <Link href="/" className="mb-4 flex items-center space-x-2">
               <BrainCircuit className="h-8 w-8 text-primary" />
               <span className="text-xl font-bold font-headline text-foreground">
@@ -22,15 +22,15 @@ export function Footer() {
             <p className="text-sm text-muted-foreground">
               Sua plataforma de aprendizado para dominar a Inteligência Artificial e tecnologias do futuro.
             </p>
-            <div className="mt-6 flex space-x-4">
+            <div className="mt-6 flex space-x-6">
               <Link href="#" aria-label="Twitter">
-                <Twitter className="h-5 w-5 text-muted-foreground transition-colors hover:text-primary" />
+                <Twitter className="h-6 w-6 text-muted-foreground transition-colors hover:text-primary" />
               </Link>
               <Link href="#" aria-label="GitHub">
-                <Github className="h-5 w-5 text-muted-foreground transition-colors hover:text-primary" />
+                <Github className="h-6 w-6 text-muted-foreground transition-colors hover:text-primary" />
               </Link>
               <Link href="#" aria-label="LinkedIn">
-                <Linkedin className="h-5 w-5 text-muted-foreground transition-colors hover:text-primary" />
+                <Linkedin className="h-6 w-6 text-muted-foreground transition-colors hover:text-primary" />
               </Link>
             </div>
           </div>
@@ -38,7 +38,7 @@ export function Footer() {
           {/* Column 2: Navigation */}
           <div>
             <h3 className="font-headline text-lg font-semibold text-foreground">Navegação</h3>
-            <ul className="mt-4 space-y-2 text-sm">
+            <ul className="mt-4 space-y-3 text-sm">
               <li><Link href="/courses/all" className="text-muted-foreground transition-colors hover:text-primary">Todos os Cursos</Link></li>
               <li><Link href="/blog" className="text-muted-foreground transition-colors hover:text-primary">Blog</Link></li>
               <li><Link href="#faq" className="text-muted-foreground transition-colors hover:text-primary">FAQ</Link></li>
@@ -49,7 +49,7 @@ export function Footer() {
           {/* Column 3: Legal & Resources */}
            <div>
             <h3 className="font-headline text-lg font-semibold text-foreground">Recursos</h3>
-            <ul className="mt-4 space-y-2 text-sm">
+            <ul className="mt-4 space-y-3 text-sm">
               <li><Link href="#" className="text-muted-foreground transition-colors hover:text-primary">Comunidade</Link></li>
               <li><Link href="#" className="text-muted-foreground transition-colors hover:text-primary">Suporte</Link></li>
               <li><Link href="#" className="text-muted-foreground transition-colors hover:text-primary">Termos de Serviço</Link></li>
@@ -58,7 +58,7 @@ export function Footer() {
           </div>
 
           {/* Column 4: Newsletter */}
-          <div>
+          <div className="flex flex-col items-center md:items-start">
             <h3 className="font-headline text-lg font-semibold text-foreground">Fique por Dentro</h3>
             <p className="mt-4 text-sm text-muted-foreground">
               Receba as últimas novidades sobre IA e aprendizado, direto no seu email.
