@@ -72,13 +72,13 @@ export function FeaturesSection() {
           <div className="grid grid-cols-1 items-start gap-y-10 sm:grid-cols-2 lg:gap-x-20">
             {/* Left Column */}
             <div className="space-y-10 sm:space-y-16">
-              <FeatureCard title={features[0].title} description={features[0].description} className="sm:ml-auto" />
-              <FeatureCard title={features[1].title} description={features[1].description} className="sm:ml-auto" />
+              <FeatureCard title={features[0].title} description={features[0].description} />
+              <FeatureCard title={features[1].title} description={features[1].description} />
             </div>
             {/* Right Column */}
             <div className="space-y-10 sm:space-y-16 sm:mt-24">
-              <FeatureCard title={features[2].title} description={features[2].description} />
-              <FeatureCard title={features[3].title} description={features[3].description} />
+              <FeatureCard title={features[2].title} description={features[2].description} className="sm:ml-auto" />
+              <FeatureCard title={features[3].title} description={features[3].description} className="sm:ml-auto" />
             </div>
           </div>
         </div>
