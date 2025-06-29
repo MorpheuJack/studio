@@ -44,11 +44,11 @@ export function FaqSection() {
         <div className="mt-12 mx-auto max-w-3xl">
           <Accordion type="single" collapsible className="w-full space-y-4">
             {faqData.map((faq, index) => (
-              <AccordionItem value={`item-${index}`} key={index} className="border-none">
-                <AccordionTrigger className="text-left text-lg font-semibold hover:no-underline p-6 bg-card rounded-lg data-[state=open]:rounded-b-none text-foreground">
+              <AccordionItem value={`item-${index}`} key={index} className="border-none bg-card/50 backdrop-blur-lg border border-white/10 rounded-lg overflow-hidden">
+                <AccordionTrigger className="text-left text-lg font-semibold hover:no-underline p-6 text-foreground data-[state=open]:bg-black/10">
                     {faq.question}
                 </AccordionTrigger>
-                <AccordionContent className="bg-card rounded-b-lg p-6 pt-2 text-base text-muted-foreground">
+                <AccordionContent className="p-6 pt-0 text-base text-muted-foreground">
                   {faq.answer}
                 </AccordionContent>
               </AccordionItem>

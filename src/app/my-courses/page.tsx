@@ -45,7 +45,7 @@ export default function MyCoursesPage() {
           ))}
         </div>
       ) : (
-        <div className="text-center rounded-lg border-2 border-dashed border-border p-12">
+        <div className="text-center rounded-lg border border-white/10 bg-card/50 backdrop-blur-lg p-12">
             <h3 className="text-lg font-medium text-foreground">Nenhum Curso Ainda</h3>
           <p className="mt-2 text-muted-foreground">Você não se inscreveu em nenhum curso. Explore nosso catálogo para começar!</p>
           <Button asChild className="mt-6">
