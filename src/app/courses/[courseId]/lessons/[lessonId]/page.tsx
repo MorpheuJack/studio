@@ -1,15 +1,17 @@
 
 'use client';
 
-import { useEffect } from 'react';
 import { notFound, useParams } from 'next/navigation';
 import { useAuth } from '@/context/AuthContext';
 import { getLessonByIds } from '@/lib/courses';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { Video, FileText, Clock, Loader2, Lock } from 'lucide-react';
+import { Loader2, Lock, Heart, Share2, Eye, Signal, Clock } from 'lucide-react';
 import type { Course, Module, Lesson } from '@/lib/courses';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { LiveChat } from '@/components/courses/LiveChat';
+import { RelatedVideos } from '@/components/courses/RelatedVideos';
 
 export default function LessonPage() {
   const params = useParams<{ courseId: string, lessonId: string }>();
@@ -21,63 +23,110 @@ export default function LessonPage() {
     notFound();
   }
 
-  const { lesson } = data as { course: Course; module: Module; lesson: Lesson };
-  const Icon = lesson.type === 'video' ? Video : FileText;
-  const typeText = lesson.type === 'video' ? 'Videoaula' : 'Artigo';
+  const { course, lesson } = data as { course: Course; module: Module; lesson: Lesson };
 
   if (loading) {
     return (
-      <Card className="flex flex-col h-[calc(100vh-12rem)] shadow-lg items-center justify-center">
+      <div className="container mx-auto flex h-[calc(100vh-12rem)] items-center justify-center">
         <Loader2 className="h-8 w-8 animate-spin text-primary" />
         <p className="mt-4 text-muted-foreground">Verificando acesso...</p>
-      </Card>
+      </div>
     );
   }
 
   if (isAuthenticated) {
     return (
-      <Card className="flex flex-col h-[calc(100vh-12rem)] shadow-lg">
-        <CardHeader>
-          <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
-              <div>
-                  <div className="flex items-center gap-2 text-sm text-muted-foreground mb-2">
-                      <Icon className="h-4 w-4" />
-                      <span>{typeText}</span>
-                      <span className="mx-1">·</span>
-                      <Clock className="h-4 w-4" />
-                      <span>{lesson.duration} min</span>
-                  </div>
-                  <CardTitle className="font-headline text-3xl md:text-4xl">{lesson.title}</CardTitle>
+      <div className="container mx-auto px-4 py-8 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+          {/* Main Content */}
+          <div className="lg:col-span-2 xl:col-span-3 space-y-6">
+            {/* Video Player */}
+            {lesson.type === 'video' && (
+              <div className="aspect-video w-full overflow-hidden rounded-xl bg-muted shadow-lg">
+                {/* This would be a real video player */}
+                <div className="w-full h-full flex items-center justify-center">
+                  <p className="text-muted-foreground">Reprodutor de vídeo</p>
+                </div>
               </div>
-          </div>
-        </CardHeader>
-        
-        <CardContent className="overflow-y-auto">
-          <div className="prose prose-lg max-w-none text-foreground/90 dark:prose-invert">
-              {lesson.type === 'video' && (
-                  <div className="aspect-video w-full bg-muted rounded-lg mb-6 flex items-center justify-center">
-                      <p className="text-muted-foreground">Reprodutor de vídeo</p>
+            )}
+
+            {/* Lesson Details */}
+            <div className="space-y-4">
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                  <div className="flex items-center gap-3">
+                      <Avatar className="h-12 w-12">
+                          <AvatarImage src="/img/RG-personagem.png" alt="Revolução Cognitiva" />
+                          <AvatarFallback>RC</AvatarFallback>
+                      </Avatar>
+                      <div>
+                          <p className="font-bold text-foreground">Revolução Cognitiva</p>
+                          <p className="text-sm text-muted-foreground">1.9M subscribers</p>
+                      </div>
                   </div>
-              )}
-              <p>{lesson.content}</p>
+                  <div className="flex items-center gap-2">
+                      <Button variant="outline">
+                          <Share2 className="mr-2 h-4 w-4" />
+                          Share
+                      </Button>
+                      <Button>
+                          <Heart className="mr-2 h-4 w-4" />
+                          Liked
+                      </Button>
+                  </div>
+              </div>
+
+              <h1 className="font-headline text-3xl font-bold tracking-tight md:text-4xl">{lesson.title}</h1>
+              
+              <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-muted-foreground">
+                  <div className="flex items-center gap-2">
+                      <Eye className="h-4 w-4" />
+                      <span>125,308 views</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                      <Heart className="h-4 w-4" />
+                      <span>47,967 likes</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                      <Signal className="h-4 w-4" />
+                      <span>Streaming live</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                      <Clock className="h-4 w-4" />
+                      <span>{lesson.duration} min duration</span>
+                  </div>
+              </div>
+
+              <div className="prose prose-lg max-w-none text-foreground/90 dark:prose-invert">
+                  <p>{lesson.content}</p>
+              </div>
+            </div>
           </div>
-        </CardContent>
-      </Card>
+
+          {/* Right Sidebar */}
+          <div className="lg:col-span-1 xl:col-span-1 space-y-6">
+              <LiveChat />
+              <RelatedVideos course={course} currentLessonId={lesson.id} />
+          </div>
+        </div>
+      </div>
     );
   }
 
+  // Not Authenticated View
   return (
-    <Card className="flex flex-col h-[calc(100vh-12rem)] shadow-lg items-center justify-center text-center p-8">
-        <Lock className="h-16 w-16 text-primary mb-4" />
-        <CardTitle className="font-headline text-3xl md:text-4xl">Conteúdo Bloqueado</CardTitle>
-        <CardDescription className="mt-2 text-lg text-muted-foreground max-w-md">
-            Você precisa estar logado para acessar esta lição. Crie uma conta ou faça login para continuar sua jornada de aprendizado.
-        </CardDescription>
-        <div className="mt-8 flex gap-4">
-            <Button asChild size="lg">
-                <Link href="/auth">Login / Cadastro</Link>
-            </Button>
-        </div>
-    </Card>
+    <div className="container mx-auto">
+        <Card className="flex flex-col h-[calc(100vh-12rem)] shadow-lg items-center justify-center text-center p-8">
+            <Lock className="h-16 w-16 text-primary mb-4" />
+            <CardTitle className="font-headline text-3xl md:text-4xl">Conteúdo Bloqueado</CardTitle>
+            <CardDescription className="mt-2 text-lg text-muted-foreground max-w-md">
+                Você precisa estar logado para acessar esta lição. Crie uma conta ou faça login para continuar sua jornada de aprendizado.
+            </CardDescription>
+            <div className="mt-8 flex gap-4">
+                <Button asChild size="lg">
+                    <Link href="/auth">Login / Cadastro</Link>
+                </Button>
+            </div>
+        </Card>
+    </div>
   );
 }

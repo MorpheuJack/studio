@@ -18,11 +18,10 @@ export default function CourseLayout({
     notFound();
   }
 
+  // Pass children through directly. The individual pages will handle their own containers.
   return (
     <>
-      <div className="container mx-auto px-4 py-8 sm:px-6 lg:px-8">
-        {children}
-      </div>
+      {children}
       <FloatingAssistant
         course={course}
         isOpen={isAssistantOpen}
