@@ -69,16 +69,16 @@ export function FeaturesSection() {
             </svg>
           </div>
 
-          <div className="grid grid-cols-1 items-start gap-y-10 sm:grid-cols-2 lg:gap-x-20">
+          <div className="grid grid-cols-1 items-start gap-y-10 sm:grid-cols-2 lg:gap-x-8">
             {/* Left Column */}
-            <div className="space-y-10 sm:space-y-16">
+            <div className="flex flex-col space-y-10 sm:items-end sm:space-y-16">
               <FeatureCard title={features[0].title} description={features[0].description} />
               <FeatureCard title={features[1].title} description={features[1].description} />
             </div>
             {/* Right Column */}
-            <div className="space-y-10 sm:space-y-16 sm:mt-24">
-              <FeatureCard title={features[2].title} description={features[2].description} className="sm:ml-auto" />
-              <FeatureCard title={features[3].title} description={features[3].description} className="sm:ml-auto" />
+            <div className="flex flex-col space-y-10 sm:items-start sm:space-y-16 sm:mt-24">
+              <FeatureCard title={features[2].title} description={features[2].description} />
+              <FeatureCard title={features[3].title} description={features[3].description} />
             </div>
           </div>
         </div>
