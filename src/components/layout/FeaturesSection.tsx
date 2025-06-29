@@ -1,4 +1,3 @@
-import { Button } from "@/components/ui/button";
 import { Sparkle } from "lucide-react";
 
 const features = [
@@ -46,8 +45,32 @@ export function FeaturesSection() {
         </div>
 
         <div className="relative mt-20 lg:mt-24">
-          <div className="absolute inset-0 -z-10 flex items-center justify-center">
-            <div className="mx-auto h-[400px] w-full max-w-3xl rounded-full bg-primary/5 blur-3xl" />
+          <div className="absolute inset-x-0 top-1/2 -z-10 -translate-y-1/2" aria-hidden="true">
+            <svg
+              className="mx-auto h-auto w-full max-w-4xl text-primary/20"
+              viewBox="0 0 892 590"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M504.553 589.5C793.823 589.5 891.5 458.12 891.5 295C891.5 131.88 793.823 0.5 504.553 0.5C215.283 0.5 0.5 131.88 0.5 295C0.5 458.12 215.283 589.5 504.553 589.5Z"
+                stroke="currentColor"
+              />
+              <path
+                d="M504.553 529C758.623 529 826 418.156 826 295C826 171.844 758.623 61 504.553 61C250.483 61 183 171.844 183 295C183 418.156 250.483 529 504.553 529Z"
+                stroke="currentColor"
+              />
+              <path
+                d="M231.954 532.5L424.582 295.333"
+                stroke="currentColor"
+                strokeLinecap="round"
+              />
+              <path
+                d="M678.046 59.5L485.418 296.667"
+                stroke="currentColor"
+                strokeLinecap="round"
+              />
+            </svg>
           </div>
 
           <div className="grid grid-cols-1 items-start gap-y-10 sm:grid-cols-2 lg:gap-x-8">
@@ -62,11 +85,6 @@ export function FeaturesSection() {
               <FeatureCard title={features[3].title} description={features[3].description} />
             </div>
           </div>
-        </div>
-
-        <div className="mt-20 flex justify-center gap-4">
-          <Button size="lg">Acesso Imediato</Button>
-          <Button size="lg" variant="outline">Agendar uma chamada</Button>
         </div>
       </div>
     </section>
