@@ -86,13 +86,26 @@
     --sidebar-border: 215 28% 18%;
     --sidebar-ring: 173 80% 40%;
   }
-}
 
-@layer base {
   * {
     @apply border-border;
   }
   body {
     @apply bg-background text-foreground;
+    position: relative;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: radial-gradient(circle at 15% 25%, hsl(var(--chart-1) / 0.15), transparent 40%),
+                radial-gradient(circle at 85% 65%, hsl(var(--primary) / 0.1), transparent 40%);
+    z-index: -1;
+    pointer-events: none;
+    background-attachment: fixed;
   }
 }
