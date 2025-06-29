@@ -21,7 +21,7 @@ const features = [
 
 const FeatureCard = ({ title, description, className }: { title: string, description: string, className?: string }) => (
   <div className={className}>
-    <div className="bg-card border border-border rounded-xl p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-primary/10 hover:border-primary/30 max-w-sm sm:max-w-xs md:max-w-sm">
+    <div className="bg-card/60 backdrop-blur-lg border border-border/20 rounded-xl p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-primary/10 hover:border-primary/30 max-w-sm sm:max-w-xs md:max-w-sm">
       <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-full bg-primary/10">
         <Sparkle className="h-5 w-5 text-primary" />
       </div>
