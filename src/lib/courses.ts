@@ -24,6 +24,7 @@ export type Course = {
     avatar: string;
   };
   image: string;
+  mobileImage?: string;
   category: string;
   modules: Module[];
   'data-ai-hint'?: string;
@@ -73,7 +74,8 @@ export const courses: Course[] = [
       title: 'Designer de Produto Principal',
       avatar: '/img/design-curso.png',
     },
-    image: '/img/design-curso.png',
+    image: '/img/des-curso.jpg',
+    mobileImage: '/img/des-curso-vertical.jpg',
     'data-ai-hint': 'futuristic interface',
     category: 'Design',
     modules: [

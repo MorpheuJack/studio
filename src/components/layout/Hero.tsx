@@ -6,8 +6,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 import Autoplay from 'embla-carousel-autoplay';
 
-import { courses } from '@/lib/courses';
-import { posts } from '@/lib/blog';
+import { courses, type Course } from '@/lib/courses';
+import { posts, type Post } from '@/lib/blog';
 import {
   Carousel,
   CarouselContent,
@@ -18,25 +18,39 @@ import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
 import { Badge } from '../ui/badge';
 
+type FeaturedItem = {
+  type: 'Curso' | 'Blog';
+  title: string;
+  description: string;
+  image: string;
+  mobileImage?: string;
+  href: string;
+  'data-ai-hint'?: string;
+};
+
 export function Hero() {
   const [api, setApi] = React.useState<CarouselApi>();
   const [current, setCurrent] = React.useState(0);
 
   // Combine featured content from courses and blog posts
-  const featuredContent = [
-    ...courses.slice(0, 2).map((course) => ({
+  const featuredContent: FeaturedItem[] = [
+    ...courses.slice(0, 2).map((course: Course) => ({
       type: 'Curso',
       title: course.title,
       description: course.description,
       image: course.image,
+      mobileImage: course.mobileImage,
       href: `/courses/${course.id}`,
+      'data-ai-hint': course['data-ai-hint'],
     })),
-    ...posts.slice(0, 1).map((post) => ({
+    ...posts.slice(0, 1).map((post: Post) => ({
       type: 'Blog',
       title: post.title,
       description: post.description,
       image: post.image,
+      mobileImage: post.mobileImage,
       href: `/blog/${post.slug}`,
+      'data-ai-hint': post['data-ai-hint'],
     })),
   ];
 
@@ -72,15 +86,24 @@ export function Hero() {
         onMouseLeave={plugin.current.reset}
       >
         <CarouselContent>
-          {featuredContent.map((item: any, index) => (
+          {featuredContent.map((item, index) => (
             <CarouselItem key={item.href} data-slide-index={index}>
               <div className="relative h-screen min-h-[600px] w-full">
                 <Image
                   src={item.image}
                   alt={item.title}
                   fill
-                  className="object-cover"
+                  className="object-cover hidden md:block"
                   priority={index === 0}
+                  data-ai-hint={item['data-ai-hint']}
+                />
+                <Image
+                  src={item.mobileImage || item.image}
+                  alt={item.title}
+                  fill
+                  className="object-cover md:hidden"
+                  priority={index === 0}
+                  data-ai-hint={item['data-ai-hint']}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-transparent" />
                 <div className="absolute inset-0 bg-black/50" />
