@@ -16,6 +16,7 @@ import { useAuth } from '@/context/AuthContext';
 import { cn } from '@/lib/utils';
 import { useToast } from '@/hooks/use-toast';
 import { CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
+import { useAssistant } from '@/context/AssistantContext';
 
 type Message = {
   role: 'user' | 'assistant';
@@ -40,11 +41,10 @@ function SubmitButton() {
 
 interface FloatingAssistantProps {
   course: Course;
-  isOpen: boolean;
-  onOpenChange: (open: boolean) => void;
 }
 
-export function FloatingAssistant({ course, isOpen, onOpenChange }: FloatingAssistantProps) {
+export function FloatingAssistant({ course }: FloatingAssistantProps) {
+  const { isAssistantOpen, setAssistantOpen } = useAssistant();
   const { user } = useAuth();
   const { toast } = useToast();
   const params = useParams<{ lessonId?: string }>();
@@ -103,7 +103,7 @@ export function FloatingAssistant({ course, isOpen, onOpenChange }: FloatingAssi
   const userName = user?.user_metadata?.full_name || user?.email || '';
 
   return (
-    <Popover open={isOpen} onOpenChange={onOpenChange}>
+    <Popover open={isAssistantOpen} onOpenChange={setAssistantOpen}>
       <PopoverTrigger asChild>
         <Button
           className="fixed bottom-6 right-6 h-16 w-16 rounded-full shadow-lg shadow-primary/30 animate-pulse p-0 overflow-hidden"

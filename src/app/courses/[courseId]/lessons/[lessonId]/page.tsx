@@ -5,17 +5,19 @@ import { notFound, useParams } from 'next/navigation';
 import { useAuth } from '@/context/AuthContext';
 import { getLessonByIds } from '@/lib/courses';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { Loader2, Lock, Heart, Share2, Eye, Signal, Clock } from 'lucide-react';
+import { Loader2, Lock, Heart, Share2, Eye, Signal, Clock, BrainCircuit } from 'lucide-react';
 import type { Course, Module, Lesson } from '@/lib/courses';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { RelatedVideos } from '@/components/courses/RelatedVideos';
 import { CourseLessonNavigator } from '@/components/courses/CourseLessonNavigator';
+import { useAssistant } from '@/context/AssistantContext';
 
 export default function LessonPage() {
   const params = useParams<{ courseId: string, lessonId: string }>();
   const { isAuthenticated, loading } = useAuth();
+  const { setAssistantOpen } = useAssistant();
   
   const data = getLessonByIds(params.courseId, params.lessonId);
 
@@ -64,13 +66,9 @@ export default function LessonPage() {
                       </div>
                   </div>
                   <div className="flex items-center gap-2">
-                      <Button variant="outline">
-                          <Share2 className="mr-2 h-4 w-4" />
-                          Share
-                      </Button>
-                      <Button>
-                          <Heart className="mr-2 h-4 w-4" />
-                          Liked
+                      <Button onClick={() => setAssistantOpen(true)}>
+                          <BrainCircuit className="mr-2 h-4 w-4" />
+                          Pergunte ao Professor
                       </Button>
                   </div>
               </div>
