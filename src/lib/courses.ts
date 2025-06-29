@@ -1,10 +1,18 @@
 
+export type ComplementaryMaterial = {
+  type: 'tool' | 'book' | 'pdf';
+  name: string;
+  url: string;
+  description: string;
+};
+
 export type Lesson = {
   id: string;
   title: string;
   type: 'video' | 'article';
   duration: number; // in minutes
   content: string;
+  complementaryMaterials?: ComplementaryMaterial[];
 };
 
 export type Module = {
@@ -48,15 +56,44 @@ export const courses: Course[] = [
         id: 'm1',
         title: 'Módulo 1: Fundamentos da IA Generativa',
         lessons: [
-          { id: 'l1_1', title: 'O que são Prompts?', type: 'video', duration: 25, content: 'Esta lição introduz o conceito fundamental de prompts em modelos de IA generativa. Exploramos como os prompts guiam o modelo para gerar a saída desejada e por que a qualidade do prompt é crucial para a qualidade da resposta. Veremos exemplos práticos de prompts bons e ruins.' },
+          { 
+            id: 'l1_1', 
+            title: 'O que são Prompts?', 
+            type: 'video', 
+            duration: 25, 
+            content: 'Esta lição introduz o conceito fundamental de prompts em modelos de IA generativa. Exploramos como os prompts guiam o modelo para gerar a saída desejada e por que a qualidade do prompt é crucial para a qualidade da resposta. Veremos exemplos práticos de prompts bons e ruins.',
+            complementaryMaterials: [
+                { type: 'tool', name: 'Google AI Studio', url: '#', description: 'Plataforma para prototipagem de prompts.' },
+                { type: 'book', name: 'The Prompt Engineering Guide', url: '#', description: 'Um guia completo sobre o assunto.' }
+            ]
+          },
         ],
       },
       {
         id: 'm2',
         title: 'Módulo 2: Técnicas Avançadas',
         lessons: [
-          { id: 'l2_1', title: 'Prompt Chaining e Few-Shot Learning', type: 'video', duration: 30, content: 'Aprenda técnicas avançadas como o encadeamento de prompts para resolver problemas complexos em etapas e o "few-shot learning" para ensinar o modelo a executar tarefas com poucos exemplos. Construiremos um mini-aplicativo que usa essas técnicas para criar um assistente de escrita criativa.' },
-          { id: 'l2_2', title: 'Construindo um Chatbot com Contexto', type: 'article', duration: 45, content: 'Esta lição prática guia você na construção de um chatbot que mantém o contexto da conversa. Você aprenderá a gerenciar o histórico de diálogo para criar interações mais naturais e úteis. Usaremos os conceitos das lições anteriores para criar um chatbot de atendimento ao cliente.' },
+          { 
+            id: 'l2_1', 
+            title: 'Prompt Chaining e Few-Shot Learning', 
+            type: 'video', 
+            duration: 30, 
+            content: 'Aprenda técnicas avançadas como o encadeamento de prompts para resolver problemas complexos em etapas e o "few-shot learning" para ensinar o modelo a executar tarefas com poucos exemplos. Construiremos um mini-aplicativo que usa essas técnicas para criar um assistente de escrita criativa.',
+            complementaryMaterials: [
+                { type: 'tool', name: 'LangChain', url: '#', description: 'Framework para desenvolvimento de aplicações com LLMs.' },
+                { type: 'pdf', name: 'Artigo sobre Few-Shot Learning', url: '#', description: 'Paper acadêmico sobre a técnica.' }
+            ]
+          },
+          { 
+            id: 'l2_2', 
+            title: 'Construindo um Chatbot com Contexto', 
+            type: 'article', 
+            duration: 45, 
+            content: 'Esta lição prática guia você na construção de um chatbot que mantém o contexto da conversa. Você aprenderá a gerenciar o histórico de diálogo para criar interações mais naturais e úteis. Usaremos os conceitos das lições anteriores para criar um chatbot de atendimento ao cliente.',
+            complementaryMaterials: [
+              { type: 'tool', name: 'Genkit', url: '#', description: 'Toolkit de IA da Google.' },
+            ]
+          },
         ],
       },
     ],

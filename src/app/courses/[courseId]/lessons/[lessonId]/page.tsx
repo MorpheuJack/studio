@@ -105,7 +105,7 @@ export default function LessonPage() {
           {/* Right Sidebar */}
           <div className="lg:col-span-1 xl:col-span-1 space-y-6">
               <CourseLessonNavigator course={course} />
-              <RelatedVideos course={course} currentLessonId={lesson.id} />
+              <RelatedVideos lesson={lesson} />
           </div>
         </div>
       </div>
