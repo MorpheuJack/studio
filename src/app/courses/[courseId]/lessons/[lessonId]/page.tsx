@@ -40,8 +40,8 @@ export default function LessonPage() {
 
   if (isAuthenticated) {
     return (
-      <div className="container mx-auto px-4 pb-8 pt-22 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+      <div className="container mx-auto px-4 pb-8 pt-20 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 gap-y-6 lg:grid-cols-3 xl:grid-cols-4 lg:gap-8">
           {/* Main Content */}
           <div className="lg:col-span-2 xl:col-span-3 flex flex-col space-y-6 order-2 lg:order-1">
             {/* Player / IDE */}
@@ -56,7 +56,7 @@ export default function LessonPage() {
               )}
               
               {lesson.type === 'code' && lesson.starterCode && (
-                <div className="h-[70vh] min-h-[600px] w-full">
+                <div className="h-[60vh] min-h-[500px] md:h-[70vh] md:min-h-[600px] w-full">
                   <IntegratedIDE starterCode={lesson.starterCode} />
                 </div>
               )}
