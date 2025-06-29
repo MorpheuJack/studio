@@ -5,8 +5,7 @@ import { notFound, useRouter, useParams } from 'next/navigation';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { useEnrollment } from '@/context/EnrollmentContext';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Clock, Users, BarChart } from 'lucide-react';
+import { Clock, BarChart, Wrench } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 
@@ -44,10 +43,6 @@ export default function CourseDetailPage() {
 
         <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-4 text-sm text-muted-foreground">
             <div className="flex items-center gap-2">
-                <Users className="h-4 w-4" />
-                <span>Taught by <span className="font-semibold text-foreground">{course.instructor.name}</span></span>
-            </div>
-            <div className="flex items-center gap-2">
                 <Clock className="h-4 w-4" />
                 <span>Approx. {Math.round(totalDuration / 60)} hours</span>
             </div>
@@ -60,25 +55,30 @@ export default function CourseDetailPage() {
       
       <div className="bg-muted/50 p-6 md:p-8">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
-            <div className="flex items-center gap-4">
-                <Avatar className="h-16 w-16">
-                    <AvatarImage src={course.instructor.avatar} alt={course.instructor.name} />
-                    <AvatarFallback>{course.instructor.name.charAt(0)}</AvatarFallback>
-                </Avatar>
-                <div>
-                    <h3 className="text-lg font-semibold">{course.instructor.name}</h3>
-                    <p className="text-muted-foreground">{course.instructor.title}</p>
-                </div>
+            <div>
+              <div className="flex items-center gap-3 mb-3">
+                <Wrench className="h-5 w-5 text-primary" />
+                <h3 className="text-lg font-semibold">Ferramentas Utilizadas</h3>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {course.tools.map((tool) => (
+                  <Badge key={tool} variant="secondary" className="px-3 py-1 text-sm">
+                    {tool}
+                  </Badge>
+                ))}
+              </div>
             </div>
-            {enrolled ? (
-            <Button size="lg" onClick={handleContinue}>
-              Continue Learning
-            </Button>
-            ) : (
-            <Button size="lg" onClick={handleEnroll}>
-              Enroll Now for Free
-            </Button>
-            )}
+            <div className="shrink-0">
+              {enrolled ? (
+              <Button size="lg" onClick={handleContinue}>
+                Continue Learning
+              </Button>
+              ) : (
+              <Button size="lg" onClick={handleEnroll}>
+                Enroll Now for Free
+              </Button>
+              )}
+            </div>
         </div>
       </div>
     </article>

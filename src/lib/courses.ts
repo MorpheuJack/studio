@@ -18,11 +18,7 @@ export type Course = {
   title: string;
   description: string;
   longDescription: string;
-  instructor: {
-    name: string;
-    title: string;
-    avatar: string;
-  };
+  tools: string[];
   image: string;
   mobileImage?: string;
   category: string;
@@ -37,13 +33,9 @@ export const courses: Course[] = [
     title: 'Engenharia de Prompt para Gemini',
     description: 'Aprenda a criar prompts eficazes para extrair o máximo dos modelos de IA generativa.',
     longDescription: 'Este curso mergulha na arte e ciência da engenharia de prompt. Você aprenderá a estruturar suas perguntas e instruções para obter respostas precisas, criativas e contextualmente relevantes dos modelos de linguagem mais avançados do Google, como o Gemini. Abordaremos desde técnicas básicas até estratégias avançadas para tarefas complexas.',
-    instructor: {
-      name: 'Dr. Evelyn Reed',
-      title: 'Engenheira de IA Sênior',
-      avatar: 'https://placehold.co/100x100.png',
-    },
+    tools: ['Gemini', 'Google AI Studio', 'Next.js'],
     image: '/img/p-curso-destaque.jpg',
-    mobileImage: '/img/pr-curso-vertical.jpg',
+    mobileImage: '/img/prompt-curso-vertical.jpg',
     'data-ai-hint': 'glowing code',
     category: 'IA',
     backgroundVideo: '/video-t.mp4',
@@ -70,11 +62,7 @@ export const courses: Course[] = [
     title: 'Design de Interfaces para Aplicações de IA',
     description: 'Aprenda a projetar interfaces intuitivas e eficazes para produtos baseados em IA.',
     longDescription: 'O design para IA apresenta desafios e oportunidades únicas. Este curso ensina como criar experiências de usuário que sejam transparentes, confiáveis e que comuniquem claramente as capacidades e limitações da IA. Usando o Figma, você projetará interfaces para chatbots, ferramentas de análise de dados e sistemas de recomendação, focando em como apresentar informações complexas de forma simples.',
-    instructor: {
-      name: 'Liam Chen',
-      title: 'Designer de Produto Principal',
-      avatar: '/img/design-curso.png',
-    },
+    tools: ['Figma', 'Miro', 'React'],
     image: '/img/des-curso-destaque.jpg',
     mobileImage: '/img/des-curso-vertical.jpg',
     'data-ai-hint': 'futuristic interface',
@@ -95,11 +83,7 @@ export const courses: Course[] = [
     title: 'Marketing Digital Otimizado com IA',
     description: 'Use ferramentas de IA para automatizar e otimizar suas campanhas de marketing.',
     longDescription: 'Descubra como a Inteligência Artificial está revolucionando o marketing digital. Este curso ensina a usar ferramentas de IA para gerar copy para anúncios, analisar dados de mercado em larga escala, otimizar campanhas de SEO e personalizar a comunicação com o cliente. Você aprenderá a tomar decisões de marketing mais inteligentes e baseadas em dados com o poder da IA.',
-    instructor: {
-      name: 'Aisha Khan',
-      title: 'Estrategista de Marketing Digital',
-      avatar: 'https://placehold.co/100x100.png',
-    },
+    tools: ['Google Analytics', 'HubSpot', 'ChatGPT'],
     image: '/img/programador-curso-destaque.jpg',
     mobileImage: '/img/programador-curso-vertical.jpg',
     'data-ai-hint': 'data analytics',

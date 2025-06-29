@@ -3,8 +3,7 @@ import Link from 'next/link';
 import type { Course } from '@/lib/courses';
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Wrench } from 'lucide-react';
 
 interface CourseCardProps {
   course: Course;
@@ -34,13 +33,18 @@ export function CourseCard({ course }: CourseCardProps) {
         </CardContent>
         <CardFooter className="flex items-center justify-between p-6 pt-0">
            <div className="flex items-center gap-2">
-            <Avatar className="h-8 w-8">
-              <AvatarImage src={course.instructor.avatar} alt={course.instructor.name} />
-              <AvatarFallback>{course.instructor.name.charAt(0)}</AvatarFallback>
-            </Avatar>
-            <div>
-                <p className="text-sm font-medium">{course.instructor.name}</p>
-                <p className="text-xs text-muted-foreground">{course.instructor.title}</p>
+            <Wrench className="h-4 w-4 text-muted-foreground" />
+            <div className="flex flex-wrap items-center gap-1.5">
+              {course.tools.slice(0, 2).map((tool) => (
+                <Badge key={tool} variant="outline" className="text-xs font-semibold">
+                  {tool}
+                </Badge>
+              ))}
+              {course.tools.length > 2 && (
+                <Badge variant="outline" className="text-xs font-semibold">
+                  +{course.tools.length - 2} mais
+                </Badge>
+              )}
             </div>
           </div>
           <div className="flex items-center text-sm font-medium text-primary opacity-0 transition-opacity duration-300 group-hover:opacity-100">
