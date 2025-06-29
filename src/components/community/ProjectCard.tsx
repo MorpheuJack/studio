@@ -5,7 +5,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
 import { ArrowUpRight } from 'lucide-react';
 
-interface Project {
+export interface Project {
     id: string;
     title: string;
     author: string;
@@ -25,7 +25,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
   return (
     <Card className="flex h-full flex-col overflow-hidden transition-all duration-300 bg-card border border-border hover:border-primary/50 hover:-translate-y-1 group">
       <CardHeader className="p-0">
-        <Link href={project.projectUrl} target="_blank" rel="noopener noreferrer" className="block relative h-56 w-full">
+        <Link href={project.projectUrl} className="block relative h-56 w-full">
             <Image
               src={project.image}
               alt={project.title}
