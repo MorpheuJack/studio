@@ -10,9 +10,10 @@ export function Footer() {
   return (
     <footer className="border-t border-white/10 bg-background/95 backdrop-blur-sm">
       <div className="container mx-auto px-4 py-12 sm:px-6 md:py-16 lg:px-8">
-        <div className="grid grid-cols-1 gap-12 text-center sm:grid-cols-2 sm:gap-8 sm:text-left lg:grid-cols-4">
+        <div className="grid grid-cols-1 gap-12 md:grid-cols-12 md:gap-8">
+          
           {/* Column 1: Brand & Social */}
-          <div className="flex flex-col items-center sm:items-start">
+          <div className="flex flex-col items-center text-center md:col-span-4 lg:col-span-3 md:items-start md:text-left">
             <Link href="/" className="mb-4 flex items-center space-x-2">
               <BrainCircuit className="h-8 w-8 text-primary" />
               <span className="text-xl font-bold font-headline text-foreground">
@@ -35,40 +36,43 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Column 2: Navigation */}
-          <div>
-            <h3 className="font-headline text-lg font-semibold text-foreground">Navegação</h3>
-            <ul className="mt-4 space-y-3 text-sm">
-              <li><Link href="/courses/all" className="text-muted-foreground transition-colors hover:text-primary">Todos os Cursos</Link></li>
-              <li><Link href="/blog" className="text-muted-foreground transition-colors hover:text-primary">Blog</Link></li>
-              <li><Link href="#faq" className="text-muted-foreground transition-colors hover:text-primary">FAQ</Link></li>
-              <li><Link href="#" className="text-muted-foreground transition-colors hover:text-primary">Sobre Nós</Link></li>
-            </ul>
-          </div>
+          {/* Wrapper for other columns */}
+          <div className="grid grid-cols-2 gap-8 md:col-span-8 lg:col-span-9 sm:grid-cols-3">
+              {/* Column 2: Navigation */}
+              <div className="text-center sm:text-left">
+                <h3 className="font-headline text-lg font-semibold text-foreground">Navegação</h3>
+                <ul className="mt-4 space-y-3 text-sm">
+                  <li><Link href="/courses/all" className="text-muted-foreground transition-colors hover:text-primary">Todos os Cursos</Link></li>
+                  <li><Link href="/blog" className="text-muted-foreground transition-colors hover:text-primary">Blog</Link></li>
+                  <li><Link href="#faq" className="text-muted-foreground transition-colors hover:text-primary">FAQ</Link></li>
+                  <li><Link href="#" className="text-muted-foreground transition-colors hover:text-primary">Sobre Nós</Link></li>
+                </ul>
+              </div>
 
-          {/* Column 3: Legal & Resources */}
-           <div>
-            <h3 className="font-headline text-lg font-semibold text-foreground">Recursos</h3>
-            <ul className="mt-4 space-y-3 text-sm">
-              <li><Link href="#" className="text-muted-foreground transition-colors hover:text-primary">Comunidade</Link></li>
-              <li><Link href="#" className="text-muted-foreground transition-colors hover:text-primary">Suporte</Link></li>
-              <li><Link href="#" className="text-muted-foreground transition-colors hover:text-primary">Termos de Serviço</Link></li>
-              <li><Link href="#" className="text-muted-foreground transition-colors hover:text-primary">Política de Privacidade</Link></li>
-            </ul>
-          </div>
+              {/* Column 3: Legal & Resources */}
+              <div className="text-center sm:text-left">
+                <h3 className="font-headline text-lg font-semibold text-foreground">Recursos</h3>
+                <ul className="mt-4 space-y-3 text-sm">
+                  <li><Link href="#" className="text-muted-foreground transition-colors hover:text-primary">Comunidade</Link></li>
+                  <li><Link href="#" className="text-muted-foreground transition-colors hover:text-primary">Suporte</Link></li>
+                  <li><Link href="#" className="text-muted-foreground transition-colors hover:text-primary">Termos de Serviço</Link></li>
+                  <li><Link href="#" className="text-muted-foreground transition-colors hover:text-primary">Política de Privacidade</Link></li>
+                </ul>
+              </div>
 
-          {/* Column 4: Newsletter */}
-          <div className="flex flex-col items-center sm:items-start">
-            <h3 className="font-headline text-lg font-semibold text-foreground">Fique por Dentro</h3>
-            <p className="mt-4 text-sm text-muted-foreground">
-              Receba as últimas novidades sobre IA e aprendizado, direto no seu email.
-            </p>
-            <form className="mt-4 flex w-full max-w-sm items-center gap-2">
-              <Input type="email" placeholder="seu@email.com" className="flex-1" />
-              <Button type="submit" size="icon" aria-label="Inscrever-se na newsletter">
-                <Send className="h-4 w-4" />
-              </Button>
-            </form>
+              {/* Column 4: Newsletter */}
+              <div className="col-span-2 text-center sm:col-span-1 sm:text-left">
+                <h3 className="font-headline text-lg font-semibold text-foreground">Fique por Dentro</h3>
+                <p className="mt-4 text-sm text-muted-foreground">
+                  Receba as últimas novidades sobre IA e aprendizado, direto no seu email.
+                </p>
+                <form className="mt-4 flex w-full max-w-sm items-center gap-2">
+                  <Input type="email" placeholder="seu@email.com" className="flex-1" />
+                  <Button type="submit" size="icon" aria-label="Inscrever-se na newsletter">
+                    <Send className="h-4 w-4" />
+                  </Button>
+                </form>
+              </div>
           </div>
         </div>
 
