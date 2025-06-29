@@ -97,7 +97,7 @@ export default function CourseDetailPage() {
 
       <main className="mt-24 space-y-24">
         {/* Tools Section */}
-        <section className="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-12 lg:gap-16 items-start">
+        <section className="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-12 lg:gap-16 items-center rounded-2xl bg-card p-12">
             <div>
               <h2 className="font-headline text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
                 Ferramentas e Tecnologias
