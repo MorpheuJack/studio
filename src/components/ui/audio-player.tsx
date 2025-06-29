@@ -155,7 +155,7 @@ const AudioPlayer = React.forwardRef<HTMLDivElement, AudioPlayerProps>(
             </div>
         </div>
         
-        {src && <audio ref={audioRef} src={src} className="hidden" preload="metadata" />}
+        {src && <audio ref={ref} src={src} className="hidden" preload="metadata" />}
       </Card>
     );
   }
