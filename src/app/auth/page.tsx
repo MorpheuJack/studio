@@ -72,7 +72,7 @@ export default function AuthPage() {
   };
 
   return (
-    <div className="container mx-auto flex items-center justify-center min-h-[calc(100vh-12rem)] pb-12 pt-26">
+    <div className="container mx-auto flex flex-1 items-center justify-center">
       <Tabs defaultValue="login" className="w-full max-w-md">
         <TabsList className="grid w-full grid-cols-2">
           <TabsTrigger value="login">Login</TabsTrigger>

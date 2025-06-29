@@ -8,14 +8,15 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   // Regex to specifically match lesson pages and not other nested routes.
   const isLessonPage = /^\/courses\/[^/]+\/lessons\/[^/]+$/.test(pathname);
+  const isAuthPage = pathname === '/auth';
 
   return (
     <div className="flex min-h-screen flex-col">
-      <Header />
-      <main className="flex-1">
+      {!isAuthPage && <Header />}
+      <main className="flex-1 flex flex-col">
         {children}
       </main>
-      {!isLessonPage && <Footer />}
+      {!isLessonPage && !isAuthPage && <Footer />}
     </div>
   );
 }
