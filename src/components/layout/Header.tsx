@@ -38,19 +38,28 @@ export function Header() {
   const { isAuthenticated, user, logout, loading } = useAuth();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   
-  // `hasMounted` is used to prevent hydration errors by delaying client-side-only rendering.
   const [hasMounted, setHasMounted] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [hidden, setHidden] = useState(false);
 
   useEffect(() => {
     setHasMounted(true);
 
+    let lastScrollY = window.scrollY;
+
     const handleScroll = () => {
-      setScrolled(window.scrollY > 10);
+      const currentScrollY = window.scrollY;
+      
+      setScrolled(currentScrollY > 10);
+
+      if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        setHidden(true);
+      } else {
+        setHidden(false);
+      }
+      
+      lastScrollY = currentScrollY;
     };
-    
-    // Set initial state
-    handleScroll();
 
     window.addEventListener('scroll', handleScroll);
     return () => {
@@ -69,16 +78,15 @@ export function Header() {
     return name.substring(0, 2);
   }
   
-  // The header is transparent on all pages when at the top of the page,
-  // and becomes opaque on scroll.
   const isHeaderOpaque = scrolled;
 
   return (
     <header className={cn(
-      "sticky top-0 z-50 w-full transition-colors duration-300",
+      "sticky top-0 z-50 w-full transition-all duration-300",
       isHeaderOpaque 
         ? "border-b border-border/40 bg-background/95 backdrop-blur-sm supports-[backdrop-filter]:bg-background/60"
-        : "border-b border-transparent"
+        : "border-b border-transparent",
+      hidden ? "-translate-y-full" : "translate-y-0"
     )}>
       <div className="container flex h-14 items-center md:grid md:grid-cols-3">
         <div className="flex items-center justify-start md:flex-1">
