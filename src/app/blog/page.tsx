@@ -10,6 +10,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import { NewsletterCta } from '@/components/blog/NewsletterCta';
 
 export default function BlogPage({
   searchParams,
@@ -66,6 +67,7 @@ export default function BlogPage({
           </div>
         )}
       </div>
+      <NewsletterCta />
     </>
   );
 }
