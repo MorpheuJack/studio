@@ -61,6 +61,14 @@ export default function CoursesPage() {
             <p className="mt-6 text-lg text-muted-foreground max-w-2xl mx-auto">
               Navegue por nossas trilhas de conhecimento imersivas. Cada curso é um portal para dominar as tecnologias que moldarão o amanhã.
             </p>
+            <div className="mt-10 flex items-center justify-center">
+                <Button asChild size="lg">
+                    <Link href="/courses/all">
+                        Explorar Todos os Cursos
+                        <ArrowRight className="ml-2 h-5 w-5" />
+                    </Link>
+                </Button>
+            </div>
           </div>
         </div>
       </section>
