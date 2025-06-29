@@ -129,7 +129,7 @@ export default function CourseDetailPage() {
       <main className="relative bg-background">
         <div className="container mx-auto px-4 py-16 sm:py-24 sm:px-6 lg:px-8">
             <div className="space-y-16 md:space-y-24">
-                <section className="relative z-10 -mt-36 sm:-mt-40 md:-mt-48">
+                <section className="relative z-10 -mt-20 sm:-mt-40 md:-mt-48">
                     <div className="rounded-2xl p-8 border border-white/10 bg-card/50 backdrop-blur-lg shadow-2xl">
                       <h2 className="font-headline text-2xl font-bold mb-4">Destaques do Curso</h2>
                       <div className="flex flex-wrap gap-2">
