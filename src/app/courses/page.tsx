@@ -9,6 +9,13 @@ import { CourseCard } from '@/components/courses/CourseCard';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, BookOpenCheck, SlidersHorizontal } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 export default function CoursesPage() {
   const coursesByCategory = courses.reduce((acc, course) => {
@@ -139,13 +146,23 @@ export default function CoursesPage() {
                 </Button>
             </div>
             
-            <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
-              {activeCourses.map((course, index) => (
-                <div key={course.id} style={{animationDelay: `${index * 100}ms`}} className="animate-in fade-in-0 slide-in-from-bottom-4 duration-500">
-                  <CourseCard course={course} />
-                </div>
-              ))}
-            </div>
+            <Carousel
+              opts={{
+                align: "start",
+                loop: activeCourses.length > 2,
+              }}
+              className="w-full"
+            >
+              <CarouselContent className="-ml-4">
+                {activeCourses.map((course) => (
+                  <CarouselItem key={course.id} className="pl-4 basis-4/5 sm:basis-1/2">
+                    <CourseCard course={course} />
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselPrevious />
+              <CarouselNext />
+            </Carousel>
           </div>
         </div>
       </main>
