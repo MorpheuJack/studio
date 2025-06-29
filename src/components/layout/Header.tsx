@@ -42,8 +42,12 @@ export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [hidden, setHidden] = useState(false);
 
+  const isLessonPage = /^\/courses\/[^/]+\/lessons\/[^/]+$/.test(pathname);
+
   useEffect(() => {
     setHasMounted(true);
+
+    if (isLessonPage) return;
 
     let lastScrollY = window.scrollY;
 
@@ -65,7 +69,7 @@ export function Header() {
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, []);
+  }, [isLessonPage]);
 
   const userName = user?.user_metadata?.full_name || user?.email || 'Usuário';
   
@@ -79,6 +83,88 @@ export function Header() {
   }
   
   const isHeaderOpaque = scrolled;
+
+  const authContent = (
+    <>
+      {!hasMounted ? (
+        <div className="h-9 w-9 bg-muted rounded-full animate-pulse" />
+      ) : isAuthenticated && user ? (
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant="ghost" className="relative h-9 w-9 rounded-full group">
+              <Avatar className="h-9 w-9 border-2 border-primary/50">
+                <AvatarFallback className="bg-primary/20 text-primary font-bold transition-colors duration-200 group-hover:bg-primary group-hover:text-primary-foreground">
+                  {getInitials(userName)}
+                </AvatarFallback>
+              </Avatar>
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent 
+            className="w-64 border-border/20 bg-background/80 backdrop-blur-md" 
+            align="end" 
+            forceMount
+          >
+            <DropdownMenuLabel className="font-normal">
+              <div className="flex flex-col space-y-1">
+                <p className="text-sm font-medium leading-none">{userName}</p>
+                <p className="text-xs leading-none text-muted-foreground">
+                  {user.email}
+                </p>
+              </div>
+            </DropdownMenuLabel>
+            <DropdownMenuSeparator className="bg-border/50" />
+            <DropdownMenuGroup>
+              <DropdownMenuItem asChild>
+                <Link href="/my-courses">
+                  <LayoutGrid className="mr-2 h-4 w-4" />
+                  <span>Meus Cursos</span>
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <User className="mr-2 h-4 w-4" />
+                <span>Membros</span>
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <CreditCard className="mr-2 h-4 w-4" />
+                <span>Conquistas</span>
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <Settings className="mr-2 h-4 w-4" />
+                <span>Configurações</span>
+              </DropdownMenuItem>
+            </DropdownMenuGroup>
+            <DropdownMenuSeparator className="bg-border/50" />
+            <DropdownMenuItem>
+              <LifeBuoy className="mr-2 h-4 w-4" />
+              <span>Suporte</span>
+            </DropdownMenuItem>
+            <DropdownMenuSeparator className="bg-border/50" />
+            <DropdownMenuItem onClick={logout} className="text-red-400 focus:bg-red-500/10 focus:text-red-400">
+              <LogOut className="mr-2 h-4 w-4" />
+              <span>Sair</span>
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      ) : (
+        <Button asChild>
+          <Link href="/auth">Login</Link>
+        </Button>
+      )}
+    </>
+  );
+
+  if (isLessonPage) {
+    return (
+      <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur-sm">
+        <div className="container flex h-14 items-center justify-between">
+          <Link href="/courses" aria-label="Voltar para os cursos">
+            <BrainCircuit className="h-6 w-6 text-primary" />
+          </Link>
+          <div>{authContent}</div>
+        </div>
+      </header>
+    );
+  }
 
   return (
     <header className={cn(
@@ -115,70 +201,7 @@ export function Header() {
 
         <div className="flex flex-1 items-center justify-end">
           <div className="hidden md:block">
-            {!hasMounted ? (
-              <div className="h-9 w-9 bg-muted rounded-full animate-pulse" />
-            ) : isAuthenticated && user ? (
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" className="relative h-9 w-9 rounded-full group">
-                    <Avatar className="h-9 w-9 border-2 border-primary/50">
-                      <AvatarFallback className="bg-primary/20 text-primary font-bold transition-colors duration-200 group-hover:bg-primary group-hover:text-primary-foreground">
-                        {getInitials(userName)}
-                      </AvatarFallback>
-                    </Avatar>
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent 
-                  className="w-64 border-border/20 bg-background/80 backdrop-blur-md" 
-                  align="end" 
-                  forceMount
-                >
-                  <DropdownMenuLabel className="font-normal">
-                    <div className="flex flex-col space-y-1">
-                      <p className="text-sm font-medium leading-none">{userName}</p>
-                      <p className="text-xs leading-none text-muted-foreground">
-                        {user.email}
-                      </p>
-                    </div>
-                  </DropdownMenuLabel>
-                  <DropdownMenuSeparator className="bg-border/50" />
-                  <DropdownMenuGroup>
-                    <DropdownMenuItem asChild>
-                      <Link href="/my-courses">
-                        <LayoutGrid className="mr-2 h-4 w-4" />
-                        <span>Meus Cursos</span>
-                      </Link>
-                    </DropdownMenuItem>
-                    <DropdownMenuItem>
-                      <User className="mr-2 h-4 w-4" />
-                      <span>Membros</span>
-                    </DropdownMenuItem>
-                    <DropdownMenuItem>
-                      <CreditCard className="mr-2 h-4 w-4" />
-                      <span>Conquistas</span>
-                    </DropdownMenuItem>
-                    <DropdownMenuItem>
-                      <Settings className="mr-2 h-4 w-4" />
-                      <span>Configurações</span>
-                    </DropdownMenuItem>
-                  </DropdownMenuGroup>
-                  <DropdownMenuSeparator className="bg-border/50" />
-                  <DropdownMenuItem>
-                    <LifeBuoy className="mr-2 h-4 w-4" />
-                    <span>Suporte</span>
-                  </DropdownMenuItem>
-                  <DropdownMenuSeparator className="bg-border/50" />
-                  <DropdownMenuItem onClick={logout} className="text-red-400 focus:bg-red-500/10 focus:text-red-400">
-                    <LogOut className="mr-2 h-4 w-4" />
-                    <span>Sair</span>
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
-            ) : (
-              <Button asChild>
-                <Link href="/auth">Login</Link>
-              </Button>
-            )}
+            {authContent}
           </div>
 
           <div className="md:hidden">
