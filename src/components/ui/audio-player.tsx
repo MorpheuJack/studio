@@ -9,6 +9,7 @@ import { cn } from '@/lib/utils';
 import { Card } from '@/components/ui/card';
 import { Slider } from '@/components/ui/slider';
 import { Button } from '@/components/ui/button';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 
 interface AudioPlayerProps extends React.HTMLAttributes<HTMLDivElement> {
   src: string;
@@ -21,12 +22,16 @@ const formatTime = (seconds: number) => {
   return `${minutes}:${secs < 10 ? '0' : ''}${secs}`;
 };
 
+const playbackRates = [0.75, 1, 1.25, 1.5, 2];
+
 const AudioPlayer = React.forwardRef<HTMLDivElement, AudioPlayerProps>(
   ({ className, src, ...props }, ref) => {
     const audioRef = React.useRef<HTMLAudioElement>(null);
     const [isPlaying, setIsPlaying] = React.useState(false);
     const [duration, setDuration] = React.useState(0);
     const [currentTime, setCurrentTime] = React.useState(0);
+    const [playbackRate, setPlaybackRate] = React.useState(1);
+    const [isPopoverOpen, setIsPopoverOpen] = React.useState(false);
 
     const togglePlayPause = () => {
       if (isPlaying) {
@@ -72,12 +77,23 @@ const AudioPlayer = React.forwardRef<HTMLDivElement, AudioPlayerProps>(
             });
         };
     }, [src]);
+    
+    React.useEffect(() => {
+      if (audioRef.current) {
+        audioRef.current.playbackRate = playbackRate;
+      }
+    }, [playbackRate]);
 
     const handleSliderChange = (value: number[]) => {
       if (audioRef.current) {
         audioRef.current.currentTime = value[0];
         setCurrentTime(value[0]);
       }
+    };
+    
+    const handleRateChange = (rate: number) => {
+      setPlaybackRate(rate);
+      setIsPopoverOpen(false);
     };
 
     const remainingTime = duration - currentTime;
@@ -113,11 +129,33 @@ const AudioPlayer = React.forwardRef<HTMLDivElement, AudioPlayerProps>(
                     <span className="text-xs text-muted-foreground font-mono min-w-[5ch] text-left">
                         -{formatTime(remainingTime)}
                     </span>
+                    <Popover open={isPopoverOpen} onOpenChange={setIsPopoverOpen}>
+                        <PopoverTrigger asChild>
+                            <Button variant="ghost" size="sm" className="w-16 font-mono text-xs text-muted-foreground">
+                                {playbackRate}x
+                            </Button>
+                        </PopoverTrigger>
+                        <PopoverContent className="w-auto p-1">
+                            <div className="flex flex-col gap-1">
+                                {playbackRates.map((rate) => (
+                                    <Button
+                                        key={rate}
+                                        variant="ghost"
+                                        size="sm"
+                                        onClick={() => handleRateChange(rate)}
+                                        className={cn("w-full justify-center", playbackRate === rate && "bg-primary/20 text-primary")}
+                                    >
+                                        {rate}x
+                                    </Button>
+                                ))}
+                            </div>
+                        </PopoverContent>
+                    </Popover>
                 </div>
             </div>
         </div>
         
-        <audio ref={audioRef} src={src} className="hidden" preload="metadata" />
+        {src && <audio ref={audioRef} src={src} className="hidden" preload="metadata" />}
       </Card>
     );
   }
