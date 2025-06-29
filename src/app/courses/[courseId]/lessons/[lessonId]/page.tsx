@@ -13,6 +13,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { RelatedVideos } from '@/components/courses/RelatedVideos';
 import { CourseLessonNavigator } from '@/components/courses/CourseLessonNavigator';
 import { useAssistant } from '@/context/AssistantContext';
+import { IntegratedIDE } from '@/components/courses/IntegratedIDE';
 
 export default function LessonPage() {
   const params = useParams<{ courseId: string, lessonId: string }>();
@@ -42,13 +43,19 @@ export default function LessonPage() {
         <div className="grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 gap-8">
           {/* Main Content */}
           <div className="lg:col-span-2 xl:col-span-3 space-y-6">
-            {/* Video Player */}
+            {/* Player / IDE */}
             {lesson.type === 'video' && (
               <div className="aspect-video w-full overflow-hidden rounded-xl bg-muted shadow-lg">
                 {/* This would be a real video player */}
                 <div className="w-full h-full flex items-center justify-center">
                   <p className="text-muted-foreground">Reprodutor de vídeo</p>
                 </div>
+              </div>
+            )}
+            
+            {lesson.type === 'code' && lesson.starterCode && (
+              <div className="h-[70vh] min-h-[600px] w-full">
+                <IntegratedIDE starterCode={lesson.starterCode} />
               </div>
             )}
 

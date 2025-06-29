@@ -7,7 +7,7 @@ import { useParams } from 'next/navigation';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { cn } from '@/lib/utils';
-import { Video, FileText, CheckCircle2 } from 'lucide-react';
+import { Video, FileText, CheckCircle2, FileCode } from 'lucide-react';
 
 interface CourseLessonNavigatorProps {
   course: Course;
@@ -25,7 +25,7 @@ export function CourseLessonNavigator({ course }: CourseLessonNavigatorProps) {
   return (
     <Card className="overflow-hidden">
         <CardHeader>
-            <CardTitle className="text-lg">Course Content</CardTitle>
+            <CardTitle className="text-lg">Conteúdo da Jornada</CardTitle>
         </CardHeader>
         <CardContent className="p-0">
             <Accordion type="multiple" defaultValue={defaultActiveModules} className="w-full">
@@ -38,7 +38,15 @@ export function CourseLessonNavigator({ course }: CourseLessonNavigatorProps) {
                             <ul className="space-y-1 pt-2">
                                 {module.lessons.map((lesson) => {
                                 const isActive = lessonId === lesson.id;
-                                const Icon = isActive ? CheckCircle2 : (lesson.type === 'video' ? Video : FileText);
+                                
+                                const getIcon = () => {
+                                  if (isActive) return CheckCircle2;
+                                  if (lesson.type === 'video') return Video;
+                                  if (lesson.type === 'article') return FileText;
+                                  if (lesson.type === 'code') return FileCode;
+                                  return FileText; // fallback
+                                };
+                                const Icon = getIcon();
 
                                 return (
                                     <li key={lesson.id}>

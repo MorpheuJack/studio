@@ -9,9 +9,10 @@ export type ComplementaryMaterial = {
 export type Lesson = {
   id: string;
   title: string;
-  type: 'video' | 'article';
+  type: 'video' | 'article' | 'code';
   duration: number; // in minutes
   content: string;
+  starterCode?: string;
   complementaryMaterials?: ComplementaryMaterial[];
 };
 
@@ -92,6 +93,71 @@ export const courses: Course[] = [
             complementaryMaterials: [
               { type: 'tool', name: 'Genkit', url: '#', description: 'Toolkit de IA da Google.' },
             ]
+          },
+          { 
+            id: 'l2_3', 
+            title: 'Desafio Prático: Componente Interativo', 
+            type: 'code', 
+            duration: 60, 
+            content: 'Teoria sem prática é conhecimento frágil. Use o estúdio abaixo para construir um componente de contador simples em HTML e JavaScript. Veja o resultado do seu código ser renderizado em tempo real. Este é o primeiro passo para forjar aplicações reais.',
+            starterCode: `// HTML - Adicione seu HTML na div com id="app"
+<div id="app">
+  <h1>Contador</h1>
+  <p>Cliques: <span id="count">0</span></p>
+  <button id="incrementBtn" class="btn">Incrementar</button>
+  <button id="decrementBtn" class="btn">Decrementar</button>
+</div>
+
+// CSS - Estilize seu componente
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  background-color: #27272a;
+  color: #fafafa;
+}
+#app {
+  text-align: center;
+  padding: 2rem;
+  border-radius: 12px;
+  background-color: #18181b;
+  border: 1px solid #3f3f46;
+}
+.btn {
+  margin: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 8px;
+  border: none;
+  color: #18181b;
+  background-color: #5eead4;
+  font-weight: 600;
+}
+
+// JAVASCRIPT - Adicione a lógica
+const countEl = document.getElementById('count');
+const incrementBtn = document.getElementById('incrementBtn');
+const decrementBtn = document.getElementById('decrementBtn');
+
+let count = 0;
+
+function updateCounter() {
+  countEl.textContent = count;
+}
+
+incrementBtn.addEventListener('click', () => {
+  count++;
+  updateCounter();
+});
+
+decrementBtn.addEventListener('click', () => {
+  count--;
+  updateCounter();
+});
+`
           },
         ],
       },
