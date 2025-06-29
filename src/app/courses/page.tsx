@@ -7,7 +7,7 @@ import type { Course } from '@/lib/courses';
 import Link from 'next/link';
 import { CourseCard } from '@/components/courses/CourseCard';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, BookOpenCheck, SlidersHorizontal } from 'lucide-react';
+import { ArrowRight, BookOpenCheck, SlidersHorizontal, ChevronDown } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import {
   Carousel,
@@ -71,9 +71,13 @@ export default function CoursesPage() {
             </div>
           </div>
         </div>
+        <div className="absolute bottom-10 left-1/2 z-20 -translate-x-1/2 flex flex-col items-center gap-1 md:hidden">
+          <p className="text-xs font-semibold text-white/70">Role para explorar</p>
+          <ChevronDown className="h-6 w-6 animate-bounce text-white" />
+        </div>
       </section>
       
-      <main className="container mx-auto px-4 py-12 sm:px-6 lg:py-16 lg:px-8">
+      <main id="courses-content" className="container mx-auto px-4 py-12 sm:px-6 lg:py-16 lg:px-8">
         <div className="flex flex-col gap-12 lg:flex-row lg:gap-16">
           {/* Category Sidebar/Tabs */}
           <aside className="lg:w-1/4">
