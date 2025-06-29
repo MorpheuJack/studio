@@ -101,7 +101,7 @@ const AudioPlayer = React.forwardRef<HTMLDivElement, AudioPlayerProps>(
     return (
       <Card
         ref={ref}
-        className={cn('w-full overflow-hidden p-4 bg-card/80 backdrop-blur-lg border-white/10 select-none shadow-lg shadow-primary/10', className)}
+        className={cn('w-full overflow-hidden p-4 bg-card/80 backdrop-blur-lg border-white/10 select-none shadow-lg', className)}
         {...props}
       >
         <div className="flex items-center gap-4 md:gap-6">
@@ -155,7 +155,7 @@ const AudioPlayer = React.forwardRef<HTMLDivElement, AudioPlayerProps>(
             </div>
         </div>
         
-        {src && <audio ref={ref} src={src} className="hidden" preload="metadata" />}
+        {src && <audio ref={audioRef} src={src} className="hidden" preload="metadata" />}
       </Card>
     );
   }
