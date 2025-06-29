@@ -5,9 +5,9 @@ import { notFound, useRouter, useParams } from 'next/navigation';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { useEnrollment } from '@/context/EnrollmentContext';
-import { Clock, BarChart, Wrench } from 'lucide-react';
+import { Clock, BarChart, Check } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
-import { Separator } from '@/components/ui/separator';
+import Link from 'next/link';
 
 export default function CourseDetailPage() {
   const params = useParams<{ courseId: string }>();
@@ -35,52 +35,113 @@ export default function CourseDetailPage() {
   };
 
   return (
-    <article className="rounded-lg bg-card text-card-foreground shadow-sm border overflow-hidden">
-      <div className="p-6 md:p-8">
-        <Badge variant="secondary" className="mb-4">{course.category}</Badge>
-        <h1 className="font-headline text-3xl md:text-4xl font-bold tracking-tight">{course.title}</h1>
-        <p className="mt-4 text-lg text-muted-foreground">{course.longDescription}</p>
+    <div className="container mx-auto px-4 py-12 sm:px-6 lg:px-8">
+      <header className="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-12 lg:gap-16 items-center">
+        {/* Left Column - Text Content */}
+        <div className="flex flex-col gap-6">
+          <p className="font-headline text-lg font-bold text-primary">#{course.category}</p>
+          <h1 className="font-headline text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl">
+            {course.title}
+          </h1>
 
-        <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-4 text-sm text-muted-foreground">
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-muted-foreground">
             <div className="flex items-center gap-2">
-                <Clock className="h-4 w-4" />
-                <span>Approx. {Math.round(totalDuration / 60)} hours</span>
+              <Clock className="h-4 w-4" />
+              <span>Aprox. {Math.round(totalDuration / 60)} horas</span>
             </div>
             <div className="flex items-center gap-2">
-                <BarChart className="h-4 w-4" />
-                <span>{totalLessons} lessons</span>
+              <BarChart className="h-4 w-4" />
+              <span>{totalLessons} aulas</span>
             </div>
-        </div>
-      </div>
-      
-      <div className="bg-muted/50 p-6 md:p-8">
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
-            <div>
-              <div className="flex items-center gap-3 mb-3">
-                <Wrench className="h-5 w-5 text-primary" />
-                <h3 className="text-lg font-semibold">Ferramentas Utilizadas</h3>
-              </div>
-              <div className="flex flex-wrap gap-2">
-                {course.tools.map((tool) => (
-                  <Badge key={tool} variant="secondary" className="px-3 py-1 text-sm">
-                    {tool}
-                  </Badge>
-                ))}
-              </div>
+          </div>
+
+          <p className="text-lg text-muted-foreground">{course.longDescription}</p>
+
+          <div>
+            <h3 className="mb-4 font-headline text-xl font-semibold">Destaques do Curso</h3>
+            <div className="flex flex-wrap gap-2">
+              {course.highlights.map((highlight) => (
+                <Badge key={highlight} variant="default" className="text-sm">
+                  {highlight}
+                </Badge>
+              ))}
             </div>
-            <div className="shrink-0">
-              {enrolled ? (
-              <Button size="lg" onClick={handleContinue}>
-                Continue Learning
+          </div>
+
+          <div className="mt-4">
+             {enrolled ? (
+              <Button size="lg" onClick={handleContinue} className="w-full sm:w-auto">
+                Continuar Aprendendo
               </Button>
               ) : (
-              <Button size="lg" onClick={handleEnroll}>
-                Enroll Now for Free
+              <Button size="lg" onClick={handleEnroll} className="w-full sm:w-auto">
+                Inscreva-se Gratuitamente
               </Button>
-              )}
-            </div>
+             )}
+          </div>
         </div>
-      </div>
-    </article>
+
+        {/* Right Column - Image */}
+        <div className="relative h-80 w-full md:h-full min-h-[400px] lg:min-h-[500px]">
+          <Image
+            src={course.image}
+            alt={course.title}
+            fill
+            className="object-cover rounded-2xl shadow-2xl shadow-primary/10"
+            data-ai-hint={course['data-ai-hint']}
+            priority
+          />
+        </div>
+      </header>
+
+      <main className="mt-24 space-y-24">
+        {/* Tools Section */}
+        <section className="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-12 lg:gap-16 items-start">
+            <div>
+              <h2 className="font-headline text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+                Ferramentas e Tecnologias
+              </h2>
+              <p className="mt-4 text-lg text-muted-foreground">
+                Domine as ferramentas que o mercado de trabalho exige. Você aprenderá a usar as seguintes tecnologias na prática.
+              </p>
+            </div>
+            <div className="grid grid-cols-2 gap-x-8 gap-y-4">
+              {course.tools.map((tool) => (
+                <div key={tool} className="flex items-center gap-3">
+                  <div className="flex h-6 w-6 items-center justify-center rounded-full bg-primary/10">
+                    <Check className="h-4 w-4 text-primary" />
+                  </div>
+                  <span className="font-medium">{tool}</span>
+                </div>
+              ))}
+            </div>
+        </section>
+
+        {/* Preview Section */}
+        {course.previewVideoUrl && (
+          <section>
+            <div className="text-center mb-8">
+              <h2 className="font-headline text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+                Assista a uma prévia
+              </h2>
+              <p className="mt-3 text-lg text-muted-foreground max-w-2xl mx-auto">
+                Tenha um gostinho do que você vai aprender. Assista a uma aula introdutória e comece sua jornada.
+              </p>
+            </div>
+            <div className="aspect-video">
+              <iframe
+                className="w-full h-full rounded-2xl border shadow-2xl shadow-primary/10"
+                src={course.previewVideoUrl}
+                title={`Prévia do curso ${course.title}`}
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
+                allowFullScreen
+              ></iframe>
+            </div>
+          </section>
+        )}
+      </main>
+    </div>
   );
 }

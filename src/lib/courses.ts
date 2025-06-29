@@ -25,6 +25,8 @@ export type Course = {
   modules: Module[];
   'data-ai-hint'?: string;
   backgroundVideo?: string;
+  highlights: string[];
+  previewVideoUrl?: string;
 };
 
 export const courses: Course[] = [
@@ -33,12 +35,14 @@ export const courses: Course[] = [
     title: 'Engenharia de Prompt para Gemini',
     description: 'Aprenda a criar prompts eficazes para extrair o máximo dos modelos de IA generativa.',
     longDescription: 'Este curso mergulha na arte e ciência da engenharia de prompt. Você aprenderá a estruturar suas perguntas e instruções para obter respostas precisas, criativas e contextualmente relevantes dos modelos de linguagem mais avançados do Google, como o Gemini. Abordaremos desde técnicas básicas até estratégias avançadas para tarefas complexas.',
-    tools: ['Gemini', 'Google AI Studio', 'Next.js'],
+    tools: ['Gemini', 'Google AI Studio', 'Next.js', 'TypeScript'],
     image: '/img/p-curso-destaque.jpg',
     mobileImage: '/img/prompt-curso-vertical.jpg',
     'data-ai-hint': 'glowing code',
     category: 'IA',
     backgroundVideo: '/video-t.mp4',
+    highlights: ['Técnicas de Prompt Chaining', 'Construção de Chatbots', 'Aprendizado Few-Shot', 'Otimização de Respostas'],
+    previewVideoUrl: 'https://www.youtube.com/embed/cFIlta1GkiE',
     modules: [
       {
         id: 'm1',
@@ -62,11 +66,13 @@ export const courses: Course[] = [
     title: 'Design de Interfaces para Aplicações de IA',
     description: 'Aprenda a projetar interfaces intuitivas e eficazes para produtos baseados em IA.',
     longDescription: 'O design para IA apresenta desafios e oportunidades únicas. Este curso ensina como criar experiências de usuário que sejam transparentes, confiáveis e que comuniquem claramente as capacidades e limitações da IA. Usando o Figma, você projetará interfaces para chatbots, ferramentas de análise de dados e sistemas de recomendação, focando em como apresentar informações complexas de forma simples.',
-    tools: ['Figma', 'Miro', 'React'],
+    tools: ['Figma', 'Miro', 'React', 'Component-Driven Design'],
     image: '/img/des-curso-destaque.jpg',
     mobileImage: '/img/des-curso-vertical.jpg',
     'data-ai-hint': 'futuristic interface',
     category: 'Design',
+    highlights: ['Princípios de UX para IA', 'Prototipagem Interativa', 'Design de Chatbots', 'Visualização de Dados'],
+    previewVideoUrl: 'https://www.youtube.com/embed/cFIlta1GkiE',
     modules: [
       {
         id: 'm3',
@@ -83,11 +89,13 @@ export const courses: Course[] = [
     title: 'Marketing Digital Otimizado com IA',
     description: 'Use ferramentas de IA para automatizar e otimizar suas campanhas de marketing.',
     longDescription: 'Descubra como a Inteligência Artificial está revolucionando o marketing digital. Este curso ensina a usar ferramentas de IA para gerar copy para anúncios, analisar dados de mercado em larga escala, otimizar campanhas de SEO e personalizar a comunicação com o cliente. Você aprenderá a tomar decisões de marketing mais inteligentes e baseadas em dados com o poder da IA.',
-    tools: ['Google Analytics', 'HubSpot', 'ChatGPT'],
+    tools: ['Google Analytics', 'HubSpot', 'ChatGPT', 'Midjourney'],
     image: '/img/programador-curso-destaque.jpg',
     mobileImage: '/img/programador-curso-vertical.jpg',
     'data-ai-hint': 'data analytics',
     category: 'Marketing',
+    highlights: ['Geração de Conteúdo com IA', 'Análise de Sentimento', 'Otimização de SEO', 'Automação de Campanhas'],
+    previewVideoUrl: 'https://www.youtube.com/embed/cFIlta1GkiE',
     modules: [
         {
           id: 'm4',
