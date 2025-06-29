@@ -97,7 +97,7 @@ export default function CourseDetailPage() {
                                             Como funciona?
                                         </Button>
                                     </DialogTrigger>
-                                    <DialogContent className="max-w-2xl lg:max-w-4xl p-0 overflow-hidden rounded-lg">
+                                    <DialogContent className="max-w-2xl lg:max-w-4xl p-0 overflow-hidden rounded-xl">
                                         <div className="aspect-video">
                                             <iframe
                                                 className="w-full h-full"
