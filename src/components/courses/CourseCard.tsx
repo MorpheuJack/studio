@@ -4,6 +4,7 @@ import type { Course } from '@/lib/courses';
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { ArrowRight, Wrench } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 interface CourseCardProps {
   course: Course;
@@ -47,9 +48,9 @@ export function CourseCard({ course }: CourseCardProps) {
               )}
             </div>
           </div>
-          <div className="flex items-center text-sm font-medium text-primary opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-            Acessar <ArrowRight className="ml-1 h-4 w-4" />
-          </div>
+          <Button variant="outline" size="sm" className="border-primary/30 text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300 group-hover:shadow-lg group-hover:shadow-primary/20">
+            Acessar <ArrowRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
+          </Button>
         </CardFooter>
       </Card>
     </Link>
