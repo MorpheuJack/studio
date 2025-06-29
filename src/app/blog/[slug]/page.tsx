@@ -7,9 +7,7 @@ import Image from 'next/image';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import React from 'react';
 import { CourseCta } from '@/components/blog/CourseCta';
-import { Button } from '@/components/ui/button';
-import Link from 'next/link';
-import { ArrowLeft } from 'lucide-react';
+import { ChevronDown } from 'lucide-react';
 
 export default function BlogPostPage() {
   const params = useParams<{ slug: string }>();
@@ -62,6 +60,11 @@ export default function BlogPostPage() {
                     </div>
                 </div>
             </div>
+        </div>
+        
+        <div className="absolute bottom-10 left-1/2 z-20 -translate-x-1/2 flex flex-col items-center gap-1 md:hidden">
+          <p className="text-xs font-semibold text-white/70">Role para ler</p>
+          <ChevronDown className="h-6 w-6 animate-bounce text-white" />
         </div>
       </header>
 
