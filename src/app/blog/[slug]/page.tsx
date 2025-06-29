@@ -103,18 +103,18 @@ export default function BlogPostPage() {
                     </div>
                   )}
                   {post.audioUrl && (
-                    <Card key="audio-player" className="my-6 bg-muted/50">
-                        <CardContent className="p-4 flex items-center gap-4">
-                            <div className="flex-shrink-0">
-                               <Volume2 className="h-6 w-6 text-primary" />
-                            </div>
-                            <div className="w-full">
-                                <p className="text-sm font-semibold mb-2 text-muted-foreground">Ouça este artigo</p>
-                                <audio controls className="w-full" src={post.audioUrl}>
-                                    Seu navegador não suporta o elemento de áudio.
-                                </audio>
-                            </div>
-                        </CardContent>
+                    <Card key="audio-player" className="my-6 overflow-hidden">
+                      <CardContent className="p-4 sm:p-6 flex items-center gap-4">
+                        <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 flex-shrink-0">
+                          <Volume2 className="h-6 w-6 text-primary" />
+                        </div>
+                        <div className="w-full">
+                          <p className="text-sm font-semibold mb-1 text-muted-foreground">Ouça este artigo</p>
+                          <audio controls className="w-full h-10" src={post.audioUrl}>
+                            Seu navegador não suporta o elemento de áudio.
+                          </audio>
+                        </div>
+                      </CardContent>
                     </Card>
                   )}
                 </div>
