@@ -1,12 +1,9 @@
 'use client';
 
 import * as React from 'react';
-import Image from 'next/image';
 import {
   Play,
   Pause,
-  Rewind,
-  FastForward,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Card } from '@/components/ui/card';
@@ -15,8 +12,6 @@ import { Button } from '@/components/ui/button';
 
 interface AudioPlayerProps extends React.HTMLAttributes<HTMLDivElement> {
   src: string;
-  imageUrl: string;
-  imageAiHint?: string;
 }
 
 const formatTime = (seconds: number) => {
@@ -27,7 +22,7 @@ const formatTime = (seconds: number) => {
 };
 
 const AudioPlayer = React.forwardRef<HTMLDivElement, AudioPlayerProps>(
-  ({ className, src, imageUrl, imageAiHint, ...props }, ref) => {
+  ({ className, src, ...props }, ref) => {
     const audioRef = React.useRef<HTMLAudioElement>(null);
     const [isPlaying, setIsPlaying] = React.useState(false);
     const [duration, setDuration] = React.useState(0);
@@ -90,32 +85,24 @@ const AudioPlayer = React.forwardRef<HTMLDivElement, AudioPlayerProps>(
     return (
       <Card
         ref={ref}
-        className={cn('w-full overflow-hidden p-4 md:p-6 bg-card/80 backdrop-blur-lg border-white/10 select-none shadow-lg shadow-primary/10', className)}
+        className={cn('w-full overflow-hidden p-4 bg-card/80 backdrop-blur-lg border-white/10 select-none shadow-lg shadow-primary/10', className)}
         {...props}
       >
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 items-center">
-            <div className="md:col-span-1">
-                 <div className="relative aspect-square md:aspect-auto md:h-full w-full overflow-hidden rounded-md group cursor-pointer" onClick={togglePlayPause}>
-                    <Image
-                      src={imageUrl}
-                      alt="Capa do áudio"
-                      fill
-                      className="object-cover"
-                      data-ai-hint={imageAiHint}
-                    />
-                    <div className="absolute inset-0 bg-black/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                        {isPlaying ? <Pause className="h-8 w-8 text-white" /> : <Play className="h-8 w-8 text-white" />}
-                    </div>
+        <div className="flex items-center gap-4 md:gap-6">
+            <Button variant="ghost" size="icon" className="h-14 w-14 flex-shrink-0 rounded-full bg-primary/10 hover:bg-primary/20" onClick={togglePlayPause}>
+                {isPlaying ? <Pause className="h-7 w-7 text-primary" /> : <Play className="h-7 w-7 text-primary pl-1" />}
+            </Button>
+            
+            <div className="flex-grow flex flex-col gap-1 overflow-hidden">
+                <div>
+                    <h3 className="font-bold text-foreground truncate">Continue a Conversa</h3>
+                    <p className="text-muted-foreground text-sm truncate">Aperte o play para ouvir o confronto de ideias por trás deste conteúdo.</p>
                 </div>
-            </div>
 
-            <div className="md:col-span-2 flex flex-col justify-center">
-                <div className="mb-2 text-center md:text-left">
-                    <h3 className="font-bold text-lg md:text-xl text-foreground truncate">Continue a Conversa</h3>
-                    <p className="text-muted-foreground text-sm">Aperte o play para ouvir o confronto de ideias por trás deste conteúdo.</p>
-                </div>
-                
-                <div className="mt-2 space-y-1">
+                <div className="flex items-center gap-3">
+                    <span className="text-xs text-muted-foreground font-mono min-w-[4ch] text-right">
+                        {formatTime(currentTime)}
+                    </span>
                     <Slider
                         value={[currentTime]}
                         max={duration || 1}
@@ -123,22 +110,9 @@ const AudioPlayer = React.forwardRef<HTMLDivElement, AudioPlayerProps>(
                         onValueChange={handleSliderChange}
                         className="w-full"
                     />
-                    <div className="flex justify-between text-xs text-muted-foreground font-mono">
-                        <span>{formatTime(currentTime)}</span>
-                        <span>-{formatTime(remainingTime)}</span>
-                    </div>
-                </div>
-
-                 <div className="mt-3 flex justify-center items-center gap-4">
-                    <Button variant="ghost" size="icon" className="h-10 w-10 text-muted-foreground">
-                        <Rewind className="h-6 w-6" />
-                    </Button>
-                    <Button variant="ghost" size="icon" className="h-16 w-16 bg-primary/10 hover:bg-primary/20 rounded-full" onClick={togglePlayPause}>
-                        {isPlaying ? <Pause className="h-8 w-8 text-primary" /> : <Play className="h-8 w-8 text-primary pl-1" />}
-                    </Button>
-                    <Button variant="ghost" size="icon" className="h-10 w-10 text-muted-foreground">
-                        <FastForward className="h-6 w-6" />
-                    </Button>
+                    <span className="text-xs text-muted-foreground font-mono min-w-[5ch] text-left">
+                        -{formatTime(remainingTime)}
+                    </span>
                 </div>
             </div>
         </div>

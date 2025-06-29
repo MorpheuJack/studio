@@ -107,8 +107,6 @@ export default function BlogPostPage() {
                     <div className="not-prose my-6">
                         <AudioPlayer
                             src={post.audioUrl}
-                            imageUrl={post.image}
-                            imageAiHint={post['data-ai-hint']}
                         />
                     </div>
                   )}

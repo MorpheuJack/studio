@@ -106,8 +106,6 @@ export default function LessonPage() {
                 <div className="my-6">
                     <AudioPlayer
                         src={lesson.audioUrl}
-                        imageUrl={course.image}
-                        imageAiHint={course['data-ai-hint']}
                     />
                 </div>
               )}
