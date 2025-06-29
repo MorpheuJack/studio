@@ -27,11 +27,11 @@ export default function Home() {
       <div className="container mx-auto px-4 py-24 sm:px-6 lg:px-8 space-y-24">
         {/* Featured Courses Section */}
         <section>
-          <div className="mb-8 flex items-center justify-between">
+          <div className="mb-8 text-center">
             <h2 className="font-headline text-3xl font-bold sm:text-4xl">
               Cursos em Destaque
             </h2>
-            <Button asChild variant="link" className="text-sm text-primary hover:text-primary/80 shrink-0">
+            <Button asChild variant="link" className="mt-2 text-sm text-primary hover:text-primary/80">
               <Link href="/courses/all">
                 Ver todos os cursos
                 <ArrowRight className="ml-1 h-4 w-4" />
@@ -61,11 +61,11 @@ export default function Home() {
 
         {/* Featured Blog Posts Section */}
         <section>
-          <div className="mb-8 flex items-center justify-between">
+          <div className="mb-8 text-center">
             <h2 className="font-headline text-3xl font-bold sm:text-4xl">
               Blog em Destaque
             </h2>
-            <Button asChild variant="link" className="text-sm text-primary hover:text-primary/80 shrink-0">
+            <Button asChild variant="link" className="mt-2 text-sm text-primary hover:text-primary/80">
               <Link href="/blog">
                 Ver todos os artigos
                 <ArrowRight className="ml-1 h-4 w-4" />
