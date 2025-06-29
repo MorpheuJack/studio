@@ -10,9 +10,9 @@ export function Footer() {
   return (
     <footer className="border-t border-white/10 bg-background/95 backdrop-blur-sm">
       <div className="container mx-auto px-4 py-12 sm:px-6 md:py-16 lg:px-8">
-        <div className="grid grid-cols-1 gap-12 text-center md:grid-cols-2 md:text-left lg:grid-cols-4 lg:gap-8">
+        <div className="grid grid-cols-1 gap-12 text-center sm:grid-cols-2 sm:gap-8 sm:text-left lg:grid-cols-4">
           {/* Column 1: Brand & Social */}
-          <div className="flex flex-col items-center md:items-start">
+          <div className="flex flex-col items-center sm:items-start">
             <Link href="/" className="mb-4 flex items-center space-x-2">
               <BrainCircuit className="h-8 w-8 text-primary" />
               <span className="text-xl font-bold font-headline text-foreground">
@@ -58,7 +58,7 @@ export function Footer() {
           </div>
 
           {/* Column 4: Newsletter */}
-          <div className="flex flex-col items-center md:items-start">
+          <div className="flex flex-col items-center sm:items-start">
             <h3 className="font-headline text-lg font-semibold text-foreground">Fique por Dentro</h3>
             <p className="mt-4 text-sm text-muted-foreground">
               Receba as últimas novidades sobre IA e aprendizado, direto no seu email.
