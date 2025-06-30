@@ -162,7 +162,7 @@ export default function AuthPage() {
       </div>
       <div className="hidden bg-muted lg:block relative">
         <Image
-          src="/img/rc-background.png"
+          src="/img/rc-background.jpg"
           alt="Plano de fundo abstrato da Revolução Cognitiva"
           data-ai-hint="abstract technology"
           fill
