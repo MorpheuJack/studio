@@ -23,12 +23,10 @@ export default function MyCoursesPage() {
   
   const baseProjects = getProjectsForCourses(enrolledCourses);
 
-  const userName = user?.user_metadata?.full_name || user?.email || 'Artesão(ã)';
-
   // Enrich project data with author info to match ProjectCard's expected props
   const userProjects: Project[] = baseProjects.map(project => ({
     ...project,
-    author: userName,
+    author: 'MorpheuJack',
     // Using a placeholder for avatar image
     authorAvatar: 'https://placehold.co/100x100.png',
   }));
