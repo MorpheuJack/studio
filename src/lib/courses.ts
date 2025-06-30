@@ -69,6 +69,52 @@ export const courses: Course[] = [
             ],
             audioUrl: '/audio/c1-l1_1.wav',
           },
+          {
+            id: 'l1_challenge',
+            title: 'Desafio Prático: O Construtor de Prompts',
+            type: 'code',
+            duration: 30,
+            content: "Sua missão é forjar uma ferramenta para construir prompts eficazes. No editor, crie uma interface HTML com campos de texto para 'Persona da IA', 'Tarefa a ser executada' e 'Contexto'. Usando JavaScript, faça com que um botão 'Gerar Prompt' combine os valores desses campos em um único prompt estruturado e o exiba na tela.",
+            starterCode: `// HTML - Crie sua estrutura aqui.
+<div id="app" style="color: #eee; font-family: sans-serif;">
+  <h2>Construtor de Prompts</h2>
+  <label for="persona">Persona da IA:</label>
+  <textarea id="persona" rows="2" placeholder="Ex: Você é um historiador especialista..."></textarea>
+  <label for="tarefa">Tarefa a ser executada:</label>
+  <textarea id="tarefa" rows="3" placeholder="Ex: Explique as causas da Revolução Francesa..."></textarea>
+  <label for="contexto">Contexto Adicional:</label>
+  <textarea id="contexto" rows="2" placeholder="Ex: Foque nos aspectos econômicos..."></textarea>
+  <button id="gerarBtn">Gerar Prompt</button>
+  <h3>Prompt Gerado:</h3>
+  <pre id="resultado"></pre>
+</div>
+
+// CSS - Estilize sua ferramenta.
+#app { padding: 1rem; }
+textarea, input, label { display: block; width: 95%; background: #27272a; border: 1px solid #3f3f46; color: #eee; padding: 8px; margin-bottom: 10px; border-radius: 4px; }
+label { margin-bottom: 4px; font-weight: bold; border: none; background: transparent; padding: 0;}
+button { background: hsl(var(--primary)); color: hsl(var(--primary-foreground)); border: none; padding: 10px 15px; border-radius: 4px; cursor: pointer; font-weight: bold; }
+#resultado { margin-top: 1rem; background: #27272a; padding: 1rem; border-radius: 4px; white-space: pre-wrap; min-height: 100px; border: 1px solid #3f3f46;}
+
+// JAVASCRIPT - Implemente a lógica.
+const personaInput = document.getElementById('persona');
+const tarefaInput = document.getElementById('tarefa');
+const contextoInput = document.getElementById('contexto');
+const gerarBtn = document.getElementById('gerarBtn');
+const resultadoPre = document.getElementById('resultado');
+
+gerarBtn.addEventListener('click', () => {
+  const promptFinal = \`
+Persona: \${personaInput.value}
+
+Tarefa: \${tarefaInput.value}
+
+Contexto: \${contextoInput.value}
+  \`;
+  resultadoPre.textContent = promptFinal.trim();
+});
+`,
+          },
         ],
       },
       {
@@ -164,6 +210,58 @@ decrementBtn.addEventListener('click', () => {
 `,
             audioUrl: '/audio/c1-l2_3.wav',
           },
+          {
+            id: 'l2_challenge',
+            title: "Desafio Final: Simulador de Diálogo Socrático",
+            type: 'code',
+            duration: 45,
+            content: "Prove seu domínio sobre fluxos de conversa. Usando o array de diálogos fornecido no JavaScript, crie uma interface de chat que exibe uma pergunta do 'Guia' de cada vez. Um botão 'Próximo' deve avançar a conversa, mostrando a próxima fala do Guia, simulando um diálogo socrático.",
+            starterCode: `// HTML - Crie a interface do chat.
+<div id="app" style="color: #eee; font-family: sans-serif;">
+  <h2>Simulador Socrático</h2>
+  <div id="chatbox"></div>
+  <button id="nextBtn">Próxima Fala</button>
+</div>
+
+// CSS - Estilize o chat.
+#chatbox { height: 300px; overflow-y: auto; border: 1px solid #3f3f46; padding: 10px; margin-bottom: 10px; border-radius: 8px; background: #27272a;}
+.guia-message { text-align: left; background: #3f3f46; padding: 8px 12px; border-radius: 8px; margin-bottom: 8px; max-width: 80%; }
+button { margin-top: 10px; background: hsl(var(--primary)); color: hsl(var(--primary-foreground)); border: none; padding: 10px 15px; border-radius: 4px; cursor: pointer; font-weight: bold; }
+
+// JAVASCRIPT - Implemente a lógica do diálogo.
+const dialogo = [
+  "Guia: Se você tem um martelo, tudo parece um prego. Como essa ideia se aplica ao aprender uma nova tecnologia?",
+  "Guia: Exato. Agora, qual o perigo de ver apenas 'pregos' ao tentar resolver um problema complexo com essa nova tecnologia?",
+  "Guia: E como você pode se forçar a ver além do 'martelo' para encontrar a solução verdadeiramente elegante?",
+  "Guia: Parabéns. Você forjou um novo modelo mental."
+];
+let passoAtual = 0;
+const chatbox = document.getElementById('chatbox');
+const nextBtn = document.getElementById('nextBtn');
+
+function mostrarMensagem() {
+  if (passoAtual < dialogo.length) {
+    const p = document.createElement('p');
+    p.className = 'guia-message';
+    p.textContent = dialogo[passoAtual];
+    chatbox.appendChild(p);
+    chatbox.scrollTop = chatbox.scrollHeight;
+  }
+  if (passoAtual >= dialogo.length -1) {
+    nextBtn.disabled = true;
+    nextBtn.textContent = "Fim do Diálogo";
+  }
+}
+
+nextBtn.addEventListener('click', () => {
+  passoAtual++;
+  mostrarMensagem();
+});
+
+// Mostra a primeira mensagem
+mostrarMensagem();
+`,
+          },
         ],
       },
     ],
@@ -187,6 +285,68 @@ decrementBtn.addEventListener('click', () => {
         lessons: [
           { id: 'l3_1', title: 'Princípios de UX para IA', type: 'article', duration: 20, content: 'Explore os princípios fundamentais para projetar boas experiências com IA, incluindo explicabilidade, controle do usuário e gerenciamento de expectativas. Entender esses princípios é essencial para criar produtos de IA que as pessoas confiem e gostem de usar.', audioUrl: '/audio/c2-l3_1.wav' },
           { id: 'l3_2', title: 'Prototipando um Chatbot no Figma', type: 'video', duration: 35, content: 'Uma introdução prática ao design e prototipagem de uma interface de chatbot no Figma. Abordaremos como projetar fluxos de conversa, estados de mensagem (enviando, recebido, erro) e como criar um protótipo interativo para testar a experiência do usuário antes do desenvolvimento.', audioUrl: '/audio/c2-l3_2.wav' },
+          {
+            id: 'l3_challenge',
+            title: "Desafio Prático: Design da Confiança",
+            type: 'code',
+            duration: 35,
+            content: "Sua tarefa é projetar e construir (com HTML e CSS) um componente de UI que exiba uma resposta gerada por IA, mas que também comunique visualmente o nível de confiança da IA naquela resposta. Pense em como usar cores, ícones ou barras para transmitir se a confiança é 'Alta', 'Média' ou 'Baixa'.",
+            starterCode: `// HTML - Construa os componentes de UI aqui.
+<div id="app" style="color: #eee; font-family: sans-serif;">
+  <h2>Respostas da IA</h2>
+  
+  <div class="resposta confianca-alta">
+    <div class="header"><strong>Confiança Alta</strong></div>
+    <p>A capital da França é Paris.</p>
+  </div>
+  
+  <div class="resposta confianca-media">
+    <div class="header"><strong>Confiança Média</strong></div>
+    <p>É provável que o evento aconteça na próxima semana.</p>
+  </div>
+
+  <div class="resposta confianca-baixa">
+    <div class="header"><strong>Confiança Baixa</strong></div>
+    <p>A previsão sugere chuva, mas o tempo está instável.</p>
+  </div>
+</div>
+
+// CSS - Estilize os diferentes estados de confiança.
+.resposta { 
+  border-left: 5px solid; 
+  padding: 1rem; 
+  margin: 1rem 0; 
+  background: #27272a; 
+  border-radius: 4px;
+}
+.resposta .header {
+  font-size: 0.8rem;
+  margin-bottom: 0.5rem;
+  opacity: 0.8;
+}
+.confianca-alta { 
+  border-color: #22c55e; /* Verde */ 
+  color: #dcfce7;
+}
+.confianca-alta .header { color: #22c55e; }
+
+.confianca-media { 
+  border-color: #facc15; /* Amarelo */ 
+  color: #fef9c3;
+}
+.confianca-media .header { color: #facc15; }
+
+.confianca-baixa {
+  border-color: #ef4444; /* Vermelho */
+  color: #fee2e2;
+}
+.confianca-baixa .header { color: #ef4444; }
+
+
+// JAVASCRIPT - Não é necessário para este desafio de design.
+// Foco em HTML e CSS.
+`,
+          },
         ],
       },
     ],
@@ -210,8 +370,58 @@ decrementBtn.addEventListener('click', () => {
           lessons: [
             { id: 'l4_1', title: 'Criando Posts para Blog com IA', type: 'article', duration: 15, content: 'Esta lição mostra como usar geradores de texto de IA para criar rascunhos de posts para blogs. Aprenderemos a criar prompts eficazes para definir o tom, o público e as palavras-chave, e como refinar o conteúdo gerado para garantir qualidade e originalidade.', audioUrl: '/audio/c3-l4_1.wav' },
             { id: 'l4_2', title: 'Análise de Sentimento em Mídias Sociais', type: 'video', duration: 40, content: 'Aprenda a usar APIs de IA para analisar o sentimento em comentários de mídias sociais. Este vídeo aborda como coletar dados e usar a IA para classificar automaticamente os comentários como positivos, negativos ou neutros, fornecendo insights valiosos sobre a percepção da sua marca.', audioUrl: '/audio/c3-l4_2.wav' },
-        ],
-      },
+            {
+              id: 'l4_challenge',
+              title: "Desafio Final: O Painel de Insights do Cliente",
+              type: 'code',
+              duration: 40,
+              content: "Você recebeu um conjunto de dados de reviews de clientes. Sua missão é usar JavaScript para processar esses dados e exibir um resumo de marketing no painel de resultados. Calcule e exiba: 1) A nota média de avaliação. 2) O número total de reviews. 3) A porcentagem de reviews positivos (nota 4 ou 5).",
+              starterCode: `// HTML - Crie a estrutura para exibir os resultados.
+<div id="app" style="color: #eee; font-family: sans-serif;">
+  <h2>Painel de Marketing</h2>
+  <div id="resultados"></div>
+</div>
+
+// CSS - Estilize seu painel.
+#app { padding: 1rem; }
+#resultados { font-size: 1.1em; line-height: 1.8; background: #27272a; padding: 1rem; border-radius: 8px; border: 1px solid #3f3f46; }
+#resultados p { margin: 0.5rem 0; }
+#resultados strong { color: hsl(var(--primary)); }
+
+// JAVASCRIPT - Processe os dados e exiba os resultados.
+const reviews = [
+  { id: 1, nota: 5, comentario: "Excelente produto!" },
+  { id: 2, nota: 4, comentario: "Muito bom, atendeu às expectativas." },
+  { id: 3, nota: 2, comentario: "Decepcionante, quebrou na primeira semana." },
+  { id: 4, nota: 5, comentario: "Recomendo a todos!" },
+  { id: 5, nota: 3, comentario: "É ok, mas poderia ser melhor." },
+  { id: 6, nota: 1, comentario: "Não comprem, péssima qualidade." },
+  { id: 7, nota: 4, comentario: "Bom custo-benefício." }
+];
+
+const resultadosDiv = document.getElementById('resultados');
+
+// 1. Calcular o total de reviews
+const totalReviews = reviews.length;
+
+// 2. Calcular a nota média
+const somaDasNotas = reviews.reduce((acc, review) => acc + review.nota, 0);
+const mediaNotas = somaDasNotas / totalReviews;
+
+// 3. Calcular a porcentagem de reviews positivos (nota >= 4)
+const reviewsPositivos = reviews.filter(review => review.nota >= 4).length;
+const percPositivos = (reviewsPositivos / totalReviews) * 100;
+
+// Exiba os resultados no HTML
+resultadosDiv.innerHTML = \`
+  <p>Total de Reviews: <strong>\${totalReviews}</strong></p>
+  <p>Nota Média: <strong>\${mediaNotas.toFixed(1)} de 5</strong></p>
+  <p>Reviews Positivos: <strong>\${percPositivos.toFixed(0)}%</strong></p>
+\`;
+`,
+            },
+          ],
+        },
     ]
   },
 ];
