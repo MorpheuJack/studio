@@ -5,11 +5,10 @@ import { notFound, useParams } from 'next/navigation';
 import { useAuth } from '@/context/AuthContext';
 import { getLessonByIds } from '@/lib/courses';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { Loader2, Lock, Heart, Share2, Eye, Signal, Clock, BrainCircuit, Volume2 } from 'lucide-react';
+import { Loader2, Lock, Heart, Eye, Signal, Clock, BrainCircuit, Volume2 } from 'lucide-react';
 import type { Course, Module, Lesson } from '@/lib/courses';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { RelatedVideos } from '@/components/courses/RelatedVideos';
 import { CourseLessonNavigator } from '@/components/courses/CourseLessonNavigator';
 import { useAssistant } from '@/context/AssistantContext';
@@ -98,25 +97,19 @@ export default function LessonPage() {
               )}
             </div>
 
-            {/* Author Section */}
-            <div className="order-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-                <div className="flex items-center gap-3">
-                    <Avatar className="h-12 w-12">
-                        <AvatarImage src="/img/RG-personagem.png" alt="Revolução Cognitiva" />
-                        <AvatarFallback>RC</AvatarFallback>
-                    </Avatar>
-                    <div>
-                        <p className="font-bold text-foreground">Revolução Cognitiva</p>
-                        <p className="text-sm text-muted-foreground">1.9M subscribers</p>
-                    </div>
+            {/* CTA Section */}
+            <Card className="order-4">
+              <CardContent className="p-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                <div>
+                  <h3 className="font-headline font-bold text-xl">A Forja Intelectual</h3>
+                  <p className="text-muted-foreground mt-1 max-w-lg">O conhecimento só se torna maestria quando é testado. Desafie o que você aprendeu.</p>
                 </div>
-                <div className="flex items-center gap-2">
-                    <Button onClick={() => setAssistantOpen(true)}>
-                        <BrainCircuit className="mr-2 h-4 w-4" />
-                        Desafie seu Guia Socrático
-                    </Button>
-                </div>
-            </div>
+                <Button onClick={() => setAssistantOpen(true)} className="flex-shrink-0">
+                    <BrainCircuit className="mr-2 h-4 w-4" />
+                    Desafie seu Guia Socrático
+                </Button>
+              </CardContent>
+            </Card>
 
           </div>
 
