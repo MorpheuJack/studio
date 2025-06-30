@@ -162,9 +162,9 @@ export default function AuthPage() {
       </div>
       <div className="hidden bg-muted lg:block relative">
         <Image
-          src="https://placehold.co/1080x1920.png"
-          alt="Uma pessoa em uma estrada em direção a uma cidade futurista com arquitetura de vidro e natureza abundante."
-          data-ai-hint="futuristic city nature"
+          src="/img/rc-background.png"
+          alt="Plano de fundo abstrato da Revolução Cognitiva"
+          data-ai-hint="abstract technology"
           fill
           className="object-cover"
         />
