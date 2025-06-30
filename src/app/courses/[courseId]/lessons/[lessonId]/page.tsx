@@ -44,8 +44,16 @@ export default function LessonPage() {
         <div className="grid grid-cols-1 gap-y-6 lg:grid-cols-3 xl:grid-cols-4 lg:gap-8">
           {/* Main Content */}
           <div className="lg:col-span-2 xl:col-span-3 flex flex-col space-y-6 order-2 lg:order-1">
+            
+            {/* Audio Player */}
+            {lesson.audioUrl && (
+              <div className="order-3 lg:order-1">
+                <AudioPlayer src={lesson.audioUrl} />
+              </div>
+            )}
+            
             {/* Player / IDE */}
-            <div className="order-2 lg:order-1">
+            <div className="order-2 lg:order-2">
               {lesson.type === 'video' && (
                 <div className="aspect-video w-full overflow-hidden rounded-xl bg-muted shadow-lg">
                   {/* This would be a real video player */}
@@ -63,7 +71,7 @@ export default function LessonPage() {
             </div>
 
             {/* Lesson Details */}
-            <div className="space-y-4 order-1 lg:order-2">
+            <div className="space-y-4 order-1 lg:order-3">
               <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                   <div className="flex items-center gap-3">
                       <Avatar className="h-12 w-12">
@@ -103,14 +111,6 @@ export default function LessonPage() {
                       <span>{lesson.duration} min duration</span>
                   </div>
               </div>
-              
-              {lesson.audioUrl && (
-                <div className="my-6">
-                    <AudioPlayer
-                        src={lesson.audioUrl}
-                    />
-                </div>
-              )}
 
               <div className="prose prose-lg max-w-none text-foreground/90 dark:prose-invert">
                   <p>{lesson.content}</p>
