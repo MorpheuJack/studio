@@ -63,10 +63,10 @@ export default function AuthPage() {
     setLoading(false);
   };
   
-  const AuthForm = () => (
+  const formContent = (
     <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[380px]">
         <div className="flex flex-col items-center space-y-2 text-center">
-            <BrainCircuit className="h-10 w-10 text-primary mb-2" />
+            <BrainCircuit className="h-10 w-10 text-primary mb-2 hidden lg:block" />
             <h1 className="text-2xl font-headline font-semibold tracking-tight">
               {isLoginView ? "Bem-vindo(a) de volta à Forja" : "Junte-se aos Artesãos do Pensamento"}
             </h1>
@@ -152,8 +152,13 @@ export default function AuthPage() {
 
   return (
     <div className="w-full min-h-screen lg:grid lg:grid-cols-2">
-      <div className="flex items-center justify-center py-12 px-6">
-        <AuthForm />
+      <div className="flex flex-col p-6 lg:justify-center lg:py-12 min-h-screen lg:min-h-0">
+          <div className="text-center pt-12 lg:hidden">
+              <BrainCircuit className="h-10 w-10 text-primary" />
+          </div>
+          <div className="flex-grow flex items-center justify-center lg:flex-grow-0">
+              {formContent}
+          </div>
       </div>
       <div className="hidden bg-muted lg:block relative">
         <Image
