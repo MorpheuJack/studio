@@ -121,10 +121,12 @@ export default function LessonPage() {
           </div>
 
           {/* Right Sidebar */}
-          <div className="lg:col-span-1 xl:col-span-1 space-y-6 order-1 lg:order-2">
+          <aside className="lg:col-span-1 xl:col-span-1 order-1 lg:order-2">
+            <div className="lg:sticky lg:top-24 space-y-6">
               <CourseLessonNavigator course={course} />
               <RelatedVideos lesson={lesson} />
-          </div>
+            </div>
+          </aside>
         </div>
       </div>
     );
