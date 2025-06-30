@@ -142,64 +142,66 @@ export default function CourseDetailPage() {
                     </div>
                 </section>
 
-                {/* Tools Section */}
-                <section className="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-12 lg:gap-16 items-center rounded-2xl p-8 sm:p-12 border border-white/10 bg-card/50 backdrop-blur-lg">
-                    <div>
-                      <h2 className="font-headline text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-                        Seu Arsenal de Criação
-                      </h2>
-                      <p className="mt-4 text-lg text-muted-foreground">
-                        Domine o arsenal que os artesãos usam. Aqui, você não aprende sobre tecnologia, você a comanda.
-                      </p>
-                    </div>
-                    <div className="grid grid-cols-2 gap-x-8 gap-y-4">
-                      {course.tools.map((tool) => (
-                        <div key={tool} className="flex items-center gap-3">
-                          <div className="flex h-6 w-6 items-center justify-center rounded-full bg-primary/10">
-                            <Check className="h-4 w-4 text-primary" />
-                          </div>
-                          <span className="font-medium">{tool}</span>
+                <section className="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16 items-start">
+                    {/* Left Column: Arsenal */}
+                    <div className="lg:col-span-2 lg:sticky lg:top-24">
+                        <div className="rounded-2xl p-8 sm:p-12 border border-white/10 bg-card/50 backdrop-blur-lg">
+                            <h2 className="font-headline text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+                                Seu Arsenal de Criação
+                            </h2>
+                            <p className="mt-4 text-lg text-muted-foreground">
+                                Domine o arsenal que os artesãos usam. Aqui, você não aprende sobre tecnologia, você a comanda.
+                            </p>
+                            <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4">
+                                {course.tools.map((tool) => (
+                                <div key={tool} className="flex items-center gap-3">
+                                    <div className="flex h-6 w-6 items-center justify-center rounded-full bg-primary/10">
+                                    <Check className="h-4 w-4 text-primary" />
+                                    </div>
+                                    <span className="font-medium">{tool}</span>
+                                </div>
+                                ))}
+                            </div>
                         </div>
-                      ))}
                     </div>
-                </section>
 
-                {/* What You'll Learn Section */}
-                <section>
-                    <div className="text-center mb-12">
-                      <h2 className="font-headline text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-                        O Mapa da Sua Forja
-                      </h2>
-                      <p className="mt-3 text-lg text-muted-foreground max-w-2xl mx-auto">
-                        Cada módulo é um novo desafio para o seu intelecto. Veja o mapa da sua jornada para a maestria.
-                      </p>
-                    </div>
-                    <div className="mx-auto max-w-3xl">
-                        <Accordion type="single" collapsible className="w-full space-y-4">
-                            {course.modules.map((module) => (
-                                <AccordionItem value={module.id} key={module.id} className="border-none">
-                                    <AccordionTrigger className="text-left font-semibold text-xl hover:no-underline p-6 bg-card rounded-lg data-[state=open]:rounded-b-none">
-                                        {module.title}
-                                    </AccordionTrigger>
-                                    <AccordionContent className="bg-card rounded-b-lg mt-0">
-                                        <ul className="space-y-1 p-6 pt-2">
-                                            {module.lessons.map((lesson) => {
-                                            const Icon = lesson.type === 'video' ? Video : FileText;
-                                            return (
-                                                <li key={lesson.id} className="flex items-center gap-4 justify-between rounded-md p-3 text-muted-foreground transition-colors hover:bg-muted/50 hover:text-foreground">
-                                                    <div className="flex items-center gap-3">
-                                                        <Icon className="h-5 w-5 flex-shrink-0" />
-                                                        <span className="font-medium">{lesson.title}</span>
-                                                    </div>
-                                                    <span className="text-sm">{lesson.duration} min</span>
-                                                </li>
-                                            );
-                                            })}
-                                        </ul>
-                                    </AccordionContent>
-                                </AccordionItem>
-                            ))}
-                        </Accordion>
+                    {/* Right Column: Mapa */}
+                    <div className="lg:col-span-3">
+                        <div className="text-left mb-8 md:mb-12">
+                          <h2 className="font-headline text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+                            O Mapa da Sua Forja
+                          </h2>
+                          <p className="mt-3 text-lg text-muted-foreground">
+                            Cada módulo é um novo desafio para o seu intelecto. Veja o mapa da sua jornada para a maestria.
+                          </p>
+                        </div>
+                        <div className="w-full">
+                            <Accordion type="single" collapsible className="w-full space-y-4">
+                                {course.modules.map((module) => (
+                                    <AccordionItem value={module.id} key={module.id} className="border-none">
+                                        <AccordionTrigger className="text-left font-semibold text-xl hover:no-underline p-6 bg-card rounded-lg data-[state=open]:rounded-b-none">
+                                            {module.title}
+                                        </AccordionTrigger>
+                                        <AccordionContent className="bg-card rounded-b-lg mt-0">
+                                            <ul className="space-y-1 p-6 pt-2">
+                                                {module.lessons.map((lesson) => {
+                                                const Icon = lesson.type === 'video' ? Video : FileText;
+                                                return (
+                                                    <li key={lesson.id} className="flex items-center gap-4 justify-between rounded-md p-3 text-muted-foreground transition-colors hover:bg-muted/50 hover:text-foreground">
+                                                        <div className="flex items-center gap-3">
+                                                            <Icon className="h-5 w-5 flex-shrink-0" />
+                                                            <span className="font-medium">{lesson.title}</span>
+                                                        </div>
+                                                        <span className="text-sm">{lesson.duration} min</span>
+                                                    </li>
+                                                );
+                                                })}
+                                            </ul>
+                                        </AccordionContent>
+                                    </AccordionItem>
+                                ))}
+                            </Accordion>
+                        </div>
                     </div>
                 </section>
             </div>
