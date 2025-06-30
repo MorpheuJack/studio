@@ -6,7 +6,7 @@ import { notFound, useRouter, useParams } from 'next/navigation';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { useEnrollment } from '@/context/EnrollmentContext';
-import { Clock, BarChart, Check, Video, FileText } from 'lucide-react';
+import { Clock, BarChart, Check, Video, FileText, FileCode } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import Link from 'next/link';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
@@ -35,6 +35,19 @@ export default function CourseDetailPage() {
     if (firstLesson) {
       router.push(`/courses/${course.id}/lessons/${firstLesson.id}`);
     }
+  };
+
+  const getLessonIcon = (type: 'video' | 'article' | 'code') => {
+      switch (type) {
+          case 'video':
+              return Video;
+          case 'article':
+              return FileText;
+          case 'code':
+              return FileCode;
+          default:
+              return FileText;
+      }
   };
 
   return (
@@ -177,29 +190,41 @@ export default function CourseDetailPage() {
                         </div>
                         <div className="w-full">
                             <Accordion type="single" collapsible className="w-full space-y-4">
-                                {course.modules.map((module) => (
-                                    <AccordionItem value={module.id} key={module.id} className="border-none">
-                                        <AccordionTrigger className="text-left font-semibold text-xl hover:no-underline p-6 bg-card rounded-lg data-[state=open]:rounded-b-none">
-                                            {module.title}
-                                        </AccordionTrigger>
-                                        <AccordionContent className="bg-card rounded-b-lg mt-0">
-                                            <ul className="space-y-1 p-6 pt-2">
-                                                {module.lessons.map((lesson) => {
-                                                const Icon = lesson.type === 'video' ? Video : FileText;
-                                                return (
-                                                    <li key={lesson.id} className="flex items-center gap-4 justify-between rounded-md p-3 text-muted-foreground transition-colors hover:bg-muted/50 hover:text-foreground">
-                                                        <div className="flex items-center gap-3">
-                                                            <Icon className="h-5 w-5 flex-shrink-0" />
-                                                            <span className="font-medium">{lesson.title}</span>
-                                                        </div>
-                                                        <span className="text-sm">{lesson.duration} min</span>
-                                                    </li>
-                                                );
-                                                })}
-                                            </ul>
-                                        </AccordionContent>
-                                    </AccordionItem>
-                                ))}
+                                {course.modules.map((module) => {
+                                    const totalLessonsInModule = module.lessons.length;
+                                    const totalDurationInModule = module.lessons.reduce((acc, lesson) => acc + lesson.duration, 0);
+
+                                    return (
+                                        <AccordionItem value={module.id} key={module.id} className="border border-white/10 rounded-lg bg-card/50 backdrop-blur-sm overflow-hidden">
+                                            <AccordionTrigger className="text-left hover:no-underline p-6 w-full group">
+                                               <div className="flex flex-col items-start gap-1">
+                                                    <span className="text-xl font-semibold text-foreground group-hover:text-primary transition-colors">{module.title}</span>
+                                                    <span className="text-sm font-normal text-muted-foreground">
+                                                        {totalLessonsInModule} aulas • ~{totalDurationInModule} min
+                                                    </span>
+                                                </div>
+                                            </AccordionTrigger>
+                                            <AccordionContent>
+                                               <div className="border-t border-white/10">
+                                                   <ul className="space-y-1 p-4">
+                                                        {module.lessons.map((lesson) => {
+                                                            const Icon = getLessonIcon(lesson.type);
+                                                            return (
+                                                                <li key={lesson.id} className="flex items-center gap-4 justify-between rounded-md p-3 text-muted-foreground transition-colors hover:bg-muted/50 hover:text-foreground">
+                                                                    <div className="flex items-center gap-3">
+                                                                        <Icon className="h-5 w-5 flex-shrink-0" />
+                                                                        <span className="font-medium">{lesson.title}</span>
+                                                                    </div>
+                                                                    <span className="text-sm">{lesson.duration} min</span>
+                                                                </li>
+                                                            );
+                                                        })}
+                                                    </ul>
+                                               </div>
+                                            </AccordionContent>
+                                        </AccordionItem>
+                                    )
+                                })}
                             </Accordion>
                         </div>
                     </div>
