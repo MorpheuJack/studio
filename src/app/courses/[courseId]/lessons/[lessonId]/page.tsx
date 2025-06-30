@@ -47,25 +47,6 @@ export default function LessonPage() {
             
             {/* Lesson Details */}
             <div className="space-y-4 order-1">
-              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-                  <div className="flex items-center gap-3">
-                      <Avatar className="h-12 w-12">
-                          <AvatarImage src="/img/RG-personagem.png" alt="Revolução Cognitiva" />
-                          <AvatarFallback>RC</AvatarFallback>
-                      </Avatar>
-                      <div>
-                          <p className="font-bold text-foreground">Revolução Cognitiva</p>
-                          <p className="text-sm text-muted-foreground">1.9M subscribers</p>
-                      </div>
-                  </div>
-                  <div className="flex items-center gap-2">
-                      <Button onClick={() => setAssistantOpen(true)}>
-                          <BrainCircuit className="mr-2 h-4 w-4" />
-                          Desafie seu Guia Socrático
-                      </Button>
-                  </div>
-              </div>
-
               <h1 className="font-headline text-3xl font-bold tracking-tight md:text-4xl">{lesson.title}</h1>
               
               <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-muted-foreground">
@@ -115,6 +96,26 @@ export default function LessonPage() {
                   <IntegratedIDE starterCode={lesson.starterCode} />
                 </div>
               )}
+            </div>
+
+            {/* Author Section */}
+            <div className="order-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                <div className="flex items-center gap-3">
+                    <Avatar className="h-12 w-12">
+                        <AvatarImage src="/img/RG-personagem.png" alt="Revolução Cognitiva" />
+                        <AvatarFallback>RC</AvatarFallback>
+                    </Avatar>
+                    <div>
+                        <p className="font-bold text-foreground">Revolução Cognitiva</p>
+                        <p className="text-sm text-muted-foreground">1.9M subscribers</p>
+                    </div>
+                </div>
+                <div className="flex items-center gap-2">
+                    <Button onClick={() => setAssistantOpen(true)}>
+                        <BrainCircuit className="mr-2 h-4 w-4" />
+                        Desafie seu Guia Socrático
+                    </Button>
+                </div>
             </div>
 
           </div>
