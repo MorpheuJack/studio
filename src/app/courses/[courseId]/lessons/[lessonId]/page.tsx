@@ -45,33 +45,8 @@ export default function LessonPage() {
           {/* Main Content */}
           <div className="lg:col-span-2 xl:col-span-3 flex flex-col space-y-6 order-2 lg:order-1">
             
-            {/* Audio Player */}
-            {lesson.audioUrl && (
-              <div className="order-3 lg:order-1">
-                <AudioPlayer src={lesson.audioUrl} />
-              </div>
-            )}
-            
-            {/* Player / IDE */}
-            <div className="order-2 lg:order-2">
-              {lesson.type === 'video' && (
-                <div className="aspect-video w-full overflow-hidden rounded-xl bg-muted shadow-lg">
-                  {/* This would be a real video player */}
-                  <div className="w-full h-full flex items-center justify-center">
-                    <p className="text-muted-foreground">Reprodutor de vídeo</p>
-                  </div>
-                </div>
-              )}
-              
-              {lesson.type === 'code' && lesson.starterCode && (
-                <div className="h-[60vh] min-h-[500px] md:h-[70vh] md:min-h-[600px] w-full">
-                  <IntegratedIDE starterCode={lesson.starterCode} />
-                </div>
-              )}
-            </div>
-
             {/* Lesson Details */}
-            <div className="space-y-4 order-1 lg:order-3">
+            <div className="space-y-4 order-1">
               <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                   <div className="flex items-center gap-3">
                       <Avatar className="h-12 w-12">
@@ -116,6 +91,32 @@ export default function LessonPage() {
                   <p>{lesson.content}</p>
               </div>
             </div>
+            
+            {/* Audio Player */}
+            {lesson.audioUrl && (
+              <div className="order-2">
+                <AudioPlayer src={lesson.audioUrl} />
+              </div>
+            )}
+            
+            {/* Player / IDE */}
+            <div className="order-3">
+              {lesson.type === 'video' && (
+                <div className="aspect-video w-full overflow-hidden rounded-xl bg-muted shadow-lg">
+                  {/* This would be a real video player */}
+                  <div className="w-full h-full flex items-center justify-center">
+                    <p className="text-muted-foreground">Reprodutor de vídeo</p>
+                  </div>
+                </div>
+              )}
+              
+              {lesson.type === 'code' && lesson.starterCode && (
+                <div className="h-[60vh] min-h-[500px] md:h-[70vh] md:min-h-[600px] w-full">
+                  <IntegratedIDE starterCode={lesson.starterCode} />
+                </div>
+              )}
+            </div>
+
           </div>
 
           {/* Right Sidebar */}
