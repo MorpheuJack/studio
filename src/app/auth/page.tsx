@@ -153,7 +153,7 @@ export default function AuthPage() {
   return (
     <div className="w-full min-h-screen lg:grid lg:grid-cols-2">
       <div className="flex flex-col p-6 lg:justify-center lg:py-12 min-h-screen lg:min-h-0">
-          <div className="text-center pt-12 lg:hidden">
+          <div className="flex justify-center pt-12 lg:hidden">
               <BrainCircuit className="h-10 w-10 text-primary" />
           </div>
           <div className="flex-grow flex items-center justify-center lg:flex-grow-0">
