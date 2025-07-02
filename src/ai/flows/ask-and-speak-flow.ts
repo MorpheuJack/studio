@@ -32,23 +32,28 @@ const askAndSpeakFlow = ai.defineFlow(
   },
   async (question) => {
     let aiResponse = "Não consegui pensar em uma resposta. Tente novamente.";
-    
-    // 1. Generate a text response
+    let audioUrl = '';
+
+    // 1. Generate a text response using a structured output for robustness
     try {
-      const response = await ai.generate({
+      const { output } = await ai.generate({
         prompt: `Responda à seguinte pergunta de forma concisa e direta, como se estivesse falando com alguém. Seja breve e amigável. Pergunta: "${question}"`,
+        output: {
+          schema: z.object({
+            answer: z.string().describe("A resposta concisa e amigável para a pergunta do usuário."),
+          }),
+        },
       });
-      const text = response.text;
-      if (text) {
-        aiResponse = text;
+
+      if (output?.answer) {
+        aiResponse = output.answer;
       }
     } catch (e) {
       console.error("Error generating text in askAndSpeakFlow:", e);
-      // Use the default error message if text generation fails.
+      // The default error message will be used if text generation fails.
     }
 
     // 2. Generate speech from the text response
-    let audioUrl = '';
     try {
       if (aiResponse && aiResponse !== "Não consegui pensar em uma resposta. Tente novamente.") {
           const speech = await generateSpeech(aiResponse);
