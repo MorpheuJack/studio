@@ -133,6 +133,11 @@ export default function CourseDetailPage() {
                                             <DialogDescription className="text-base text-muted-foreground">
                                                 {course.longDescription}
                                             </DialogDescription>
+                                            <div className="pt-4">
+                                                <Button size="lg" onClick={handleEnroll} className="w-full">
+                                                    Entre na Forja
+                                                </Button>
+                                            </div>
                                         </div>
                                     </DialogContent>
                                 </Dialog>
