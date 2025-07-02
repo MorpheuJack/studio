@@ -35,11 +35,14 @@ const askAndSpeakFlow = ai.defineFlow(
     
     // 1. Generate a text response
     try {
-      const { text } = await ai.generate({
+      const { output } = await ai.generate({
         prompt: `Responda à seguinte pergunta de forma concisa e direta, como se estivesse falando com alguém. Seja breve e amigável. Pergunta: "${question}"`,
+        output: {
+            schema: z.object({ answer: z.string().describe("A resposta para a pergunta do usuário.") })
+        }
       });
-      if (text) {
-        aiResponse = text;
+      if (output?.answer) {
+        aiResponse = output.answer;
       }
     } catch (e) {
       console.error("Error generating text in askAndSpeakFlow:", e);
@@ -49,7 +52,7 @@ const askAndSpeakFlow = ai.defineFlow(
     // 2. Generate speech from the text response
     let audioUrl = '';
     try {
-      if (aiResponse) {
+      if (aiResponse && aiResponse !== "Não consegui pensar em uma resposta. Tente novamente.") {
           const speech = await generateSpeech(aiResponse);
           audioUrl = speech.media;
       }
