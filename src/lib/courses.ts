@@ -216,8 +216,11 @@ decrementBtn.addEventListener('click', () => {
   },
 ];
 
-export const getCoursesByCategory = (category: string, limit: number = 2) => {
-    return courses.filter(course => course.category === category).slice(0, limit);
+export const getCoursesByCategory = (category: string, limit: number = 2): Course[] => {
+    const categoryCourses = courses.filter(course => course.category === category);
+    const otherCourses = courses.filter(course => course.category !== category);
+    const combined = [...categoryCourses, ...otherCourses];
+    return combined.slice(0, limit);
 };
 
 export const getCourseById = (id: string) => {
