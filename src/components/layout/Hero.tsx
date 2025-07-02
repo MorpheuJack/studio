@@ -1,4 +1,3 @@
-
 'use client';
 
 import * as React from 'react';
@@ -12,6 +11,8 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
   type CarouselApi,
 } from '@/components/ui/carousel';
 import { Button } from '@/components/ui/button';
@@ -150,6 +151,14 @@ export function Hero() {
             </CarouselItem>
           ))}
         </CarouselContent>
+        <CarouselPrevious
+          variant="ghost"
+          className="hidden md:flex absolute left-8 h-12 w-12 rounded-full bg-black/30 text-white backdrop-blur-sm transition-colors hover:bg-black/50 hover:text-white"
+        />
+        <CarouselNext
+          variant="ghost"
+          className="hidden md:flex absolute right-8 h-12 w-12 rounded-full bg-black/30 text-white backdrop-blur-sm transition-colors hover:bg-black/50 hover:text-white"
+        />
       </Carousel>
 
       <div className="absolute bottom-12 left-1/2 z-20 -translate-x-1/2">
