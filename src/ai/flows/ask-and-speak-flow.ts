@@ -24,6 +24,17 @@ export async function askAndSpeak(input: AskAndSpeakInput): Promise<AskAndSpeakO
   return askAndSpeakFlow(input);
 }
 
+// Define a structured prompt for a more robust interaction
+const AnswerPromptInputSchema = z.object({ question: z.string() });
+const answerPrompt = ai.definePrompt(
+  {
+    name: 'answerPrompt',
+    input: { schema: AnswerPromptInputSchema },
+    output: { schema: z.object({ answer: z.string() }) },
+    prompt: `Responda à seguinte pergunta de forma concisa e amigável: {{{question}}}`,
+  }
+);
+
 const askAndSpeakFlow = ai.defineFlow(
   {
     name: 'askAndSpeakFlow',
@@ -34,27 +45,27 @@ const askAndSpeakFlow = ai.defineFlow(
     let aiResponse = "Não consegui pensar em uma resposta. Tente novamente.";
     let audioUrl = '';
 
-    // 1. Generate a text response using a simple text prompt.
     try {
-      const { text } = await ai.generate({
-        prompt: `Responda à seguinte pergunta de forma concisa e amigável: "${question}"`,
-      });
-      aiResponse = text;
-    } catch (e) {
-      console.error("Error generating text in askAndSpeakFlow:", e);
-      // Return default error message if text generation fails.
-      return { aiResponse, audioUrl };
-    }
+      // 1. Generate text using the new structured prompt
+      const { output } = await answerPrompt({ question });
 
-    // 2. Generate speech ONLY if text generation was successful.
-    try {
-      if (aiResponse && aiResponse !== "Não consegui pensar em uma resposta. Tente novamente.") {
-          const speech = await generateSpeech(aiResponse);
-          audioUrl = speech.media;
+      if (output?.answer) {
+        aiResponse = output.answer;
+        
+        // 2. Generate speech only if text generation was successful
+        try {
+            const speech = await generateSpeech(aiResponse);
+            audioUrl = speech.media;
+        } catch (e) {
+            console.error("Error generating speech in askAndSpeakFlow:", e);
+            // Non-blocking: return text even if audio fails
+        }
+      } else {
+        console.error("AI returned a valid response but without the 'answer' field.");
       }
     } catch (e) {
-        console.error("Error generating speech in askAndSpeakFlow:", e);
-        // Do not block the response if TTS fails. The client can handle the missing audioUrl.
+      console.error("Error generating text in askAndSpeakFlow:", e);
+      // If text generation fails entirely, the default error message is used.
     }
     
     return {
