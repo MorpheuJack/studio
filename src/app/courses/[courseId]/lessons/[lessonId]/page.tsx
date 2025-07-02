@@ -135,13 +135,21 @@ export default function LessonPage() {
                 </CardContent>
               </Card>
 
+              {/* Related videos on mobile */}
+              <div className="lg:hidden">
+                <RelatedVideos lesson={lesson} />
+              </div>
+
             </div>
 
             {/* Right Sidebar */}
             <aside className="lg:col-span-1 xl:col-span-1 order-1 lg:order-2">
               <div className="lg:sticky lg:top-24 space-y-6">
                 <CourseLessonNavigator course={course} />
-                <RelatedVideos lesson={lesson} />
+                {/* Related videos on desktop */}
+                <div className="hidden lg:block">
+                    <RelatedVideos lesson={lesson} />
+                </div>
               </div>
             </aside>
           </div>
