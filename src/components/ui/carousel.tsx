@@ -137,7 +137,7 @@ const Carousel = React.forwardRef<
         <div
           ref={ref}
           onKeyDownCapture={handleKeyDown}
-          className={cn("relative group", className)}
+          className={cn("relative group/carousel", className)}
           role="region"
           aria-roledescription="carousel"
           {...props}
@@ -207,7 +207,7 @@ const CarouselPrevious = React.forwardRef<
       size={size}
       className={cn(
         "absolute h-8 w-8 rounded-full z-10 hidden sm:inline-flex",
-        "opacity-0 transition-opacity group-hover:opacity-100 disabled:opacity-0",
+        "opacity-0 transition-opacity group-hover/carousel:opacity-100 disabled:opacity-0",
         orientation === "horizontal"
           ? "left-4 top-1/2 -translate-y-1/2"
           : "-top-12 left-1/2 -translate-x-1/2 rotate-90",
@@ -237,7 +237,7 @@ const CarouselNext = React.forwardRef<
       size={size}
       className={cn(
         "absolute h-8 w-8 rounded-full z-10 hidden sm:inline-flex",
-        "opacity-0 transition-opacity group-hover:opacity-100 disabled:opacity-0",
+        "opacity-0 transition-opacity group-hover/carousel:opacity-100 disabled:opacity-0",
         orientation === "horizontal"
           ? "right-4 top-1/2 -translate-y-1/2"
           : "-bottom-12 left-1/2 -translate-x-1/2 rotate-90",
