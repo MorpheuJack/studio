@@ -36,7 +36,7 @@ const askAndSpeakFlow = ai.defineFlow(
       prompt: `Responda à seguinte pergunta de forma concisa e direta, como se estivesse falando com alguém. Seja breve e amigável. Pergunta: "${question}"`,
     });
 
-    const aiResponse = text() || "Não consegui pensar em uma resposta. Tente novamente.";
+    const aiResponse = text || "Não consegui pensar em uma resposta. Tente novamente.";
 
     // 2. Generate speech from the text response
     let audioUrl = '';
