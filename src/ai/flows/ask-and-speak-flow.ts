@@ -31,12 +31,20 @@ const askAndSpeakFlow = ai.defineFlow(
     outputSchema: AskAndSpeakOutputSchema,
   },
   async (question) => {
+    let aiResponse = "Não consegui pensar em uma resposta. Tente novamente.";
+    
     // 1. Generate a text response
-    const { text } = await ai.generate({
-      prompt: `Responda à seguinte pergunta de forma concisa e direta, como se estivesse falando com alguém. Seja breve e amigável. Pergunta: "${question}"`,
-    });
-
-    const aiResponse = text || "Não consegui pensar em uma resposta. Tente novamente.";
+    try {
+      const { text } = await ai.generate({
+        prompt: `Responda à seguinte pergunta de forma concisa e direta, como se estivesse falando com alguém. Seja breve e amigável. Pergunta: "${question}"`,
+      });
+      if (text) {
+        aiResponse = text;
+      }
+    } catch (e) {
+      console.error("Error generating text in askAndSpeakFlow:", e);
+      // Use the default error message if text generation fails.
+    }
 
     // 2. Generate speech from the text response
     let audioUrl = '';
