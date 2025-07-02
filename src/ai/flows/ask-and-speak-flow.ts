@@ -24,17 +24,6 @@ export async function askAndSpeak(input: AskAndSpeakInput): Promise<AskAndSpeakO
   return askAndSpeakFlow(input);
 }
 
-// Define a structured prompt for a more robust interaction
-const AnswerPromptInputSchema = z.object({ question: z.string() });
-const answerPrompt = ai.definePrompt(
-  {
-    name: 'answerPrompt',
-    input: { schema: AnswerPromptInputSchema },
-    output: { schema: z.object({ answer: z.string() }) },
-    prompt: `Responda à seguinte pergunta de forma concisa e amigável: {{{question}}}`,
-  }
-);
-
 const askAndSpeakFlow = ai.defineFlow(
   {
     name: 'askAndSpeakFlow',
@@ -46,11 +35,15 @@ const askAndSpeakFlow = ai.defineFlow(
     let audioUrl = '';
 
     try {
-      // 1. Generate text using the new structured prompt
-      const { output } = await answerPrompt({ question });
+      // 1. Generate text directly, expecting a simple text response.
+      const response = await ai.generate({
+        prompt: `Responda à seguinte pergunta de forma concisa e amigável: ${question}`,
+      });
+      
+      const textResponse = response.text;
 
-      if (output?.answer) {
-        aiResponse = output.answer;
+      if (textResponse) {
+        aiResponse = textResponse;
         
         // 2. Generate speech only if text generation was successful
         try {
@@ -61,7 +54,7 @@ const askAndSpeakFlow = ai.defineFlow(
             // Non-blocking: return text even if audio fails
         }
       } else {
-        console.error("AI returned a valid response but without the 'answer' field.");
+        console.error("AI returned an empty text response.");
       }
     } catch (e) {
       console.error("Error generating text in askAndSpeakFlow:", e);
