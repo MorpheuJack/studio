@@ -3,105 +3,114 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { 
   Flame, 
-  Code, 
-  MessageCircle, 
+  Code,
   User, 
   Clock, 
   Pencil,
-  TrendingUp,
   ArrowRight,
   Home,
   Newspaper,
-  Mic,
   BookOpen,
-  Trophy,
-  MessagesSquare,
-  Users
+  FileText,
+  FileCode,
+  Download,
+  Star,
+  Tags
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { Badge } from '@/components/ui/badge';
 
 
-// Mock data based on the image
-const communityPosts = [
+// Mock data for the resource library
+const resources = [
   {
     id: 1,
     icon: Flame,
-    title: 'Nova Breakthrough em LLMs: GPT-5 Vazamento?',
-    description: 'Discussão sobre os últimos rumores e vazamentos sobre o GPT-5. O que esperar da próxima geração de modelos de linguagem?',
-    author: 'DrAI_Expert',
-    replies: 47,
-    time: '2h atrás',
+    type: 'Prompt',
+    title: 'Analisador de Sentimento Socrático',
+    description: 'Um prompt que força a IA a analisar o sentimento de um texto e justificar sua resposta com evidências, em vez de apenas dar uma etiqueta.',
+    author: 'MorpheuJack',
+    downloads: '1.2k',
+    lastUpdated: '2d atrás',
     color: 'text-orange-400',
+    url: '#'
   },
   {
     id: 2,
-    icon: Code,
-    title: 'Compartilhando meu projeto de Computer Vision',
-    description: 'Criei um sistema de reconhecimento facial em tempo real usando YOLOv8. Código disponível no GitHub!',
-    author: 'VisionDev',
-    replies: 23,
-    time: '4h atrás',
+    icon: BookOpen,
+    type: 'Livro',
+    title: 'Clean Code: A Handbook of Agile Software Craftsmanship',
+    description: 'Um clássico indispensável para qualquer desenvolvedor que busca escrever código legível, manutenível e robusto.',
+    author: 'Robert C. Martin',
+    downloads: '5.8k',
+    lastUpdated: '1 semana atrás',
     color: 'text-blue-400',
+    url: '#'
   },
   {
     id: 3,
-    icon: MessageCircle,
-    title: 'Dúvida sobre Backpropagation em Neural Networks',
-    description: 'Alguém pode me explicar melhor como funciona o gradient descent no treinamento de redes neurais?',
-    author: 'StudentAI',
-    replies: 15,
-    time: '6h atrás',
-    color: 'text-yellow-400',
+    icon: FileText,
+    type: 'Documentação',
+    title: 'Documentação Oficial do React',
+    description: 'A fonte definitiva de verdade para aprender e consultar tudo sobre a biblioteca React.',
+    author: 'Meta',
+    downloads: '10k+',
+    lastUpdated: '1 dia atrás',
+    color: 'text-sky-400',
+    url: '#'
+  },
+    {
+    id: 4,
+    icon: FileCode,
+    type: 'PDF',
+    title: 'Attention Is All You Need (Paper)',
+    description: 'O paper seminal que introduziu a arquitetura Transformer, a base para modelos como o GPT.',
+    author: 'Vaswani et al.',
+    downloads: '8.9k',
+    lastUpdated: '3 semanas atrás',
+    color: 'text-green-400',
+    url: '#'
   },
 ];
 
-const liveSession = {
-  title: 'Introdução ao Transformers',
-  presenter: 'Prof. Dr. Silva',
-  viewers: '1,247',
+const featuredResource = {
+  icon: Flame,
+  type: 'Prompt',
+  title: 'Analisador de Sentimento Socrático',
+  description: 'Um prompt que força a IA a analisar o sentimento de um texto...',
+  color: 'text-orange-400',
+  url: '#'
 };
 
-const trendingTopics = [
-  {
-    name: '#ChatGPT',
-    posts: '2,431 posts',
-  },
-  {
-    name: '#MachineLearning',
-    posts: '1,879 posts',
-  },
-  {
-    name: '#PyTorch',
-    posts: '1,234 posts',
-  },
+const popularTags = [
+  { name: 'Gemini', resources: '231 recursos' },
+  { name: 'UI/UX', resources: '189 recursos' },
+  { name: 'JavaScript', resources: '154 recursos' },
+  { name: 'Marketing', resources: '98 recursos' },
 ];
 
 const sidebarNav = [
     { 
-        title: 'Principal', 
+        title: 'Categorias', 
         links: [
-            { label: 'Dashboard', icon: Home, active: true },
-            { label: 'Feed da Comunidade', icon: Newspaper },
-            { label: 'Lives & Eventos', icon: Mic },
+            { label: 'Todos os Recursos', icon: Home, active: true },
+            { label: 'Prompts', icon: Flame },
+            { label: 'Livros', icon: BookOpen },
+            { label: 'Documentação', icon: Newspaper },
+            { label: 'PDFs & Artigos', icon: FileText },
+            { label: 'Trechos de Código', icon: Code },
         ]
     },
     { 
-        title: 'Aprendizado', 
+        title: 'Contribuir', 
         links: [
-            { label: 'Cursos Online', icon: BookOpen },
-            { label: 'Certificações', icon: Trophy },
-        ]
-    },
-    { 
-        title: 'Comunidade', 
-        links: [
-            { label: 'Fóruns', icon: MessagesSquare },
-            { label: 'Networking', icon: Users },
+            { label: 'Enviar Recurso', icon: Pencil },
+            { label: 'Minhas Contribuições', icon: User },
         ]
     },
 ];
 
-const CommunitySidebar = () => (
+const ResourceLibrarySidebar = () => (
     <aside className="hidden lg:flex flex-col space-y-6">
         {sidebarNav.map(section => (
             <nav key={section.title} className="flex flex-col gap-1">
@@ -124,28 +133,39 @@ const CommunitySidebar = () => (
     </aside>
 );
 
-const CommunityPostCard = ({ post }: { post: (typeof communityPosts)[0] }) => {
-  const Icon = post.icon;
+const ResourceCard = ({ resource }: { resource: (typeof resources)[0] }) => {
+  const Icon = resource.icon;
   return (
-    <Card className="bg-card/50 hover:bg-card/70 transition-colors border-border/20 cursor-pointer">
+    <Card className="bg-card/50 hover:bg-card/70 transition-colors border-border/20">
       <CardContent className="p-6">
         <div className="flex items-start gap-4">
-          <Icon className={cn('h-5 w-5 mt-1 flex-shrink-0', post.color)} />
+          <Icon className={cn('h-5 w-5 mt-1 flex-shrink-0', resource.color)} />
           <div className="flex-1">
-            <h3 className="font-semibold text-foreground">{post.title}</h3>
-            <p className="mt-1 text-sm text-muted-foreground">{post.description}</p>
+            <div className="flex justify-between items-start">
+              <div>
+                <h3 className="font-semibold text-foreground">{resource.title}</h3>
+                <Badge variant="outline" className={cn("mt-1", resource.color, "border-current/50 bg-transparent")}>{resource.type}</Badge>
+              </div>
+              <Button variant="ghost" size="icon" asChild>
+                <a href={resource.url} target="_blank" rel="noopener noreferrer">
+                  <Download className="h-4 w-4" />
+                  <span className="sr-only">Baixar</span>
+                </a>
+              </Button>
+            </div>
+            <p className="mt-2 text-sm text-muted-foreground">{resource.description}</p>
             <div className="mt-4 flex flex-wrap items-center gap-x-6 gap-y-2 text-xs text-muted-foreground">
               <div className="flex items-center gap-2">
                 <User className="h-3 w-3" />
-                <span>{post.author}</span>
+                <span>por {resource.author}</span>
               </div>
               <div className="flex items-center gap-2">
-                <MessageCircle className="h-3 w-3" />
-                <span>{post.replies} respostas</span>
+                <Download className="h-3 w-3" />
+                <span>{resource.downloads} downloads</span>
               </div>
               <div className="flex items-center gap-2">
                 <Clock className="h-3 w-3" />
-                <span>{post.time}</span>
+                <span>Atualizado {resource.lastUpdated}</span>
               </div>
             </div>
           </div>
@@ -155,48 +175,46 @@ const CommunityPostCard = ({ post }: { post: (typeof communityPosts)[0] }) => {
   );
 };
 
-const LiveSessionCard = () => (
+const FeaturedResourceCard = () => (
   <Card className="bg-card/50 border-border/20">
     <CardHeader>
       <div className="flex items-center gap-2">
-        <div className="relative flex h-3 w-3">
-          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-          <span className="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
-        </div>
-        <CardTitle className="text-base font-semibold text-foreground">Ao Vivo Agora</CardTitle>
+        <Star className="h-5 w-5 text-yellow-400" />
+        <CardTitle className="text-base font-semibold text-foreground">Recurso em Destaque</CardTitle>
       </div>
     </CardHeader>
     <CardContent className="flex flex-col gap-4">
       <div className="p-4 rounded-lg bg-black/20">
-        <h4 className="font-semibold text-foreground">{liveSession.title}</h4>
-        <p className="text-sm text-muted-foreground">{liveSession.presenter}</p>
-        <div className="flex items-center gap-2 mt-2">
-            <div className="relative flex h-2 w-2">
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
+        <div className="flex items-start gap-3">
+            <featuredResource.icon className={cn("h-5 w-5 flex-shrink-0 mt-1", featuredResource.color)} />
+            <div>
+                <h4 className="font-semibold text-foreground">{featuredResource.title}</h4>
+                <p className="text-sm text-muted-foreground mt-1 line-clamp-2">{featuredResource.description}</p>
             </div>
-            <p className="text-sm text-muted-foreground">{liveSession.viewers} assistindo</p>
         </div>
       </div>
-      <Button className="w-full bg-gradient-to-r from-blue-500 to-purple-500 text-white hover:opacity-90 transition-opacity">Assistir Live</Button>
+      <Button asChild className="w-full bg-gradient-to-r from-blue-500 to-purple-500 text-white hover:opacity-90 transition-opacity">
+        <a href={featuredResource.url}>Ver Recurso</a>
+      </Button>
     </CardContent>
   </Card>
 );
 
-const TrendingTopicsCard = () => (
+const PopularTagsCard = () => (
    <Card className="bg-card/50 border-border/20">
     <CardHeader>
         <div className="flex items-center gap-2">
-            <TrendingUp className="h-5 w-5 text-primary" />
-            <CardTitle className="text-base font-semibold text-foreground">Trending Topics</CardTitle>
+            <Tags className="h-5 w-5 text-primary" />
+            <CardTitle className="text-base font-semibold text-foreground">Tags Populares</CardTitle>
         </div>
     </CardHeader>
     <CardContent>
         <div className="flex flex-col gap-4">
-            {trendingTopics.map(topic => (
-                <div key={topic.name} className="flex justify-between items-center group cursor-pointer">
+            {popularTags.map(tag => (
+                <div key={tag.name} className="flex justify-between items-center group cursor-pointer">
                     <div>
-                        <p className="font-semibold text-foreground group-hover:text-primary transition-colors">{topic.name}</p>
-                        <p className="text-xs text-muted-foreground">{topic.posts}</p>
+                        <p className="font-semibold text-foreground group-hover:text-primary transition-colors">#{tag.name}</p>
+                        <p className="text-xs text-muted-foreground">{tag.resources}</p>
                     </div>
                     <ArrowRight className="h-4 w-4 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
                 </div>
@@ -207,7 +225,7 @@ const TrendingTopicsCard = () => (
 );
 
 
-export default function CommunityPage() {
+export default function PromptLibraryPage() {
   return (
     <>
     <div className="container mx-auto px-4 py-8 sm:px-6 lg:px-8">
@@ -216,32 +234,28 @@ export default function CommunityPage() {
         {/* Left Sidebar */}
         <div className="lg:col-span-1">
           <div className="lg:sticky lg:top-24">
-             <CommunitySidebar />
+             <ResourceLibrarySidebar />
           </div>
         </div>
 
         {/* Main Content */}
         <main className="lg:col-span-2">
           <header className="flex justify-between items-center mb-6">
-            <h1 className="text-2xl font-bold text-foreground">Feed da Comunidade</h1>
+            <h1 className="text-2xl font-bold text-foreground">Biblioteca de Recursos</h1>
             <div className="hidden sm:flex items-center gap-2 text-sm text-muted-foreground">
-                <div className="relative flex h-2 w-2">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
-                </div>
-                12 pessoas online
+                <p>1,247 Recursos</p>
             </div>
           </header>
           <div className="space-y-6">
-            {communityPosts.map(post => <CommunityPostCard key={post.id} post={post} />)}
+            {resources.map(resource => <ResourceCard key={resource.id} resource={resource} />)}
           </div>
         </main>
         
         {/* Right Widgets */}
         <aside className="lg:col-span-1">
             <div className="lg:sticky lg:top-24 space-y-8">
-              <LiveSessionCard />
-              <TrendingTopicsCard />
+              <FeaturedResourceCard />
+              <PopularTagsCard />
             </div>
         </aside>
       </div>
@@ -250,7 +264,7 @@ export default function CommunityPage() {
     {/* Floating Action Button */}
     <Button size="icon" className="fixed bottom-8 right-8 h-14 w-14 rounded-full shadow-lg bg-gradient-to-br from-blue-500 to-purple-600 text-white z-20">
         <Pencil className="h-6 w-6" />
-        <span className="sr-only">Nova Postagem</span>
+        <span className="sr-only">Enviar Recurso</span>
     </Button>
     </>
   );
