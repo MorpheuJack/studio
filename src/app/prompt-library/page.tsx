@@ -1,271 +1,343 @@
-import React from 'react';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { 
-  Flame, 
-  Code,
-  User, 
-  Clock, 
-  Pencil,
-  ArrowRight,
-  Home,
-  Newspaper,
-  BookOpen,
+
+'use client';
+
+import React, { useState } from 'react';
+import {
+  BrainCircuit,
   FileText,
-  FileCode,
-  Download,
-  Star,
-  Tags
+  BookOpen,
+  Code,
+  Flame,
+  Copy,
+  Check,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from '@/components/ui/dialog';
+import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import { useToast } from '@/hooks/use-toast';
 
-
-// Mock data for the resource library
+// Expanded resource data for a richer visual
 const resources = [
+  // Central Hub
   {
-    id: 1,
-    icon: Flame,
-    type: 'Prompt',
-    title: 'Analisador de Sentimento Socrático',
-    description: 'Um prompt que força a IA a analisar o sentimento de um texto e justificar sua resposta com evidências, em vez de apenas dar uma etiqueta.',
-    author: 'MorpheuJack',
-    downloads: '1.2k',
-    lastUpdated: '2d atrás',
+    id: 'hub',
+    type: 'hub',
+    title: 'A Forja',
+    description: 'O núcleo da Revolução Cognitiva. Todos os caminhos começam e terminam aqui.',
+    position: { top: '50%', left: '50%', transform: 'translate(-50%, -50%)' },
+    Icon: BrainCircuit,
+    size: 'large',
+  },
+  // Prompt Branch
+  {
+    id: 'prompt-hub',
+    type: 'category',
+    title: 'Prompts',
+    description: 'Comandos para forjar o pensamento.',
+    position: { top: '25%', left: '20%' },
+    Icon: Flame,
+    size: 'medium',
     color: 'text-orange-400',
-    url: '#'
   },
   {
-    id: 2,
-    icon: BookOpen,
-    type: 'Livro',
-    title: 'Clean Code: A Handbook of Agile Software Craftsmanship',
-    description: 'Um clássico indispensável para qualquer desenvolvedor que busca escrever código legível, manutenível e robusto.',
-    author: 'Robert C. Martin',
-    downloads: '5.8k',
-    lastUpdated: '1 semana atrás',
+    id: 'p1',
+    type: 'resource',
+    category: 'Prompt',
+    title: 'Analisador Socrático',
+    description: 'Força a IA a justificar suas respostas.',
+    content: 'Analise o seguinte texto e determine o sentimento...',
+    position: { top: '10%', left: '10%' },
+    Icon: FileText,
+    connectsTo: 'prompt-hub',
+  },
+  {
+    id: 'p2',
+    type: 'resource',
+    category: 'Prompt',
+    title: 'Gerador de UI/UX',
+    description: 'Brainstorming de interfaces com base em princípios.',
+    content: 'Você é um especialista em Design de Experiência do Usuário (UX)...',
+    position: { top: '30%', left: '5%' },
+    Icon: FileText,
+    connectsTo: 'prompt-hub',
+  },
+  // Book Branch
+  {
+    id: 'book-hub',
+    type: 'category',
+    title: 'Livros',
+    description: 'Conhecimento consolidado para aprofundar.',
+    position: { top: '75%', left: '30%' },
+    Icon: BookOpen,
+    size: 'medium',
     color: 'text-blue-400',
-    url: '#'
   },
   {
-    id: 3,
-    icon: FileText,
-    type: 'Documentação',
-    title: 'Documentação Oficial do React',
-    description: 'A fonte definitiva de verdade para aprender e consultar tudo sobre a biblioteca React.',
-    author: 'Meta',
-    downloads: '10k+',
-    lastUpdated: '1 dia atrás',
-    color: 'text-sky-400',
-    url: '#'
+    id: 'b1',
+    type: 'resource',
+    category: 'Livro',
+    title: 'Clean Code',
+    description: 'Um clássico indispensável para desenvolvedores.',
+    content: 'Autor: Robert C. Martin. Um guia para produzir código legível, resiliente e reaproveitável.',
+    position: { top: '90%', left: '18%' },
+    Icon: BookOpen,
+    connectsTo: 'book-hub',
   },
-    {
-    id: 4,
-    icon: FileCode,
-    type: 'PDF',
-    title: 'Attention Is All You Need (Paper)',
-    description: 'O paper seminal que introduziu a arquitetura Transformer, a base para modelos como o GPT.',
-    author: 'Vaswani et al.',
-    downloads: '8.9k',
-    lastUpdated: '3 semanas atrás',
+  // Code Branch
+  {
+    id: 'code-hub',
+    type: 'category',
+    title: 'Código',
+    description: 'Trechos e padrões para acelerar a criação.',
+    position: { top: '60%', left: '80%' },
+    Icon: Code,
+    size: 'medium',
     color: 'text-green-400',
-    url: '#'
   },
+  {
+    id: 'c1',
+    type: 'resource',
+    category: 'Código',
+    title: 'Hook de Autenticação',
+    description: 'Padrão React para gerenciar estado de autenticação.',
+    content: "import React, { useState, useEffect } from 'react';",
+    position: { top: '45%', left: '90%' },
+    Icon: Code,
+    connectsTo: 'code-hub',
+  },
+  {
+    id: 'c2',
+    type: 'resource',
+    category: 'Código',
+    title: 'Debounce em TypeScript',
+    description: 'Função utilitária para otimizar performance.',
+    content: 'export function debounce<F extends (...args: any[]) => any>(func: F, waitFor: number) { ... }',
+    position: { top: '75%', left: '90%' },
+    Icon: Code,
+    connectsTo: 'code-hub',
+  },
+  {
+    id: 'doc1',
+    type: 'resource',
+    category: 'Documentação',
+    title: 'React Docs',
+    description: 'A fonte oficial para a biblioteca React.',
+    content: 'Acesse a documentação oficial em react.dev',
+    position: { top: '15%', left: '70%' },
+    Icon: FileText,
+    connectsTo: 'hub',
+  }
 ];
 
-const featuredResource = {
-  icon: Flame,
-  type: 'Prompt',
-  title: 'Analisador de Sentimento Socrático',
-  description: 'Um prompt que força a IA a analisar o sentimento de um texto...',
-  color: 'text-orange-400',
-  url: '#'
+type Resource = (typeof resources)[0] & {
+    content?: string;
 };
 
-const popularTags = [
-  { name: 'Gemini', resources: '231 recursos' },
-  { name: 'UI/UX', resources: '189 recursos' },
-  { name: 'JavaScript', resources: '154 recursos' },
-  { name: 'Marketing', resources: '98 recursos' },
-];
 
-const sidebarNav = [
-    { 
-        title: 'Categorias', 
-        links: [
-            { label: 'Todos os Recursos', icon: Home, active: true },
-            { label: 'Prompts', icon: Flame },
-            { label: 'Livros', icon: BookOpen },
-            { label: 'Documentação', icon: Newspaper },
-            { label: 'PDFs & Artigos', icon: FileText },
-            { label: 'Trechos de Código', icon: Code },
-        ]
-    },
-    { 
-        title: 'Contribuir', 
-        links: [
-            { label: 'Enviar Recurso', icon: Pencil },
-            { label: 'Minhas Contribuições', icon: User },
-        ]
-    },
-];
+const ResourceNode = ({ resource, onNodeClick }: { resource: Resource; onNodeClick: (resource: Resource) => void }) => {
+  const { Icon, title, description, position, size, color } = resource;
 
-const ResourceLibrarySidebar = () => (
-    <aside className="hidden lg:flex flex-col space-y-6">
-        {sidebarNav.map(section => (
-            <nav key={section.title} className="flex flex-col gap-1">
-                <h3 className="px-3 py-2 text-xs font-semibold text-muted-foreground uppercase tracking-wider">{section.title}</h3>
-                {section.links.map(link => {
-                    const LinkIcon = link.icon;
-                    return (
-                        <Button 
-                            key={link.label} 
-                            variant={link.active ? "secondary" : "ghost"} 
-                            className="justify-start text-sm h-9"
-                        >
-                            <LinkIcon className="mr-3 h-4 w-4" />
-                            {link.label}
-                        </Button>
-                    );
-                })}
-            </nav>
-        ))}
-    </aside>
-);
+  const sizeClasses = {
+    large: 'w-48 h-48 p-6 z-20',
+    medium: 'w-36 h-36 p-4 z-10',
+    small: 'w-28 h-28 p-3',
+  };
+  const iconSizeClasses = {
+    large: 'w-10 h-10',
+    medium: 'w-8 h-8',
+    small: 'w-6 h-6',
+  };
+  const titleSizeClasses = {
+    large: 'text-xl',
+    medium: 'text-lg',
+    small: 'text-base',
+  };
+  const descSizeClasses = {
+    large: 'text-sm',
+    medium: 'text-xs',
+    small: 'text-xs opacity-0 group-hover:opacity-100',
+  };
 
-const ResourceCard = ({ resource }: { resource: (typeof resources)[0] }) => {
-  const Icon = resource.icon;
+  const currentSize = resource.size || 'small';
+
   return (
-    <Card className="bg-card/50 hover:bg-card/70 transition-colors border-border/20">
-      <CardContent className="p-6">
-        <div className="flex items-start gap-4">
-          <Icon className={cn('h-5 w-5 mt-1 flex-shrink-0', resource.color)} />
-          <div className="flex-1">
-            <div className="flex justify-between items-start">
-              <div>
-                <h3 className="font-semibold text-foreground">{resource.title}</h3>
-                <Badge variant="outline" className={cn("mt-1", resource.color, "border-current/50 bg-transparent")}>{resource.type}</Badge>
-              </div>
-              <Button variant="ghost" size="icon" asChild>
-                <a href={resource.url} target="_blank" rel="noopener noreferrer">
-                  <Download className="h-4 w-4" />
-                  <span className="sr-only">Baixar</span>
-                </a>
-              </Button>
-            </div>
-            <p className="mt-2 text-sm text-muted-foreground">{resource.description}</p>
-            <div className="mt-4 flex flex-wrap items-center gap-x-6 gap-y-2 text-xs text-muted-foreground">
-              <div className="flex items-center gap-2">
-                <User className="h-3 w-3" />
-                <span>por {resource.author}</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Download className="h-3 w-3" />
-                <span>{resource.downloads} downloads</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Clock className="h-3 w-3" />
-                <span>Atualizado {resource.lastUpdated}</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </CardContent>
-    </Card>
+    <div
+      className={cn(
+        'group absolute flex cursor-pointer flex-col items-center justify-center rounded-full border text-center transition-all duration-300 ease-in-out',
+        'bg-card/30 backdrop-blur-sm shadow-lg hover:shadow-2xl',
+        size === 'large' ? 'border-primary/50 hover:border-primary' : 'border-border hover:border-accent-foreground',
+        size === 'large' ? 'hover:scale-105' : 'hover:scale-110 hover:z-30',
+        sizeClasses[currentSize]
+      )}
+      style={{ ...position }}
+      onClick={() => onNodeClick(resource)}
+    >
+      {Icon && <Icon className={cn('mb-2 transition-colors', iconSizeClasses[currentSize], color)} />}
+      <h3 className={cn('font-headline font-bold text-foreground transition-colors', titleSizeClasses[currentSize])}>
+        {title}
+      </h3>
+      <p className={cn('text-muted-foreground transition-opacity duration-300', descSizeClasses[currentSize])}>
+        {description}
+      </p>
+    </div>
   );
 };
 
-const FeaturedResourceCard = () => (
-  <Card className="bg-card/50 border-border/20">
-    <CardHeader>
-      <div className="flex items-center gap-2">
-        <Star className="h-5 w-5 text-yellow-400" />
-        <CardTitle className="text-base font-semibold text-foreground">Recurso em Destaque</CardTitle>
-      </div>
-    </CardHeader>
-    <CardContent className="flex flex-col gap-4">
-      <div className="p-4 rounded-lg bg-black/20">
-        <div className="flex items-start gap-3">
-            <featuredResource.icon className={cn("h-5 w-5 flex-shrink-0 mt-1", featuredResource.color)} />
-            <div>
-                <h4 className="font-semibold text-foreground">{featuredResource.title}</h4>
-                <p className="text-sm text-muted-foreground mt-1 line-clamp-2">{featuredResource.description}</p>
-            </div>
-        </div>
-      </div>
-      <Button asChild className="w-full bg-gradient-to-r from-blue-500 to-purple-500 text-white hover:opacity-90 transition-opacity">
-        <a href={featuredResource.url}>Ver Recurso</a>
-      </Button>
-    </CardContent>
-  </Card>
-);
+const ConnectionLine = ({ from, to }: { from: Resource; to: Resource }) => {
+  if (!from.position || !to.position) return null;
+  const x1 = parseFloat(from.position.left);
+  const y1 = parseFloat(from.position.top);
+  const x2 = parseFloat(to.position.left);
+  const y2 = parseFloat(to.position.top);
 
-const PopularTagsCard = () => (
-   <Card className="bg-card/50 border-border/20">
-    <CardHeader>
-        <div className="flex items-center gap-2">
-            <Tags className="h-5 w-5 text-primary" />
-            <CardTitle className="text-base font-semibold text-foreground">Tags Populares</CardTitle>
+  return (
+    <svg className="absolute top-0 left-0 w-full h-full pointer-events-none z-0">
+      <line
+        x1={`${x1}%`}
+        y1={`${y1}%`}
+        x2={`${x2}%`}
+        y2={`${y2}%`}
+        className="stroke-border/20 group-hover:stroke-border/50 transition-all duration-300"
+      />
+    </svg>
+  );
+};
+
+const ResourceDetailDialog = ({
+  resource,
+  isOpen,
+  setIsOpen,
+}: {
+  resource: Resource | null;
+  isOpen: boolean;
+  setIsOpen: (isOpen: boolean) => void;
+}) => {
+  const { toast } = useToast();
+  const [hasCopied, setHasCopied] = useState(false);
+
+  if (!resource || resource.type === 'hub' || resource.type === 'category') {
+    return null;
+  }
+
+  const copyToClipboard = () => {
+    if (!resource.content) return;
+    navigator.clipboard.writeText(resource.content);
+    setHasCopied(true);
+    toast({
+      title: 'Copiado para a área de transferência!',
+      variant: 'success',
+    });
+    setTimeout(() => setHasCopied(false), 2000);
+  };
+
+  return (
+    <Dialog open={isOpen} onOpenChange={setIsOpen}>
+      <DialogContent className="max-w-2xl">
+        <DialogHeader>
+          <div className="flex items-center gap-4">
+            {resource.Icon && <resource.Icon className={cn('h-8 w-8', resource.color)} />}
+            <div>
+              <DialogTitle className="font-headline text-2xl">{resource.title}</DialogTitle>
+              {resource.category && <Badge variant="outline" className="mt-1">{resource.category}</Badge>}
+            </div>
+          </div>
+          <DialogDescription className="pt-4 text-base">{resource.description}</DialogDescription>
+        </DialogHeader>
+        <div className="py-4">
+          <div className="relative rounded-lg bg-muted p-4 max-h-60 overflow-auto">
+            <pre className="text-sm text-muted-foreground whitespace-pre-wrap font-sans">
+              {resource.content}
+            </pre>
+          </div>
+          <div className="mt-4 flex justify-end">
+            <Button onClick={copyToClipboard}>
+              {hasCopied ? <Check className="mr-2" /> : <Copy className="mr-2" />}
+              {hasCopied ? 'Copiado!' : 'Copiar Conteúdo'}
+            </Button>
+          </div>
         </div>
-    </CardHeader>
-    <CardContent>
-        <div className="flex flex-col gap-4">
-            {popularTags.map(tag => (
-                <div key={tag.name} className="flex justify-between items-center group cursor-pointer">
-                    <div>
-                        <p className="font-semibold text-foreground group-hover:text-primary transition-colors">#{tag.name}</p>
-                        <p className="text-xs text-muted-foreground">{tag.resources}</p>
-                    </div>
-                    <ArrowRight className="h-4 w-4 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
-                </div>
-            ))}
-        </div>
-    </CardContent>
-  </Card>
-);
+      </DialogContent>
+    </Dialog>
+  );
+};
 
 
 export default function PromptLibraryPage() {
+  const [selectedResource, setSelectedResource] = useState<Resource | null>(null);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+
+  const handleNodeClick = (resource: Resource) => {
+    if (resource.type === 'resource') {
+      setSelectedResource(resource);
+      setIsDialogOpen(true);
+    }
+  };
+  
+  const connections = resources
+    .filter((r): r is Resource & { connectsTo: string } => 'connectsTo' in r && !!r.connectsTo)
+    .map((r) => ({
+      from: r,
+      to: resources.find((p) => p.id === r.connectsTo)!,
+    }));
+
   return (
     <>
-    <div className="container mx-auto px-4 py-8 sm:px-6 lg:px-8">
-      <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+      <div className="relative w-full h-screen min-h-[800px] overflow-hidden bg-background">
         
-        {/* Left Sidebar */}
-        <div className="lg:col-span-1">
-          <div className="lg:sticky lg:top-24">
-             <ResourceLibrarySidebar />
-          </div>
+        {/* Particle Background */}
+        <div className="absolute inset-0 z-0 bg-transparent bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:3rem_3rem]">
+          <div className="absolute inset-0 z-10 bg-[radial-gradient(circle_500px_at_50%_200px,hsl(var(--primary)/0.1),transparent)]" />
         </div>
 
-        {/* Main Content */}
-        <main className="lg:col-span-2">
-          <header className="flex justify-between items-center mb-6">
-            <h1 className="text-2xl font-bold text-foreground">Biblioteca de Recursos</h1>
-            <div className="hidden sm:flex items-center gap-2 text-sm text-muted-foreground">
-                <p>1,247 Recursos</p>
-            </div>
-          </header>
-          <div className="space-y-6">
-            {resources.map(resource => <ResourceCard key={resource.id} resource={resource} />)}
-          </div>
-        </main>
-        
-        {/* Right Widgets */}
-        <aside className="lg:col-span-1">
-            <div className="lg:sticky lg:top-24 space-y-8">
-              <FeaturedResourceCard />
-              <PopularTagsCard />
-            </div>
-        </aside>
-      </div>
+        {/* Lines - For Desktop Only */}
+        <div className="hidden lg:block">
+          {connections.map((conn, i) => (
+            conn.from && conn.to && <ConnectionLine key={i} from={conn.from} to={conn.to} />
+          ))}
+        </div>
 
-    </div>
-    {/* Floating Action Button */}
-    <Button size="icon" className="fixed bottom-8 right-8 h-14 w-14 rounded-full shadow-lg bg-gradient-to-br from-blue-500 to-purple-600 text-white z-20">
-        <Pencil className="h-6 w-6" />
-        <span className="sr-only">Enviar Recurso</span>
-    </Button>
+        {/* Header */}
+        <div className="relative z-30 pt-16 text-center">
+            <h1 className="font-headline text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
+              A Constelação de Ideias
+            </h1>
+            <p className="mt-4 text-lg text-muted-foreground">
+              Explore o universo de conhecimento da Revolução Cognitiva.
+            </p>
+        </div>
+        
+        {/* Desktop Constellation */}
+        <div className="hidden lg:block relative w-full h-full">
+            {resources.map((resource) => (
+              <ResourceNode key={resource.id} resource={resource} onNodeClick={handleNodeClick} />
+            ))}
+        </div>
+
+        {/* Mobile Fallback - Simple Grid */}
+        <div className="lg:hidden relative z-20 container mx-auto px-4 py-12 sm:px-6">
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+              {resources.filter(r => r.type !== 'hub').map((resource) => (
+                <div key={resource.id} onClick={() => handleNodeClick(resource)} className="group flex flex-col items-center justify-center text-center p-4 rounded-lg bg-card/50 border border-border aspect-square cursor-pointer transition-all hover:bg-card/80 hover:border-primary/50">
+                    {resource.Icon && <resource.Icon className={cn('w-8 h-8 mb-2 transition-colors', resource.color)} />}
+                    <h3 className="font-bold text-foreground text-sm">{resource.title}</h3>
+                    <p className="text-xs text-muted-foreground line-clamp-2">{resource.description}</p>
+                </div>
+              ))}
+            </div>
+        </div>
+      </div>
+      <ResourceDetailDialog
+        resource={selectedResource}
+        isOpen={isDialogOpen}
+        setIsOpen={setIsDialogOpen}
+      />
     </>
   );
 }
