@@ -2,6 +2,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import Image from 'next/image';
 import {
   BrainCircuit,
   FileText,
@@ -10,6 +11,7 @@ import {
   Flame,
   Copy,
   Check,
+  Camera,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import {
@@ -22,6 +24,7 @@ import {
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { useToast } from '@/hooks/use-toast';
+import { Card, CardContent } from '@/components/ui/card';
 
 // Expanded resource data for a richer visual
 const resources = [
@@ -135,6 +138,42 @@ const resources = [
     connectsTo: 'hub',
   }
 ];
+
+const imagePrompts = [
+  {
+    id: 'imgp1',
+    title: 'Plano Detalhe Extremo (Super Close-Up)',
+    prompt:
+      'Fotografia super close-up do olho de um réptil, revelando detalhes intrincados das escamas e da íris. Iluminação dramática, profundidade de campo rasa, lente macro. --ar 16:9',
+    imageUrl: 'https://placehold.co/400x225.png',
+    imageHint: 'reptile eye',
+  },
+  {
+    id: 'imgp2',
+    title: 'Plano de Contra-plongée (Low Angle Shot)',
+    prompt:
+      'Fotografia em contra-plongée de um arranha-céu monolítico de concreto, com o céu tempestuoso ao fundo. A perspectiva faz o prédio parecer imponente e opressor. Estilo brutalista, lente grande angular. --ar 9:16',
+    imageUrl: 'https://placehold.co/400x225.png',
+    imageHint: 'skyscraper low-angle',
+  },
+  {
+    id: 'imgp3',
+    title: 'Plano Holandês (Dutch Angle)',
+    prompt:
+      'Fotografia em plano holandês de um corredor de neon em uma cidade cyberpunk à noite. O ângulo inclinado cria uma sensação de desorientação e tensão. Reflexos no chão molhado, atmosfera cinematográfica. --ar 16:9',
+    imageUrl: 'https://placehold.co/400x225.png',
+    imageHint: 'cyberpunk hallway',
+  },
+  {
+    id: 'imgp4',
+    title: 'Plano Geral (Wide Shot)',
+    prompt:
+      'Vasto plano geral de um vale montanhoso ao amanhecer. Névoa pairando sobre um rio sinuoso no fundo. Luz dourada suave, composição épica, alta resolução. --ar 16:9',
+    imageUrl: 'https://placehold.co/400x225.png',
+    imageHint: 'mountain valley',
+  },
+];
+
 
 type Resource = (typeof resources)[0] & {
     content?: string;
@@ -272,12 +311,27 @@ const ResourceDetailDialog = ({
 export default function PromptLibraryPage() {
   const [selectedResource, setSelectedResource] = useState<Resource | null>(null);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [copiedPromptId, setCopiedPromptId] = useState<string | null>(null);
+  const { toast } = useToast();
 
   const handleNodeClick = (resource: Resource) => {
     if (resource.type === 'resource') {
       setSelectedResource(resource);
       setIsDialogOpen(true);
     }
+  };
+
+  const copyImagePrompt = (text: string, id: string) => {
+    navigator.clipboard.writeText(text);
+    setCopiedPromptId(id);
+    toast({
+      title: 'Prompt Copiado!',
+      description: 'O prompt de imagem foi copiado para a sua área de transferência.',
+      variant: 'success',
+    });
+    setTimeout(() => {
+      setCopiedPromptId(null);
+    }, 2000);
   };
   
   const connections = resources
@@ -333,6 +387,60 @@ export default function PromptLibraryPage() {
             </div>
         </div>
       </div>
+      
+      {/* Image Prompts Section */}
+      <section className="bg-background py-16 sm:py-24">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="mb-12 text-center">
+                <div className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-2 text-primary">
+                    <Camera className="h-5 w-5" />
+                    <h2 className="font-semibold">Fotografia & IA</h2>
+                </div>
+                <h3 className="mt-4 font-headline text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+                  Galeria de Comandos Visuais
+                </h3>
+                <p className="mt-4 max-w-2xl mx-auto text-lg text-muted-foreground">
+                  Explore prompts de imagem testados para diferentes ângulos e takes. Copie, cole e crie.
+                </p>
+            </div>
+            
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                {imagePrompts.map((prompt) => (
+                    <Card key={prompt.id} className="overflow-hidden">
+                        <CardContent className="p-4 grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+                            <div className="relative aspect-video rounded-md overflow-hidden group">
+                                <Image
+                                    src={prompt.imageUrl}
+                                    alt={prompt.title}
+                                    fill
+                                    className="object-cover transition-transform duration-300 group-hover:scale-105"
+                                    data-ai-hint={prompt.imageHint}
+                                />
+                            </div>
+                            <div className="flex flex-col h-full space-y-3">
+                                <h4 className="font-headline font-bold text-lg text-foreground">{prompt.title}</h4>
+                                <div className="relative flex-grow">
+                                    <pre className="text-xs p-3 h-32 overflow-y-auto rounded-md bg-muted text-muted-foreground whitespace-pre-wrap font-sans">
+                                        {prompt.prompt}
+                                    </pre>
+                                    <div className="absolute bottom-0 h-10 w-full bg-gradient-to-t from-muted to-transparent pointer-events-none" />
+                                </div>
+                                <Button
+                                    onClick={() => copyImagePrompt(prompt.prompt, prompt.id)}
+                                    size="sm"
+                                    className="w-full"
+                                >
+                                    {copiedPromptId === prompt.id ? <Check className="mr-2" /> : <Copy className="mr-2" />}
+                                    {copiedPromptId === prompt.id ? 'Copiado!' : 'Copiar Prompt'}
+                                </Button>
+                            </div>
+                        </CardContent>
+                    </Card>
+                ))}
+            </div>
+        </div>
+      </section>
+
       <ResourceDetailDialog
         resource={selectedResource}
         isOpen={isDialogOpen}
@@ -341,3 +449,4 @@ export default function PromptLibraryPage() {
     </>
   );
 }
+
