@@ -1,4 +1,3 @@
-
 'use client';
 
 import React from 'react';
@@ -15,20 +14,23 @@ interface CourseCtaProps {
 
 const RecommendedCourseCard = ({ course }: { course: Course }) => {
   return (
-    <Link href={`/courses/${course.id}`} className="group block">
-      <div className="flex items-center gap-4 rounded-lg p-3 transition-colors hover:bg-primary/10">
-        <div className="relative h-16 w-16 flex-shrink-0 overflow-hidden rounded-md">
+    <Link 
+      href={`/courses/${course.id}`} 
+      className="group block rounded-lg p-3 -m-3 transition-colors hover:bg-primary/5"
+    >
+      <div className="flex items-start gap-4">
+        <div className="relative h-16 w-16 flex-shrink-0 overflow-hidden rounded-md border border-border">
            <Image
               src={course.image}
               alt={course.title}
               fill
-              className="object-cover"
+              className="object-cover transition-transform duration-300 group-hover:scale-105"
               data-ai-hint={course['data-ai-hint']}
             />
         </div>
         <div>
-          <h4 className="font-semibold text-foreground group-hover:text-primary">{course.title}</h4>
-          <p className="text-sm text-muted-foreground">{course.description}</p>
+          <h4 className="font-semibold text-foreground transition-colors group-hover:text-primary">{course.title}</h4>
+          <p className="text-sm text-muted-foreground line-clamp-2">{course.description}</p>
         </div>
       </div>
     </Link>
@@ -38,41 +40,60 @@ const RecommendedCourseCard = ({ course }: { course: Course }) => {
 export function CourseCta({ category }: CourseCtaProps) {
   const recommendedCourses = getCoursesByCategory(category, 2);
 
+  if (recommendedCourses.length === 0) {
+    // Fallback if no courses are found for the category
+    return (
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 my-16">
+            <div className="text-center rounded-lg border border-dashed p-12">
+                <h3 className="text-lg font-medium text-foreground">Próximo Passo?</h3>
+                <p className="mt-2 text-muted-foreground">Continue sua jornada para a maestria. Explore todas as nossas forjas.</p>
+                <Button asChild className="mt-6">
+                    <Link href="/courses/all">
+                        Explorar Todas as Jornadas
+                    </Link>
+                </Button>
+            </div>
+        </div>
+    );
+  }
+
   return (
-    <div className="container mx-auto px-4 sm:px-6 lg:px-8 my-16">
-      <Card className="overflow-hidden border-2 border-primary/20 bg-gradient-to-br from-card to-muted/30 shadow-2xl shadow-primary/10">
-        <CardHeader className="p-8">
-          <div className="flex items-center gap-4 text-primary">
-            <GraduationCap className="h-8 w-8" />
-            <h2 className="font-headline text-3xl font-bold">Continue a Conversa</h2>
-          </div>
-          <CardDescription className="text-lg mt-2">
-            Gostou desta ideia? Temos jornadas completas que transformam inspiração em domínio.
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="space-y-4 px-8 pt-0 pb-8">
-          {recommendedCourses.length > 0 && (
-            <div>
-              <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-muted-foreground">
-                Jornadas Recomendadas
-              </h3>
-              <div className="space-y-4">
-                {recommendedCourses.map(course => (
-                  <RecommendedCourseCard key={course.id} course={course} />
-                ))}
+    <div className="container mx-auto px-4 sm:px-6 lg:px-8 my-24">
+      <div className="overflow-hidden rounded-xl border-2 border-primary/20 bg-gradient-to-br from-card to-muted/30 shadow-2xl shadow-primary/10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 items-center gap-8 p-8 md:p-12">
+            
+            {/* Left Column: CTA */}
+            <div className="lg:col-span-3">
+              <div className="flex items-center gap-4 text-primary">
+                <GraduationCap className="h-8 w-8" />
+                <h2 className="font-headline text-3xl font-bold">Continue a Conversa</h2>
+              </div>
+              <p className="mt-4 text-lg text-muted-foreground max-w-lg">
+                Gostou desta ideia? Transforme inspiração em domínio com nossas jornadas de aprendizado completas.
+              </p>
+              <div className="mt-8">
+                <Button asChild size="lg">
+                    <Link href="/courses/all">
+                      Explorar Todas as Jornadas
+                      <ArrowRight className="ml-2 h-5 w-5" />
+                    </Link>
+                </Button>
               </div>
             </div>
-          )}
-           <div className="pt-4">
-             <Button asChild size="lg" className="w-full sm:w-auto">
-                <Link href="/courses/all">
-                  Explorar Todas as Jornadas
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Link>
-             </Button>
-           </div>
-        </CardContent>
-      </Card>
+
+            {/* Right Column: Recommended Courses */}
+            <div className="lg:col-span-2 w-full">
+                <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-muted-foreground">
+                    Jornadas Recomendadas
+                </h3>
+                <div className="space-y-4">
+                  {recommendedCourses.map(course => (
+                    <RecommendedCourseCard key={course.id} course={course} />
+                  ))}
+                </div>
+            </div>
+        </div>
+      </div>
     </div>
   );
 }
