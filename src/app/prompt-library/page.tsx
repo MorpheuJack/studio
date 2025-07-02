@@ -19,6 +19,7 @@ import {
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Badge } from '@/components/ui/badge';
+import { AskAndSpeakWidget } from '@/components/prompts/AskAndSpeakWidget';
 
 
 // Mock data for the resource library
@@ -254,6 +255,7 @@ export default function PromptLibraryPage() {
         {/* Right Widgets */}
         <aside className="lg:col-span-1">
             <div className="lg:sticky lg:top-24 space-y-8">
+              <AskAndSpeakWidget />
               <FeaturedResourceCard />
               <PopularTagsCard />
             </div>
