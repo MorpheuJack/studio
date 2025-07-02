@@ -6,6 +6,7 @@ import { notFound, useRouter, useParams } from 'next/navigation';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { useEnrollment } from '@/context/EnrollmentContext';
+import { useAuth } from '@/context/AuthContext';
 import { Clock, BarChart, Check, Video, FileText, FileCode } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import Link from 'next/link';
@@ -16,6 +17,7 @@ export default function CourseDetailPage() {
   const params = useParams<{ courseId: string }>();
   const course = getCourseById(params.courseId);
   const { enrollCourse, isEnrolled } = useEnrollment();
+  const { isAuthenticated } = useAuth();
   const router = useRouter();
 
   if (!course) {
@@ -27,7 +29,11 @@ export default function CourseDetailPage() {
   const totalDuration = course.modules.reduce((acc, module) => acc + module.lessons.reduce((lessonAcc, lesson) => lessonAcc + lesson.duration, 0), 0);
 
   const handleEnroll = () => {
-    enrollCourse(course);
+    if (isAuthenticated) {
+      enrollCourse(course);
+    } else {
+      router.push('/auth');
+    }
   };
   
   const handleContinue = () => {
