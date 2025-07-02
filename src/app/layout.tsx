@@ -25,7 +25,7 @@ export default function RootLayout({
       </head>
       <body className="font-body bg-background text-foreground antialiased">
         <div className="fixed inset-0 -z-10 h-full w-full bg-background">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_1000px_at_50%_200px,hsl(var(--primary)/0.08),transparent_40%)] bg-[length:200%_200%] animate-animated-gradient" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_1200px_at_50%_200px,hsl(var(--primary)/0.1),transparent_40%)] bg-[length:200%_200%] animate-animated-gradient" />
         </div>
         <AuthProvider>
           <EnrollmentProvider>
