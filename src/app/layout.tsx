@@ -24,8 +24,8 @@ export default function RootLayout({
         <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
       </head>
       <body className="font-body bg-background text-foreground antialiased">
-        <div className="fixed inset-0 -z-10 h-full w-full">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_500px_at_50%_200px,hsl(var(--primary)/0.1),transparent)]" />
+        <div className="fixed inset-0 -z-10 h-full w-full bg-background">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_1000px_at_50%_200px,hsl(var(--primary)/0.08),transparent_40%)] bg-[length:200%_200%] animate-animated-gradient" />
         </div>
         <AuthProvider>
           <EnrollmentProvider>
