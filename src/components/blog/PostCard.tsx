@@ -13,14 +13,14 @@ interface PostCardProps {
 export function PostCard({ post }: PostCardProps) {
   return (
     <Link href={`/blog/${post.slug}`} className="group block h-full">
-      <Card className="flex h-full flex-col overflow-hidden transition-all duration-300 bg-card border border-border hover:border-primary/50 hover:-translate-y-1">
+      <Card className="flex h-full flex-col overflow-hidden transition-all duration-300 bg-card border border-border hover:border-primary/50 hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/10">
         <CardHeader className="p-0">
-          <div className="relative h-48 w-full">
+          <div className="relative h-48 w-full overflow-hidden">
             <Image
               src={post.image}
               alt={post.title}
               fill
-              className="object-cover"
+              className="object-cover transition-transform duration-500 ease-in-out group-hover:scale-105"
               data-ai-hint={post['data-ai-hint']}
             />
           </div>

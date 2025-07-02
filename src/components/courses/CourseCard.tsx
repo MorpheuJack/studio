@@ -12,14 +12,14 @@ interface CourseCardProps {
 export function CourseCard({ course }: CourseCardProps) {
   return (
     <Link href={`/courses/${course.id}`} className="group block h-full">
-      <Card className="flex h-full flex-col overflow-hidden rounded-lg transition-all duration-300 bg-card border border-border hover:border-primary/50 hover:-translate-y-1">
+      <Card className="flex h-full flex-col overflow-hidden rounded-lg transition-all duration-300 bg-card border border-border hover:border-primary/50 hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/10">
         <CardHeader className="p-0">
-          <div className="relative h-48 w-full">
+          <div className="relative h-48 w-full overflow-hidden">
             <Image
               src={course.image}
               alt={course.title}
               fill
-              className="object-cover"
+              className="object-cover transition-transform duration-500 ease-in-out group-hover:scale-105"
               data-ai-hint={course['data-ai-hint']}
             />
           </div>
