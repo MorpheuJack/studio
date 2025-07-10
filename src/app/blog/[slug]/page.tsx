@@ -104,7 +104,7 @@ export default function BlogPostPage() {
                     </div>
                   )}
                   {post.audioUrl && (
-                    <div className="not-prose my-6">
+                    <div className="not-prose my-6 sticky top-24 z-30">
                         <AudioPlayer
                             src={post.audioUrl}
                         />
