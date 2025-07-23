@@ -15,6 +15,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { FeaturesSection } from "@/components/layout/FeaturesSection";
+import { TimelineSection } from "@/components/layout/TimelineSection";
 import { FaqSection } from "@/components/layout/FaqSection";
 
 export default function Home() {
@@ -91,6 +92,8 @@ export default function Home() {
             </Carousel>
         </section>
         
+        <TimelineSection />
+
         <FaqSection />
       </div>
     </>
