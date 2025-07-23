@@ -52,7 +52,7 @@ export default function LessonPage() {
               priority
             />
             <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent" />
-            <div className="absolute inset-0 bg-black/60" />
+            <div className="absolute inset-0 bg-black/40" />
             <div className="container relative mx-auto px-4 pb-8 sm:px-6 lg:px-8">
                 <Link href={`/courses/${course.id}`} className="text-sm font-semibold text-primary hover:underline mb-2 inline-block">
                     {course.category}

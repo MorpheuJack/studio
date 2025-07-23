@@ -116,7 +116,7 @@ export function Hero() {
                   data-ai-hint={item['data-ai-hint']}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent" />
-                <div className="absolute inset-0 bg-black/60" />
+                <div className="absolute inset-0 bg-black/40" />
                 
                 <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8">
                   <div className="relative z-10 flex h-full flex-col justify-end pb-20 md:pb-28 text-white">

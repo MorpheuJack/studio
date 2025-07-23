@@ -39,7 +39,7 @@ export default function BlogPostPage() {
           priority
         />
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent" />
-        <div className="absolute inset-0 bg-black/60" />
+        <div className="absolute inset-0 bg-black/40" />
         
         <div className="container relative mx-auto h-full px-4 sm:px-6 lg:px-8">
             <div className="relative z-10 flex h-full flex-col items-center justify-end pb-40 text-white md:items-start md:justify-end md:pb-24">
@@ -88,28 +88,25 @@ export default function BlogPostPage() {
               prose-strong:text-foreground prose-a:text-foreground hover:prose-a:text-foreground/80
               prose-blockquote:border-l-foreground prose-blockquote:text-muted-foreground prose-blockquote:font-normal">
               
-              {(post.videoUrl || post.audioUrl) && (
-                <div className="not-prose">
-                  {post.videoUrl && (
-                    <div key="video-player" className="my-6 aspect-video">
-                      <iframe
-                        className="w-full h-full rounded-lg"
-                        src={post.videoUrl}
-                        title="YouTube video player"
-                        frameBorder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        referrerPolicy="strict-origin-when-cross-origin"
-                        allowFullScreen
-                      ></iframe>
-                    </div>
-                  )}
-                  {post.audioUrl && (
-                    <div className="not-prose my-6 sticky top-24 z-30">
-                        <AudioPlayer
-                            src={post.audioUrl}
-                        />
-                    </div>
-                  )}
+              {post.videoUrl && (
+                <div className="not-prose my-6 aspect-video">
+                  <iframe
+                    className="w-full h-full rounded-lg"
+                    src={post.videoUrl}
+                    title="YouTube video player"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerPolicy="strict-origin-when-cross-origin"
+                    allowFullScreen
+                  ></iframe>
+                </div>
+              )}
+              
+              {post.audioUrl && (
+                <div className="my-6 sticky top-14 z-40">
+                  <AudioPlayer
+                      src={post.audioUrl}
+                  />
                 </div>
               )}
 
