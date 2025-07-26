@@ -103,7 +103,7 @@ const AudioPlayer = React.forwardRef<HTMLDivElement, AudioPlayerProps>(
     const remainingTime = duration - currentTime;
 
     const containerClasses = cn(
-      'w-full overflow-hidden bg-card/80 backdrop-blur-lg border-white/10 select-none',
+      'w-full overflow-hidden bg-card/80 backdrop-blur-lg border-white/10 select-none group',
       variant === 'default' && 'rounded-lg p-4 shadow-lg',
       variant === 'fixed' && 'border-t p-3 container mx-auto',
       className
@@ -116,8 +116,8 @@ const AudioPlayer = React.forwardRef<HTMLDivElement, AudioPlayerProps>(
         {...props}
       >
         <div className="flex items-center gap-4 md:gap-6">
-            <Button variant="ghost" size="icon" className="h-12 w-12 flex-shrink-0 rounded-full bg-primary/10 hover:bg-primary/20" onClick={togglePlayPause}>
-                {isPlaying ? <Pause className="h-6 w-6 text-primary" /> : <Play className="h-6 w-6 text-primary pl-1" />}
+            <Button variant="default" size="icon" className="h-12 w-12 flex-shrink-0 rounded-full bg-primary hover:bg-primary/90 shadow-lg" onClick={togglePlayPause}>
+                {isPlaying ? <Pause className="h-6 w-6 text-primary-foreground" /> : <Play className="h-6 w-6 text-primary-foreground pl-1" />}
             </Button>
             
             <div className="flex-grow flex flex-col gap-1 overflow-hidden">
@@ -127,7 +127,7 @@ const AudioPlayer = React.forwardRef<HTMLDivElement, AudioPlayerProps>(
                 </div>
 
                 <div className="flex items-center gap-3">
-                    <span className="text-xs text-muted-foreground font-mono min-w-[4ch] text-right">
+                     <span className="text-xs text-muted-foreground font-mono min-w-[4ch] text-right opacity-0 group-hover:opacity-100 transition-opacity">
                         {formatTime(currentTime)}
                     </span>
                     <Slider
@@ -137,31 +137,33 @@ const AudioPlayer = React.forwardRef<HTMLDivElement, AudioPlayerProps>(
                         onValueChange={handleSliderChange}
                         className="w-full"
                     />
-                    <span className="text-xs text-muted-foreground font-mono min-w-[5ch] text-left">
-                        -{formatTime(remainingTime)}
-                    </span>
-                    <Popover open={isPopoverOpen} onOpenChange={setIsPopoverOpen}>
-                        <PopoverTrigger asChild>
-                            <Button variant="ghost" size="sm" className="w-16 font-mono text-xs text-muted-foreground">
-                                {playbackRate}x
-                            </Button>
-                        </PopoverTrigger>
-                        <PopoverContent className="w-auto p-1 mb-2">
-                            <div className="flex flex-col gap-1">
-                                {playbackRates.map((rate) => (
-                                    <Button
-                                        key={rate}
-                                        variant="ghost"
-                                        size="sm"
-                                        onClick={() => handleRateChange(rate)}
-                                        className={cn("w-full justify-center", playbackRate === rate && "bg-primary/20 text-primary")}
-                                    >
-                                        {rate}x
-                                    </Button>
-                                ))}
-                            </div>
-                        </PopoverContent>
-                    </Popover>
+                    <div className="flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <span className="text-xs text-muted-foreground font-mono min-w-[5ch] text-left">
+                            -{formatTime(remainingTime)}
+                        </span>
+                        <Popover open={isPopoverOpen} onOpenChange={setIsPopoverOpen}>
+                            <PopoverTrigger asChild>
+                                <Button variant="ghost" size="sm" className="w-16 font-mono text-xs text-muted-foreground">
+                                    {playbackRate}x
+                                </Button>
+                            </PopoverTrigger>
+                            <PopoverContent className="w-auto p-1 mb-2">
+                                <div className="flex flex-col gap-1">
+                                    {playbackRates.map((rate) => (
+                                        <Button
+                                            key={rate}
+                                            variant="ghost"
+                                            size="sm"
+                                            onClick={() => handleRateChange(rate)}
+                                            className={cn("w-full justify-center", playbackRate === rate && "bg-primary/20 text-primary")}
+                                        >
+                                            {rate}x
+                                        </Button>
+                                    ))}
+                                </div>
+                            </PopoverContent>
+                        </Popover>
+                    </div>
                 </div>
             </div>
         </div>
