@@ -13,6 +13,8 @@ import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover
 
 interface AudioPlayerProps extends React.HTMLAttributes<HTMLDivElement> {
   src: string;
+  title?: string;
+  description?: string;
 }
 
 const formatTime = (seconds: number) => {
@@ -25,7 +27,7 @@ const formatTime = (seconds: number) => {
 const playbackRates = [0.75, 1, 1.25, 1.5, 2];
 
 const AudioPlayer = React.forwardRef<HTMLDivElement, AudioPlayerProps>(
-  ({ className, src, ...props }, ref) => {
+  ({ className, src, title, description, ...props }, ref) => {
     const audioRef = React.useRef<HTMLAudioElement>(null);
     const [isPlaying, setIsPlaying] = React.useState(false);
     const [duration, setDuration] = React.useState(0);
@@ -111,8 +113,8 @@ const AudioPlayer = React.forwardRef<HTMLDivElement, AudioPlayerProps>(
             
             <div className="flex-grow flex flex-col gap-1 overflow-hidden">
                 <div>
-                    <h3 className="font-bold text-foreground truncate">Continue a Conversa</h3>
-                    <p className="text-muted-foreground text-sm truncate">Aperte o play para ouvir o confronto de ideias por trás deste conteúdo.</p>
+                    <h3 className="font-bold text-foreground truncate">{title || 'Continue a Conversa'}</h3>
+                    <p className="text-muted-foreground text-sm truncate">{description || 'Aperte o play para ouvir o confronto de ideias.'}</p>
                 </div>
 
                 <div className="flex items-center gap-3">

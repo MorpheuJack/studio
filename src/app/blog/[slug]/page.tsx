@@ -105,7 +105,9 @@ export default function BlogPostPage() {
               {post.audioUrl && (
                 <div className="my-6 sticky top-14 z-40">
                   <AudioPlayer
-                      src={post.audioUrl}
+                    src={post.audioUrl}
+                    title={post.title}
+                    description="Ouça a narração deste artigo"
                   />
                 </div>
               )}
