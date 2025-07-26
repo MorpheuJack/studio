@@ -1,3 +1,4 @@
+
 'use client';
 
 import * as React from 'react';
@@ -15,6 +16,7 @@ interface AudioPlayerProps extends React.HTMLAttributes<HTMLDivElement> {
   src: string;
   title?: string;
   description?: string;
+  variant?: 'default' | 'fixed';
 }
 
 const formatTime = (seconds: number) => {
@@ -27,7 +29,7 @@ const formatTime = (seconds: number) => {
 const playbackRates = [0.75, 1, 1.25, 1.5, 2];
 
 const AudioPlayer = React.forwardRef<HTMLDivElement, AudioPlayerProps>(
-  ({ className, src, title, description, ...props }, ref) => {
+  ({ className, src, title, description, variant = 'default', ...props }, ref) => {
     const audioRef = React.useRef<HTMLAudioElement>(null);
     const [isPlaying, setIsPlaying] = React.useState(false);
     const [duration, setDuration] = React.useState(0);
@@ -100,21 +102,28 @@ const AudioPlayer = React.forwardRef<HTMLDivElement, AudioPlayerProps>(
 
     const remainingTime = duration - currentTime;
 
+    const containerClasses = cn(
+      'w-full overflow-hidden bg-card/80 backdrop-blur-lg border-white/10 select-none',
+      variant === 'default' && 'rounded-lg p-4 shadow-lg',
+      variant === 'fixed' && 'border-t p-3 container mx-auto',
+      className
+    );
+
     return (
       <Card
         ref={ref}
-        className={cn('w-full overflow-hidden p-4 bg-card/80 backdrop-blur-lg border-white/10 select-none shadow-lg', className)}
+        className={containerClasses}
         {...props}
       >
         <div className="flex items-center gap-4 md:gap-6">
-            <Button variant="ghost" size="icon" className="h-14 w-14 flex-shrink-0 rounded-full bg-primary/10 hover:bg-primary/20" onClick={togglePlayPause}>
-                {isPlaying ? <Pause className="h-7 w-7 text-primary" /> : <Play className="h-7 w-7 text-primary pl-1" />}
+            <Button variant="ghost" size="icon" className="h-12 w-12 flex-shrink-0 rounded-full bg-primary/10 hover:bg-primary/20" onClick={togglePlayPause}>
+                {isPlaying ? <Pause className="h-6 w-6 text-primary" /> : <Play className="h-6 w-6 text-primary pl-1" />}
             </Button>
             
             <div className="flex-grow flex flex-col gap-1 overflow-hidden">
                 <div>
-                    <h3 className="font-bold text-foreground truncate">{title || 'Continue a Conversa'}</h3>
-                    <p className="text-muted-foreground text-sm truncate">{description || 'Aperte o play para ouvir o confronto de ideias.'}</p>
+                    <h3 className="font-bold text-foreground truncate text-sm">{title || 'Continue a Conversa'}</h3>
+                    <p className="text-muted-foreground text-xs truncate">{description || 'Aperte o play para ouvir o confronto de ideias.'}</p>
                 </div>
 
                 <div className="flex items-center gap-3">
@@ -137,7 +146,7 @@ const AudioPlayer = React.forwardRef<HTMLDivElement, AudioPlayerProps>(
                                 {playbackRate}x
                             </Button>
                         </PopoverTrigger>
-                        <PopoverContent className="w-auto p-1">
+                        <PopoverContent className="w-auto p-1 mb-2">
                             <div className="flex flex-col gap-1">
                                 {playbackRates.map((rate) => (
                                     <Button

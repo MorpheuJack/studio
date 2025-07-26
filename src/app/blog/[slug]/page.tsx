@@ -5,7 +5,7 @@ import { getPostBySlug } from '@/lib/blog';
 import { notFound, useParams } from 'next/navigation';
 import Image from 'next/image';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { CourseCta } from '@/components/blog/CourseCta';
 import { ChevronDown, Volume2 } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
@@ -14,6 +14,22 @@ import { AudioPlayer } from '@/components/ui/audio-player';
 export default function BlogPostPage() {
   const params = useParams<{ slug: string }>();
   const post = getPostBySlug(params.slug);
+  const audioContainerRef = useRef<HTMLDivElement>(null);
+  const [isPlayerFixed, setIsPlayerFixed] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (audioContainerRef.current) {
+        const { top, height } = audioContainerRef.current.getBoundingClientRect();
+        // Adjust based on header height (approx 56px or 3.5rem)
+        const headerHeight = 56;
+        setIsPlayerFixed(top + height < headerHeight);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   if (!post) {
     notFound();
@@ -103,7 +119,7 @@ export default function BlogPostPage() {
               )}
               
               {post.audioUrl && (
-                <div className="my-6 sticky top-14 z-40">
+                <div ref={audioContainerRef} className="my-6">
                   <AudioPlayer
                     src={post.audioUrl}
                     title={post.title}
@@ -135,6 +151,22 @@ export default function BlogPostPage() {
       </div>
 
       <CourseCta category={post.category} />
+      
+      {/* Fixed Audio Player */}
+      {post.audioUrl && (
+        <div
+          className={`fixed bottom-0 left-0 right-0 z-50 transition-transform duration-300 ease-in-out ${
+            isPlayerFixed ? 'translate-y-0' : 'translate-y-full'
+          }`}
+        >
+          <AudioPlayer
+            src={post.audioUrl}
+            title={post.title}
+            description="Ouvindo a narração do artigo"
+            variant="fixed"
+          />
+        </div>
+      )}
     </div>
   );
 }
