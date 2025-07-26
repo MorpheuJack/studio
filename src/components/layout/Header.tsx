@@ -27,9 +27,10 @@ import {
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { useState, useEffect } from "react";
 import { Separator } from "@/components/ui/separator";
+import { MegaMenu } from "./MegaMenu";
 
 const navLinks = [
-  { href: "/courses", label: "Cursos" },
+  // { href: "/courses", label: "Cursos" }, // Replaced by MegaMenu
   { href: "/prompt-library", label: "Biblioteca" },
   { href: "/blog", label: "Blog" },
 ];
@@ -45,6 +46,8 @@ export function Header() {
   const [hidden, setHidden] = useState(false);
 
   const isLessonPage = /^\/courses\/[^/]+\/lessons\/[^/]+$/.test(pathname);
+  const isAuthPage = pathname === '/auth';
+
 
   useEffect(() => {
     setHasMounted(true);
@@ -84,7 +87,7 @@ export function Header() {
     return name.substring(0, 2);
   }
   
-  const isHeaderOpaque = scrolled || isLessonPage;
+  const isHeaderOpaque = scrolled || isLessonPage || isAuthPage;
 
   const authContent = (
     <>
@@ -155,6 +158,10 @@ export function Header() {
     </>
   );
 
+  if (isAuthPage) {
+    return null;
+  }
+
   return (
     <header className={cn(
       "sticky top-0 z-50 w-full transition-all duration-300",
@@ -180,6 +187,7 @@ export function Header() {
         
         {!isLessonPage && (
           <nav className="hidden items-center justify-center space-x-8 text-sm font-medium md:flex">
+             <MegaMenu />
             {navLinks.map((link) => (
               <Link
                 key={link.href}
@@ -221,6 +229,17 @@ export function Header() {
                 </Link>
 
                 <nav className="flex flex-col gap-4 text-lg font-medium">
+                   <SheetClose asChild>
+                       <Link
+                        href="/courses/all"
+                        className={cn(
+                          "transition-colors hover:text-primary",
+                          pathname.startsWith('/courses') ? "text-primary font-semibold" : "text-muted-foreground"
+                        )}
+                      >
+                        Cursos
+                      </Link>
+                    </SheetClose>
                   {navLinks.map((link) => (
                     <SheetClose asChild key={link.href}>
                       <Link
