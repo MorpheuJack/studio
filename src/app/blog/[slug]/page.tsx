@@ -14,16 +14,28 @@ import { AudioPlayer } from '@/components/ui/audio-player';
 export default function BlogPostPage() {
   const params = useParams<{ slug: string }>();
   const post = getPostBySlug(params.slug);
+  
+  // Refs
   const audioContainerRef = useRef<HTMLDivElement>(null);
+  const audioRef = useRef<HTMLAudioElement>(null);
+  
+  // State for the audio player logic
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [duration, setDuration] = useState(0);
+  const [currentTime, setCurrentTime] = useState(0);
+  const [playbackRate, setPlaybackRate] = useState(1);
+
+  // State for UI logic
   const [isPlayerFixed, setIsPlayerFixed] = useState(false);
 
+  // Effect to manage scrolling for the fixed player
   useEffect(() => {
     const handleScroll = () => {
       if (audioContainerRef.current) {
-        const { top, height } = audioContainerRef.current.getBoundingClientRect();
+        const { top } = audioContainerRef.current.getBoundingClientRect();
         // Adjust based on header height (approx 56px or 3.5rem)
         const headerHeight = 56;
-        setIsPlayerFixed(top + height < headerHeight);
+        setIsPlayerFixed(top < headerHeight);
       }
     };
 
@@ -31,12 +43,73 @@ export default function BlogPostPage() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Effect to manage audio element events
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    const setAudioData = () => {
+        if (audio.duration !== Infinity) {
+            setDuration(audio.duration);
+        }
+        setCurrentTime(audio.currentTime);
+    };
+    const setAudioTime = () => setCurrentTime(audio.currentTime);
+
+    audio.addEventListener('loadeddata', setAudioData);
+    audio.addEventListener('timeupdate', setAudioTime);
+    audio.addEventListener('ended', () => setIsPlaying(false));
+
+    return () => {
+        audio.removeEventListener('loadeddata', setAudioData);
+        audio.removeEventListener('timeupdate', setAudioTime);
+        audio.removeEventListener('ended', () => setIsPlaying(false));
+    };
+  }, []);
+  
   if (!post) {
     notFound();
   }
+  
+  // Handlers to be passed to the AudioPlayer component
+  const handlePlayPause = () => {
+    if (isPlaying) {
+      audioRef.current?.pause();
+    } else {
+      audioRef.current?.play();
+    }
+    setIsPlaying(!isPlaying);
+  };
+  
+  const handleSliderChange = (value: number[]) => {
+    if (audioRef.current) {
+      audioRef.current.currentTime = value[0];
+      setCurrentTime(value[0]);
+    }
+  };
+
+  const handleRateChange = (rate: number) => {
+    if (audioRef.current) {
+      audioRef.current.playbackRate = rate;
+      setPlaybackRate(rate);
+    }
+  };
+  
+  const audioPlayerProps = {
+    isPlaying,
+    duration,
+    currentTime,
+    playbackRate,
+    onPlayPause: handlePlayPause,
+    onSliderChange: handleSliderChange,
+    onRateChange: handleRateChange,
+    title: post.title,
+    description: "Ouça a narração deste artigo",
+  };
 
   return (
     <div className="-mt-14">
+       {post.audioUrl && <audio ref={audioRef} src={post.audioUrl} className="hidden" preload="metadata" />}
       <header className="relative w-full h-screen min-h-[700px] overflow-hidden">
         <Image
           src={post.image}
@@ -120,11 +193,7 @@ export default function BlogPostPage() {
               
               {post.audioUrl && (
                 <div ref={audioContainerRef} className="my-6">
-                  <AudioPlayer
-                    src={post.audioUrl}
-                    title={post.title}
-                    description="Ouça a narração deste artigo"
-                  />
+                  <AudioPlayer {...audioPlayerProps} />
                 </div>
               )}
 
@@ -159,9 +228,8 @@ export default function BlogPostPage() {
             isPlayerFixed ? 'translate-y-0' : 'translate-y-full'
           }`}
         >
-          <AudioPlayer
-            src={post.audioUrl}
-            title={post.title}
+          <AudioPlayer 
+            {...audioPlayerProps} 
             description="Ouvindo a narração do artigo"
             variant="fixed"
           />
