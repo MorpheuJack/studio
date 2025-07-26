@@ -80,7 +80,7 @@ const timelineData = [
 ];
 
 export function TimelineSection() {
-    const [selectedStep, setSelectedStep] = useState(timelineData.find(item => item.image) || timelineData[6]);
+    const [selectedStep, setSelectedStep] = useState(timelineData[0]);
 
     return (
         <section id="timeline" className="py-24 sm:py-32 bg-background">
