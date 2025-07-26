@@ -1,3 +1,4 @@
+
 import Image from 'next/image';
 import Link from 'next/link';
 import type { Course } from '@/lib/courses';
@@ -27,7 +28,7 @@ export function CourseCard({ course }: CourseCardProps) {
         <CardContent className="flex flex-1 flex-col p-6">
           <div className="flex-1">
             <Badge variant="secondary" className="mb-2">{course.category}</Badge>
-            <h3 className="font-headline text-xl font-semibold leading-tight text-foreground">{course.title}</h3>
+            <h3 className="font-headline text-xl font-semibold leading-tight text-foreground group-hover:text-primary transition-colors">{course.title}</h3>
             <p className="mt-2 text-sm text-muted-foreground">{course.description}</p>
           </div>
         </CardContent>
@@ -36,12 +37,12 @@ export function CourseCard({ course }: CourseCardProps) {
             <Wrench className="h-4 w-4 text-muted-foreground" />
             <div className="flex flex-wrap items-center gap-1.5">
               {course.tools.slice(0, 2).map((tool) => (
-                <Badge key={tool} variant="secondary">
+                <Badge key={tool} variant="outline">
                   {tool}
                 </Badge>
               ))}
               {course.tools.length > 2 && (
-                <Badge variant="secondary">
+                <Badge variant="outline">
                   +{course.tools.length - 2} mais
                 </Badge>
               )}
